@@ -9,8 +9,10 @@ set(CMAKE_C_STANDARD_REQUIRED TRUE)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../cmake)
 
-add_compile_options(
-    "-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith"
-)
+if (NOT WIN32)
+    add_compile_options(
+        "-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith"
+    )
+endif()
 
 add_subdirectory(src)
