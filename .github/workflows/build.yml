@@ -71,16 +71,3 @@ jobs:
         if: matrix.name == 'Linux'
         run: test -f build/bomberman
 
-      - name: archive artifact Windows
-        if: matrix.name == 'Windows'
-        uses: actions/upload-artifact@v1
-        with:
-          name: BombermanWindows.exe
-          path: build/Debug/bomberman.exe
-  
-      - name: archive artifact Linux
-        if: matrix.name == 'Linux'
-        uses: actions/upload-artifact@v1
-        with:
-          name: BombermanLinux
-          path: build/bomberman
