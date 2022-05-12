@@ -14,9 +14,6 @@ namespace ecs {
         public:
             System();
             ~System();
-
-            
-
         protected:
         private:
     };

@@ -8,11 +8,17 @@
 #ifndef COMPONENT_HPP_
 #define COMPONENT_HPP_
 
+extern "C"
+{
+    #include <raylib.h>
+}
+
 namespace ecs {
     class IComponent {
         public:
             float x;
             float y;
+
         protected:
 
         private:
@@ -41,7 +47,6 @@ namespace ecs {
         private:
             
     };
-    
 }
 
 #endif /* !COMPONENT_HPP_ */

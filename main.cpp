@@ -24,6 +24,7 @@ int main(void)
         raylib.beginDrawing();
         raylib.clearBackground();
         raylib.drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
+        raylib.drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RED);
         raylib.endDrawing();
     }
     entity.addComponent<ecs::Position>(100.0, 100.0);
