@@ -1,10 +1,10 @@
 #include <raylib.h>
 
-if defined(WIN32)
+#if defined(WIN32)
     #include <windows.h>
-else
+#else
     #include <unistd.h>
-
+#endif
 
 int main(void)
 {
