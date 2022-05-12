@@ -48,10 +48,7 @@ jobs:
   build-on-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: dump matrix context
-        run: echo '${{ toJSON(matrix) }}'
+      - uses: actions/checkout@v1
 
       - name: install-raylib-windows-build
         run: |
@@ -62,13 +59,28 @@ jobs:
           vcpkg install raylib
           cd ..
           Remove-Item -Force -Recurse vcpkg
+
       - name: build-on-windows
         run: |
-          mkdir build
-          cd build && cmake ..
+          mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Debug
           cmake --build .
-          cd ..
-      - name: print-check-windows
-        run: |
-          dir
-          dir build
+    
+      - name: check binary
+        shell: bash
+        if: matrix.name == 'Linux'
+        run: test -f build/bomberman
+
+      - name: archive artifact Windows
+        if: matrix.name == 'Windows'
+        uses: actions/upload-artifact@v1
+        with:
+          name: BombermanWindows.exe
+          path: build/Debug/bomberman.exe
+  
+      - name: archive artifact Linux
+        if: matrix.name == 'Linux'
+        uses: actions/upload-artifact@v1
+        with:
+          name: BombermanLinux
+          path: build/bomberman
