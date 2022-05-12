@@ -1,18 +1,34 @@
 cmake_minimum_required(VERSION 3.17)
+ project(bomberman)
 
-project(IndieStudio LANGUAGES CXX)
+ # Dependencies
+ find_package(raylib 4.0.0 QUIET)
+ if (NOT raylib_FOUND)
+   include(FetchContent)
+   FetchContent_Declare(
+     raylib
+     URL https://github.com/raysan5/raylib/archive/refs/tags/4.0.0.tar.gz
+   )
+   FetchContent_GetProperties(raylib)
+   if (NOT raylib_POPULATED)
+     set(FETCHCONTENT_QUIET NO)
+     FetchContent_Populate(raylib)
+     set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+     add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
+   endif()
+ endif()
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_C_STANDARD 99)
-set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-set(CMAKE_C_STANDARD_REQUIRED TRUE)
+ set(TARGET_NAME indie)
+ add_executable(${TARGET_NAME} ${SRCROOT}src/main.cpp)
+ set_target_properties(${TARGET_NAME} PROPERTIES
+     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}
+ )
+ #set(raylib_VERBOSE 1)
+ target_link_libraries(${TARGET_NAME} raylib)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../cmake)
-
-if (NOT WIN32)
-    add_compile_options(
-        "-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith"
-    )
-endif()
-
-add_subdirectory(src)
+ # Checks if OSX and links appropriate frameworks (Only required on MacOS)
+ if (APPLE)
+     target_link_libraries(${TARGET_NAME} "-framework IOKit")
+     target_link_libraries(${TARGET_NAME} "-framework Cocoa")
+     target_link_libraries(${TARGET_NAME} "-framework OpenGL")
+ endif()
