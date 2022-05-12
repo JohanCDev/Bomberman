@@ -20,25 +20,25 @@
 
 * The title of the commit must be a summuary of the content and not be too long (less than 50 characters).
 
-* The title of the commit must start by a gitmoji and three letters describing the nature of the commit
+* The title of the commit must start by three letters describing the nature of the commit surrond by []
 
-* - Bug Fix :bug: | [FIX]
+* - Bug Fix [FIX]
 
-* - Refacto - :recycle: | [REF]
+* - Refacto [REF]
 
-* - Adding of a functionnality :sparkles: | [ADD]
+* - Adding of a functionnality [ADD]
 
-* - Remove code :heavy_minus_sign: | [REM]
+* - Remove code [REM]
 
-* - Update code :hammer: | [UPD]
+* - Update code [UPD]
 
-* - Conflicts fix :rotating_light: | [MER]
+* - Conflicts fix [MER]
 
 * Prefer putting detailed informations inside the commit's description.
 
 * Example:
   ```sh
-  $> git commit -m ':bug:| [FIX] infinite loop when pressing Alt-F4
+  $> git commit -m '[FIX] infinite loop when pressing Alt-F4
 
   This was caused by a missing check in the event loop
   The program now checks when the window is set to close'
@@ -54,7 +54,7 @@
 
 * :heavy_check_mark: **DO**: Commit often! allows everyone to see your progress and eventually make suggestions on it.
 
-* :heavy_check_mark: **DO**: Format your code, using either `clang-format` directly or your IDE's capabilities (and yes, VSCode can format your code for you!)
+* :heavy_check_mark: **DO**: Format your code, using either `.clang-format` directly or your IDE's capabilities (and yes, VSCode can format your code for you!)
 
 ***
 
