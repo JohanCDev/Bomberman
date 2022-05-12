@@ -50,6 +50,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: dump matrix context
+        run: echo '${{ toJSON(matrix) }}'
+
       - name: install-raylib-windows-build
         run: |
           git clone https://github.com/Microsoft/vcpkg.git
