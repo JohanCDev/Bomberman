@@ -40,6 +40,11 @@ jobs:
           cd build && cmake ..
           cmake --build .
           cd ..
+      - name: print-check-ubuntu
+        run: |
+          ls -l
+          ls -l build
+
   build-on-windows:
     runs-on: windows-latest
     steps:
@@ -60,3 +65,7 @@ jobs:
           cd build && cmake ..
           cmake --build .
           cd ..
+      - name: print-check-windows
+        run: |
+          dir
+          dir build
