@@ -38,7 +38,7 @@
 
 * Example:
   ```sh
-  $> git commit -m ':bug: | [FIX] infinite loop when pressing Alt-F4
+  $> git commit -m ':bug:| [FIX] infinite loop when pressing Alt-F4
 
   This was caused by a missing check in the event loop
   The program now checks when the window is set to close'
