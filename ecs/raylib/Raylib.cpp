@@ -23,6 +23,11 @@ extern "C"
         SetTargetFPS(60);
     }
 
+    void Raylib::destroyWindow()
+    {
+        CloseWindow();
+    }
+
     bool Raylib::windowShouldClose()
     {
         return (WindowShouldClose());

@@ -19,7 +19,7 @@ class Raylib {
 
         // Setup function
         void initWindow(std::size_t width, std::size_t heigth, const std::string title);
-        bool windowShouldClose();
+        void destroyWindow();
         
         // Event function
         bool isKeyPressed(KeyboardKey key);
@@ -28,6 +28,7 @@ class Raylib {
         void beginDrawing();
         void endDrawing();
         void clearBackground();
+        bool windowShouldClose();
 
         // Drawing function
         void drawText(const std::string text, int posX, int posY, int fontSize, Color color);

@@ -27,6 +27,7 @@ int main(void)
         raylib.drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RED);
         raylib.endDrawing();
     }
+    raylib.destroyWindow();
     entity.addComponent<ecs::Position>(100.0, 100.0);
     entity.addComponent<ecs::Movement>(30.0, 30.0);
     entity.getPosition();
