@@ -13,6 +13,7 @@
 #include <typeinfo>
 #include "../component/Component.hpp"
 #include <iostream>
+#include <memory>
 
 namespace ecs {
     class Entity {
@@ -22,15 +23,16 @@ namespace ecs {
 
             template<typename T, typename... Args>
             void addComponent(Args... args) {
-                T newCompo(std::forward<Args>(args)...);
+                T *newCompo(new T(std::forward<Args>(args)...));
                 this->_componentMap.emplace(typeid(T).name(), newCompo);
             }
             void getPosition();
             void getMovement();
+            void getCircleRadius();
 
         protected:
         private:
-            std::unordered_map<std::string, IComponent> _componentMap;
+            std::unordered_map<std::string, std::unique_ptr<IComponent>> _componentMap;
     };
 }
 
