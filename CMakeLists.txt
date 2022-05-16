@@ -6,30 +6,10 @@ project(IndieStudio)
 
 # Variables
 set(TARGET_NAME indie)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
-# Paths
-set(SRC_PATH src)
-set(ECS_PATH ${SRC_PATH}/ecs)
-
-
-# Include directories
-include_directories(${ECS_PATH}/component/)
-include_directories(${ECS_PATH}/entity/)
-include_directories(${ECS_PATH}/raylib/)
-include_directories(${ECS_PATH}/system/)
-
-# Source files
-set(ECS_SRCS
-  ${ECS_PATH}/entity/Entity.cpp
-  ${ECS_PATH}/raylib/Raylib.cpp
-)
-
-set(INDIE_SRCS
-        ${ECS_SRCS}
-  )
-# Compilation
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/)
+set(SRCROOT)
 
 # Raylib start
 
@@ -53,8 +33,4 @@ find_package(raylib 4.0.0 QUIET)
 
 # Raylib end
 
-add_executable(${TARGET_NAME} src/main.cpp ${INDIE_SRCS})
-
-target_compile_features(${TARGET_NAME} PRIVATE cxx_std_17)
-target_link_libraries(${TARGET_NAME} raylib)
-target_link_libraries(${TARGET_NAME} raylib)
+add_subdirectory(src)
