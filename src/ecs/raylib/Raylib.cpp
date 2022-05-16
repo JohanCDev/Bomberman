@@ -17,10 +17,14 @@ Raylib::~Raylib()
 
 extern "C"
 {
-    void Raylib::initWindow(size_t width, size_t heigth, const std::string title)
+    void Raylib::initWindow(size_t width, size_t heigth, const std::string title, bool resizable, int baseFps)
     {
+        if (resizable)
+            SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
+        else
+            SetConfigFlags(FLAG_VSYNC_HINT);
         InitWindow(width, heigth, title.c_str());
-        SetTargetFPS(60);
+        SetTargetFPS(baseFps);
     }
 
     void Raylib::destroyWindow()
