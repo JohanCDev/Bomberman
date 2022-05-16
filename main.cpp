@@ -30,9 +30,8 @@ int main(void)
     raylib.destroyWindow();
     entity.addComponent<ecs::Position>(100.0, 100.0);
     entity.addComponent<ecs::Movement>(30.0, 30.0);
-    entity.addComponent<ecs::Circle>(20.0);
     entity.getPosition();
     entity.getMovement();
-    entity.getCircleRadius();
+    // entity.getCircleRadius();
     return (0);
 }
