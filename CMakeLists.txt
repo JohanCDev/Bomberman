@@ -1,8 +1,41 @@
+# Cmake version
 cmake_minimum_required(VERSION 3.17)
- project(bomberman)
 
- # Dependencies
- find_package(raylib 4.0.0 QUIET)
+# Project name
+project(IndieStudio)
+
+# Variables
+set(TARGET_NAME indie)
+set(CMAKE_CXX_STANDARD 17)
+
+# Paths
+set(SRC_PATH src)
+set(ECS_PATH ${SRC_PATH}/ecs)
+
+
+# Include directories
+include_directories(${ECS_PATH}/component/)
+include_directories(${ECS_PATH}/entity/)
+include_directories(${ECS_PATH}/raylib/)
+include_directories(${ECS_PATH}/system/)
+
+# Source files
+set(ECS_SRCS
+  ${ECS_PATH}/entity/Entity.cpp
+  ${ECS_PATH}/raylib/Raylib.cpp
+)
+
+set(INDIE_SRCS
+        ${ECS_SRCS}
+  )
+# Compilation
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/)
+
+# Raylib start
+
+add_compile_definitions(_USE_MATH_DEFINES)
+
+find_package(raylib 4.0.0 QUIET)
  if (NOT raylib_FOUND)
    include(FetchContent)
    FetchContent_Declare(
@@ -18,17 +51,10 @@ cmake_minimum_required(VERSION 3.17)
    endif()
  endif()
 
- set(TARGET_NAME indie)
- add_executable(${TARGET_NAME} ${SRCROOT}src/main.cpp)
- set_target_properties(${TARGET_NAME} PROPERTIES
-     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}
- )
- #set(raylib_VERBOSE 1)
- target_link_libraries(${TARGET_NAME} raylib)
+# Raylib end
 
- # Checks if OSX and links appropriate frameworks (Only required on MacOS)
- if (APPLE)
-     target_link_libraries(${TARGET_NAME} "-framework IOKit")
-     target_link_libraries(${TARGET_NAME} "-framework Cocoa")
-     target_link_libraries(${TARGET_NAME} "-framework OpenGL")
- endif()
+add_executable(${TARGET_NAME} src/main.cpp ${INDIE_SRCS})
+
+target_compile_features(${TARGET_NAME} PRIVATE cxx_std_17)
+target_link_libraries(${TARGET_NAME} raylib)
+target_link_libraries(${TARGET_NAME} raylib)

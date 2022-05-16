@@ -1,20 +1,37 @@
-#include <raylib.h>
+/*
+** EPITECH PROJECT, 2022
+** main
+** File description:
+** main
+*/
 
-#if defined(WIN32)
-    #include <windows.h>
-#else
-    #include <unistd.h>
-#endif
-
-extern "C" void InitWindow(int width, int height, const char *title);
-extern "C" void CloseWindow();
+#include <iostream>
+#include <unistd.h>
+#include "ecs/component/Component.hpp"
+#include "ecs/entity/Entity.hpp"
+#include "ecs/raylib/Raylib.hpp"
 
 int main(void)
 {
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    ecs::Entity entity;
+    Raylib raylib;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
-    CloseWindow();
-    return 0;
+    raylib.initWindow(1920, 1000, "Indie Studio");
+    while (!raylib.windowShouldClose()) {
+        if (raylib.isKeyPressed(KEY_SPACE)) {
+            std::cout << "a" << std::endl;
+        }
+        raylib.beginDrawing();
+        raylib.clearBackground();
+        raylib.drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
+        raylib.drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RED);
+        raylib.endDrawing();
+    }
+    raylib.destroyWindow();
+    entity.addComponent<ecs::Position>(100.0, 100.0);
+    entity.addComponent<ecs::Movement>(30.0, 30.0);
+    entity.getPosition();
+    entity.getMovement();
+    // entity.getCircleRadius();
+    return (0);
 }
