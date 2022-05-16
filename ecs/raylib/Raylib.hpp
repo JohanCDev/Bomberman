@@ -8,7 +8,7 @@
 #ifndef RAYLIB_HPP_
 #define RAYLIB_HPP_
 
-#include "raylib.h"
+#include <raylib.h>
 #include <cstdio>
 #include <string>
 
