@@ -1,6 +1,5 @@
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
 set(INCROOT 
-	${INCROOT}
 	${SRCROOT})
 
 set(SRC
