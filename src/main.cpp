@@ -10,6 +10,7 @@
 #include "ecs/component/Component.hpp"
 #include "ecs/entity/Entity.hpp"
 #include "ecs/raylib/Raylib.hpp"
+#include "RColor.hpp"
 
 int main(void)
 {
@@ -22,8 +23,8 @@ int main(void)
         }
         Raylib::beginDrawing();
         Raylib::clearBackground();
-        Raylib::drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
-        Raylib::drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RED);
+        Raylib::drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, RBLACK);
+        Raylib::drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RRED);
         Raylib::endDrawing();
     }
     Raylib::destroyWindow();

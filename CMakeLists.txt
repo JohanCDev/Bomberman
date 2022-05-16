@@ -33,4 +33,5 @@ find_package(raylib 4.0.0 QUIET)
 
 # Raylib end
 
+include_directories(include/)
 add_subdirectory(src)

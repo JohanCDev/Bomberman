@@ -54,21 +54,21 @@ extern "C"
 
     void Raylib::clearBackground()
     {
-        ClearBackground(RAYWHITE);
+        ClearBackground((Color){245, 245, 245, 255});
     }
 
-    void Raylib::drawText(const std::string text, int posX, int posY, int fontSize, Color color)
+    void Raylib::drawText(const std::string text, int posX, int posY, int fontSize, rColor color)
     {
-        DrawText(text.c_str(), posX, posY, fontSize, color);
+        DrawText(text.c_str(), posX, posY, fontSize, (Color){color.r, color.g, color.b, color.a});
     }
 
-    void Raylib::drawCircle(int posX, int posY, float radius, Color color)
+    void Raylib::drawCircle(int posX, int posY, float radius, rColor color)
     {
-        DrawCircle(posX, posY, radius, color);
+        DrawCircle(posX, posY, radius, (Color){color.r, color.g, color.b, color.a});
     }
 
-    void Raylib::drawRectangle(int posX, int posY, int width, int height, Color color)
+    void Raylib::drawRectangle(int posX, int posY, int width, int height, rColor color)
     {
-        DrawRectangle(posX, posY, width, height, color);
+        DrawRectangle(posX, posY, width, height, (Color){color.r, color.g, color.b, color.a});
     }
 }
