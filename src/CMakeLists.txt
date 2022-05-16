@@ -3,12 +3,18 @@ set(INCROOT
 	${INCROOT}
 	${SRCROOT})
 
-set(SRC)
+set(SRC
+    ${SRCROOT}main.cpp
+    ${SRCROOT}ecs/raylib/Raylib.cpp
+    ${SRCROOT}ecs/raylib/Raylib.hpp
+    ${SRCROOT}ecs/entity/Entity.cpp
+    ${SRCROOT}ecs/entity/Entity.hpp
+    ${SRCROOT}ecs/component/Component.hpp)
 
 add_subdirectory(ecs)
 
-set(TARGET_NAME arcade)
-add_executable(${TARGET_NAME} ${SRCROOT}/main.cpp)
+set(TARGET_NAME indie)
+add_executable(${TARGET_NAME} ${SRC})
 target_link_libraries(${TARGET_NAME} PRIVATE raylib)
 add_custom_command(TARGET ${TARGET_NAME} 
 	POST_BUILD
