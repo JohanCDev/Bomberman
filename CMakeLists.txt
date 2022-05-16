@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
+set(CMAKE_C_COMPILER "C:/TDM-GCC-64/bin/gcc.exe")
+set(CMAKE_CXX_COMPILER "C:/TDM-GCC-64/bin/g++.exe")
  project(bomberman)
 
  # Dependencies
