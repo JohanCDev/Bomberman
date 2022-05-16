@@ -9,7 +9,8 @@ set(TARGET_NAME indie)
 set(CMAKE_CXX_STANDARD 17)
 
 # Paths
-set(ECS_PATH ecs)
+set(SRC_PATH src)
+set(ECS_PATH ${SRC_PATH}/ecs)
 
 
 # Include directories
@@ -30,6 +31,8 @@ set(INDIE_SRCS
 # Compilation
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/)
 
+# Raylib start
+
 add_compile_definitions(_USE_MATH_DEFINES)
 
 find_package(raylib 4.0.0 QUIET)
@@ -48,7 +51,9 @@ find_package(raylib 4.0.0 QUIET)
    endif()
  endif()
 
-add_executable(${TARGET_NAME} main.cpp ${INDIE_SRCS})
+# Raylib end
+
+add_executable(${TARGET_NAME} src/main.cpp ${INDIE_SRCS})
 
 target_compile_features(${TARGET_NAME} PRIVATE cxx_std_17)
 target_link_libraries(${TARGET_NAME} raylib)
