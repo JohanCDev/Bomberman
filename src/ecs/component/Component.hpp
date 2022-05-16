@@ -19,7 +19,7 @@ namespace ecs {
             virtual void update(float param1, float param2) = 0;
             virtual float getX() = 0;
             virtual float getY() = 0;
-            virtual void draw() = 0;
+            // virtual void draw() = 0;
         protected:
 
         private:
