@@ -12,7 +12,7 @@
 #ifndef INDIE_EVENT_HPP_
 #define INDIE_EVENT_HPP_
 
-#include "types.hpp"
+#include "vec2.hpp"
 
 namespace indie
 {

@@ -9,8 +9,8 @@
 ///
 /// Misc types.
 
-#ifndef INDIE_TYPES_HPP_
-#define INDIE_TYPES_HPP_
+#ifndef INDIE_VEC2_HPP_
+#define INDIE_VEC2_HPP_
 
 namespace indie
 {
