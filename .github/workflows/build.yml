@@ -16,17 +16,18 @@ jobs:
 
       - name: install-raylib-ubuntu-prerequisites
         run: |
-          sudo apt install -y build-essential
-          sudo apt install -y git
-          sudo apt install -y cmake
-          sudo apt install -y libasound2-dev
-          sudo apt install -y mesa-common-dev
-          sudo apt install -y libx11-dev
-          sudo apt install -y libxrandr-dev
-          sudo apt install -y libxi-dev
-          sudo apt install -y xorg-dev
-          sudo apt install -y libgl1-mesa-dev
-          sudo apt install -y libglu1-mesa-dev
+          sudo apt install -y build-essential \
+            git \
+            cmake \
+            libasound2-dev \
+            mesa-common-dev \
+            libx11-dev \
+            libxrandr-dev \
+            libxi-dev \
+            xorg-dev \
+            libgl1-mesa-dev \
+            libglu1-mesa-dev
+
       - name: install-raylib-ubuntu-build
         run: |
           git clone https://github.com/raysan5/raylib.git raylib
@@ -37,12 +38,29 @@ jobs:
           sudo make install
           cd ..
           rm -fr raylib
+
+      - name: install-emscriptensdk-ubuntu-prerequisites
+        run: |
+          sudo apt install -y git \
+            python3 \
+            cmake
+
+      - name: install-emscriptensdk-ubuntu-build
+        run: |
+          git clone https://github.com/emscripten-core/emsdk.git
+          cd emsdk
+          ./emsdk install latest
+          ./emsdk activate latest
+          source ./emsdk_env.sh
+          cd ..
+
       - name: build-on-ubuntu
         run: |
           mkdir build
           cd build && cmake ..
           cmake --build .
           cd ..
+
       - name: print-check-ubuntu
         run: |
           ls -l
@@ -63,14 +81,21 @@ jobs:
           cd ..
           Remove-Item -Force -Recurse vcpkg
 
+      - name: install-emscriptensdk-windows-build
+        run: |
+          git clone https://github.com/emscripten-core/emsdk.git
+          cd emsdk
+          emsdk install latest
+          emsdk activate latest
+          emsdk_env.bat
+
       - name: build-on-windows
         run: |
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Debug
           cmake --build .
     
-      - name: check binary
+      - name: check-binary
         shell: bash
         if: matrix.name == 'Linux'
         run: test -f build/bomberman
-
