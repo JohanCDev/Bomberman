@@ -11,4 +11,5 @@
 # Shame on you!
 vgcore.*
 
-doc/ouput/
+doc/output/
+doc/warnings.txt
