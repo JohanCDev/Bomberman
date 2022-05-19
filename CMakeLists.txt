@@ -1,7 +1,8 @@
+# Cmake version
 cmake_minimum_required(VERSION 3.17)
 project(bomberman)
 
-set(CMAKE_CXX_STANDARD_REQUIRED 20)
+set(CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/)
 
