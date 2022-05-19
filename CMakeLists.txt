@@ -1,34 +1,20 @@
 cmake_minimum_required(VERSION 3.17)
- project(bomberman)
+project(bomberman)
 
- # Dependencies
- find_package(raylib 4.0.0 QUIET)
- if (NOT raylib_FOUND)
-   include(FetchContent)
-   FetchContent_Declare(
-     raylib
-     URL https://github.com/raysan5/raylib/archive/refs/tags/4.0.0.tar.gz
-   )
-   FetchContent_GetProperties(raylib)
-   if (NOT raylib_POPULATED)
-     set(FETCHCONTENT_QUIET NO)
-     FetchContent_Populate(raylib)
-     set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-     add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
-   endif()
- endif()
+set(CMAKE_CXX_STANDARD_REQUIRED 20)
 
- set(TARGET_NAME indie)
- add_executable(${TARGET_NAME} ${SRCROOT}src/main.cpp)
- set_target_properties(${TARGET_NAME} PROPERTIES
-     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}
- )
- #set(raylib_VERBOSE 1)
- target_link_libraries(${TARGET_NAME} raylib)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/)
 
- # Checks if OSX and links appropriate frameworks (Only required on MacOS)
- if (APPLE)
-     target_link_libraries(${TARGET_NAME} "-framework IOKit")
-     target_link_libraries(${TARGET_NAME} "-framework Cocoa")
-     target_link_libraries(${TARGET_NAME} "-framework OpenGL")
- endif()
+find_package(raylib REQUIRED)
+set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
+
+set(SRC_INTERFACE
+    ${INCROOT}test.hpp
+)
+set(INTERFACES_NAME interface)
+
+add_library(${INTERFACES_NAME} INTERFACE)
+
+target_include_directories(${INTERFACES_NAME} INTERFACE ${INCROOT})
+
+add_subdirectory(src)
