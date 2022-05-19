@@ -8,7 +8,7 @@
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
 
-#include <unordered_map>
+#include <vector>
 #include <string>
 #include <typeinfo>
 #include "../component/Component.hpp"
@@ -23,16 +23,29 @@ namespace ecs {
 
             template<typename T, typename... Args>
             void addComponent(Args... args) {
-                T *newCompo(new T(std::forward<Args>(args)...));
-                this->_componentMap.emplace(typeid(T).name(), newCompo);
+                this->_componentVector.push_back(std::unique_ptr<T>(new T{std::forward<Args>(args)...}));
             }
-            void getPosition();
-            void getMovement();
-            void getCircleRadius();
 
+            bool hasCompoType(ecs::compoType type) {
+                for (auto &compo : _componentVector) {
+                    if (compo->getType() == type)
+                        return (true);
+                }
+                return (false);
+            }
+
+            std::unique_ptr<IComponent> getComponent(ecs::compoType type) {
+                for (auto &compo : _componentVector) {
+                    if (compo->getType() == type) {
+                        return (std::move(compo));
+                    }
+                }
+                return (nullptr);
+            }
+            
         protected:
         private:
-            std::unordered_map<std::string, std::unique_ptr<IComponent>> _componentMap;
+            std::vector<std::unique_ptr<IComponent>> _componentVector;
     };
 }
 

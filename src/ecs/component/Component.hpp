@@ -14,70 +14,75 @@ extern "C"
 }
 
 namespace ecs {
+
+    enum compoType {
+        TRANSFORM
+    };
+
     class IComponent {
         public:
-            virtual void update(float param1, float param2) = 0;
-            virtual float getX() = 0;
-            virtual float getY() = 0;
-            // virtual void draw() = 0;
+            virtual ~IComponent() {}
+            virtual ecs::compoType getType() = 0;
         protected:
 
         private:
     };
 
-    class Position : public IComponent
-    {
+    class Drawable : public IComponent {
+
         public:
-            Position(float param1, float param2) {
-                this->_x = param1;
-                this->_y = param2;
-            }
-
-            void update(float param1, float param2) override {
-                this->_x = param1;
-                this->_y = param2;
-            }
-
-            float getX() override {
-                return (this->_x);
-            }
-
-            float getY() override {
-                return (this->_y);
-            }
-
+            virtual ~Drawable() {}
+            virtual ecs::compoType getType() = 0;
         protected:
         private:
-            float _x;
-            float _y;
-            
+
     };
 
-    class Movement : public IComponent
-    {
+    class NonDrawable : public IComponent {
+
         public:
-            Movement(float param1, float param2) {
-                this->_x = param1;
-                this->_y = param2;
+            virtual ~NonDrawable() {}
+            virtual ecs::compoType getType() = 0;
+        protected:
+        private:
+
+    };
+
+    class Transform : public NonDrawable {
+
+        public:
+            Transform() {
+                this->_posX = 0;
+                this->_posY = 0;
+                this->_speedX = 0;
+                this->_speedY = 0;
+            }
+            Transform(float posX, float posY, float speedX, float speedY) {
+                this->_posX = posX;
+                this->_posY = posY;
+                this->_speedX = speedX;
+                this->_speedY = speedY;
+            }
+            ~Transform() {}
+
+            ecs::compoType getType(void) override {
+                return (ecs::compoType::TRANSFORM);
             }
 
-            void update(float param1, float param2) override {
-                this->_x = param1;
-                this->_y = param2;
-            }
-
-            float getX() override {
-                return (this->_x);
-            }
-
-            float getY() override {
-                return (this->_y);
+            void update(float posX, float posY, float speedX, float speedY) {
+                this->_posX = posX;
+                this->_posY = posY;
+                this->_speedX = speedX;
+                this->_speedY = speedY;
             }
 
         protected:
         private:
-            float _x;
-            float _y;   
+            float _posX;
+            float _posY;
+            float _speedX;
+            float _speedY;
+
     };
 
 }

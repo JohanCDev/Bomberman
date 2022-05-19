@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <unistd.h>
+#include <vector>
 #include "ecs/component/Component.hpp"
 #include "ecs/entity/Entity.hpp"
 #include "ecs/raylib/Raylib.hpp"
@@ -28,10 +29,17 @@ int main(void)
         raylib.endDrawing();
     }
     raylib.destroyWindow();
-    entity.addComponent<ecs::Position>(100.0, 100.0);
-    entity.addComponent<ecs::Movement>(30.0, 30.0);
-    entity.getPosition();
-    entity.getMovement();
+    entity.addComponent<ecs::Transform>();
+    if (entity.hasCompoType(ecs::compoType::TRANSFORM) == true) {
+        std::cout << "yes" << std::endl;
+    } else {
+        std::cout << "no" << std::endl;
+    }
+    std::unique_ptr<ecs::IComponent> compo = entity.getComponent(ecs::compoType::TRANSFORM);
+    //entity.addComponent<ecs::Position>(100.0, 100.0);
+    //entity.addComponent<ecs::Movement>(30.0, 30.0);
+    //entity.getPosition();
+    //entity.getMovement();
     // entity.getCircleRadius();
     return (0);
 }
