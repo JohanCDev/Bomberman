@@ -5,9 +5,6 @@
 ** main
 */
 
-#include <iostream>
-#include <string>
-#include <unistd.h>
 #include "ecs/component/Component.hpp"
 #include "ecs/entity/Entity.hpp"
 #include "ecs/raylib/Raylib.hpp"
