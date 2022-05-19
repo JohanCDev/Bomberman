@@ -6,6 +6,7 @@
 */
 
 #include <iostream>
+#include <string>
 #include <unistd.h>
 #include "ecs/component/Component.hpp"
 #include "ecs/entity/Entity.hpp"
