@@ -6,7 +6,10 @@
 /build
 
 # Executable
-/indie
+/bomberman
 
 # Shame on you!
 vgcore.*
+
+doc/output/
+doc/warnings.txt

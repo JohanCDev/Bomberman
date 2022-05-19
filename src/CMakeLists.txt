@@ -1,20 +1,26 @@
+set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
-set(INCROOT 
-	${SRCROOT})
+set(ECSROOT ${SRCROOT}ecs/)
 
 set(SRC
-    ${SRCROOT}main.cpp
-    ${SRCROOT}ecs/raylib/Raylib.cpp
-    ${SRCROOT}ecs/raylib/Raylib.hpp
-    ${SRCROOT}ecs/entity/Entity.cpp
-    ${SRCROOT}ecs/entity/Entity.hpp
-    ${SRCROOT}ecs/component/Component.hpp)
+    ${SRCROOT}/main.cpp
+    ${ECSROOT}component/component.hpp
+    ${ECSROOT}entity/Entity.cpp
+    ${ECSROOT}entity/Entity.hpp
+    ${ECSROOT}raylib/Raylib.cpp
+    ${ECSROOT}raylib/Raylib.hpp
+    ${ECSROOT}system/System.hpp
+)
 
-add_subdirectory(ecs)
+add_executable(${PROJECT_NAME} ${SRC})
 
-set(TARGET_NAME indie)
-add_executable(${TARGET_NAME} ${SRC})
-target_link_libraries(${TARGET_NAME} PRIVATE raylib)
-add_custom_command(TARGET ${TARGET_NAME} 
-	POST_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_NAME}> ${PROJECT_SOURCE_DIR})
+target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+target_link_libraries(${PROJECT_NAME} PUBLIC ${INTERFACES_NAME})
+# Checks if OSX and links appropriate frameworks (Only required on MacOS)
+if (APPLE)
+    target_link_libraries(${PROJECT_NAME} PRIVATE "-framework IOKit")
+    target_link_libraries(${PROJECT_NAME} PRIVATE "-framework Cocoa")
+    target_link_libraries(${PROJECT_NAME} PRIVATE "-framework OpenGL")
+endif()
+
+set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
