@@ -4,7 +4,7 @@ set(ECSROOT ${SRCROOT}ecs/)
 
 set(SRC
     ${SRCROOT}/main.cpp
-    ${ECSROOT}component/component.hpp
+    ${ECSROOT}component/Component.hpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
     ${ECSROOT}raylib/Raylib.cpp
