@@ -22,8 +22,8 @@ int main(void)
         }
         Raylib::beginDrawing();
         Raylib::clearBackground();
-        Raylib::drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, RBLACK);
-        Raylib::drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RRED);
+        Raylib::drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
+        Raylib::drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RED);
         Raylib::endDrawing();
     }
     Raylib::destroyWindow();
