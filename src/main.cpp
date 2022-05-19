@@ -9,13 +9,7 @@
 #include "ecs/entity/Entity.hpp"
 #include "ecs/raylib/Raylib.hpp"
 #include "RColor.hpp"
-
-#if defined(WIN32)
-    #include <windows.h>
-#else
-    #include <unistd.h>
-    #include <iostream>
-#endif
+#include <iostream>
 
 int main(void)
 {
