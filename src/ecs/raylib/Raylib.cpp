@@ -52,7 +52,8 @@ bool Raylib::isKeyPressed(KeyboardKey key)
 
 void Raylib::clearBackground()
 {
-    ClearBackground((Color){245, 245, 245, 255});
+
+    ClearBackground(RAYWHITE);
 }
 
 void Raylib::drawText(const std::string text, int posX, int posY, int fontSize, Color color)
