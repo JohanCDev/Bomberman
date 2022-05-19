@@ -6,9 +6,6 @@
     #include <unistd.h>
 #endif
 
-extern "C" void InitWindow(int width, int height, const char *title);
-extern "C" void CloseWindow();
-
 int main(void)
 {
     const int screenWidth = 800;
