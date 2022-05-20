@@ -14,11 +14,16 @@ extern "C"
 }
 
 #include <iostream>
+#include "Raylib.hpp"
 
 namespace ecs {
 
+    class Transform;
+
     enum compoType {
-        TRANSFORM
+        TRANSFORM,
+        CIRCLE,
+        RECTANGLE
     };
 
     class IComponent {
@@ -35,7 +40,7 @@ namespace ecs {
         public:
             virtual ~Drawable() {}
             virtual ecs::compoType getType() = 0;
-            virtual void draw() = 0;
+            virtual void draw(ecs::Transform transformCompo) = 0;
         protected:
         private:
 
@@ -83,12 +88,86 @@ namespace ecs {
                 this->_speedY = speedY;
             }
 
+            float getX() const {
+                return (this->_posX);
+            }
+
+            float getY() const {
+                return (this->_posY);
+            }
+
+            float speedX() const {
+                return (this->_speedX);
+            }
+
+            float speedY() const {
+                return (this->_speedY);
+            }
+
         protected:
         private:
             float _posX;
             float _posY;
             float _speedX;
             float _speedY;
+
+    };
+
+    class Circle : public Drawable {
+
+        public:
+            Circle() {}
+
+            Circle(double radius, Color color) {
+                this->_radius = radius;
+                this->_color = color;
+            }
+
+            ~Circle() {}
+
+            ecs::compoType getType() override {
+                return (ecs::compoType::CIRCLE);
+            }
+
+            void draw(ecs::Transform transformCompo) {
+                Raylib raylib;
+                raylib.drawCircle(transformCompo.getX(), transformCompo.getY(), this->_radius, this->_color);
+            }
+
+        protected:
+        private:
+            double _radius;
+            Color _color;
+
+    };
+
+    class Rectangle : public Drawable {
+
+        public:
+            Rectangle() {}
+
+            Rectangle(int height, int width, Color color) {
+                this->_height = height;
+                this->_width = width;
+                this->_color = color;
+            }
+
+            ~Rectangle() {}
+
+            ecs::compoType getType() override {
+                return (ecs::compoType::CIRCLE);
+            }
+
+            void draw(ecs::Transform transformCompo) {
+                Raylib raylib;
+                raylib.drawRectangle(transformCompo.getX(), transformCompo.getY(), this->_width, this->_height, this->_color);
+            }
+
+        protected:
+        private:
+            int _width;
+            int _height;
+            Color _color;
 
     };
 

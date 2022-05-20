@@ -43,6 +43,24 @@ namespace ecs {
                 }
                 return (nullptr);
             }
+
+            bool isDrawable(ecs::compoType type) {
+                if (type == ecs::compoType::CIRCLE || type == ecs::compoType::RECTANGLE) {
+                    return (true);
+                } else {
+                    return (false);
+                }
+            }
+
+            void draw() {
+                for (auto &compo : _componentVector) {
+                    if (isDrawable(compo->getType()) == true) {
+                        ecs::Drawable *drawableCompo = dynamic_cast<ecs::Drawable *>(compo.get());
+                        ecs::Transform *compo = getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
+                        drawableCompo->draw(*compo);
+                    }
+                }
+            }
             
         protected:
         private:

@@ -17,6 +17,13 @@ int main(void)
     ecs::Entity entity;
     Raylib raylib;
 
+    entity.addComponent<ecs::Transform>();
+    entity.addComponent<ecs::Circle>(100.0, RED);
+    entity.addComponent<ecs::Rectangle>(50, 150, BLUE);
+
+    ecs::Transform *compo = entity.getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
+    ecs::Circle *compo2 = entity.getComponent<ecs::Circle>(ecs::compoType::CIRCLE);
+    std::cout << compo2->getType() << std::endl;
     raylib.initWindow(1920, 1000, "Indie Studio");
     while (!raylib.windowShouldClose()) {
         if (raylib.isKeyPressed(KEY_SPACE)) {
@@ -26,16 +33,17 @@ int main(void)
         raylib.clearBackground();
         raylib.drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
         raylib.drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RED);
+        entity.draw();
+        compo->update(100.0, 100.0, 5.0, 5.0);
         raylib.endDrawing();
     }
     raylib.destroyWindow();
-    entity.addComponent<ecs::Transform>();
     if (entity.hasCompoType(ecs::compoType::TRANSFORM) == true) {
         std::cout << "yes" << std::endl;
     } else {
         std::cout << "no" << std::endl;
     }
-    ecs::Transform *compo = entity.getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
+    //ecs::Transform *compo = entity.getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
     //entity.addComponent<ecs::Position>(100.0, 100.0);
     //entity.addComponent<ecs::Movement>(30.0, 30.0);
     //entity.getPosition();
