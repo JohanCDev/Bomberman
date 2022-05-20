@@ -9,6 +9,7 @@
 
 ecs::Entity::Entity()
 {
+    this->_alive = true;
 }
 
 ecs::Entity::~Entity()

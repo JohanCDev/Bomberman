@@ -54,17 +54,26 @@ namespace ecs {
 
             void draw() {
                 for (auto &compo : _componentVector) {
-                    if (isDrawable(compo->getType()) == true) {
+                    if (isDrawable(compo->getType()) == true && this->_alive == true) {
                         ecs::Drawable *drawableCompo = dynamic_cast<ecs::Drawable *>(compo.get());
                         ecs::Transform *compo = getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
                         drawableCompo->draw(*compo);
                     }
                 }
             }
+
+            void setAlive(bool alive) {
+                this->_alive = alive;
+            }
+
+            bool getAlive(void) {
+                return (this->_alive);
+            }
             
         protected:
         private:
             std::vector<std::unique_ptr<IComponent>> _componentVector;
+            bool _alive;
     };
 }
 

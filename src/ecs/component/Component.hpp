@@ -30,7 +30,6 @@ namespace ecs {
         public:
             virtual ~IComponent() {}
             virtual ecs::compoType getType() = 0;
-        protected:
 
         private:
     };
@@ -41,7 +40,6 @@ namespace ecs {
             virtual ~Drawable() {}
             virtual ecs::compoType getType() = 0;
             virtual void draw(ecs::Transform transformCompo) = 0;
-        protected:
         private:
 
     };
@@ -51,7 +49,7 @@ namespace ecs {
         public:
             virtual ~NonDrawable() {}
             virtual ecs::compoType getType() = 0;
-        protected:
+
         private:
 
     };
@@ -65,7 +63,7 @@ namespace ecs {
                 this->_speedX = 0;
                 this->_speedY = 0;
             }
-            Transform(float posX, float posY, float speedX, float speedY) {
+            Transform(double posX, double posY, double speedX, double speedY) {
                 this->_posX = posX;
                 this->_posY = posY;
                 this->_speedX = speedX;
@@ -81,35 +79,42 @@ namespace ecs {
                 std::cout << this->_posX << " " << this->_posY << " " << this->_speedX << " " << this->_speedY << std::endl;
             }
 
-            void update(float posX, float posY, float speedX, float speedY) {
+            void update(double posX, double posY, double speedX, double speedY) {
                 this->_posX = posX;
                 this->_posY = posY;
                 this->_speedX = speedX;
                 this->_speedY = speedY;
             }
 
-            float getX() const {
+            double getX() const {
                 return (this->_posX);
             }
 
-            float getY() const {
+            double getY() const {
                 return (this->_posY);
             }
 
-            float speedX() const {
+            void setX(double posX) {
+                this->_posX = posX;
+            }
+
+            void setY(double posY) {
+                this->_posY = posY;
+            }
+
+            double getSpeedX() const {
                 return (this->_speedX);
             }
 
-            float speedY() const {
+            double getSpeedY() const {
                 return (this->_speedY);
             }
 
-        protected:
         private:
-            float _posX;
-            float _posY;
-            float _speedX;
-            float _speedY;
+            double _posX;
+            double _posY;
+            double _speedX;
+            double _speedY;
 
     };
 
@@ -134,7 +139,10 @@ namespace ecs {
                 raylib.drawCircle(transformCompo.getX(), transformCompo.getY(), this->_radius, this->_color);
             }
 
-        protected:
+            void update(ecs::Transform transformCompo) {
+
+            }
+
         private:
             double _radius;
             Color _color;
@@ -163,7 +171,6 @@ namespace ecs {
                 raylib.drawRectangle(transformCompo.getX(), transformCompo.getY(), this->_width, this->_height, this->_color);
             }
 
-        protected:
         private:
             int _width;
             int _height;

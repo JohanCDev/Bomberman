@@ -5,49 +5,50 @@
 ** main
 */
 
-#include <iostream>
 #include <unistd.h>
-#include <vector>
 #include "ecs/component/Component.hpp"
 #include "ecs/entity/Entity.hpp"
 #include "ecs/raylib/Raylib.hpp"
+#include "ecs/system/System.hpp"
+#include "World.hpp"
 
 int main(void)
 {
-    ecs::Entity entity;
+    ecs::World world;
+    std::unique_ptr<ecs::Entity> entity = std::make_unique<ecs::Entity>();
+    std::unique_ptr<ecs::Entity> entity2 = std::make_unique<ecs::Entity>();
     Raylib raylib;
 
-    entity.addComponent<ecs::Transform>();
-    entity.addComponent<ecs::Circle>(100.0, RED);
-    entity.addComponent<ecs::Rectangle>(50, 150, BLUE);
+    entity->addComponent<ecs::Transform>(0.0, 0.0, 5.0, 5.0);
+    entity->addComponent<ecs::Circle>(100.0, RED);
+    entity->addComponent<ecs::Rectangle>(50, 150, BLUE);
 
-    ecs::Transform *compo = entity.getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
-    ecs::Circle *compo2 = entity.getComponent<ecs::Circle>(ecs::compoType::CIRCLE);
-    std::cout << compo2->getType() << std::endl;
+    entity2->addComponent<ecs::Transform>(100.0, 100.0, 0.0, 25.0);
+    entity2->addComponent<ecs::Rectangle>(100, 100, BLACK);
+
+    world.addEntity(std::move(entity));
+    world.addEntity(std::move(entity2));
+    world.createSystem();
+
     raylib.initWindow(1920, 1000, "Indie Studio");
     while (!raylib.windowShouldClose()) {
         if (raylib.isKeyPressed(KEY_SPACE)) {
-            std::cout << "a" << std::endl;
+            for (auto &entity : world.entities) {
+                entity->setAlive(!entity->getAlive());
+            }
         }
         raylib.beginDrawing();
         raylib.clearBackground();
         raylib.drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
         raylib.drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RED);
-        entity.draw();
-        compo->update(100.0, 100.0, 5.0, 5.0);
+        for (auto &entity : world.entities) {
+            entity->draw();
+        }
+        for (auto &system : world.systems) {
+            system->update(world.entities);
+        }
         raylib.endDrawing();
     }
     raylib.destroyWindow();
-    if (entity.hasCompoType(ecs::compoType::TRANSFORM) == true) {
-        std::cout << "yes" << std::endl;
-    } else {
-        std::cout << "no" << std::endl;
-    }
-    //ecs::Transform *compo = entity.getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
-    //entity.addComponent<ecs::Position>(100.0, 100.0);
-    //entity.addComponent<ecs::Movement>(30.0, 30.0);
-    //entity.getPosition();
-    //entity.getMovement();
-    // entity.getCircleRadius();
     return (0);
 }

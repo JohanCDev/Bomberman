@@ -18,11 +18,13 @@ include_directories(${ECS_PATH}/component/)
 include_directories(${ECS_PATH}/entity/)
 include_directories(${ECS_PATH}/raylib/)
 include_directories(${ECS_PATH}/system/)
+include_directories(${ECS_PATH}/world/)
 
 # Source files
 set(ECS_SRCS
   ${ECS_PATH}/entity/Entity.cpp
   ${ECS_PATH}/raylib/Raylib.cpp
+  ${ECS_PATH}/world/World.cpp
 )
 
 set(INDIE_SRCS
