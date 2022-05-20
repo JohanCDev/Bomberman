@@ -35,7 +35,7 @@ int main(void)
     } else {
         std::cout << "no" << std::endl;
     }
-    std::unique_ptr<ecs::IComponent> compo = entity.getComponent(ecs::compoType::TRANSFORM);
+    ecs::Transform *compo = entity.getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
     //entity.addComponent<ecs::Position>(100.0, 100.0);
     //entity.addComponent<ecs::Movement>(30.0, 30.0);
     //entity.getPosition();

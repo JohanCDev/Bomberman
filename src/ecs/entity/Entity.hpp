@@ -34,10 +34,11 @@ namespace ecs {
                 return (false);
             }
 
-            std::unique_ptr<IComponent> getComponent(ecs::compoType type) {
+            template<typename T>
+            T *getComponent(ecs::compoType type) {
                 for (auto &compo : _componentVector) {
                     if (compo->getType() == type) {
-                        return (std::move(compo));
+                        return (dynamic_cast<T *>(compo.get()));
                     }
                 }
                 return (nullptr);

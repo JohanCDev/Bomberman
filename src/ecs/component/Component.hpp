@@ -13,6 +13,8 @@ extern "C"
     #include <raylib.h>
 }
 
+#include <iostream>
+
 namespace ecs {
 
     enum compoType {
@@ -33,6 +35,7 @@ namespace ecs {
         public:
             virtual ~Drawable() {}
             virtual ecs::compoType getType() = 0;
+            virtual void draw() = 0;
         protected:
         private:
 
@@ -67,6 +70,10 @@ namespace ecs {
 
             ecs::compoType getType(void) override {
                 return (ecs::compoType::TRANSFORM);
+            }
+
+            void printProperties() {
+                std::cout << this->_posX << " " << this->_posY << " " << this->_speedX << " " << this->_speedY << std::endl;
             }
 
             void update(float posX, float posY, float speedX, float speedY) {
