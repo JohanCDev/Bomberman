@@ -7,8 +7,13 @@ set(SRC
     ${ECSROOT}component/Component.hpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
-    ${ECSROOT}raylib/Raylib.cpp
     ${ECSROOT}raylib/Raylib.hpp
+    ${ECSROOT}raylib/Window.cpp
+    ${ECSROOT}raylib/Window.hpp
+    ${ECSROOT}raylib/Draw.cpp
+    ${ECSROOT}raylib/Draw.hpp
+    ${ECSROOT}raylib/Event.cpp
+    ${ECSROOT}raylib/Event.hpp
     ${ECSROOT}system/System.hpp
 )
 
