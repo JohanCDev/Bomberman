@@ -103,6 +103,16 @@ namespace indie
             int advanceX;           // Character advance position X
             RImage image;            // Character image data
         } RGlyphInfo;
+
+        // Font, font texture and GlyphInfo array data
+        typedef struct RFont {
+            int baseSize;           // Base size (default chars height)
+            int glyphCount;         // Number of glyph characters
+            int glyphPadding;       // Padding around the glyph characters
+            Texture2D texture;      // Texture atlas containing the glyphs
+            RRectangle *recs;        // Rectangles in texture for the glyphs
+            RGlyphInfo *glyphs;      // Glyphs info data
+        } RFont;
     } // namespace ray
 } // namespace indie
 
