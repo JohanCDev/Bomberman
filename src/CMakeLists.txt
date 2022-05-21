@@ -1,15 +1,9 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
-set(ECSROOT ${SRCROOT}ecs/)
 
 set(SRC
     ${SRCROOT}/main.cpp
-    ${ECSROOT}component/Component.hpp
-    ${ECSROOT}entity/Entity.cpp
-    ${ECSROOT}entity/Entity.hpp
-    ${ECSROOT}raylib/Raylib.cpp
-    ${ECSROOT}raylib/Raylib.hpp
-    ${ECSROOT}system/System.hpp
+    ${SRCROOT}/MapGenerator.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SRC})
