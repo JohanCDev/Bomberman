@@ -96,6 +96,14 @@ namespace indie
             int format;  // Data format (PixelFormat type)
         } RImage;
 
+        // Matrix, 4x4 components, column major, OpenGL style, right handed
+        typedef struct RMatrix {
+            float m0, m4, m8, m12;  // RMatrix first row (4 components)
+            float m1, m5, m9, m13;  // RMatrix second row (4 components)
+            float m2, m6, m10, m14; // RMatrix third row (4 components)
+            float m3, m7, m11, m15; // RMatrix fourth row (4 components)
+        } RMatrix;
+
         // Texture, tex data stored in GPU memory (VRAM)
         typedef struct RTexture {
             unsigned int id; // OpenGL texture id
