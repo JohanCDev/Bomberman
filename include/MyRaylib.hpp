@@ -94,6 +94,15 @@ namespace indie
             RTexture texture; // Color buffer attachment texture
             RTexture depth;   // Depth buffer attachment texture
         } RRenderTexture;
+
+        // GlyphInfo, font characters glyphs info
+        typedef struct RGlyphInfo {
+            int value;              // Character value (Unicode)
+            int offsetX;            // Character offset X when drawing
+            int offsetY;            // Character offset Y when drawing
+            int advanceX;           // Character advance position X
+            RImage image;            // Character image data
+        } RGlyphInfo;
     } // namespace ray
 } // namespace indie
 
