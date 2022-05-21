@@ -8,8 +8,8 @@
 #ifndef MYRAYLIB_HPP_
 #define MYRAYLIB_HPP_
 
+#include "Vec2.hpp"
 #include "Vec3.hpp"
-#include "Vec4.hpp"
 
 #define RBLACK (rColor){ 0, 0, 0, 255 }
 #define RRED (rColor){ 255, 0, 0, 255 }
@@ -55,6 +55,29 @@ namespace indie
              */
             int projection;
         } RCamera3D;
+
+        /**
+         * @brief 2D Camera implementation
+         */
+        typedef struct RCamera2D {
+            /**
+             * @brief Camera offset (displacement from target)
+             */
+            indie::vec2u offset;
+            /**
+             * @brief Camera target (rotation and zoom origin)
+             */
+            indie::vec2u target;
+            /**
+             * @brief Camera rotation in degrees
+             *
+             */
+            float rotation;
+            /**
+             * @brief Camera zoom (scaling), should be 1.0f by default
+             */
+            float zoom;
+        } RCamera2D;
 
         // Rectangle, 4 components
         typedef struct RRectangle {
