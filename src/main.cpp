@@ -7,7 +7,7 @@
 
 #include "MapGenerator.hpp"
 
-void print_vector(std::vector<std::vector<char>> const &map)
+void printMap(std::vector<std::vector<char>> const &map)
 {
     for (int i = 0; i < 21; i++) {
        for (int j = 0; j < 21; j++) {
@@ -21,10 +21,6 @@ int main(void)
 {  
     MapGenerator map;
     map.createWall();
-    // map.doSpawnArea();
-    // map.destroyRandomWall();
-    // map.assignPercentagePowerUp();
-    // map.callPlaceRandomPowerUp();
-    print_vector(map.getMap());
+    printMap(map.getMap());
     return 0;
 }
