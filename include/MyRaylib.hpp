@@ -9,6 +9,7 @@
 #define MYRAYLIB_HPP_
 
 #include "Vec3.hpp"
+#include "Vec4.hpp"
 
 #define RBLACK (rColor){ 0, 0, 0, 255 }
 #define RRED (rColor){ 255, 0, 0, 255 }
