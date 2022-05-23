@@ -13,6 +13,11 @@
 #include <string>
 #include "events.hpp"
 #include "RColor.hpp"
+#include "Window.hpp"
+#include "Draw.hpp"
+#include "Event.hpp"
+#include "Sound.hpp"
+
 
 namespace Raylib {}
 

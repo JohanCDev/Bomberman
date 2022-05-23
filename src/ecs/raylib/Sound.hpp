@@ -8,7 +8,6 @@
 #ifndef SOUND_HPP_
 #define SOUND_HPP_
 
-#include <string>
 #include "Raylib.hpp"
 
 namespace Raylib {
@@ -22,7 +21,10 @@ namespace Raylib {
             Sound &pause();
             Sound &resume();
 
-            // TODO: Set volume, set pitch, isPlaying
+            Sound& setVolume(float volume);
+            Sound& setPitch(float pitch);
+
+            bool isPlaying() const;
         private:
 			std::shared_ptr<::Sound> _sound;
     };

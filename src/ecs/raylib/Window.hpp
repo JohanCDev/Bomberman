@@ -26,9 +26,6 @@ namespace Raylib {
       static void endDrawing();
       static void clearBackground();
       static bool windowShouldClose();
-
-    protected:
-    private:
   };
 }
 

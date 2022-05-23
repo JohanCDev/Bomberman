@@ -8,15 +8,12 @@
 #include "ecs/component/Component.hpp"
 #include "ecs/entity/Entity.hpp"
 #include "ecs/raylib/Raylib.hpp"
-#include "ecs/raylib/Window.hpp"
-#include "ecs/raylib/Draw.hpp"
-#include "ecs/raylib/Event.hpp"
 #include "RColor.hpp"
 #include <iostream>
 
 int main(void)
 {
-    ecs::Entity entity;
+    // ecs::Entity entity;
     Raylib::Window window;
     Raylib::Draw draw;
     Raylib::Event event;
@@ -33,10 +30,10 @@ int main(void)
         window.endDrawing();
     }
     window.destroyWindow();
-    entity.addComponent<ecs::Position>(100.0, 100.0);
-    entity.addComponent<ecs::Movement>(30.0, 30.0);
-    entity.getPosition();
-    entity.getMovement();
+    // entity.addComponent<ecs::Position>(100.0, 100.0);
+    // entity.addComponent<ecs::Movement>(30.0, 30.0);
+    // entity.getPosition();
+    // entity.getMovement();
     // entity.getCircleRadius();
     return (0);
 }
