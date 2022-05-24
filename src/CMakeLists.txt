@@ -18,6 +18,8 @@ set(SRC
     ${ECSROOT}raylib/Sound.hpp
     ${ECSROOT}raylib/Rectangle.cpp
     ${ECSROOT}raylib/Rectangle.hpp
+    ${ECSROOT}raylib/Cube.cpp
+    ${ECSROOT}raylib/Cube.hpp
     ${ECSROOT}system/System.hpp
 )
 
