@@ -12,12 +12,10 @@ on:
     branches: master
 
 jobs:
-
   build-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: install-raylib-ubuntu-prerequisites
         run: |
           sudo apt install -y build-essential \
@@ -104,3 +102,19 @@ jobs:
         shell: bash
         if: matrix.name == 'Linux'
         run: test -f build/bomberman
+
+  to_github:
+    needs:
+      - build-on-ubuntu
+      - build-on-windows
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url:
+            ${{ secrets.EPI_REPO_URL }}
+          ssh_private_key:
+            ${{ secrets.EPI_MIRRORING_KEY }}
