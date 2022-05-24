@@ -26,9 +26,9 @@ void MapGenerator::placeBoxes()
 {
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
-            if ((i%2 != 0) && (j != 0) && (j != 20))
+            if ((i % 2 != 0) && (j != 0) && (j != 20))
                 _map[i][j] = BOXE;
-            if ((i%2 == 0) && (j%2 != 0) && (i != 0) && (i != 20))
+            if ((i % 2 == 0) && (j % 2 != 0) && (i != 0) && (i != 20))
                 _map[i][j] = BOXE;
         }
     }
@@ -82,7 +82,6 @@ void MapGenerator::placePlayers()
     _map[19][19] = PLAYER4;
     _map[18][19] = EMPTY;
     _map[19][18] = EMPTY;
-
 }
 
 int MapGenerator::countBonusOnLine(int i)
@@ -90,7 +89,7 @@ int MapGenerator::countBonusOnLine(int i)
     int count = 0;
     for (int k = 0; k < 21; k++) {
         if (_map[i][k] == SPEED_BOXE || _map[i][k] == BOMB_BOXE || _map[i][k] == WALL_PASS_BOXE)
-            count++;                    
+            count++;
     }
     return count;
 }

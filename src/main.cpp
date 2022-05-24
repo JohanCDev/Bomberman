@@ -5,20 +5,20 @@
 ** main
 */
 
+#include <iostream>
+#include "Map/MapGenerator.hpp"
+#include "RColor.hpp"
 #include "ecs/component/Component.hpp"
 #include "ecs/entity/Entity.hpp"
 #include "ecs/raylib/Raylib.hpp"
-#include "RColor.hpp"
-#include <iostream>
-#include "Map/MapGenerator.hpp"
 
 void printMap(std::vector<std::vector<char>> const &map)
 {
     for (int i = 0; i < 21; i++) {
-       for (int j = 0; j < 21; j++) {
-           std::cout << map[i][j];
-       }
-       std::cout << std::endl;
+        for (int j = 0; j < 21; j++) {
+            std::cout << map[i][j];
+        }
+        std::cout << std::endl;
     }
 }
 
@@ -34,7 +34,7 @@ int main(void)
         Raylib::beginDrawing();
         Raylib::clearBackground();
         Raylib::drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
-        Raylib::drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RED);
+        Raylib::drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2, 10.0, RED);
         Raylib::endDrawing();
     }
     Raylib::destroyWindow();
@@ -42,7 +42,6 @@ int main(void)
     entity.addComponent<ecs::Movement>(30.0, 30.0);
     entity.getPosition();
     entity.getMovement();
-
 
     MapGenerator map;
     map.createWall();
