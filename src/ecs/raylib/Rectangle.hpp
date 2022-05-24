@@ -20,27 +20,27 @@ namespace Raylib {
             /**
             * @brief Get rectangle width and height
             */
-            ::Vector2 getSize();
+            ::Vector2 getSize() const;
 
             /**
             * @brief Set rectangle width and height
             */
-            ::Rectangle &setSize(float newWidth, float newHeight);
+            void setSize(float newWidth, float newHeight);
 
             /**
             * @brief Get rectangle posX and posY
             */
-            ::Vector2 getPosition();
+            ::Vector2 getPosition() const;
 
             /**
             * @brief Set rectangle posX and posY
             */
-            ::Rectangle &setPosition(float posX, float posY);
+            void setPosition(float posX, float posY);
 
             /**
             * @brief Get rectangle color
             */
-            ::Color getColor();
+            ::Color getColor() const;
 
             /**
             * @brief Set rectangle color
