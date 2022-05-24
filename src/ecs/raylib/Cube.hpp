@@ -38,6 +38,16 @@ namespace Raylib {
             void setSize(float newWidth, float newHeight, float newLength);
 
             /**
+            * @brief Get rectangle color
+            */
+            ::Color getColor() const;
+
+            /**
+            * @brief Set rectangle color
+            */
+            void setColor(::Color color);
+
+            /**
             * @brief Draw cube
             */
             void draw();
@@ -61,7 +71,6 @@ namespace Raylib {
             * @brief Check collision between box and sphere
             */
             // bool checkCollisionBoxSphere(BoundingBox box, Vector3 center, float radius)
-
 
         private:
             ::Vector3 _position;

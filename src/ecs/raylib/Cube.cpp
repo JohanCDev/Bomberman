@@ -52,6 +52,14 @@ void Raylib::Cube::setSize(float newWidth, float newHeight, float newLength)
     _size.z = newLength;
 }
 
+::Color Raylib::Cube::getColor() const {
+    return _color;
+}
+
+void Raylib::Cube::setColor(::Color color) {
+    _color = color;
+}
+
 void Raylib::Cube::draw()
 {
     ::DrawCubeV(_position, _size, _color);
