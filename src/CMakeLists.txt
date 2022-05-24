@@ -1,7 +1,7 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
 set(ECSROOT ${SRCROOT}ecs/)
-set(MAPROOT ${SRCROOT}map/)
+set(MAPROOT ${SRCROOT}Map/)
 
 set(SRC
     ${SRCROOT}/main.cpp
