@@ -8,6 +8,7 @@
 #ifndef SOUND_HPP_
 #define SOUND_HPP_
 
+#include <memory>
 #include "Raylib.hpp"
 
 namespace Raylib {
