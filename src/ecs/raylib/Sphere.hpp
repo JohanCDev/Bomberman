@@ -54,7 +54,7 @@ namespace Raylib {
             /**
             * @brief Draw sphere wire
             */
-            void drawWires(int rings, int slices`);
+            void drawWires(int rings, int slices);
 
             /**
             * @brief Check collision spheres
