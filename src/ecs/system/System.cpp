@@ -14,6 +14,7 @@ void ecs::MovementSystem::update(std::vector<std::unique_ptr<ecs::Entity>> &enti
             ecs::Transform *transformCompo = entity->getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
             transformCompo->setX(transformCompo->getX() + transformCompo->getSpeedX());
             transformCompo->setY(transformCompo->getY() + transformCompo->getSpeedY());
+            transformCompo->setZ(transformCompo->getZ() + transformCompo->getSpeedZ());
         }
     }
 }

@@ -19,18 +19,24 @@ int main(void)
     std::unique_ptr<ecs::Entity> entity2 = std::make_unique<ecs::Entity>();
     Raylib raylib;
 
-    entity->addComponent<ecs::Transform>(0.0, 0.0, 5.0, 5.0);
-    entity->addComponent<ecs::Circle>(100.0, RED);
-    entity->addComponent<ecs::Rectangle>(50, 150, BLUE);
+    raylib.initWindow(1920, 1000, "Indie Studio");
+    
+    entity->addComponent<ecs::Transform>((float)0.0, (float)0.0, (float)0.0, (float)0.05, (float)0.0, (float)0.0);
+    entity->addComponent<ecs::Wall>("", (float)2.0, (float)2.0, RED);
 
-    entity2->addComponent<ecs::Transform>(100.0, 100.0, 0.0, 25.0);
-    entity2->addComponent<ecs::Rectangle>(100, 100, BLACK);
+    entity2->addComponent<ecs::Transform>((float)1.0, (float)1.0, (float)0.0, (float)-0.05, (float)0.0, (float)0.0);
+    entity2->addComponent<ecs::Player>("", (float)2.0, BLACK);
 
+    Camera3D camera = {0};
+    camera.position = (Vector3){ 0.0, 10.0, 10.0 };
+    camera.target = (Vector3){ 0.0, 0.0, 0.0 };
+    camera.up = (Vector3){ 0.0, 1.0, 0.0 };
+    camera.fovy = 45.0;
+    camera.projection = CAMERA_PERSPECTIVE;             
     world.addEntity(std::move(entity));
     world.addEntity(std::move(entity2));
     world.createSystem();
 
-    raylib.initWindow(1920, 1000, "Indie Studio");
     while (!raylib.windowShouldClose()) {
         if (raylib.isKeyPressed(KEY_SPACE)) {
             for (auto &entity : world.entities) {
@@ -39,14 +45,15 @@ int main(void)
         }
         raylib.beginDrawing();
         raylib.clearBackground();
-        raylib.drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
-        raylib.drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RED);
+        BeginMode3D(camera);
         for (auto &entity : world.entities) {
             entity->draw();
         }
         for (auto &system : world.systems) {
             system->update(world.entities);
         }
+        EndMode3D();
+        raylib.drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
         raylib.endDrawing();
     }
     raylib.destroyWindow();

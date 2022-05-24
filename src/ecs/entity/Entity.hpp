@@ -45,7 +45,7 @@ namespace ecs {
             }
 
             bool isDrawable(ecs::compoType type) {
-                if (type == ecs::compoType::CIRCLE || type == ecs::compoType::RECTANGLE) {
+                if (type == ecs::compoType::WALL || type == ecs::compoType::PLAYER) {
                     return (true);
                 } else {
                     return (false);

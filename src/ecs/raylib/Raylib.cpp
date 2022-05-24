@@ -67,4 +67,14 @@ extern "C"
     {
         DrawRectangle(posX, posY, width, height, color);
     }
+
+    void Raylib::drawSphere(Vector3 centerPos, float radius, Color color)
+    {
+        DrawSphere(centerPos, radius, color);
+    }
+
+    void Raylib::drawRectangle3D(Vector3 position, float width, float height, float length, Color color)
+    {
+        DrawCube(position, width, height, length, color);
+    }
 }
