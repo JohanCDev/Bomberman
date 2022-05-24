@@ -43,14 +43,25 @@ namespace Raylib {
             void draw();
 
             /**
-            * @brief Draw cube with color as parameter
+            * @brief Draw cube wire
             */
-            void draw(::Color color);
+            void drawWires();
 
             /**
-            * @brief Detect collision between two spheres
+            * @brief Check collision between two spheres
             */
-            bool checkCollision(float radius1, const ::Vector3& sphere2, float radius2);
+            bool checkCollisionSpheres(float radius1, const ::Vector3& sphere2, float radius2);
+
+            // /**
+            // * @brief Check collision between two boxes
+            // */
+            // bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2)
+
+            /**
+            * @brief Check collision between box and sphere
+            */
+            // bool checkCollisionBoxSphere(BoundingBox box, Vector3 center, float radius)
+
 
         private:
             ::Vector3 _position;
