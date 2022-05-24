@@ -22,6 +22,8 @@ set(SRC
     ${ECSROOT}raylib/Cube.hpp
     ${ECSROOT}raylib/Sphere.cpp
     ${ECSROOT}raylib/Sphere.hpp
+    ${ECSROOT}raylib/Camera3D.cpp
+    ${ECSROOT}raylib/Camera3D.hpp
     ${ECSROOT}system/System.hpp
 )
 
