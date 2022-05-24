@@ -57,11 +57,6 @@ namespace Raylib {
             */
             void drawWires();
 
-            /**
-            * @brief Check collision between two spheres
-            */
-            bool checkCollisionSpheres(float radius1, const ::Vector3& sphere2, float radius2);
-
             // /**
             // * @brief Check collision between two boxes
             // */
