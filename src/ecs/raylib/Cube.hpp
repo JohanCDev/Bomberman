@@ -57,16 +57,6 @@ namespace Raylib {
             */
             void drawWires();
 
-            // /**
-            // * @brief Check collision between two boxes
-            // */
-            // bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2)
-
-            /**
-            * @brief Check collision between box and sphere
-            */
-            // bool checkCollisionBoxSphere(BoundingBox box, Vector3 center, float radius)
-
         private:
             ::Vector3 _position;
             ::Vector3 _size;
