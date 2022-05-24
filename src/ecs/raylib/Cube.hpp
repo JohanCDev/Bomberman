@@ -47,10 +47,14 @@ namespace Raylib {
             */
             void draw(::Color color);
 
+            /**
+            * @brief Detect collision between two spheres
+            */
+            bool checkCollision(float radius1, const ::Vector3& sphere2, float radius2);
 
         private:
             ::Vector3 _position;
-            ::Vector3 _sizeùù;
+            ::Vector3 _size;
             ::Color _color;
     };
 }

@@ -56,3 +56,9 @@ void Raylib::Cube::draw()
 {
     ::DrawCubeV(_position,  _size, _color);
 }
+
+bool Raylib::Cube::checkCollision(float radius1, const ::Vector3& sphere2, float radius2)
+{
+    return CheckCollisionSpheres(_position, radius1, sphere2, radius2);
+}
+
