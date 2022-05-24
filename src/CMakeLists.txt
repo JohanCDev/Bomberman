@@ -16,6 +16,8 @@ set(SRC
     ${ECSROOT}raylib/Event.hpp
     ${ECSROOT}raylib/Sound.cpp
     ${ECSROOT}raylib/Sound.hpp
+    ${ECSROOT}raylib/Rectangle.cpp
+    ${ECSROOT}raylib/Rectangle.hpp
     ${ECSROOT}system/System.hpp
 )
 
