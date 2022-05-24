@@ -35,7 +35,9 @@ void ecs::Wall::draw(ecs::Transform transformCompo)
     if (this->_texture_path == "") {
         Vector3 vec = (Vector3){transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
         raylib.drawRectangle3D(vec, this->_width, this->_height, (float)2.0, this->_color);
+        raylib.drawCubeWires(vec, this->_width, this->_height, (float)2.0, WHITE);
     } else {
-        // draw 3d rectangle with texture
+        Vector3 vec = (Vector3){transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
+        raylib.drawCubeTexture(this->_texture, vec, this->_width, this->_height, (float)2.0, this->_color);
     }
 }

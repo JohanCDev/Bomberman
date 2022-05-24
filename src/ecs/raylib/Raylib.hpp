@@ -36,6 +36,9 @@ class Raylib {
         void drawRectangle(int posX, int posY, int width, int height, Color color);
         void drawSphere(Vector3 centerPos, float radius, Color color);
         void drawRectangle3D(Vector3 position, float width, float height, float length, Color color);
+        void drawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color);
+        void drawCubeWires(Vector3 position, float width, float height, float length, Color color);
+        bool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
 
     protected:
     private:

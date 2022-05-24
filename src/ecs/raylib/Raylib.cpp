@@ -77,4 +77,19 @@ extern "C"
     {
         DrawCube(position, width, height, length, color);
     }
+
+    void Raylib::drawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color)
+    {
+        DrawCubeTexture(texture, position, width, height, length, color); 
+    }
+
+    void Raylib::drawCubeWires(Vector3 position, float width, float height, float length, Color color)
+    {
+        DrawCubeWires(position, width, height, length, color);
+    }
+
+    bool Raylib::CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius)
+    {
+        return (CheckCollisionBoxSphere(box, center, radius));
+    }
 }
