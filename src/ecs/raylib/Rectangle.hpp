@@ -50,12 +50,12 @@ namespace Raylib {
             /**
             * @brief Draw rectangle
             */
-            void drawRectangle();
+            void draw();
 
             /**
             * @brief Draw rectangle with color as parameter
             */
-            void drawRectangle(Color color);
+            void draw(Color color);
 
             /**
             * @brief Get collision rectangle for two rectangles collision

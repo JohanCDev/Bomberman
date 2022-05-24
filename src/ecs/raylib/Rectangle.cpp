@@ -52,12 +52,12 @@ void Raylib::Rectangle::setColor(::Color color) {
     _color = color;
 }
 
-void Raylib::Rectangle::drawRectangle()
+void Raylib::Rectangle::draw()
 {
     ::DrawRectangle(_rectangle.x, _rectangle.y,  _rectangle.width,  _rectangle.height, _color);
 }
 
-void Raylib::Rectangle::drawRectangle(Color color)
+void Raylib::Rectangle::draw(Color color)
 {
     ::DrawRectangle(_rectangle.x, _rectangle.y,  _rectangle.width,  _rectangle.height, color);
 }
