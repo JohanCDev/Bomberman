@@ -25,7 +25,7 @@ namespace Raylib {
             /**
             * @brief Set rectangle width and height
             */
-            ::Rectangle& setSize(float newWidth, float newHeight);
+            ::Rectangle &setSize(float newWidth, float newHeight);
 
             /**
             * @brief Get rectangle posX and posY
@@ -35,7 +35,7 @@ namespace Raylib {
             /**
             * @brief Set rectangle posX and posY
             */
-            ::Rectangle& setPosition(float posX, float posY);
+            ::Rectangle &setPosition(float posX, float posY);
 
             /**
             * @brief Get rectangle color

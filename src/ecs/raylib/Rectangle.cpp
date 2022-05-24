@@ -28,7 +28,7 @@ Raylib::Rectangle::Rectangle(float x, float y, float width, float height, ::Colo
     return {_rectangle.width, _rectangle.height};
 }
 
-::Rectangle& Raylib::Rectangle::setSize(float newWidth, float newHeight) {
+::Rectangle &Raylib::Rectangle::setSize(float newWidth, float newHeight) {
     _rectangle.width = newWidth;
     _rectangle.height = newHeight;
     return _rectangle;
@@ -38,7 +38,7 @@ Raylib::Rectangle::Rectangle(float x, float y, float width, float height, ::Colo
     return {_rectangle.width, _rectangle.height};
 }
 
-::Rectangle& Raylib::Rectangle::setPosition(float posX, float posY) {
+::Rectangle &Raylib::Rectangle::setPosition(float posX, float posY) {
     _rectangle.x = posX;
     _rectangle.y = posY;
     return _rectangle;
