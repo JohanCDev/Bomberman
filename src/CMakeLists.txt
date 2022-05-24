@@ -20,6 +20,8 @@ set(SRC
     ${ECSROOT}raylib/Rectangle.hpp
     ${ECSROOT}raylib/Cube.cpp
     ${ECSROOT}raylib/Cube.hpp
+    ${ECSROOT}raylib/Sphere.cpp
+    ${ECSROOT}raylib/Sphere.hpp
     ${ECSROOT}system/System.hpp
 )
 
