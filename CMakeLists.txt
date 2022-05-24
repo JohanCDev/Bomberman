@@ -26,6 +26,9 @@ set(ECS_SRCS
   ${ECS_PATH}/raylib/Raylib.cpp
   ${ECS_PATH}/world/World.cpp
   ${ECS_PATH}/system/System.cpp
+  ${ECS_PATH}/component/Player.cpp
+  ${ECS_PATH}/component/Transform.cpp
+  ${ECS_PATH}/component/Wall.cpp
 )
 
 set(INDIE_SRCS

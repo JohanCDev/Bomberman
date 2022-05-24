@@ -10,119 +10,67 @@
 
 extern "C"
 {
-    #include <raylib.h>
+#include <raylib.h>
 }
 
 #include <iostream>
 #include "Raylib.hpp"
 
-namespace ecs {
+namespace ecs
+{
 
     class Transform;
 
-    enum compoType {
-        TRANSFORM,
-        PLAYER,
-        WALL
-    };
+    enum compoType { TRANSFORM, PLAYER, WALL };
 
     class IComponent {
-        public:
-            virtual ~IComponent() {}
-            virtual ecs::compoType getType() = 0;
+      public:
+        virtual ~IComponent()
+        {
+        }
+        virtual ecs::compoType getType() = 0;
 
-        private:
+      private:
     };
 
     class Drawable : public IComponent {
+      public:
+        virtual ~Drawable()
+        {
+        }
+        virtual ecs::compoType getType() = 0;
+        virtual void draw(ecs::Transform transformCompo) = 0;
 
-        public:
-            virtual ~Drawable() {}
-            virtual ecs::compoType getType() = 0;
-            virtual void draw(ecs::Transform transformCompo) = 0;
-        private:
-
+      private:
     };
 
     class NonDrawable : public IComponent {
+      public:
+        virtual ~NonDrawable()
+        {
+        }
+        virtual ecs::compoType getType() = 0;
 
-        public:
-            virtual ~NonDrawable() {}
-            virtual ecs::compoType getType() = 0;
-
-        private:
-
+      private:
     };
 
     class Transform : public NonDrawable {
-
         public:
-            Transform() {
-                this->_posX = 0;
-                this->_posY = 0;
-                this->_speedX = 0;
-                this->_speedY = 0;
-            }
-            Transform(float posX, float posY, float posZ, float speedX, float speedY, float speedZ) {
-                this->_posX = posX;
-                this->_posY = posY;
-                this->_posZ = posZ;
-                this->_speedX = speedX;
-                this->_speedY = speedY;
-                this->_speedZ = speedZ;
-            }
-            ~Transform() {}
-
-            ecs::compoType getType(void) override {
-                return (ecs::compoType::TRANSFORM);
-            }
-
-            void printProperties() {
-                std::cout << this->_posX << " " << this->_posY << " " << this->_speedX << " " << this->_speedY << std::endl;
-            }
-
-            void update(float posX, float posY, float speedX, float speedY) {
-                this->_posX = posX;
-                this->_posY = posY;
-                this->_speedX = speedX;
-                this->_speedY = speedY;
-            }
-
-            float getX() const {
-                return (this->_posX);
-            }
-
-            float getY() const {
-                return (this->_posY);
-            }
-
-            float getZ() const {
-                return (this->_posZ);
-            }
-
-            void setX(float posX) {
-                this->_posX = posX;
-            }
-
-            void setY(float posY) {
-                this->_posY = posY;
-            }
-
-            void setZ(float posZ) {
-                this->_posZ = posZ;
-            }
-
-            float getSpeedX() const {
-                return (this->_speedX);
-            }
-
-            float getSpeedY() const {
-                return (this->_speedY);
-            }
-
-            float getSpeedZ() const {
-                return (this->_speedZ);
-            }
+            Transform();
+            Transform(float posX, float posY, float posZ, float speedX, float speedY, float speedZ);
+            ~Transform();
+            ecs::compoType getType(void) override;
+            void printProperties();
+            void update(float posX, float posY, float speedX, float speedY);
+            float getX() const;
+            float getY() const;
+            float getZ() const;
+            void setX(float posX);
+            void setY(float posY);
+            void setZ(float posZ);
+            float getSpeedX() const;
+            float getSpeedY() const;
+            float getSpeedZ() const;
 
         private:
             float _posX;
@@ -131,71 +79,30 @@ namespace ecs {
             float _speedX;
             float _speedY;
             float _speedZ;
-
     };
 
     class Player : public Drawable {
-
         public:
-            Player() {}
-
-            Player(std::string texture, float radius, Color color) {
-                this->_radius = radius;
-                this->_color = color;
-                this->_texture = texture;
-            }
-
-            ~Player() {}
-
-            ecs::compoType getType() override {
-                return (ecs::compoType::PLAYER);
-            }
-
-            void draw(ecs::Transform transformCompo) {
-                Raylib raylib;
-                Vector3 vec = (Vector3) {transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
-                raylib.drawSphere(vec, this->_radius, this->_color);
-            }
-
-            void update(ecs::Transform transformCompo) {
-
-            }
+            Player();
+            Player(std::string texture, float radius, Color color);
+            ~Player();
+            ecs::compoType getType() override;
+            void draw(ecs::Transform transformCompo);
+            void update(ecs::Transform transformCompo);
 
         private:
             float _radius;
             Color _color;
             std::string _texture;
-
     };
 
     class Wall : public Drawable {
-
         public:
-            Wall() {}
-
-            Wall(std::string texture, float height, float width, Color color) {
-                this->_height = height;
-                this->_width = width;
-                this->_color = color;
-                this->_texture_path = texture;
-                this->_texture = LoadTexture(this->_texture_path.c_str());
-            }
-
-            ~Wall() {}
-
-            ecs::compoType getType() override {
-                return (ecs::compoType::WALL);
-            }
-
-            void draw(ecs::Transform transformCompo) {
-                Raylib raylib;
-                if (this->_texture_path == "") {
-                    Vector3 vec = (Vector3) {transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
-                    raylib.drawRectangle3D(vec, this->_width, this->_height, (float)2.0, this->_color);
-                } else {
-                    // draw 3d rectangle with texture
-                }
-            }
+            Wall();
+            Wall(std::string texture, float height, float width, Color color);
+            ~Wall();
+            ecs::compoType getType() override;
+            void draw(ecs::Transform transformCompo);
 
         private:
             float _width;
@@ -205,6 +112,6 @@ namespace ecs {
             Texture2D _texture;
     };
 
-}
+} // namespace ecs
 
 #endif /* !COMPONENT_HPP_ */
