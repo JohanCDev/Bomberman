@@ -25,6 +25,7 @@ set(ECS_SRCS
   ${ECS_PATH}/entity/Entity.cpp
   ${ECS_PATH}/raylib/Raylib.cpp
   ${ECS_PATH}/world/World.cpp
+  ${ECS_PATH}/system/System.cpp
 )
 
 set(INDIE_SRCS

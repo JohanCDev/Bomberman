@@ -28,15 +28,7 @@ namespace ecs {
             MovementSystem() {}
             ~MovementSystem() {}
 
-            void update(std::vector<std::unique_ptr<ecs::Entity>> &entities) override {
-                for (auto &entity: entities) {
-                    if (entity->getAlive() == true && entity->hasCompoType(ecs::compoType::TRANSFORM)) {
-                        ecs::Transform *transformCompo = entity->getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
-                        transformCompo->setX(transformCompo->getX() + transformCompo->getSpeedX());
-                        transformCompo->setY(transformCompo->getY() + transformCompo->getSpeedY());
-                    }
-                }
-            }
+            void update(std::vector<std::unique_ptr<ecs::Entity>> &entities) override;
         private:
     };
 
