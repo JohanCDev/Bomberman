@@ -19,6 +19,7 @@
 #include "Sound.hpp"
 #include "Rectangle.hpp"
 #include "Cube.hpp"
+#include "Sphere.hpp"
 
 
 namespace Raylib {}
