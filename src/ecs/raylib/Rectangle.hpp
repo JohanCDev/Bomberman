@@ -14,19 +14,62 @@ namespace Raylib {
     class Rectangle {
         public:
             Rectangle(float x, float y, float width, float height);
+            Rectangle(float x, float y, float width, float height, Color color);
             ~Rectangle() = default;
 
             /**
-            * Check collision between two rectangles
+            * @brief Get rectangle width and height
             */
-            bool CheckCollision(::Rectangle rec2) const;
+            ::Vector2 getSize();
 
             /**
-            * Get collision rectangle for two rectangles collision
+            * @brief Set rectangle width and height
             */
-            ::Rectangle GetCollision(::Rectangle rec2) const;
+            ::Rectangle& setSize(float newWidth, float newHeight);
+
+            /**
+            * @brief Get rectangle posX and posY
+            */
+            ::Vector2 getPosition();
+
+            /**
+            * @brief Set rectangle posX and posY
+            */
+            ::Rectangle& setPosition(float posX, float posY);
+
+            /**
+            * @brief Get rectangle color
+            */
+            ::Color getColor();
+
+            /**
+            * @brief Set rectangle color
+            */
+            void setColor(::Color color);
+
+            /**
+            * @brief Draw rectangle
+            */
+            void drawRectangle();
+
+            /**
+            * @brief Draw rectangle with color as parameter
+            */
+            void drawRectangle(Color color);
+
+            /**
+            * @brief Get collision rectangle for two rectangles collision
+            */
+            ::Rectangle getCollision(::Rectangle rec2) const;
+
+            /**
+            * @brief Check collision between two rectangles
+            */
+            bool checkCollision(::Rectangle rec2) const;
+
         private:
             ::Rectangle _rectangle;
+            ::Color _color;
     };
 }
 
