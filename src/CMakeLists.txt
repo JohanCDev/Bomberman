@@ -18,6 +18,8 @@ set(SRC
     ${SCREENSROOT}IScreen.hpp
     ${SCREENSROOT}MenuScreen/MenuScreen.cpp
     ${SCREENSROOT}MenuScreen/MenuScreen.hpp
+    ${SCREENSROOT}GameScreen/GameScreen.cpp
+    ${SCREENSROOT}GameScreen/GameScreen.hpp
     ${GAMEROOT}Game.cpp
     ${GAMEROOT}Game.hpp
 )

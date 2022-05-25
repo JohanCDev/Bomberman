@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2022
 ** Bomberman
 ** File description:
-** MenuScreen
+** GameScreen
 */
 
-#ifndef MENUSCREEN_HPP_
-#define MENUSCREEN_HPP_
+#ifndef GAMESCREEN_HPP_
+#define GAMESCREEN_HPP_
 
 #include <vector>
 #include "../../ecs/entity/Entity.hpp"
@@ -16,10 +16,10 @@ namespace indie
 {
     namespace menu
     {
-        class MenuScreen : public IScreen {
+        class GameScreen : public IScreen {
           public:
-            MenuScreen();
-            ~MenuScreen() = default;
+            GameScreen();
+            ~GameScreen() = default;
             void draw() override;
             void update(float delta) override;
             void handleEvent(indie::Event &event) override;

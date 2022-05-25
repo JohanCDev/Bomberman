@@ -8,15 +8,14 @@
 #include "MenuScreen.hpp"
 #include "../../ecs/raylib/Raylib.hpp"
 
-void indie::menu::MenuScreen::CreateMenuEntities()
+indie::menu::MenuScreen::MenuScreen()
 {
-    ecs::Entity background;
 }
 
 void indie::menu::MenuScreen::draw()
 {
+    std::cout << "MENU SCREEN BOYIIII" << std::endl;
     indie::vec2u WindowDim = Raylib::getWindowDimensions();
-
     Raylib::beginDrawing();
     Raylib::clearBackground();
 

@@ -11,7 +11,6 @@
 #include <memory>
 #include <iostream>
 #include "../Screens/IScreen.hpp"
-#include "../Screens/MenuScreen/MenuScreen.hpp"
 #include "../ecs/raylib/Raylib.hpp"
 
 indie::Game::Game(size_t baseFps)
@@ -19,11 +18,13 @@ indie::Game::Game(size_t baseFps)
     _fps = baseFps;
     _actualScreen = Screens::Menu;
     _menu = new indie::menu::MenuScreen;
+    _game = new indie::menu::GameScreen;
 }
 
 indie::Game::~Game()
 {
     delete _menu;
+    delete _game;
 }
 
 bool indie::Game::processEvents()
@@ -41,6 +42,7 @@ void indie::Game::draw()
 {
     switch (_actualScreen) {
         case Screens::Menu: _menu->draw(); break;
+        case Screens::Game: _game->draw(); break;
         default: break;
     }
 }
@@ -73,7 +75,13 @@ void indie::Game::run()
         updateMs = initUpdateMs;
         draw_aq += accumulator;
         draw();
+        _actualScreen = Screens::Game;
         draw_aq = 0;
     }
     Raylib::destroyWindow();
+}
+
+void indie::Game::setActualScreen(Screens newScreen)
+{
+    _actualScreen = newScreen;
 }

@@ -13,6 +13,7 @@
 #include <memory>
 #include "../Screens/IScreen.hpp"
 #include "../Screens/MenuScreen/MenuScreen.hpp"
+#include "../Screens/GameScreen/GameScreen.hpp"
 
 namespace indie {
     class Game {
@@ -31,11 +32,14 @@ namespace indie {
             void update(float delta);
             bool processEvents();
 
+            void setActualScreen(Screens newScreen);
+
         protected:
         private:
             Screens _actualScreen;
             size_t _fps;
             indie::menu::MenuScreen *_menu;
+            indie::menu::GameScreen *_game;
     };
 }
 
