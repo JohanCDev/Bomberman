@@ -6,7 +6,7 @@ project(IndieStudio)
 
 # Variables
 set(TARGET_NAME indie)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 # Paths
 set(SRC_PATH src)
@@ -58,6 +58,12 @@ find_package(raylib 4.0.0 QUIET)
  endif()
 
 # Raylib end
+
+add_compile_options(
+    "-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith"
+    "$<$<CONFIG:RELEASE>:-O3;-fno-builtin;-Werror>"
+    "$<$<CONFIG:DEBUG>:-O0;-g3;-ggdb>"
+)
 
 add_executable(${TARGET_NAME} src/main.cpp ${INDIE_SRCS})
 

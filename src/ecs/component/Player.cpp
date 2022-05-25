@@ -30,10 +30,11 @@ ecs::compoType ecs::Player::getType()
 void ecs::Player::draw(ecs::Transform transformCompo)
 {
     Raylib raylib;
-    Vector3 vec = (Vector3){transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
+    Vector3 vec = {transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
     raylib.drawSphere(vec, this->_radius, this->_color);
 }
 
 void ecs::Player::update(ecs::Transform transformCompo)
 {
+    (void)transformCompo;
 }
