@@ -6,27 +6,29 @@
 */
 
 #include "Game.hpp"
-#include "../ecs/raylib/Raylib.hpp"
 #include <algorithm>
 #include <chrono>
 #include <memory>
+#include <iostream>
 #include "../Screens/IScreen.hpp"
 #include "../Screens/MenuScreen/MenuScreen.hpp"
+#include "../ecs/raylib/Raylib.hpp"
 
 indie::Game::Game(size_t baseFps)
 {
     _fps = baseFps;
     _actualScreen = Screens::Menu;
-
-    _screens[Screens::Menu] = std::make_unique<IScreen>(indie::menu::MenuScreen());
+    _menu = new indie::menu::MenuScreen;
 }
 
 indie::Game::~Game()
 {
+    delete _menu;
 }
 
-bool indie::Game::processEvents() {
-    return false;
+bool indie::Game::processEvents()
+{
+    return true;
 }
 
 void indie::Game::update(float delta)
@@ -37,8 +39,10 @@ void indie::Game::update(float delta)
 
 void indie::Game::draw()
 {
-    if (_screens.find(_actualScreen) != _screens.end())
-        _screens.find(_actualScreen)->second->draw();
+    switch (_actualScreen) {
+        case Screens::Menu: _menu->draw(); break;
+        default: break;
+    }
 }
 
 void indie::Game::run()
@@ -52,7 +56,7 @@ void indie::Game::run()
     const float initUpdateMs = _fps * 1000;
     float updateMs = initUpdateMs;
 
-    while (Raylib::windowShouldClose() == false) {
+    while (!Raylib::windowShouldClose()) {
         newTime =
             std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
                 .count();

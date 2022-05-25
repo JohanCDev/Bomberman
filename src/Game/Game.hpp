@@ -12,6 +12,7 @@
 #include <map>
 #include <memory>
 #include "../Screens/IScreen.hpp"
+#include "../Screens/MenuScreen/MenuScreen.hpp"
 
 namespace indie {
     class Game {
@@ -34,7 +35,7 @@ namespace indie {
         private:
             Screens _actualScreen;
             size_t _fps;
-            std::map<Screens, std::unique_ptr<IScreen> > _screens;
+            indie::menu::MenuScreen *_menu;
     };
 }
 

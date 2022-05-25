@@ -25,7 +25,7 @@ void printMap(std::vector<std::vector<char>> const &map)
 
 int main(void)
 {
-    ecs::Entity entity;
+    indie::Game Game(60);
 
     Raylib::initWindow(1920, 1000, "Indie Studio", true);
     // while (!Raylib::windowShouldClose()) {
@@ -46,7 +46,6 @@ int main(void)
     // MapGenerator map;
     // map.createWall();
     // printMap(map.getMap());
-    indie::Game Game(60);
     Game.run();
     // Raylib::destroyWindow();
     return (0);

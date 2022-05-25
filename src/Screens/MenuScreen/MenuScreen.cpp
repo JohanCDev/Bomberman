@@ -15,11 +15,12 @@ void indie::menu::MenuScreen::CreateMenuEntities()
 
 void indie::menu::MenuScreen::draw()
 {
+    indie::vec2u WindowDim = Raylib::getWindowDimensions();
+
     Raylib::beginDrawing();
     Raylib::clearBackground();
 
-    indie::vec2u WindowDim = Raylib::getWindowDimensions();
-    Raylib::drawRectangle((WindowDim.x + 250) / 2, (WindowDim.y + 100) / 2, 250, 100, GREEN);
+    Raylib::drawRectangle(WindowDim.x / 2 - 250 / 2, WindowDim.y / 4 - 100 / 2, 250, 100, BLUE);
     Raylib::endDrawing();
 }
 
