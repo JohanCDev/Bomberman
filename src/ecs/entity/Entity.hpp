@@ -56,8 +56,8 @@ namespace ecs {
                 for (auto &compo : _componentVector) {
                     if (isDrawable(compo->getType()) == true && this->_alive == true) {
                         ecs::Drawable *drawableCompo = dynamic_cast<ecs::Drawable *>(compo.get());
-                        ecs::Transform *compo = getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
-                        drawableCompo->draw(*compo);
+                        ecs::Transform *component = getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
+                        drawableCompo->draw(*component);
                     }
                 }
             }
