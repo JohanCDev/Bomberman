@@ -12,15 +12,6 @@
 
 namespace Raylib {
     class Camera3D {
-
-        typedef struct RCamera3D {
-            ::Vector3 position;       // Camera position
-            ::Vector3 target;         // Camera target it looks-at
-            ::Vector3 up;             // Camera up vector (rotation over its axis)
-            float fovy;             // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
-            int projection;         // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
-        } RCamera3D;
-
         public:
             /**
             * Create a new Camera3D.
@@ -85,17 +76,27 @@ namespace Raylib {
             int getProjection() const;
 
             /**
-             * @brief Initializes 3D mode with custom camera (3D)
+            * @brief Initializes 3D mode with custom camera (3D)
             */
-            void BeginMode();
+            void beginMode();
+
+            /**
+            * @brief Sets the new camera mode
+            */
+            void setMode(int mode);
 
             /**
             * @brief Ends 3D mode and returns to default 2D orthographic mode
             */
-            Camera3D& EndMode();
+            void endMode();
+
+            /**
+            * @brief Updates the camera
+            */
+            void update();
 
         private:
-            RCamera3D _camera;
+            ::Camera3D _camera;
     };
 }
 

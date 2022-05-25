@@ -72,13 +72,33 @@ int Raylib::Camera3D::getProjection() const
     return _camera.projection;
 }
 
-void Raylib::Camera3D::BeginMode()
+void Raylib::Camera3D::beginMode()
 {
-    Camera camera;
-    camera.up = _camera.up;
-    camera.fovy = _camera.fovy;
-    camera.position = _camera.position;
-    camera.target = _camera.target;
-    camera.projection = _camera.projection;
-    ::BeginMode3D(camera);
+    ::BeginMode3D(_camera);
 }
+
+void Raylib::Camera3D::setMode(int mode)
+{
+    ::SetCameraMode(_camera, mode);
+}
+
+void Raylib::Camera3D::endMode()
+{
+    ::EndMode3D();
+}
+
+void Raylib::Camera3D::update()
+{
+    ::UpdateCamera(&_camera);
+}
+
+// void Raylib::Camera3D::BeginMode()
+// {
+//     Camera camera;
+//     camera.up = _camera.up;
+//     camera.fovy = _camera.fovy;
+//     camera.position = _camera.position;
+//     camera.target = _camera.target;
+//     camera.projection = _camera.projection;
+//     ::BeginMode3D(camera);
+// }
