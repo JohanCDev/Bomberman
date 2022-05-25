@@ -25,9 +25,7 @@ namespace ecs
 
     class IComponent {
       public:
-        virtual ~IComponent()
-        {
-        }
+        virtual ~IComponent() = default;
         virtual ecs::compoType getType() = 0;
 
       private:
