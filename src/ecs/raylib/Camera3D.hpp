@@ -81,7 +81,7 @@ namespace Raylib {
             void beginMode();
 
             /**
-            * @brief Sets the new camera mode
+            * @brief Set camera mode (multiple camera modes available)
             */
             void setMode(int mode);
 
@@ -91,7 +91,7 @@ namespace Raylib {
             void endMode();
 
             /**
-            * @brief Updates the camera
+            * @brief Update camera position for selected mode
             */
             void update();
 
