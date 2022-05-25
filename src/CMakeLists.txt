@@ -2,6 +2,8 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
 set(ECSROOT ${SRCROOT}ecs/)
 set(MAPROOT ${SRCROOT}Map/)
+set(SCREENSROOT ${SRCROOT}Screens/)
+set(GAMEROOT ${SRCROOT}Game/)
 
 set(SRC
     ${SRCROOT}/main.cpp
@@ -13,10 +15,17 @@ set(SRC
     ${ECSROOT}system/System.hpp
     ${MAPROOT}/MapGenerator.cpp
     ${MAPROOT}/MapGenerator.hpp
+    ${SCREENSROOT}IScreen.hpp
+    ${SCREENSROOT}MenuScreen/MenuScreen.cpp
+    ${SCREENSROOT}MenuScreen/MenuScreen.hpp
+    ${GAMEROOT}Game.cpp
+    ${GAMEROOT}Game.hpp
 )
 
-set(INC
+set(INCDIRS
     ${MAPROOT}
+    ${GAMEROOT}
+    ${SCREENSROOT}
 )
 
 add_executable(${PROJECT_NAME} ${SRC})

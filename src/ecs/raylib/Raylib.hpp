@@ -13,6 +13,7 @@
 #include <string>
 #include "events.hpp"
 #include "RColor.hpp"
+#include "Vec2.hpp"
 
 class Raylib {
   public:
@@ -37,6 +38,8 @@ class Raylib {
     static void drawText(const std::string text, int posX, int posY, int fontSize, Color color);
     static void drawCircle(int posX, int posY, float radius, Color color);
     static void drawRectangle(int posX, int posY, int width, int height, Color color);
+
+    static indie::vec2u getWindowDimensions();
 
   protected:
   private:

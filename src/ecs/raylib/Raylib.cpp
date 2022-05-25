@@ -70,3 +70,10 @@ void Raylib::drawRectangle(int posX, int posY, int width, int height, Color colo
 {
     DrawRectangle(posX, posY, width, height, color);
 }
+
+indie::vec2u Raylib::getWindowDimensions()
+{
+    unsigned int width = GetScreenWidth();
+    unsigned int height = GetScreenHeight();
+    return {width, height};
+}
