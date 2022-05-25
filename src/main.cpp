@@ -29,12 +29,7 @@ int main(void)
         static_cast<float>(-0.05), static_cast<float>(0.0), static_cast<float>(0.0));
     entity2->addComponent<ecs::Player>("", static_cast<float>(2.0), BLACK);
 
-    Camera3D camera = {0};
-    camera.position = (Vector3){ 0.0, 10.0, 10.0 };
-    camera.target = (Vector3){ 0.0, 0.0, 0.0 };
-    camera.up = (Vector3){ 0.0, 1.0, 0.0 };
-    camera.fovy = 45.0;
-    camera.projection = CAMERA_PERSPECTIVE;             
+    Camera3D camera = {{0, 10.0, 10.0}, {0, 0, 0}, {0, 1.0, 0}, 45.0, CAMERA_PERSPECTIVE};
     world.addEntity(std::move(entity));
     world.addEntity(std::move(entity2));
     world.createSystem();
