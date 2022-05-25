@@ -20,12 +20,14 @@ int main(void)
     Raylib raylib;
 
     raylib.initWindow(1920, 1000, "Indie Studio");
-    
-    entity->addComponent<ecs::Transform>((float)0.0, (float)0.0, (float)0.0, (float)0.05, (float)0.0, (float)0.0);
-    entity->addComponent<ecs::Wall>("", (float)2.0, (float)2.0, RED);
 
-    entity2->addComponent<ecs::Transform>((float)1.0, (float)1.0, (float)0.0, (float)-0.05, (float)0.0, (float)0.0);
-    entity2->addComponent<ecs::Player>("", (float)2.0, BLACK);
+    entity->addComponent<ecs::Transform>(static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0),
+        static_cast<float>(0.05), static_cast<float>(0.0), static_cast<float>(0.0));
+    entity->addComponent<ecs::Wall>("", static_cast<float>(2.0), static_cast<float>(2.0), RED);
+
+    entity2->addComponent<ecs::Transform>(static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(0.0),
+        static_cast<float>(-0.05), static_cast<float>(0.0), static_cast<float>(0.0));
+    entity2->addComponent<ecs::Player>("", static_cast<float>(2.0), BLACK);
 
     Camera3D camera = {0};
     camera.position = (Vector3){ 0.0, 10.0, 10.0 };
