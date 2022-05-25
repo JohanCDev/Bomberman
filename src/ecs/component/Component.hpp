@@ -85,7 +85,7 @@ namespace ecs
             Player(std::string texture, float radius, Color color);
             ~Player();
             ecs::compoType getType() override;
-            void draw(ecs::Transform transformCompo);
+            void draw(ecs::Transform transformCompo) override;
             void update(ecs::Transform transformCompo);
 
         private:
@@ -100,7 +100,7 @@ namespace ecs
             Wall(std::string texture, float height, float width, Color color);
             ~Wall();
             ecs::compoType getType() override;
-            void draw(ecs::Transform transformCompo);
+            void draw(ecs::Transform transformCompo) override;
 
         private:
             float _width;
