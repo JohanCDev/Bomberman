@@ -36,15 +36,15 @@ int main(void)
 
     while (!raylib.windowShouldClose()) {
         if (raylib.isKeyPressed(KEY_SPACE)) {
-            for (auto &entity : world.entities) {
-                entity->setAlive(!entity->getAlive());
+            for (auto &ent : world.entities) {
+                ent->setAlive(!ent->getAlive());
             }
         }
         raylib.beginDrawing();
         raylib.clearBackground();
         BeginMode3D(camera);
-        for (auto &entity : world.entities) {
-            entity->draw();
+        for (auto &ent : world.entities) {
+            ent->draw();
         }
         for (auto &system : world.systems) {
             system->update(world.entities);
