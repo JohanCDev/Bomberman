@@ -18,6 +18,16 @@ namespace indie {
                 ~BoundingBox() = default;
 
                 /**
+                * @brief Get boundingBox
+                */
+                ::BoundingBox getBoundingBox() const;
+
+                /**
+                * @brief Set boundingBox
+                */
+                void setBoundingBox(::Vector3 min, ::Vector3 max);
+
+                /**
                 * @brief Get box color
                 */
                 ::Color getColor() const;

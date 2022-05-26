@@ -13,6 +13,24 @@ indie::raylib::BoundingBox::BoundingBox(::Vector3 min, ::Vector3 max, ::Color co
     _color = color;
 }
 
+::BoundingBox indie::raylib::BoundingBox::getBoundingBox() const
+{
+    return _boundingBox;
+}
+
+void indie::raylib::BoundingBox::setBoundingBox(::Vector3 min, ::Vector3 max)
+{
+    _boundingBox.min = min;
+    _boundingBox.max = max;
+}
+
+::Color indie::raylib::BoundingBox::getColor() const {
+    return _color;
+}
+
+void indie::raylib::BoundingBox::setColor(::Color color) {
+    _color = color;
+}
 
 void indie::raylib::BoundingBox::draw()
 {
