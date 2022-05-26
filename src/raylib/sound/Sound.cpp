@@ -9,44 +9,44 @@
 #include <string>
 #include <iostream>
 
-raylib::Sound::Sound(const std::string& fileName) {
+indie::raylib::Sound::Sound(const std::string& fileName) {
     ::LoadSound(fileName.c_str());
 }
 
-raylib::Sound::~Sound() {
+indie::raylib::Sound::~Sound() {
     ::UnloadSound(*_sound);
 }
 
-raylib::Sound &raylib::Sound::play() {
+indie::raylib::Sound &indie::raylib::Sound::play() {
     ::PlaySound(*_sound);
     return *this;
 }
 
-raylib::Sound &raylib::Sound::stop() {
+indie::raylib::Sound &indie::raylib::Sound::stop() {
     ::StopSound(*_sound);
     return *this;
 }
 
-raylib::Sound &raylib::Sound::pause() {
+indie::raylib::Sound &indie::raylib::Sound::pause() {
     ::PauseSound(*_sound);
     return *this;
 }
 
-raylib::Sound &raylib::Sound::resume() {
+indie::raylib::Sound &indie::raylib::Sound::resume() {
     ::ResumeSound(*_sound);
     return *this;
 }
 
-raylib::Sound &raylib::Sound::setVolume(float volume) {
+indie::raylib::Sound &indie::raylib::Sound::setVolume(float volume) {
     ::SetSoundVolume(*_sound, volume);
     return *this;
 }
 
-raylib::Sound &raylib::Sound::setPitch(float pitch) {
+indie::raylib::Sound &indie::raylib::Sound::setPitch(float pitch) {
     ::SetSoundPitch(*_sound, pitch);
     return *this;
 }
 
-bool raylib::Sound::isPlaying() const {
+bool indie::raylib::Sound::isPlaying() const {
     return ::IsSoundPlaying(*_sound);
 }

@@ -11,24 +11,26 @@
 #include <memory>
 #include "../Raylib.hpp"
 
-namespace raylib {
-    class Sound {
-        public:
-            Sound(const std::string& fileName);
-            ~Sound();
+namespace indie {
+    namespace raylib {
+        class Sound {
+            public:
+                Sound(const std::string& fileName);
+                ~Sound();
 
-            Sound &play();
-            Sound &stop();
-            Sound &pause();
-            Sound &resume();
+                Sound &play();
+                Sound &stop();
+                Sound &pause();
+                Sound &resume();
 
-            Sound& setVolume(float volume);
-            Sound& setPitch(float pitch);
+                Sound& setVolume(float volume);
+                Sound& setPitch(float pitch);
 
-            bool isPlaying() const;
-        private:
-			std::shared_ptr<::Sound> _sound;
-    };
+                bool isPlaying() const;
+            private:
+                std::shared_ptr<::Sound> _sound;
+        };
+    }
 }
 
 #endif /* !SOUND_HPP_ */

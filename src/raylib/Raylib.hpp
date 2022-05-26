@@ -21,6 +21,7 @@
 #include "sphere/Sphere.hpp"
 #include "window/Window.hpp"
 
-namespace Raylib {}
+
+namespace raylib {}
 
 #endif /* !RAYLIB_HPP_ */

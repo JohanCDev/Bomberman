@@ -10,19 +10,21 @@
 
 #include "../Raylib.hpp"
 
-namespace raylib {
-    class Draw {
-        public:
-            Draw() = default;
-            ~Draw() = default;
+namespace indie {
+    namespace raylib {
+        class Draw {
+            public:
+                Draw() = default;
+                ~Draw() = default;
 
-            // Drawing function
-            static void drawText(const std::string text, int posX, int posY, int fontSize, Color color);
-            static void drawCircle(int posX, int posY, float radius, Color color);
+                // Drawing function
+                static void drawText(const std::string text, int posX, int posY, int fontSize, Color color);
+                static void drawCircle(int posX, int posY, float radius, Color color);
 
-        protected:
-        private:
-    };
+            protected:
+            private:
+        };
+    }
 }
 
 #endif /* !DRAW_HPP_ */

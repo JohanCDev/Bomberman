@@ -7,12 +7,12 @@
 
 #include "Draw.hpp"
 
-void raylib::Draw::drawText(const std::string text, int posX, int posY, int fontSize, Color color)
+void indie::raylib::Draw::drawText(const std::string text, int posX, int posY, int fontSize, Color color)
 {
     ::DrawText(text.c_str(), posX, posY, fontSize, color);
 }
 
-void raylib::Draw::drawCircle(int posX, int posY, float radius, Color color)
+void indie::raylib::Draw::drawCircle(int posX, int posY, float radius, Color color)
 {
     ::DrawCircle(posX, posY, radius, color);
 }

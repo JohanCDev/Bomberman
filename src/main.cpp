@@ -14,9 +14,9 @@
 int main(void)
 {
     // ecs::Entity entity;
-    raylib::Window window;
-    raylib::Draw draw;
-    raylib::Event event;
+    indie::raylib::Window window;
+    indie::raylib::Draw draw;
+    indie::raylib::Event event;
 
     window.initWindow(1920, 1000, "Indie Studio", true);
     while (!window.windowShouldClose()) {

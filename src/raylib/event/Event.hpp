@@ -10,17 +10,18 @@
 
 #include "../Raylib.hpp"
 
-namespace raylib {
-    class Event {
-        public:
-            Event() = default;
-            ~Event() = default;
+namespace indie {
+    namespace raylib {
+        class Event {
+            public:
+                Event() = default;
+                ~Event() = default;
 
-            // Event function
-            static bool isKeyPressed(KeyboardKey key);
-        protected:
-        private:
-    };
+                // Event function
+                static bool isKeyPressed(KeyboardKey key);
+            protected:
+            private:
+        };
+    }
 }
-
 #endif /* !EVENT_HPP_ */
