@@ -10,8 +10,8 @@
 #include <chrono>
 #include <iostream>
 #include <memory>
-#include "../Screens/IScreen.hpp"
 #include "../raylib/Raylib.hpp"
+#include "../screens/IScreen.hpp"
 
 indie::Game::Game(size_t baseFps)
 {

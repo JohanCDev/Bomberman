@@ -12,35 +12,30 @@
 #include <map>
 #include <memory>
 #include "../Screens/IScreen.hpp"
-#include "../Screens/MenuScreen/MenuScreen.hpp"
-#include "../Screens/GameScreen/GameScreen.hpp"
+#include "../screens/game/GameScreen.hpp"
+#include "../screens/menu/MenuScreen.hpp"
 
-namespace indie {
+namespace indie
+{
     class Game {
-        public:
-            enum class Screens {
-                Game,
-                Menu,
-                Pause,
-                ExitScreen,
-                Count
-            };
-            Game(size_t baseFps = 60);
-            ~Game();
-            void run();
-            void draw();
-            void update(float delta);
-            bool processEvents();
+      public:
+        enum class Screens { Game, Menu, Pause, ExitScreen, Count };
+        Game(size_t baseFps = 60);
+        ~Game();
+        void run();
+        void draw();
+        void update(float delta);
+        bool processEvents();
 
-            void setActualScreen(Screens newScreen);
+        void setActualScreen(Screens newScreen);
 
-        protected:
-        private:
-            Screens _actualScreen;
-            size_t _fps;
-            indie::menu::MenuScreen *_menu;
-            indie::menu::GameScreen *_game;
+      protected:
+      private:
+        Screens _actualScreen;
+        size_t _fps;
+        indie::menu::MenuScreen *_menu;
+        indie::menu::GameScreen *_game;
     };
-}
+} // namespace indie
 
 #endif /* !GAME_HPP_ */

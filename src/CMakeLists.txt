@@ -2,9 +2,9 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
 set(RAYLIBROOT ${SRCROOT}raylib/)
 set(ECSROOT ${SRCROOT}ecs/)
-set(MAPROOT ${SRCROOT}Map/)
-set(SCREENSROOT ${SRCROOT}Screens/)
-set(GAMEROOT ${SRCROOT}Game/)
+set(MAPROOT ${SRCROOT}map/)
+set(SCREENSROOT ${SRCROOT}screens/)
+set(GAMEROOT ${SRCROOT}game/)
 
 set(SRC
     ${SRCROOT}main.cpp
@@ -17,10 +17,10 @@ set(SRC
     ${MAPROOT}/MapGenerator.cpp
     ${MAPROOT}/MapGenerator.hpp
     ${SCREENSROOT}IScreen.hpp
-    ${SCREENSROOT}MenuScreen/MenuScreen.cpp
-    ${SCREENSROOT}MenuScreen/MenuScreen.hpp
-    ${SCREENSROOT}GameScreen/GameScreen.cpp
-    ${SCREENSROOT}GameScreen/GameScreen.hpp
+    ${SCREENSROOT}menu/MenuScreen.cpp
+    ${SCREENSROOT}menu/MenuScreen.hpp
+    ${SCREENSROOT}game/GameScreen.cpp
+    ${SCREENSROOT}game/GameScreen.hpp
     ${GAMEROOT}Game.cpp
     ${GAMEROOT}Game.hpp
 )
