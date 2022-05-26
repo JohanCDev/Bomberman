@@ -8,9 +8,9 @@
 #ifndef CUBE_HPP_
 #define CUBE_HPP_
 
-#include "Raylib.hpp"
+#include "../Raylib.hpp"
 
-namespace Raylib {
+namespace raylib {
     class Cube {
         public:
             Cube(float x, float y, float z, float width, float height, float length);

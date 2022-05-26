@@ -8,9 +8,9 @@
 #ifndef SPHERE_HPP_
 #define SPHERE_HPP_
 
-#include "Raylib.hpp"
+#include "../Raylib.hpp"
 
-namespace Raylib {
+namespace raylib {
     class Sphere {
         public:
             Sphere(::Vector3 centerPos, float radius, ::Color color);

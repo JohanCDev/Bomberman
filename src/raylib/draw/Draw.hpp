@@ -8,9 +8,9 @@
 #ifndef DRAW_HPP_
 #define DRAW_HPP_
 
-#include "Raylib.hpp"
+#include "../Raylib.hpp"
 
-namespace Raylib {
+namespace raylib {
     class Draw {
         public:
             Draw() = default;

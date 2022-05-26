@@ -7,7 +7,7 @@
 
 #include "Window.hpp"
 
-void Raylib::Window::initWindow(size_t width, size_t heigth, const std::string title, bool resizable, int baseFps)
+void raylib::Window::initWindow(size_t width, size_t heigth, const std::string title, bool resizable, int baseFps)
 {
     if (resizable)
         SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
@@ -17,27 +17,27 @@ void Raylib::Window::initWindow(size_t width, size_t heigth, const std::string t
     SetTargetFPS(baseFps);
 }
 
-void Raylib::Window::destroyWindow()
+void raylib::Window::destroyWindow()
 {
     CloseWindow();
 }
 
-bool Raylib::Window::windowShouldClose()
+bool raylib::Window::windowShouldClose()
 {
     return (WindowShouldClose());
 }
 
-void Raylib::Window::beginDrawing()
+void raylib::Window::beginDrawing()
 {
     BeginDrawing();
 }
 
-void Raylib::Window::endDrawing()
+void raylib::Window::endDrawing()
 {
     EndDrawing();
 }
 
-void Raylib::Window::clearBackground()
+void raylib::Window::clearBackground()
 {
 
     ClearBackground(RAYWHITE);

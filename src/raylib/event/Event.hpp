@@ -8,9 +8,9 @@
 #ifndef EVENT_HPP_
 #define EVENT_HPP_
 
-#include "Raylib.hpp"
+#include "../Raylib.hpp"
 
-namespace Raylib {
+namespace raylib {
     class Event {
         public:
             Event() = default;

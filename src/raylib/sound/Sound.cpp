@@ -9,44 +9,44 @@
 #include <string>
 #include <iostream>
 
-Raylib::Sound::Sound(const std::string& fileName) {
+raylib::Sound::Sound(const std::string& fileName) {
     ::LoadSound(fileName.c_str());
 }
 
-Raylib::Sound::~Sound() {
+raylib::Sound::~Sound() {
     ::UnloadSound(*_sound);
 }
 
-Raylib::Sound &Raylib::Sound::play() {
+raylib::Sound &raylib::Sound::play() {
     ::PlaySound(*_sound);
     return *this;
 }
 
-Raylib::Sound &Raylib::Sound::stop() {
+raylib::Sound &raylib::Sound::stop() {
     ::StopSound(*_sound);
     return *this;
 }
 
-Raylib::Sound &Raylib::Sound::pause() {
+raylib::Sound &raylib::Sound::pause() {
     ::PauseSound(*_sound);
     return *this;
 }
 
-Raylib::Sound &Raylib::Sound::resume() {
+raylib::Sound &raylib::Sound::resume() {
     ::ResumeSound(*_sound);
     return *this;
 }
 
-Raylib::Sound &Raylib::Sound::setVolume(float volume) {
+raylib::Sound &raylib::Sound::setVolume(float volume) {
     ::SetSoundVolume(*_sound, volume);
     return *this;
 }
 
-Raylib::Sound &Raylib::Sound::setPitch(float pitch) {
+raylib::Sound &raylib::Sound::setPitch(float pitch) {
     ::SetSoundPitch(*_sound, pitch);
     return *this;
 }
 
-bool Raylib::Sound::isPlaying() const {
+bool raylib::Sound::isPlaying() const {
     return ::IsSoundPlaying(*_sound);
 }

@@ -14,14 +14,14 @@
 #include "../../include/MyRaylib.hpp"
 #include "events.hpp"
 #include "RColor.hpp"
-#include "Window.hpp"
-#include "Draw.hpp"
-#include "Event.hpp"
-#include "Sound.hpp"
-#include "Rectangle.hpp"
-#include "Cube.hpp"
-#include "Sphere.hpp"
-#include "Camera3D.hpp"
+#include "camera3d/Camera3D.hpp"
+#include "cube/Cube.hpp"
+#include "draw/Draw.hpp"
+#include "event/Event.hpp"
+#include "rectangle/Rectangle.hpp"
+#include "sound/Sound.hpp"
+#include "sphere/Sphere.hpp"
+#include "window/Window.hpp"
 
 
 namespace Raylib {}

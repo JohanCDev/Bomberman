@@ -8,9 +8,9 @@
 #ifndef CAMERA3D_HPP_
 #define CAMERA3D_HPP_
 
-#include "Raylib.hpp"
+#include "../Raylib.hpp"
 
-namespace Raylib {
+namespace raylib {
     class Camera3D {
         public:
             /**

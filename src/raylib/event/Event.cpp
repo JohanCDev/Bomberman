@@ -7,7 +7,7 @@
 
 #include "Event.hpp"
 
-bool Raylib::Event::isKeyPressed(KeyboardKey key)
+bool raylib::Event::isKeyPressed(KeyboardKey key)
 {
     return (IsKeyPressed(key));
 }

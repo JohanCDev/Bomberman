@@ -8,9 +8,9 @@
 #ifndef RECTANGLE_HPP_
 #define RECTANGLE_HPP_
 
-#include "Raylib.hpp"
+#include "../Raylib.hpp"
 
-namespace Raylib {
+namespace raylib {
     class Rectangle {
         public:
             Rectangle(float x, float y, float width, float height);

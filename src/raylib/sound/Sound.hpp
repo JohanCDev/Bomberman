@@ -9,9 +9,9 @@
 #define SOUND_HPP_
 
 #include <memory>
-#include "Raylib.hpp"
+#include "../Raylib.hpp"
 
-namespace Raylib {
+namespace raylib {
     class Sound {
         public:
             Sound(const std::string& fileName);

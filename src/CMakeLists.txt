@@ -10,22 +10,22 @@ set(SRC
     ${ECSROOT}entity/Entity.hpp
     ${ECSROOT}system/System.hpp
     ${RAYLIBROOT}/Raylib.hpp
-    ${RAYLIBROOT}/Window.cpp
-    ${RAYLIBROOT}/Window.hpp
-    ${RAYLIBROOT}/Draw.cpp
-    ${RAYLIBROOT}/Draw.hpp
-    ${RAYLIBROOT}/Event.cpp
-    ${RAYLIBROOT}/Event.hpp
-    ${RAYLIBROOT}/Sound.cpp
-    ${RAYLIBROOT}/Sound.hpp
-    ${RAYLIBROOT}/Rectangle.cpp
-    ${RAYLIBROOT}/Rectangle.hpp
-    ${RAYLIBROOT}/Cube.cpp
-    ${RAYLIBROOT}/Cube.hpp
-    ${RAYLIBROOT}/Sphere.cpp
-    ${RAYLIBROOT}/Sphere.hpp
-    ${RAYLIBROOT}/Camera3D.cpp
-    ${RAYLIBROOT}/Camera3D.hpp
+    ${RAYLIBROOT}/window/Window.cpp
+    ${RAYLIBROOT}/window/Window.hpp
+    ${RAYLIBROOT}/draw/Draw.cpp
+    ${RAYLIBROOT}/draw/Draw.hpp
+    ${RAYLIBROOT}/event/Event.cpp
+    ${RAYLIBROOT}/event/Event.hpp
+    ${RAYLIBROOT}/sound/Sound.cpp
+    ${RAYLIBROOT}/sound/Sound.hpp
+    ${RAYLIBROOT}/rectangle/Rectangle.cpp
+    ${RAYLIBROOT}/rectangle/Rectangle.hpp
+    ${RAYLIBROOT}/cube/Cube.cpp
+    ${RAYLIBROOT}/cube/Cube.hpp
+    ${RAYLIBROOT}/sphere/Sphere.cpp
+    ${RAYLIBROOT}/sphere/Sphere.hpp
+    ${RAYLIBROOT}/camera3d/Camera3D.cpp
+    ${RAYLIBROOT}/camera3d/Camera3D.hpp
 )
 
 add_executable(${PROJECT_NAME} ${SRC})
