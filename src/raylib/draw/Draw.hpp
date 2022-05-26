@@ -19,7 +19,6 @@ namespace indie {
 
                 // Drawing function
                 static void drawText(const std::string text, int posX, int posY, int fontSize, Color color);
-                static void drawCircle(int posX, int posY, float radius, Color color);
 
             protected:
             private:
