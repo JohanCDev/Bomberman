@@ -16,10 +16,12 @@
 #include "cube/Cube.hpp"
 #include "draw/Draw.hpp"
 #include "event/Event.hpp"
+#include "line/Line.hpp"
 #include "pixel/Pixel.hpp"
 #include "rectangle/Rectangle.hpp"
 #include "sound/Sound.hpp"
 #include "sphere/Sphere.hpp"
+#include "triangle/Triangle.hpp"
 #include "window/Window.hpp"
 
 

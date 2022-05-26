@@ -28,6 +28,8 @@ set(SRC
     ${RAYLIBROOT}/cube/Cube.hpp
     ${RAYLIBROOT}/sphere/Sphere.cpp
     ${RAYLIBROOT}/sphere/Sphere.hpp
+    ${RAYLIBROOT}/triangle/Triangle.cpp
+    ${RAYLIBROOT}/triangle/Triangle.hpp
     ${RAYLIBROOT}/camera3d/Camera3D.cpp
     ${RAYLIBROOT}/camera3d/Camera3D.hpp
 )
