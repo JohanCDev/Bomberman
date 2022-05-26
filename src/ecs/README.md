@@ -68,7 +68,10 @@ ecs::Transform *transformCompo = entity->getComponent<ecs::Transform>(ecs::compo
 * You can use the draw method present in every entity as follow:
 ```
 for (auto &ent : world.entities) {
-    ent->draw();
+    ent->draw(ecs::drawableType::D2);
+}
+for (auto &ent : world.entities) {
+    ent->draw(ecs::drawableType::D3);
 }
 ```
 
