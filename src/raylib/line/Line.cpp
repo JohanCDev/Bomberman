@@ -9,6 +9,34 @@
 
 indie::raylib::Line::Line(::Vector2 startPos, ::Vector2 endPos, ::Color color) : _startPos(startPos), _endPos(endPos), _color(color) {}
 
+::Vector2 indie::raylib::Line::getStartPosition() const
+{
+    return _startPos;
+}
+
+void indie::raylib::Line::setStartPosition(::Vector2 startPos)
+{
+    _startPos = startPos;
+}
+
+::Vector2 indie::raylib::Line::getEndPosition() const
+{
+    return _endPos;
+}
+
+void indie::raylib::Line::setEndPosition(::Vector2 endPos)
+{
+    _endPos = endPos;
+}
+
+::Color indie::raylib::Line::getColor() const {
+    return _color;
+}
+
+void indie::raylib::Line::setColor(::Color color) {
+    _color = color;
+}
+
 void indie::raylib::Line::draw()
 {
     ::DrawLineV(_startPos, _endPos, _color);

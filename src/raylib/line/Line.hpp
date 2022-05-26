@@ -18,6 +18,36 @@ namespace indie {
                 ~Line() = default;
 
                 /**
+                * @brief Get line start position
+                */
+                ::Vector2 getStartPosition() const;
+
+                /**
+                * @brief Set line start position
+                */
+                void setStartPosition(::Vector2 startPos);
+
+                /**
+                * @brief Get line end position@
+                */
+                ::Vector2 getEndPosition() const;
+
+                /**
+                * @brief Set line end position
+                */
+                void setEndPosition(::Vector2 endPos);
+
+                /**
+                * @brief Get line color
+                */
+                ::Color getColor() const;
+
+                /**
+                * @brief Set line color
+                */
+                void setColor(::Color color);
+
+                /**
                 * @brief Draw a line (Vector version)
                 */
                 void draw();
