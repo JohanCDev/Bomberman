@@ -11,7 +11,7 @@
 #include <cstdio>
 #include <raylib.h>
 #include <string>
-#include "../../../include/MyRaylib.hpp"
+#include "../../include/MyRaylib.hpp"
 #include "events.hpp"
 #include "RColor.hpp"
 #include "Window.hpp"

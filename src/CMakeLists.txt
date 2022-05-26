@@ -1,30 +1,31 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
 set(ECSROOT ${SRCROOT}ecs/)
+set(RAYLIBROOT ${SRCROOT}raylib/)
 
 set(SRC
     ${SRCROOT}/main.cpp
     ${ECSROOT}component/Component.hpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
-    ${ECSROOT}raylib/Raylib.hpp
-    ${ECSROOT}raylib/Window.cpp
-    ${ECSROOT}raylib/Window.hpp
-    ${ECSROOT}raylib/Draw.cpp
-    ${ECSROOT}raylib/Draw.hpp
-    ${ECSROOT}raylib/Event.cpp
-    ${ECSROOT}raylib/Event.hpp
-    ${ECSROOT}raylib/Sound.cpp
-    ${ECSROOT}raylib/Sound.hpp
-    ${ECSROOT}raylib/Rectangle.cpp
-    ${ECSROOT}raylib/Rectangle.hpp
-    ${ECSROOT}raylib/Cube.cpp
-    ${ECSROOT}raylib/Cube.hpp
-    ${ECSROOT}raylib/Sphere.cpp
-    ${ECSROOT}raylib/Sphere.hpp
-    ${ECSROOT}raylib/Camera3D.cpp
-    ${ECSROOT}raylib/Camera3D.hpp
     ${ECSROOT}system/System.hpp
+    ${RAYLIBROOT}/Raylib.hpp
+    ${RAYLIBROOT}/Window.cpp
+    ${RAYLIBROOT}/Window.hpp
+    ${RAYLIBROOT}/Draw.cpp
+    ${RAYLIBROOT}/Draw.hpp
+    ${RAYLIBROOT}/Event.cpp
+    ${RAYLIBROOT}/Event.hpp
+    ${RAYLIBROOT}/Sound.cpp
+    ${RAYLIBROOT}/Sound.hpp
+    ${RAYLIBROOT}/Rectangle.cpp
+    ${RAYLIBROOT}/Rectangle.hpp
+    ${RAYLIBROOT}/Cube.cpp
+    ${RAYLIBROOT}/Cube.hpp
+    ${RAYLIBROOT}/Sphere.cpp
+    ${RAYLIBROOT}/Sphere.hpp
+    ${RAYLIBROOT}/Camera3D.cpp
+    ${RAYLIBROOT}/Camera3D.hpp
 )
 
 add_executable(${PROJECT_NAME} ${SRC})

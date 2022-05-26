@@ -7,7 +7,7 @@
 
 #include "ecs/component/Component.hpp"
 #include "ecs/entity/Entity.hpp"
-#include "ecs/raylib/Raylib.hpp"
+#include "raylib/Raylib.hpp"
 #include "RColor.hpp"
 #include <iostream>
 
