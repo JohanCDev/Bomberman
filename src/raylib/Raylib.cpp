@@ -52,7 +52,6 @@ bool indie::Raylib::isKeyPressed(KeyboardKey key)
 
 void indie::Raylib::clearBackground()
 {
-
     ClearBackground(RAYWHITE);
 }
 
@@ -69,4 +68,11 @@ void indie::Raylib::drawCircle(int posX, int posY, float radius, Color color)
 void indie::Raylib::drawRectangle(int posX, int posY, int width, int height, Color color)
 {
     DrawRectangle(posX, posY, width, height, color);
+}
+
+indie::vec2u indie::Raylib::getWindowDimensions()
+{
+    unsigned int width = GetScreenWidth();
+    unsigned int height = GetScreenHeight();
+    return {width, height};
 }

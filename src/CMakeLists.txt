@@ -1,8 +1,10 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
-set(RAYLIBROOT ${SRCROOT}/raylib/)
+set(RAYLIBROOT ${SRCROOT}raylib/)
 set(ECSROOT ${SRCROOT}ecs/)
 set(MAPROOT ${SRCROOT}map/)
+set(SCREENSROOT ${SRCROOT}screens/)
+set(GAMEROOT ${SRCROOT}game/)
 
 set(SRC
     ${SRCROOT}main.cpp
@@ -12,12 +14,21 @@ set(SRC
     ${RAYLIBROOT}Raylib.cpp
     ${RAYLIBROOT}Raylib.hpp
     ${ECSROOT}system/System.hpp
-    ${MAPROOT}MapGenerator.cpp
-    ${MAPROOT}MapGenerator.hpp
+    ${MAPROOT}/MapGenerator.cpp
+    ${MAPROOT}/MapGenerator.hpp
+    ${SCREENSROOT}IScreen.hpp
+    ${SCREENSROOT}menu/MenuScreen.cpp
+    ${SCREENSROOT}menu/MenuScreen.hpp
+    ${SCREENSROOT}game/GameScreen.cpp
+    ${SCREENSROOT}game/GameScreen.hpp
+    ${GAMEROOT}Game.cpp
+    ${GAMEROOT}Game.hpp
 )
 
-set(INC
+set(INCDIRS
     ${MAPROOT}
+    ${GAMEROOT}
+    ${SCREENSROOT}
 )
 
 add_executable(${PROJECT_NAME} ${SRC})

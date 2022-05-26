@@ -6,10 +6,11 @@
 */
 
 #include <iostream>
-#include "map/MapGenerator.hpp"
 #include "RColor.hpp"
 #include "ecs/component/Component.hpp"
 #include "ecs/entity/Entity.hpp"
+#include "game/Game.hpp"
+#include "map/MapGenerator.hpp"
 #include "raylib/Raylib.hpp"
 
 void printMap(std::vector<std::vector<char>> const &map)
@@ -24,27 +25,28 @@ void printMap(std::vector<std::vector<char>> const &map)
 
 int main(void)
 {
-    indie::ecs::Entity entity;
+    indie::Game Game(60);
 
-    indie::Raylib::initWindow(1920, 1000, "Indie Studio", true);
-    while (!indie::Raylib::windowShouldClose()) {
-        if (indie::Raylib::isKeyPressed(KEY_SPACE)) {
-            std::cout << "a" << std::endl;
-        }
-        indie::Raylib::beginDrawing();
-        indie::Raylib::clearBackground();
-        indie::Raylib::drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
-        indie::Raylib::drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2, 10.0, RED);
-        indie::Raylib::endDrawing();
-    }
-    indie::Raylib::destroyWindow();
-    entity.addComponent<indie::ecs::Position>(100.0, 100.0);
-    entity.addComponent<indie::ecs::Movement>(30.0, 30.0);
-    entity.getPosition();
-    entity.getMovement();
+    indie::Raylib::initWindow(1420, 800, "Indie Studio", true);
+    // while (!Raylib::windowShouldClose()) {
+    //     if (Raylib::isKeyPressed(KEY_SPACE)) {
+    //         std::cout << "a" << std::endl;
+    //     }
+    //     Raylib::beginDrawing();
+    //     Raylib::clearBackground();
+    //     Raylib::drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
+    //     Raylib::drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2, 10.0, RED);
+    //     Raylib::endDrawing();
+    // }
+    // entity.addComponent<ecs::Position>(100.0, 100.0);
+    // entity.addComponent<ecs::Movement>(30.0, 30.0);
+    // entity.getPosition();
+    // entity.getMovement();
 
-    indie::map::MapGenerator map;
-    map.createWall();
-    printMap(map.getMap());
+    // MapGenerator map;
+    // map.createWall();
+    // printMap(map.getMap());
+    Game.run();
+    // Raylib::destroyWindow();
     return (0);
 }
