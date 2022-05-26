@@ -32,6 +32,10 @@ namespace indie {
                 */
                 void drawSectorLines(float startAngle, float endAngle, int segments);
 
+                /**
+                * @brief Check collision between two circles
+                */
+                bool checkCollision(::Vector2 center2, float radius2);
             private:
                 ::Vector2 _center;
                 float _radius;
