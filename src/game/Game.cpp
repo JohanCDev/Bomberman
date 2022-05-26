@@ -12,6 +12,7 @@
 #include <memory>
 #include "../raylib/Raylib.hpp"
 #include "../screens/IScreen.hpp"
+#include "../events/Events.hpp"
 
 indie::Game::Game(size_t baseFps)
 {
@@ -29,6 +30,9 @@ indie::Game::~Game()
 
 bool indie::Game::processEvents()
 {
+    Events events;
+
+    events.inputUpdate();
     return true;
 }
 

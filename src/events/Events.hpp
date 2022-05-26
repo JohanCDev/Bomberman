@@ -8,49 +8,51 @@
 #ifndef EVENTS_HPP_
 #define EVENTS_HPP_
 
-/**
- * @brief Events base class
- *
- */
-class Events {
-  public:
+namespace indie {
     /**
-     * @brief Construct a new Events object
+     * @brief Events base class
+     *
      */
-    Events();
+    class Events {
+      public:
+        /**
+         * @brief Construct a new Events object
+         */
+        Events();
 
-    /**
-     * @brief Destroy the Events object
-     */
-    ~Events();
+        /**
+         * @brief Destroy the Events object
+         */
+        ~Events();
 
-    /**
-     * @brief Get input events and update game
-     */
-    void inputUpdate();
+        /**
+         * @brief Get input events and update game
+         */
+        void inputUpdate();
 
-    /**
-     * @brief Get key events from player A and update game
-     */
-    void getEventsPlayerA();
+        /**
+         * @brief Get key events from player A and update game
+         */
+        void getEventsPlayerA();
 
-    /**
-     * @brief Get key events from player B and update game
-     */
-    void getEventsPlayerB();
+        /**
+         * @brief Get key events from player B and update game
+         */
+        void getEventsPlayerB();
 
-    /**
-     * @brief Get key events from player C and update game
-     */
-    void getEventsPlayerC();
+        /**
+         * @brief Get key events from player C and update game
+         */
+        void getEventsPlayerC();
 
-    /**
-     * @brief Get key events from player D and update game
-     */
-    void getEventsPlayerD();
+        /**
+         * @brief Get key events from player D and update game
+         */
+        void getEventsPlayerD();
 
-  protected:
-  private:
-};
+      protected:
+      private:
+    };
+}
 
 #endif /* !EVENTS_HPP_ */
