@@ -14,7 +14,7 @@ namespace indie {
     namespace raylib {
         class Pixel {
             public:
-                Pixel(::Vector2 vector2, ::Color color = BLACK);
+                Pixel(::Vector2 position, ::Color color = BLACK);
                 ~Pixel() = default;
 
                 /**
@@ -23,7 +23,7 @@ namespace indie {
                 void draw();
 
             private:
-                ::Vector2 _vector2;
+                ::Vector2 _position;
                 ::Color _color;
         };
     }

@@ -7,9 +7,9 @@
 
 #include "Pixel.hpp"
 
-indie::raylib::Pixel::Pixel(::Vector2 vector2, ::Color color) : _vector2(vector2), _color(color) {}
+indie::raylib::Pixel::Pixel(::Vector2 position, ::Color color) : _position(position), _color(color) {}
 
 void indie::raylib::Pixel::draw()
 {
-    ::DrawPixelV(_vector2, _color);
+    ::DrawPixelV(_position, _color);
 }
