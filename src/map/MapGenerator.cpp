@@ -7,7 +7,7 @@
 
 #include "MapGenerator.hpp"
 
-void MapGenerator::createWall()
+void indie::map::MapGenerator::createWall()
 {
     srand(time(NULL));
     for (int i = 0; i < 21; i++) {
@@ -22,7 +22,7 @@ void MapGenerator::createWall()
     placePlayers();
 }
 
-void MapGenerator::placeBoxes()
+void indie::map::MapGenerator::placeBoxes()
 {
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
@@ -34,7 +34,7 @@ void MapGenerator::placeBoxes()
     }
 }
 
-void MapGenerator::placeRandomEmptySpace()
+void indie::map::MapGenerator::placeRandomEmptySpace()
 {
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
@@ -47,7 +47,7 @@ void MapGenerator::placeRandomEmptySpace()
     }
 }
 
-void MapGenerator::placeBonusBoxes()
+void indie::map::MapGenerator::placeBonusBoxes()
 {
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
@@ -68,7 +68,7 @@ void MapGenerator::placeBonusBoxes()
     }
 }
 
-void MapGenerator::placePlayers()
+void indie::map::MapGenerator::placePlayers()
 {
     _map[1][1] = PLAYER1;
     _map[1][2] = EMPTY;
@@ -84,7 +84,7 @@ void MapGenerator::placePlayers()
     _map[19][18] = EMPTY;
 }
 
-int MapGenerator::countBonusOnLine(int i)
+int indie::map::MapGenerator::countBonusOnLine(int i)
 {
     int count = 0;
     for (int k = 0; k < 21; k++) {
@@ -94,7 +94,7 @@ int MapGenerator::countBonusOnLine(int i)
     return count;
 }
 
-int MapGenerator::generateRandomNumber(int nbrMax)
+int indie::map::MapGenerator::generateRandomNumber(int nbrMax)
 {
     if (nbrMax == 0)
         return 0;

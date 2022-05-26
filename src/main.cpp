@@ -43,7 +43,7 @@ int main(void)
     entity.getPosition();
     entity.getMovement();
 
-    MapGenerator map;
+    indie::map::MapGenerator map;
     map.createWall();
     printMap(map.getMap());
     return (0);
