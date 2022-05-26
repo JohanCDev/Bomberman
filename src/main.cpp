@@ -26,7 +26,7 @@ int main(void)
         window.beginDrawing();
         window.clearBackground();
         draw.drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
-        draw.drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RED);
+        // draw.drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2,  10.0, RED);
         window.endDrawing();
     }
     window.destroyWindow();
