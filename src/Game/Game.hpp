@@ -11,7 +11,7 @@
 #include <cstddef>
 #include <map>
 #include <memory>
-#include "../Screens/IScreen.hpp"
+#include "../screens/IScreen.hpp"
 #include "../screens/game/GameScreen.hpp"
 #include "../screens/menu/MenuScreen.hpp"
 

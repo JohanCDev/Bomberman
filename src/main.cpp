@@ -6,11 +6,11 @@
 */
 
 #include <iostream>
-#include "Map/MapGenerator.hpp"
 #include "RColor.hpp"
 #include "ecs/component/Component.hpp"
 #include "ecs/entity/Entity.hpp"
 #include "game/Game.hpp"
+#include "map/MapGenerator.hpp"
 #include "raylib/Raylib.hpp"
 
 void printMap(std::vector<std::vector<char>> const &map)
