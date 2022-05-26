@@ -18,7 +18,7 @@ namespace indie {
                 ~Pixel() = default;
 
                 /**
-                * @brief Draw pixel
+                * @brief Draw a pixel (Vector version)
                 */
                 void draw();
 
