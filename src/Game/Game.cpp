@@ -8,8 +8,8 @@
 #include "Game.hpp"
 #include <algorithm>
 #include <chrono>
-#include <memory>
 #include <iostream>
+#include <memory>
 #include "../Screens/IScreen.hpp"
 #include "../ecs/raylib/Raylib.hpp"
 
