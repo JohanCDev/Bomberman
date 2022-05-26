@@ -1,17 +1,18 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
+set(RAYLIBROOT ${SRCROOT}raylib/)
 set(ECSROOT ${SRCROOT}ecs/)
 set(MAPROOT ${SRCROOT}Map/)
 set(SCREENSROOT ${SRCROOT}Screens/)
 set(GAMEROOT ${SRCROOT}Game/)
 
 set(SRC
-    ${SRCROOT}/main.cpp
+    ${SRCROOT}main.cpp
     ${ECSROOT}component/Component.hpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
-    ${ECSROOT}raylib/Raylib.cpp
-    ${ECSROOT}raylib/Raylib.hpp
+    ${RAYLIBROOT}Raylib.cpp
+    ${RAYLIBROOT}Raylib.hpp
     ${ECSROOT}system/System.hpp
     ${MAPROOT}/MapGenerator.cpp
     ${MAPROOT}/MapGenerator.hpp

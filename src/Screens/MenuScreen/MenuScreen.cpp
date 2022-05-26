@@ -6,7 +6,7 @@
 */
 
 #include "MenuScreen.hpp"
-#include "../../ecs/raylib/Raylib.hpp"
+#include "../../raylib/Raylib.hpp"
 
 indie::menu::MenuScreen::MenuScreen()
 {
@@ -15,12 +15,12 @@ indie::menu::MenuScreen::MenuScreen()
 void indie::menu::MenuScreen::draw()
 {
     std::cout << "MENU SCREEN BOYIIII" << std::endl;
-    indie::vec2u WindowDim = Raylib::getWindowDimensions();
-    Raylib::beginDrawing();
-    Raylib::clearBackground();
+    indie::vec2u WindowDim = indie::Raylib::getWindowDimensions();
+    indie::Raylib::beginDrawing();
+    indie::Raylib::clearBackground();
 
-    Raylib::drawRectangle(WindowDim.x / 2 - 250 / 2, WindowDim.y / 4 - 100 / 2, 250, 100, BLUE);
-    Raylib::endDrawing();
+    indie::Raylib::drawRectangle(WindowDim.x / 2 - 250 / 2, WindowDim.y / 4 - 100 / 2, 250, 100, BLUE);
+    indie::Raylib::endDrawing();
 }
 
 void indie::menu::MenuScreen::handleEvent(indie::Event &event)

@@ -6,12 +6,12 @@
 */
 
 #include <iostream>
-#include "Map/MapGenerator.hpp"
+#include "Game/Game.hpp"
 #include "RColor.hpp"
 #include "ecs/component/Component.hpp"
 #include "ecs/entity/Entity.hpp"
-#include "ecs/raylib/Raylib.hpp"
-#include "Game/Game.hpp"
+#include "map/MapGenerator.hpp"
+#include "raylib/Raylib.hpp"
 
 void printMap(std::vector<std::vector<char>> const &map)
 {
@@ -27,7 +27,7 @@ int main(void)
 {
     indie::Game Game(60);
 
-    Raylib::initWindow(1420, 800, "Indie Studio", true);
+    indie::Raylib::initWindow(1420, 800, "Indie Studio", true);
     // while (!Raylib::windowShouldClose()) {
     //     if (Raylib::isKeyPressed(KEY_SPACE)) {
     //         std::cout << "a" << std::endl;

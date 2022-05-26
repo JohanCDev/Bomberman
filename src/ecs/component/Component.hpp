@@ -10,76 +10,154 @@
 
 extern "C"
 {
-    #include <raylib.h>
+#include <raylib.h>
 }
 
-namespace ecs {
-    class IComponent {
-        public:
+namespace indie
+{
+    namespace ecs
+    {
+        /**
+         * @brief Generic component
+         */
+        class IComponent {
+          public:
+            /**
+             * @brief Updates a component
+             *
+             * @param param1
+             * @param param2
+             */
             virtual void update(float param1, float param2) = 0;
+            /**
+             * @brief Get the x position
+             *
+             * @return float x position
+             */
             virtual float getX() = 0;
+            /**
+             * @brief Get the y position
+             *
+             * @return float y position
+             */
             virtual float getY() = 0;
             // virtual void draw() = 0;
-        protected:
+          protected:
+          private:
+        };
 
-        private:
-    };
-
-    class Position : public IComponent
-    {
-        public:
-            Position(float param1, float param2) {
+        /**
+         * @brief Position element
+         * Contains a position and handle its modifications
+         */
+        class Position : public IComponent {
+          public:
+            /**
+             * @brief Construct a new Position object
+             *
+             * @param param1 x position
+             * @param param2 y positition
+             */
+            Position(float param1, float param2)
+            {
                 this->_x = param1;
                 this->_y = param2;
             }
 
-            void update(float param1, float param2) override {
+            /**
+             * @brief Update a position
+             *
+             * @param param1 new x position
+             * @param param2 new y position
+             */
+            void update(float param1, float param2) override
+            {
                 this->_x = param1;
                 this->_y = param2;
             }
 
-            float getX() override {
+            /**
+             * @brief Get the x position
+             *
+             * @return float x position
+             */
+            float getX() override
+            {
                 return (this->_x);
             }
 
-            float getY() override {
+            /**
+             * @brief Get the y position
+             *
+             * @return float y position
+             */
+            float getY() override
+            {
                 return (this->_y);
             }
 
-        protected:
-        private:
+          protected:
+          private:
             float _x;
             float _y;
-            
-    };
+        };
 
-    class Movement : public IComponent
-    {
-        public:
-            Movement(float param1, float param2) {
+        /**
+         * @brief Movement element
+         *
+         */
+        class Movement : public IComponent {
+          public:
+            /**
+             * @brief Construct a new Movement object
+             *
+             * @param param1 x movement
+             * @param param2 y movement
+             */
+            Movement(float param1, float param2)
+            {
                 this->_x = param1;
                 this->_y = param2;
             }
 
-            void update(float param1, float param2) override {
+            /**
+             * @brief Update the Movement object values
+             *
+             * @param param1 x movement
+             * @param param2 y movement
+             */
+            void update(float param1, float param2) override
+            {
                 this->_x = param1;
                 this->_y = param2;
             }
 
-            float getX() override {
+            /**
+             * @brief Get the x movement
+             *
+             * @return float x movement
+             */
+            float getX() override
+            {
                 return (this->_x);
             }
 
-            float getY() override {
+            /**
+             * @brief Get the y movement
+             *
+             * @return float y movement
+             */
+            float getY() override
+            {
                 return (this->_y);
             }
 
-        protected:
-        private:
+          protected:
+          private:
             float _x;
-            float _y;   
-    };
-
-}
+            float _y;
+        };
+    } // namespace ecs
+} // namespace indie
 
 #endif /* !COMPONENT_HPP_ */

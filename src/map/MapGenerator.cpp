@@ -7,7 +7,7 @@
 
 #include "MapGenerator.hpp"
 
-void MapGenerator::createWall()
+void indie::map::MapGenerator::createWall()
 {
     srand(time(NULL));
     for (int i = 0; i < 21; i++) {
@@ -22,23 +22,23 @@ void MapGenerator::createWall()
     placePlayers();
 }
 
-void MapGenerator::placeBoxes()
+void indie::map::MapGenerator::placeBoxes()
 {
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
             if ((i % 2 != 0) && (j != 0) && (j != 20))
-                _map[i][j] = BOXE;
+                _map[i][j] = BOX;
             if ((i % 2 == 0) && (j % 2 != 0) && (i != 0) && (i != 20))
-                _map[i][j] = BOXE;
+                _map[i][j] = BOX;
         }
     }
 }
 
-void MapGenerator::placeRandomEmptySpace()
+void indie::map::MapGenerator::placeRandomEmptySpace()
 {
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
-            if (_map[i][j] == BOXE) {
+            if (_map[i][j] == BOX) {
                 int rd = generateRandomNumber(10);
                 if (rd == 1 || rd == 2)
                     _map[i][j] = EMPTY;
@@ -47,28 +47,28 @@ void MapGenerator::placeRandomEmptySpace()
     }
 }
 
-void MapGenerator::placeBonusBoxes()
+void indie::map::MapGenerator::placeBonusBoxes()
 {
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
             int count = countBonusOnLine(i);
             if (count == 2)
                 j++;
-            else if (_map[i][j] == BOXE) {
+            else if (_map[i][j] == BOX) {
                 int rd = generateRandomNumber(50);
                 if (rd == 1 || rd == 11 || rd == 21) {
-                    _map[i][j] = SPEED_BOXE;
+                    _map[i][j] = SPEED_BOX;
                 } else if (rd == 2 || rd == 22 || rd == 32) {
-                    _map[i][j] = BOMB_BOXE;
+                    _map[i][j] = BOMB_BOX;
                 } else if (rd == 3) {
-                    _map[i][j] = WALL_PASS_BOXE;
+                    _map[i][j] = WALL_PASS_BOX;
                 }
             }
         }
     }
 }
 
-void MapGenerator::placePlayers()
+void indie::map::MapGenerator::placePlayers()
 {
     _map[1][1] = PLAYER1;
     _map[1][2] = EMPTY;
@@ -84,17 +84,17 @@ void MapGenerator::placePlayers()
     _map[19][18] = EMPTY;
 }
 
-int MapGenerator::countBonusOnLine(int i)
+int indie::map::MapGenerator::countBonusOnLine(int i)
 {
     int count = 0;
     for (int k = 0; k < 21; k++) {
-        if (_map[i][k] == SPEED_BOXE || _map[i][k] == BOMB_BOXE || _map[i][k] == WALL_PASS_BOXE)
+        if (_map[i][k] == SPEED_BOX || _map[i][k] == BOMB_BOX || _map[i][k] == WALL_PASS_BOX)
             count++;
     }
     return count;
 }
 
-int MapGenerator::generateRandomNumber(int nbrMax)
+int indie::map::MapGenerator::generateRandomNumber(int nbrMax)
 {
     if (nbrMax == 0)
         return 0;

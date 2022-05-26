@@ -11,7 +11,7 @@
 #include <iostream>
 #include <memory>
 #include "../Screens/IScreen.hpp"
-#include "../ecs/raylib/Raylib.hpp"
+#include "../raylib/Raylib.hpp"
 
 indie::Game::Game(size_t baseFps)
 {
@@ -78,7 +78,7 @@ void indie::Game::run()
         _actualScreen = Screens::Game;
         draw_aq = 0;
     }
-    Raylib::destroyWindow();
+    indie::Raylib::destroyWindow();
 }
 
 void indie::Game::setActualScreen(Screens newScreen)

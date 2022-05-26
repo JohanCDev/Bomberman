@@ -7,15 +7,15 @@
 
 #include "Raylib.hpp"
 
-Raylib::Raylib()
+indie::Raylib::Raylib()
 {
 }
 
-Raylib::~Raylib()
+indie::Raylib::~Raylib()
 {
 }
 
-void Raylib::initWindow(size_t width, size_t heigth, const std::string title, bool resizable, int baseFps)
+void indie::Raylib::initWindow(size_t width, size_t heigth, const std::string title, bool resizable, int baseFps)
 {
     if (resizable)
         SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
@@ -25,53 +25,52 @@ void Raylib::initWindow(size_t width, size_t heigth, const std::string title, bo
     SetTargetFPS(baseFps);
 }
 
-void Raylib::destroyWindow()
+void indie::Raylib::destroyWindow()
 {
     CloseWindow();
 }
 
-bool Raylib::windowShouldClose()
+bool indie::Raylib::windowShouldClose()
 {
     return (WindowShouldClose());
 }
 
-void Raylib::beginDrawing()
+void indie::Raylib::beginDrawing()
 {
     BeginDrawing();
 }
 
-void Raylib::endDrawing()
+void indie::Raylib::endDrawing()
 {
     EndDrawing();
 }
 
-bool Raylib::isKeyPressed(KeyboardKey key)
+bool indie::Raylib::isKeyPressed(KeyboardKey key)
 {
     return (IsKeyPressed(key));
 }
 
-void Raylib::clearBackground()
+void indie::Raylib::clearBackground()
 {
-
     ClearBackground(RAYWHITE);
 }
 
-void Raylib::drawText(const std::string text, int posX, int posY, int fontSize, Color color)
+void indie::Raylib::drawText(const std::string text, int posX, int posY, int fontSize, Color color)
 {
     DrawText(text.c_str(), posX, posY, fontSize, color);
 }
 
-void Raylib::drawCircle(int posX, int posY, float radius, Color color)
+void indie::Raylib::drawCircle(int posX, int posY, float radius, Color color)
 {
     DrawCircle(posX, posY, radius, color);
 }
 
-void Raylib::drawRectangle(int posX, int posY, int width, int height, Color color)
+void indie::Raylib::drawRectangle(int posX, int posY, int width, int height, Color color)
 {
     DrawRectangle(posX, posY, width, height, color);
 }
 
-indie::vec2u Raylib::getWindowDimensions()
+indie::vec2u indie::Raylib::getWindowDimensions()
 {
     unsigned int width = GetScreenWidth();
     unsigned int height = GetScreenHeight();

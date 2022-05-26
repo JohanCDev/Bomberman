@@ -6,7 +6,7 @@
 */
 
 #include "GameScreen.hpp"
-#include "../../ecs/raylib/Raylib.hpp"
+#include "../../raylib/Raylib.hpp"
 
 indie::menu::GameScreen::GameScreen()
 {
@@ -15,12 +15,12 @@ indie::menu::GameScreen::GameScreen()
 void indie::menu::GameScreen::draw()
 {
     std::cout << "GAME SCREEN BOYIIIII" << std::endl;
-    indie::vec2u WindowDim = Raylib::getWindowDimensions();
-    Raylib::beginDrawing();
-    Raylib::clearBackground();
+    indie::vec2u WindowDim = indie::Raylib::getWindowDimensions();
+    indie::Raylib::beginDrawing();
+    indie::Raylib::clearBackground();
 
-    Raylib::drawRectangle(WindowDim.x / 2 - 250 / 2, WindowDim.y / 4 - 100 / 2, 250, 100, GREEN);
-    Raylib::endDrawing();
+    indie::Raylib::drawRectangle(WindowDim.x / 2 - 250 / 2, WindowDim.y / 4 - 100 / 2, 250, 100, GREEN);
+    indie::Raylib::endDrawing();
 }
 
 void indie::menu::GameScreen::handleEvent(indie::Event &event)
