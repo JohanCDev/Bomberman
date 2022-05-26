@@ -14,7 +14,7 @@ extern "C"
 }
 
 #include <iostream>
-#include "Raylib.hpp"
+#include "../../raylib/Raylib.hpp"
 
 namespace ecs
 {

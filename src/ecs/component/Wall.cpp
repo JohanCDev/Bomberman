@@ -32,14 +32,13 @@ ecs::compoType ecs::Wall::getType()
 
 void ecs::Wall::draw(ecs::Transform transformCompo)
 {
-    Raylib raylib;
     if (this->_texture_path == "") {
         Vector3 vec = {transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
-        raylib.drawRectangle3D(vec, this->_width, this->_height, (float)2.0, this->_color);
-        raylib.drawCubeWires(vec, this->_width, this->_height, (float)2.0, WHITE);
+        indie::Raylib::drawRectangle3D(vec, this->_width, this->_height, (float)2.0, this->_color);
+        indie::Raylib::drawCubeWires(vec, this->_width, this->_height, (float)2.0, WHITE);
     } else {
         Vector3 vec = {transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
-        raylib.drawCubeTexture(this->_texture, vec, this->_width, this->_height, (float)2.0, this->_color);
+        indie::Raylib::drawCubeTexture(this->_texture, vec, this->_width, this->_height, (float)2.0, this->_color);
     }
 }
 

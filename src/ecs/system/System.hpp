@@ -11,27 +11,36 @@
 #include "Entity.hpp"
 #include "Component.hpp"
 
-namespace ecs {
+namespace indie {
+    namespace ecs {
 
-    class ISystem {
-        public:
-            virtual ~ISystem() = default;
+        class ISystem {
+            public:
+                virtual ~ISystem() = default;
 
-            virtual void update(std::vector<std::unique_ptr<ecs::Entity>> &entities) = 0;
+                virtual void update(std::vector<std::unique_ptr<ecs::Entity>> &entities) = 0;
 
-        private:
-    };
+            private:
+        };
 
-    class MovementSystem : public ISystem {
-        
-        public:
-            MovementSystem() {}
-            ~MovementSystem() {}
+        class MovementSystem : public ISystem {
 
-            void update(std::vector<std::unique_ptr<ecs::Entity>> &entities) override;
-        private:
-    };
+            public:
+                MovementSystem() {}
+                ~MovementSystem() {}
 
-}
+                void update(std::vector<std::unique_ptr<ecs::Entity>> &entities) override;
+            private:
+        };
+    } // namespace ecs
+    /**
+     * @brief poll an event on the window
+     *
+     * @param event event to poll
+     * @return true if there is an event in the queue
+     * @return false if there isn't no event
+     */
+    static bool pollEvent(indie::Event &event);
+} // namespace indie
 
 #endif /* !SYSTEM_HPP_ */

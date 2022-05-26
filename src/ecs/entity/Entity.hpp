@@ -11,7 +11,6 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include <typeinfo>
 #include <vector>
 #include "../component/Component.hpp"
 

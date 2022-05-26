@@ -31,9 +31,8 @@ ecs::compoType ecs::Circle::getType()
 
 void ecs::Circle::draw(ecs::Transform transformCompo)
 {
-    Raylib raylib;
     if (this->_texture_path == "") {
-        raylib.drawCircle(transformCompo.getX(), transformCompo.getY(), this->_radius, this->_color);
+        indie::Raylib::drawCircle(transformCompo.getX(), transformCompo.getY(), this->_radius, this->_color);
     }
 }
 

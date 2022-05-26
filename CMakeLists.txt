@@ -1,74 +1,27 @@
 # Cmake version
 cmake_minimum_required(VERSION 3.17)
+project(bomberman)
 
-# Project name
-project(IndieStudio)
-
-# Variables
-set(TARGET_NAME indie)
 set(CMAKE_CXX_STANDARD 20)
 
-# Paths
-set(SRC_PATH src)
-set(ECS_PATH ${SRC_PATH}/ecs)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/)
 
+if (MSVC)
+    add_compile_options(/W2)
+else ()
+    add_compile_options(-Wall -Wshadow -Wno-unused -Wno-deprecated-copy -Wno-deprecated-declarations)
+endif ()
 
-# Include directories
-include_directories(${ECS_PATH}/component/)
-include_directories(${ECS_PATH}/entity/)
-include_directories(${ECS_PATH}/raylib/)
-include_directories(${ECS_PATH}/system/)
-include_directories(${ECS_PATH}/world/)
+find_package(raylib REQUIRED)
+set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 
-# Source files
-set(ECS_SRCS
-  ${ECS_PATH}/entity/Entity.cpp
-  ${ECS_PATH}/raylib/Raylib.cpp
-  ${ECS_PATH}/world/World.cpp
-  ${ECS_PATH}/system/System.cpp
-  ${ECS_PATH}/component/Player.cpp
-  ${ECS_PATH}/component/Transform.cpp
-  ${ECS_PATH}/component/Wall.cpp
-  ${ECS_PATH}/component/Rectangle.cpp
-  ${ECS_PATH}/component/Circle.cpp
-  ${ECS_PATH}/component/Text.cpp
+set(SRC_INTERFACE
+    ${INCROOT}test.hpp
 )
+set(INTERFACES_NAME interface)
 
-set(INDIE_SRCS
-        ${ECS_SRCS}
-  )
-# Compilation
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/)
+add_library(${INTERFACES_NAME} INTERFACE)
 
-# Raylib start
+target_include_directories(${INTERFACES_NAME} INTERFACE ${INCROOT})
 
-add_compile_definitions(_USE_MATH_DEFINES)
-
-find_package(raylib 4.0.0 QUIET)
- if (NOT raylib_FOUND)
-   include(FetchContent)
-   FetchContent_Declare(
-     raylib
-     URL https://github.com/raysan5/raylib/archive/refs/tags/4.0.0.tar.gz
-   )
-   FetchContent_GetProperties(raylib)
-   if (NOT raylib_POPULATED)
-     set(FETCHCONTENT_QUIET NO)
-     FetchContent_Populate(raylib)
-     set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-     add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
-   endif()
- endif()
-
-# Raylib end
-
-add_compile_options(
-    "-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith"
-    "$<$<CONFIG:RELEASE>:-O3;-fno-builtin;-Werror>"
-    "$<$<CONFIG:DEBUG>:-O0;-g3;-ggdb>"
-)
-
-add_executable(${TARGET_NAME} src/main.cpp ${INDIE_SRCS})
-
-target_compile_features(${TARGET_NAME} PRIVATE cxx_std_17)
-target_link_libraries(${TARGET_NAME} raylib)
+add_subdirectory(src)
