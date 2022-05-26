@@ -5,8 +5,9 @@
 ** Events.cpp
 */
 
+#include <iostream>
 #include "Events.hpp"
-#include "ecs/raylib/Raylib.hpp"
+#include "../raylib/Raylib.hpp"
 
 Events::Events()
 {
@@ -18,60 +19,61 @@ Events::~Events()
 
 void Events::getEventsPlayerA()
 {
-    if (Raylib::isKeyPressed(KEY_W)) {
+    if (indie::Raylib::isKeyPressed(KEY_W)) {
         // movePlayerUp(playerA);
-    } else if (Raylib::isKeyPressed(KEY_A)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_A)) {
         // movePlayerLeft(playerA);
-    } else if (Raylib::isKeyPressed(KEY_S)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_S)) {
         // movePlayerDown(playerA);
-    } else if (Raylib::isKeyPressed(KEY_D)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_D)) {
         // movePlayerRight(playerA);
-    } else if (Raylib::isKeyPressed(KEY_E)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_E)) {
         // actionPlayer(playerA);
     }
 }
 
 void Events::getEventsPlayerB()
 {
-    if (Raylib::isKeyPressed(KEY_T)) {
+    if (indie::Raylib::isKeyPressed(KEY_T)) {
         // movePlayerUp(playerB);
-    } else if (Raylib::isKeyPressed(KEY_F)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_F)) {
         // movePlayerLeft(playerB);
-    } else if (Raylib::isKeyPressed(KEY_G)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_G)) {
         // movePlayerDown(playerB);
-    } else if (Raylib::isKeyPressed(KEY_H)) {
+        std::cout << "said G\n";
+    } else if (indie::Raylib::isKeyPressed(KEY_H)) {
         // movePlayerRight(playerB);
-    } else if (Raylib::isKeyPressed(KEY_Y)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_Y)) {
         // actionPlayer(playerB);
     }
 }
 
 void Events::getEventsPlayerC()
 {
-    if (Raylib::isKeyPressed(KEY_O)) {
+    if (indie::Raylib::isKeyPressed(KEY_O)) {
         // movePlayerUp(playerC);
-    } else if (Raylib::isKeyPressed(KEY_K)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_K)) {
         // movePlayerLeft(playerC);
-    } else if (Raylib::isKeyPressed(KEY_L)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_L)) {
         // movePlayerDown(playerC);
-    } else if (Raylib::isKeyPressed(KEY_SEMICOLON)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_SEMICOLON)) {
         // movePlayerRight(playerC);
-    } else if (Raylib::isKeyPressed(KEY_P)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_P)) {
         // actionPlayer(playerC);
     }
 }
 
 void Events::getEventsPlayerD()
 {
-    if (Raylib::isKeyPressed(KEY_UP)) {
+    if (indie::Raylib::isKeyPressed(KEY_UP)) {
         // movePlayerUp(playerD);
-    } else if (Raylib::isKeyPressed(KEY_LEFT)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_LEFT)) {
         // movePlayerLeft(playerD);
-    } else if (Raylib::isKeyPressed(KEY_DOWN)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_DOWN)) {
         // movePlayerDown(playerD);
-    } else if (Raylib::isKeyPressed(KEY_RIGHT)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_RIGHT)) {
         // movePlayerRight(playerD);
-    } else if (Raylib::isKeyPressed(KEY_RIGHT_SHIFT)) {
+    } else if (indie::Raylib::isKeyPressed(KEY_RIGHT_SHIFT)) {
         // actionPlayer(playerC);
     }
 }
