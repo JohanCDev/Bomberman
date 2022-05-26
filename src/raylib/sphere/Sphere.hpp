@@ -13,18 +13,18 @@ namespace indie {
     namespace raylib {
         class Sphere {
             public:
-                Sphere(::Vector3 centerPos, float radius, ::Color color);
+                Sphere(::Vector3 centerPos, float radius, ::Color color = BLACK);
                 ~Sphere() = default;
 
                 /**
                 * @brief Get cube center position
                 */
-                ::Vector3 getPosition() const;
+                ::Vector3 getCenterPosition() const;
 
                 /**
                 * @brief Set cube center position
                 */
-                void setPosition(float newX, float newY, float newZ);
+                void setCenterPosition(::Vector3 centerPosition);
 
                 /**
                 * @brief Get cube radius
@@ -62,7 +62,7 @@ namespace indie {
                 bool checkCollisionSpheres(const ::Vector3& sphere2, float radius2);
 
             private:
-                ::Vector3 _centerPos;
+                ::Vector3 _centerPosition;
                 float _radius;
                 ::Color _color;
         };

@@ -7,18 +7,16 @@
 
 #include "Sphere.hpp"
 
-indie::raylib::Sphere::Sphere(::Vector3 centerPos, float radius, ::Color color) : _centerPos(centerPos), _radius(radius), _color(color) {}
+indie::raylib::Sphere::Sphere(::Vector3 centerPos, float radius, ::Color color) : _centerPosition(centerPos), _radius(radius), _color(color) {}
 
-::Vector3 indie::raylib::Sphere::getPosition() const
+::Vector3 indie::raylib::Sphere::getCenterPosition() const
 {
-    return _centerPos;
+    return _centerPosition;
 }
 
-void indie::raylib::Sphere::setPosition(float newX, float newY, float newZ)
+void indie::raylib::Sphere::setCenterPosition(::Vector3 centerPos)
 {
-    _centerPos.x = newX;
-    _centerPos.y = newY;
-    _centerPos.z = newZ;
+    _centerPosition = centerPos;
 }
 
 float indie::raylib::Sphere::getRadius() const
@@ -43,16 +41,16 @@ void indie::raylib::Sphere::setColor(::Color color)
 
 void indie::raylib::Sphere::draw()
 {
-    ::DrawSphere(_centerPos, _radius, _color);
+    ::DrawSphere(_centerPosition, _radius, _color);
 }
 
 void indie::raylib::Sphere::drawWires(int rings, int slices)
 {
-    ::DrawSphereWires(_centerPos, _radius, rings, slices, _color);
+    ::DrawSphereWires(_centerPosition, _radius, rings, slices, _color);
 }
 
 bool indie::raylib::Sphere::checkCollisionSpheres(const ::Vector3& sphere2, float radius2)
 {
-    return ::CheckCollisionSpheres(_centerPos, _radius, sphere2, radius2);
+    return ::CheckCollisionSpheres(_centerPosition, _radius, sphere2, radius2);
 }
 
