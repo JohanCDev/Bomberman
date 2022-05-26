@@ -10,6 +10,8 @@ set(SRC
     ${ECSROOT}entity/Entity.hpp
     ${ECSROOT}system/System.hpp
     ${RAYLIBROOT}/Raylib.hpp
+    ${RAYLIBROOT}/boundingbox/BoundingBox.cpp
+    ${RAYLIBROOT}/boundingbox/BoundingBox.hpp
     ${RAYLIBROOT}/camera3d/Camera3D.cpp
     ${RAYLIBROOT}/camera3d/Camera3D.hpp
     ${RAYLIBROOT}/circle/Circle.cpp

@@ -12,6 +12,7 @@
 #include <string>
 
 #include "../../include/MyRaylib.hpp"
+#include "boundingbox/BoundingBox.hpp"
 #include "camera3d/Camera3D.hpp"
 #include "circle/Circle.hpp"
 #include "cube/Cube.hpp"
