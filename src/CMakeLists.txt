@@ -16,6 +16,8 @@ set(SRC
     ${RAYLIBROOT}/draw/Draw.hpp
     ${RAYLIBROOT}/event/Event.cpp
     ${RAYLIBROOT}/event/Event.hpp
+    ${RAYLIBROOT}/line/Line.cpp
+    ${RAYLIBROOT}/line/Line.hpp
     ${RAYLIBROOT}/sound/Sound.cpp
     ${RAYLIBROOT}/sound/Sound.hpp
     ${RAYLIBROOT}/pixel/Pixel.cpp
