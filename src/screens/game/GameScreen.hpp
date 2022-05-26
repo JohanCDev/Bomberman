@@ -23,9 +23,10 @@ namespace indie
             void draw() override;
             void update(float delta) override;
             void handleEvent(indie::Event &event) override;
+            void addEntity(std::unique_ptr<ecs::Entity> entity) override;
 
           private:
-            std::vector<ecs::Entity> _entities;
+            std::vector<std::unique_ptr<ecs::Entity>> _entities;
         };
     } // namespace menu
 } // namespace indie

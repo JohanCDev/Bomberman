@@ -109,6 +109,12 @@ namespace indie
 
         static indie::vec2u getWindowDimensions();
 
+        static void drawSphere(Vector3 centerPos, float radius, Color color);
+        static void drawRectangle3D(Vector3 position, float width, float height, float length, Color color);
+        static void drawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color);
+        static void drawCubeWires(Vector3 position, float width, float height, float length, Color color);
+        static bool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
+
       protected:
       private:
     };

@@ -76,3 +76,28 @@ indie::vec2u indie::Raylib::getWindowDimensions()
     unsigned int height = GetScreenHeight();
     return {width, height};
 }
+
+void indie::Raylib::drawSphere(Vector3 centerPos, float radius, Color color)
+{
+    DrawSphere(centerPos, radius, color);
+}
+
+void indie::Raylib::drawRectangle3D(Vector3 position, float width, float height, float length, Color color)
+{
+    DrawCube(position, width, height, length, color);
+}
+
+void indie::Raylib::drawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color)
+{
+    DrawCubeTexture(texture, position, width, height, length, color); 
+}
+
+void indie::Raylib::drawCubeWires(Vector3 position, float width, float height, float length, Color color)
+{
+    DrawCubeWires(position, width, height, length, color);
+}
+
+bool indie::Raylib::CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius)
+{
+    return (CheckCollisionBoxSphere(box, center, radius));
+}

@@ -11,58 +11,66 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include <typeinfo>
+#include <vector>
 #include "../component/Component.hpp"
-#include <unordered_map>
 
-namespace indie
+namespace ecs
 {
-    namespace ecs
-    {
-        /**
-         * @brief Entity base class
-         *
-         */
-        class Entity {
-          public:
-            /**
-             * @brief Construct a new Entity object
-             */
-            Entity();
-            /**
-             * @brief Destroy the Entity object
-             */
-            ~Entity();
+    class Entity {
+      public:
+        Entity();
+        ~Entity();
 
-            template <typename T, typename... Args>
-            /**
-             * @brief Add a component to the entity
-             *
-             * @param args all components to add
-             */
-            void addComponent(Args... args)
-            {
-                T *newCompo(new T(std::forward<Args>(args)...));
-                this->_componentMap.emplace(typeid(T).name(), newCompo);
+        template <typename T, typename... Args> void addComponent(Args... args)
+        {
+            this->_componentVector.push_back(std::unique_ptr<T>(new T{std::forward<Args>(args)...}));
+        }
+
+        bool hasCompoType(ecs::compoType type)
+        {
+            for (auto &compo : _componentVector) {
+                if (compo->getType() == type)
+                    return (true);
             }
-            /**
-             * @brief Get the Position object of the entity
-             */
-            void getPosition();
-            /**
-             * @brief Get the Movement object of the entity
-             */
-            void getMovement();
-            /**
-             * @brief Get the CircleRadius object of the entity
-             */
-            void getCircleRadius();
+            return (false);
+        }
 
-          protected:
-          private:
-            std::unordered_map<std::string, std::unique_ptr<IComponent>> _componentMap;
-        };
-    } // namespace ecs
-} // namespace indie
+        template <typename T> T *getComponent(ecs::compoType type)
+        {
+            for (auto &compo : _componentVector) {
+                if (compo->getType() == type) {
+                    return (dynamic_cast<T *>(compo.get()));
+                }
+            }
+            return (nullptr);
+        }
+
+        void draw(ecs::drawableType drawType)
+        {
+            for (auto &compo : _componentVector) {
+                if (compo->isDrawable(drawType) == true && this->_alive == true) {
+                    ecs::Drawable *drawableCompo = dynamic_cast<ecs::Drawable *>(compo.get());
+                    ecs::Transform *component = getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
+                    drawableCompo->draw(*component);
+                }
+            }
+        }
+
+        void setAlive(bool alive)
+        {
+            this->_alive = alive;
+        }
+
+        bool getAlive(void)
+        {
+            return (this->_alive);
+        }
+
+      protected:
+      private:
+        std::vector<std::unique_ptr<IComponent>> _componentVector;
+        bool _alive;
+    };
+} // namespace ecs
 
 #endif /* !ENTITY_HPP_ */

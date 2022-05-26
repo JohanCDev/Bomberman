@@ -13,151 +13,168 @@ extern "C"
 #include <raylib.h>
 }
 
-namespace indie
+#include <iostream>
+#include "../../raylib/Raylib.hpp"
+
+namespace ecs
 {
-    namespace ecs
-    {
-        /**
-         * @brief Generic component
-         */
-        class IComponent {
-          public:
-            /**
-             * @brief Updates a component
-             *
-             * @param param1
-             * @param param2
-             */
-            virtual void update(float param1, float param2) = 0;
-            /**
-             * @brief Get the x position
-             *
-             * @return float x position
-             */
-            virtual float getX() = 0;
-            /**
-             * @brief Get the y position
-             *
-             * @return float y position
-             */
-            virtual float getY() = 0;
-            // virtual void draw() = 0;
-          protected:
-          private:
-        };
 
-        /**
-         * @brief Position element
-         * Contains a position and handle its modifications
-         */
-        class Position : public IComponent {
-          public:
-            /**
-             * @brief Construct a new Position object
-             *
-             * @param param1 x position
-             * @param param2 y positition
-             */
-            Position(float param1, float param2)
-            {
-                this->_x = param1;
-                this->_y = param2;
-            }
+    class Transform;
 
-            /**
-             * @brief Update a position
-             *
-             * @param param1 new x position
-             * @param param2 new y position
-             */
-            void update(float param1, float param2) override
-            {
-                this->_x = param1;
-                this->_y = param2;
-            }
+    enum compoType { TRANSFORM, PLAYER, WALL, RECTANGLE, CIRCLE, TEXT };
 
-            /**
-             * @brief Get the x position
-             *
-             * @return float x position
-             */
-            float getX() override
-            {
-                return (this->_x);
-            }
+    enum drawableType { D2, D3, NONDRAWABLE };
 
-            /**
-             * @brief Get the y position
-             *
-             * @return float y position
-             */
-            float getY() override
-            {
-                return (this->_y);
-            }
+    class IComponent {
+      public:
+        virtual ~IComponent() = default;
+        virtual ecs::compoType getType() = 0;
+        virtual bool isDrawable(ecs::drawableType drawType) = 0;
 
-          protected:
-          private:
-            float _x;
-            float _y;
-        };
+      private:
+    };
 
-        /**
-         * @brief Movement element
-         *
-         */
-        class Movement : public IComponent {
-          public:
-            /**
-             * @brief Construct a new Movement object
-             *
-             * @param param1 x movement
-             * @param param2 y movement
-             */
-            Movement(float param1, float param2)
-            {
-                this->_x = param1;
-                this->_y = param2;
-            }
+    class Drawable : public IComponent {
+      public:
+        virtual ~Drawable()
+        {
+        }
+        virtual ecs::compoType getType() = 0;
+        virtual void draw(ecs::Transform transformCompo) = 0;
+        virtual bool isDrawable(ecs::drawableType drawType) = 0;
 
-            /**
-             * @brief Update the Movement object values
-             *
-             * @param param1 x movement
-             * @param param2 y movement
-             */
-            void update(float param1, float param2) override
-            {
-                this->_x = param1;
-                this->_y = param2;
-            }
+      private:
+    };
 
-            /**
-             * @brief Get the x movement
-             *
-             * @return float x movement
-             */
-            float getX() override
-            {
-                return (this->_x);
-            }
+    class NonDrawable : public IComponent {
+      public:
+        virtual ~NonDrawable()
+        {
+        }
+        virtual ecs::compoType getType() = 0;
+        virtual bool isDrawable(ecs::drawableType drawType) = 0;
 
-            /**
-             * @brief Get the y movement
-             *
-             * @return float y movement
-             */
-            float getY() override
-            {
-                return (this->_y);
-            }
+      private:
+    };
 
-          protected:
-          private:
-            float _x;
-            float _y;
-        };
-    } // namespace ecs
-} // namespace indie
+    class Transform : public NonDrawable {
+      public:
+        Transform();
+        Transform(float posX, float posY, float posZ, float speedX, float speedY, float speedZ);
+        ~Transform();
+        ecs::compoType getType(void) override;
+        void printProperties();
+        void update(float posX, float posY, float speedX, float speedY);
+        float getX() const;
+        float getY() const;
+        float getZ() const;
+        void setX(float posX);
+        void setY(float posY);
+        void setZ(float posZ);
+        float getSpeedX() const;
+        float getSpeedY() const;
+        float getSpeedZ() const;
+        bool isDrawable(ecs::drawableType drawType);
+
+      private:
+        float _posX;
+        float _posY;
+        float _posZ;
+        float _speedX;
+        float _speedY;
+        float _speedZ;
+        ecs::drawableType _drawType;
+    };
+
+    class Player : public Drawable {
+      public:
+        Player();
+        Player(std::string texture, float radius, Color color);
+        ~Player();
+        ecs::compoType getType() override;
+        void draw(ecs::Transform transformCompo) override;
+        void update(ecs::Transform transformCompo);
+        bool isDrawable(ecs::drawableType drawType);
+
+      private:
+        float _radius;
+        ecs::drawableType _drawType;
+        Color _color;
+        std::string _texture;
+    };
+
+    class Wall : public Drawable {
+      public:
+        Wall();
+        Wall(std::string texture, float height, float width, Color color);
+        ~Wall();
+        ecs::compoType getType() override;
+        void draw(ecs::Transform transformCompo) override;
+        bool isDrawable(ecs::drawableType drawType);
+
+      private:
+        float _width;
+        float _height;
+        Color _color;
+        ecs::drawableType _drawType;
+        std::string _texture_path;
+        Texture2D _texture;
+    };
+
+    class Rectangle : public Drawable {
+      public:
+        Rectangle();
+        Rectangle(std::string texture, float height, float width, Color color);
+        ~Rectangle();
+        ecs::compoType getType() override;
+        void draw(ecs::Transform transformCompo) override;
+        void update(ecs::Transform transformCompo);
+        bool isDrawable(ecs::drawableType drawType);
+
+      private:
+        float _height;
+        float _width;
+        ecs::drawableType _drawType;
+        Color _color;
+        std::string _texture_path;
+        Texture2D _texture;
+    };
+
+    class Circle : public Drawable {
+      public:
+        Circle();
+        Circle(std::string texture, float radius, Color color);
+        ~Circle();
+        ecs::compoType getType() override;
+        void draw(ecs::Transform transformCompo) override;
+        void update(ecs::Transform transformCompo);
+        bool isDrawable(ecs::drawableType drawType);
+
+      private:
+        float _radius;
+        ecs::drawableType _drawType;
+        Color _color;
+        std::string _texture_path;
+        Texture2D _texture;
+    };
+
+    class Text : public Drawable {
+      public:
+        Text();
+        Text(std::string text, float textSize, Color color);
+        ~Text();
+        ecs::compoType getType() override;
+        void draw(ecs::Transform transformCompo) override;
+        void update(ecs::Transform transformCompo);
+        bool isDrawable(ecs::drawableType drawType);
+
+      private:
+        float _textSize;
+        ecs::drawableType _drawType;
+        Color _color;
+        std::string _text;
+    };
+
+} // namespace ecs
 
 #endif /* !COMPONENT_HPP_ */
