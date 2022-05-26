@@ -18,6 +18,36 @@ namespace indie {
                 ~Circle() = default;
 
                 /**
+                * @brief Get center
+                */
+                ::Vector2 getCenter() const;
+
+                /**
+                * @brief Set center
+                */
+                void setCenter(::Vector2 center);
+
+                /**
+                * @brief Get radius
+                */
+                float getRadius() const;
+
+                /**
+                * @brief Set radius
+                */
+                void setRadius(float radius);
+
+                /**
+                * @brief Get circle color
+                */
+                ::Color getColor() const;
+
+                /**
+                * @brief Set circle color
+                */
+                void setColor(::Color color);
+
+                /**
                 * @brief Draw a color-filled circle (Vector version)
                 */
                 void draw();

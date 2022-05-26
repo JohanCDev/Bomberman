@@ -9,6 +9,34 @@
 
 indie::raylib::Circle::Circle(::Vector2 center, float radius, ::Color color) : _center(center), _radius(radius), _color(color) {}
 
+::Vector2 indie::raylib::Circle::getCenter() const
+{
+    return _center;
+}
+
+void indie::raylib::Circle::setCenter(::Vector2 center)
+{
+    _center = center;
+}
+
+float indie::raylib::Circle::getRadius() const
+{
+    return _radius;
+}
+
+void indie::raylib::Circle::setRadius(float radius)
+{
+    _radius = radius;
+}
+
+::Color indie::raylib::Circle::getColor() const {
+    return _color;
+}
+
+void indie::raylib::Circle::setColor(::Color color) {
+    _color = color;
+}
+
 void indie::raylib::Circle::draw() {
     ::DrawCircleV(_center, _radius, _color);
 }
