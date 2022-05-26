@@ -27,6 +27,9 @@ std::unique_ptr<ecs::Entity> entity = std::make_unique<ecs::Entity>();
 ecs::Transform -> float posX, float posY, float posZ, float speedX, float speedY, float speedZ
 ecs::Player -> std::string texturePath, float radius, Color color
 ecs::Wall -> std::string texturePath, float height, float width, Color color
+ecs::Circle -> std::string texture, float radius, Color color
+ecs::Rectangle -> std::string texture, float height, float width, Color color
+ecs::Text -> std::string text, float textSize, Color color
 ```
 
 * To use the addComponent method you have to specify the type of component you want to use and after give the differents parameters

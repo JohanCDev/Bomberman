@@ -29,6 +29,9 @@ set(ECS_SRCS
   ${ECS_PATH}/component/Player.cpp
   ${ECS_PATH}/component/Transform.cpp
   ${ECS_PATH}/component/Wall.cpp
+  ${ECS_PATH}/component/Rectangle.cpp
+  ${ECS_PATH}/component/Circle.cpp
+  ${ECS_PATH}/component/Text.cpp
 )
 
 set(INDIE_SRCS

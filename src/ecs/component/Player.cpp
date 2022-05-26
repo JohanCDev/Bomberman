@@ -16,6 +16,7 @@ ecs::Player::Player(std::string texture, float radius, Color color)
     this->_radius = radius;
     this->_color = color;
     this->_texture = texture;
+    this->_drawType = ecs::drawableType::D3;
 }
 
 ecs::Player::~Player()
@@ -37,4 +38,13 @@ void ecs::Player::draw(ecs::Transform transformCompo)
 void ecs::Player::update(ecs::Transform transformCompo)
 {
     (void)transformCompo;
+}
+
+bool ecs::Player::isDrawable(ecs::drawableType drawType)
+{
+    if (this->_drawType == drawType) {
+        return (true);
+    } else {
+        return (false);
+    }
 }

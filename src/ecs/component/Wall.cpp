@@ -18,6 +18,7 @@ ecs::Wall::Wall(std::string texture, float height, float width, Color color)
     this->_color = color;
     this->_texture_path = texture;
     this->_texture = LoadTexture(this->_texture_path.c_str());
+    this->_drawType = ecs::drawableType::D3;
 }
 
 ecs::Wall::~Wall()
@@ -39,5 +40,14 @@ void ecs::Wall::draw(ecs::Transform transformCompo)
     } else {
         Vector3 vec = {transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
         raylib.drawCubeTexture(this->_texture, vec, this->_width, this->_height, (float)2.0, this->_color);
+    }
+}
+
+bool ecs::Wall::isDrawable(ecs::drawableType drawType)
+{
+    if (this->_drawType == drawType) {
+        return (true);
+    } else {
+        return (false);
     }
 }

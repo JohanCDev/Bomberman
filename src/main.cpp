@@ -6,11 +6,11 @@
 */
 
 #include <unistd.h>
+#include "World.hpp"
 #include "ecs/component/Component.hpp"
 #include "ecs/entity/Entity.hpp"
 #include "ecs/raylib/Raylib.hpp"
 #include "ecs/system/System.hpp"
-#include "World.hpp"
 
 int main(void)
 {
@@ -21,9 +21,9 @@ int main(void)
 
     raylib.initWindow(1920, 1000, "Indie Studio");
 
-    entity->addComponent<ecs::Transform>(static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0),
+    entity->addComponent<ecs::Transform>(static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0),
         static_cast<float>(0.05), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity->addComponent<ecs::Wall>("", static_cast<float>(2.0), static_cast<float>(2.0), RED);
+    entity->addComponent<ecs::Text>("L'INDIE STUDIO EST FINIIIIIII", static_cast<float>(50.0), RED);
 
     entity2->addComponent<ecs::Transform>(static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(0.0),
         static_cast<float>(-0.05), static_cast<float>(0.0), static_cast<float>(0.0));
@@ -44,13 +44,15 @@ int main(void)
         raylib.clearBackground();
         BeginMode3D(camera);
         for (auto &ent : world.entities) {
-            ent->draw();
+            ent->draw(ecs::drawableType::D3);
         }
         for (auto &system : world.systems) {
             system->update(world.entities);
         }
         EndMode3D();
-        raylib.drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
+        for (auto &ent : world.entities) {
+            ent->draw(ecs::drawableType::D2);
+        }
         raylib.endDrawing();
     }
     raylib.destroyWindow();

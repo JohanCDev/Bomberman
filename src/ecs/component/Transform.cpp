@@ -23,6 +23,7 @@ ecs::Transform::Transform(float posX, float posY, float posZ, float speedX, floa
     this->_speedX = speedX;
     this->_speedY = speedY;
     this->_speedZ = speedZ;
+    this->_drawType = ecs::drawableType::NONDRAWABLE;
 }
 
 ecs::Transform::~Transform()
@@ -90,4 +91,13 @@ float ecs::Transform::getSpeedY() const
 float ecs::Transform::getSpeedZ() const
 {
     return (this->_speedZ);
+}
+
+bool ecs::Transform::isDrawable(ecs::drawableType drawType)
+{
+    if (this->_drawType == drawType) {
+        return (true);
+    } else {
+        return (false);
+    }
 }
