@@ -40,7 +40,6 @@ void Events::getEventsPlayerB()
         // movePlayerLeft(playerB);
     } else if (indie::Raylib::isKeyPressed(KEY_G)) {
         // movePlayerDown(playerB);
-        std::cout << "said G\n";
     } else if (indie::Raylib::isKeyPressed(KEY_H)) {
         // movePlayerRight(playerB);
     } else if (indie::Raylib::isKeyPressed(KEY_Y)) {
