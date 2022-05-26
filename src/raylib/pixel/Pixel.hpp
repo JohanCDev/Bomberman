@@ -18,6 +18,26 @@ namespace indie {
                 ~Pixel() = default;
 
                 /**
+                * @brief Get pixel position
+                */
+                ::Vector2 getPosition() const;
+
+                /**
+                * @brief Set pixel position
+                */
+                void setPosition(::Vector2 pos);
+
+                /**
+                * @brief Get pixel color
+                */
+                ::Color getColor() const;
+
+                /**
+                * @brief Set pixel color
+                */
+                void setColor(::Color color);
+
+                /**
                 * @brief Draw a pixel (Vector version)
                 */
                 void draw();
