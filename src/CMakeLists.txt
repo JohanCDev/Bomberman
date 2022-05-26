@@ -18,6 +18,8 @@ set(SRC
     ${RAYLIBROOT}/event/Event.hpp
     ${RAYLIBROOT}/sound/Sound.cpp
     ${RAYLIBROOT}/sound/Sound.hpp
+    ${RAYLIBROOT}/pixel/Pixel.cpp
+    ${RAYLIBROOT}/pixel/Pixel.hpp
     ${RAYLIBROOT}/rectangle/Rectangle.cpp
     ${RAYLIBROOT}/rectangle/Rectangle.hpp
     ${RAYLIBROOT}/cube/Cube.cpp

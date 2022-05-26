@@ -16,6 +16,7 @@
 #include "cube/Cube.hpp"
 #include "draw/Draw.hpp"
 #include "event/Event.hpp"
+#include "pixel/Pixel.hpp"
 #include "rectangle/Rectangle.hpp"
 #include "sound/Sound.hpp"
 #include "sphere/Sphere.hpp"
