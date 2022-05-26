@@ -10,35 +10,37 @@
 
 #include "events.hpp"
 
-namespace ecs
+namespace indie
 {
-  /**
-   * @brief System class implementation
-   * 
-   */
-    class System {
-      public:
+    namespace ecs
+    {
         /**
-         * @brief Construct a new System object
+         * @brief System class implementation
+         *
          */
-        System();
-        /**
-         * @brief Destroy the System object
-         */
-        ~System();
-        /**
-         * @brief poll an event on the window
-         * 
-         * @param event event to poll
-         * @return true if there is an event in the queue
-         * @return false if there isn't no event
-         */
-        static bool pollEvent(indie::Event &event);
+        class System {
+          public:
+            /**
+             * @brief Construct a new System object
+             */
+            System();
+            /**
+             * @brief Destroy the System object
+             */
+            ~System();
+            /**
+             * @brief poll an event on the window
+             *
+             * @param event event to poll
+             * @return true if there is an event in the queue
+             * @return false if there isn't no event
+             */
+            static bool pollEvent(indie::Event &event);
 
-      protected:
-      private:
-    };
-
-} // namespace ecs
+          protected:
+          private:
+        };
+    } // namespace ecs
+} // namespace indie
 
 #endif /* !SYSTEM_HPP_ */
