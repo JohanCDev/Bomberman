@@ -5,6 +5,7 @@ set(ECSROOT ${SRCROOT}ecs/)
 set(MAPROOT ${SRCROOT}map/)
 set(SCREENSROOT ${SRCROOT}screens/)
 set(GAMEROOT ${SRCROOT}game/)
+set(EVENTSROOT ${SRCROOT}events/)
 
 set(SRC
     ${SRCROOT}main.cpp
@@ -23,6 +24,8 @@ set(SRC
     ${SCREENSROOT}game/GameScreen.hpp
     ${GAMEROOT}Game.cpp
     ${GAMEROOT}Game.hpp
+    ${EVENTSROOT}Events.cpp
+    ${EVENTSROOT}Events.hpp
 )
 
 set(INCDIRS
