@@ -72,6 +72,11 @@ namespace indie {
                 */
                 void drawBezierCubic(::Vector2 startControlPos, ::Vector2 endControlPos, float thick);
 
+                /**
+                * @brief Draw a line in 3D world space
+                */
+                void draw3D(::Vector3 startPos, ::Vector3 endPos);
+
             private:
                 ::Vector2 _startPos;
                 ::Vector2 _endPos;

@@ -61,3 +61,8 @@ void indie::raylib::Line::drawBezierQuad(::Vector2 controlPos, float thick)
 {
     DrawLineBezierQuad(_startPos, _endPos, controlPos, thick, _color);
 }
+
+void indie::raylib::Line::draw3D(Vector3 startPos, Vector3 endPos)
+{
+    ::DrawLine3D(startPos, endPos, _color);
+}
