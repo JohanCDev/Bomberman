@@ -15,7 +15,7 @@ int main(void)
 {
     // ecs::Entity entity;
     indie::raylib::Window window;
-    indie::raylib::Draw draw;
+    indie::raylib::Draw draw(100, 100, 50, BLACK);
     indie::raylib::Event event;
 
     window.initWindow(1920, 1000, "Indie Studio", true);
@@ -25,7 +25,7 @@ int main(void)
         }
         window.beginDrawing();
         window.clearBackground();
-        draw.drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
+        draw.drawText("L'INDIE STUDIO EST FINIIIIIII");
         window.endDrawing();
     }
     window.destroyWindow();
