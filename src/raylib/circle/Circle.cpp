@@ -37,6 +37,10 @@ void indie::raylib::Circle::setColor(::Color color) {
     _color = color;
 }
 
+void indie::raylib::Circle::draw(float x, float y, float radius, ::Color color) {
+    ::DrawCircle(x, y, radius, color);
+}
+
 void indie::raylib::Circle::draw() {
     ::DrawCircleV(_center, _radius, _color);
 }

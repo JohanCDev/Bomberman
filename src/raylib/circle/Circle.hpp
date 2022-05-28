@@ -50,6 +50,7 @@ namespace indie {
                 /**
                 * @brief Draw a color-filled circle (Vector version)
                 */
+                void draw(float x, float y, float radius, ::Color color);
                 void draw();
 
                 /**

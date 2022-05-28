@@ -14,19 +14,28 @@ namespace indie {
     namespace raylib {
     class Window {
         public:
-            Window() = default;
+            Window(int width = 1920, int height = 1080);
             ~Window() = default;
 
             // Setup function
-            static void initWindow(size_t width = 1920, size_t heigth = 1080, const std::string title = "Window",
+            void initWindow(const std::string title = "Window",
                 bool resizable = true, int baseFps = 60);
             static void destroyWindow();
+
+            static int getWidth();
+            static int getHeight();
+            // static ::Vector2 getWindowDimensions();
+            // indie::vec2u getWindowDimensions();
 
             // Window function
             static void beginDrawing();
             static void endDrawing();
             static void clearBackground();
             static bool windowShouldClose();
+
+        private:
+            int _width;
+            int _height;
         };
     }
 }

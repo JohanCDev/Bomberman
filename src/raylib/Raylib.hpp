@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Bomberman
+** Raylib
 ** File description:
 ** Raylib
 */

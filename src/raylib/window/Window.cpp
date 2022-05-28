@@ -7,13 +7,15 @@
 
 #include "Window.hpp"
 
-void indie::raylib::Window::initWindow(size_t width, size_t heigth, const std::string title, bool resizable, int baseFps)
+indie::raylib::Window::Window(int width, int height) : _width(width), _height(height) {}
+
+void indie::raylib::Window::initWindow(const std::string title, bool resizable, int baseFps)
 {
     if (resizable)
         ::SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
     else
         ::SetConfigFlags(FLAG_VSYNC_HINT);
-    ::InitWindow(width, heigth, title.c_str());
+    ::InitWindow(_width, _height, title.c_str());
     ::SetTargetFPS(baseFps);
 }
 
@@ -21,6 +23,24 @@ void indie::raylib::Window::destroyWindow()
 {
     ::CloseWindow();
 }
+
+int indie::raylib::Window::getWidth()
+{
+    return _width;
+}
+
+int indie::raylib::Window::getHeight()
+{
+    return _height;
+}
+// ::Vector2 indie::raylib::Window::getWindowDimensions()
+// {
+//     return {static_cast<float>(_width), static_cast<float>(_height)};
+// }
+// indie::vec2u indie::raylib::Window::getWindowDimensions()
+// {
+//     return
+// }
 
 bool indie::raylib::Window::windowShouldClose()
 {
