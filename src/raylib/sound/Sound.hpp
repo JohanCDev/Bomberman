@@ -8,7 +8,6 @@
 #ifndef SOUND_HPP_
 #define SOUND_HPP_
 
-#include <memory>
 #include "../Raylib.hpp"
 
 namespace indie {
@@ -18,17 +17,17 @@ namespace indie {
                 Sound(const std::string& fileName);
                 ~Sound();
 
-                Sound &play();
-                Sound &stop();
-                Sound &pause();
-                Sound &resume();
+                void play();
+                void stop();
+                void pause();
+                void resume();
 
-                Sound& setVolume(float volume);
-                Sound& setPitch(float pitch);
+                void setVolume(float volume);
+                void setPitch(float pitch);
 
                 bool isPlaying() const;
             private:
-                std::shared_ptr<::Sound> _sound;
+                ::Sound _sound;
         };
     }
 }
