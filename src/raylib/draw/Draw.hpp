@@ -82,6 +82,21 @@ namespace indie {
                 */
                 void drawTextCodepoint(::Font font, int codepoint, ::Vector2 position);
 
+                /**
+                * @brief Draw a plane XZ
+                */
+                void drawPlane(::Vector3 centerPos, ::Vector2 size);
+
+                /**
+                * @brief Draw a ray line
+                */
+                void drawRay(::Ray ray);
+
+                /**
+                * @brief Draw a grid (centered at (0, 0, 0))
+                */
+                void drawGrid(int slices, float spacing);
+
             private:
                 int _posX;
                 int _posY;

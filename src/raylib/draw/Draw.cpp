@@ -73,3 +73,19 @@ void indie::raylib::Draw::drawTextCodepoint(::Font font, int codepoint, ::Vector
 {
     ::DrawTextCodepoint(font, codepoint, position,  _fontSize, _color);
 }
+
+void indie::raylib::Draw::drawPlane(::Vector3 centerPos, ::Vector2 size)
+{
+    ::DrawPlane(centerPos, size, _color);
+}
+
+void indie::raylib::Draw::drawRay(::Ray ray)
+{
+    ::DrawRay(ray, _color);
+}
+
+void indie::raylib::Draw::drawGrid(int slices, float spacing)
+{
+    ::DrawGrid(slices, spacing);
+}
+
