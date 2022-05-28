@@ -16,6 +16,7 @@
 #include "camera3d/Camera3D.hpp"
 #include "circle/Circle.hpp"
 #include "cube/Cube.hpp"
+#include "cylinder/Cylinder.hpp"
 #include "draw/Draw.hpp"
 #include "event/Event.hpp"
 #include "line/Line.hpp"

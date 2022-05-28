@@ -18,6 +18,8 @@ set(SRC
     ${RAYLIBROOT}/circle/Circle.hpp
     ${RAYLIBROOT}/cube/Cube.cpp
     ${RAYLIBROOT}/cube/Cube.hpp
+    ${RAYLIBROOT}/cylinder/Cylinder.cpp
+    ${RAYLIBROOT}/cylinder/Cylinder.hpp
     ${RAYLIBROOT}/draw/Draw.cpp
     ${RAYLIBROOT}/draw/Draw.hpp
     ${RAYLIBROOT}/event/Event.cpp
