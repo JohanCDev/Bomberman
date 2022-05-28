@@ -9,6 +9,7 @@
 #define SPHERE_HPP_
 
 #include "../Raylib.hpp"
+
 namespace indie {
     namespace raylib {
         class Sphere {

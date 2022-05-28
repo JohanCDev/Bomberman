@@ -51,7 +51,7 @@ namespace indie {
                 // /**
                 // * @brief Check collision between this box and a sphere
                 // */
-                // bool checkCollisionBoxSphere(Vector3 center, float radius);
+                // bool checkCollisionWithSphere(indie::raylib::Sphere sphere);
 
             private:
                 ::BoundingBox _boundingBox;

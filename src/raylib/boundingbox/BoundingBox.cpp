@@ -50,6 +50,7 @@ bool  indie::raylib::BoundingBox::checkCollisionBoxes(::BoundingBox box2)
 // /**
 // * @brief Check collision between this box and a sphere
 // */
-// bool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
-
-
+// bool indie::raylib::BoudingBox::checkCollisionBoxSphere(indie::raylib::Sphere sphere)
+// {
+//     ::CheckCollisionBoxSphere(_box, sphere.getCenterPosition(), sphere.getRadius());
+// }
