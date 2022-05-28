@@ -63,6 +63,11 @@ namespace indie {
                 void drawSectorLines(float startAngle, float endAngle, int segments);
 
                 /**
+                * @brief Draw a circle in 3D world space
+                */
+                void draw3D(Vector3 center, Vector3 rotationAxis, float rotationAngle);
+
+                /**
                 * @brief Check collision between two circles
                 */
                 bool checkCollision(::Vector2 center2, float radius2);

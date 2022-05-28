@@ -51,6 +51,11 @@ void indie::raylib::Circle::drawSectorLines(float startAngle, float endAngle, in
     ::DrawCircleSectorLines(_center, _radius, startAngle, endAngle, segments, _color);
 }
 
+void indie::raylib::Circle::draw3D(Vector3 center, Vector3 rotationAxis, float rotationAngle)
+{
+    ::DrawCircle3D(center, _radius, rotationAxis, rotationAngle, _color);
+}
+
 bool indie::raylib::Circle::checkCollision(::Vector2 center2, float radius2)
 {
     ::CheckCollisionCircles(_center, _radius, center2, radius2);
