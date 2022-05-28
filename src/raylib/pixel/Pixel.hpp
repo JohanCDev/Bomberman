@@ -42,6 +42,11 @@ namespace indie {
                 */
                 void draw();
 
+                /**
+                * @brief Draw a point in 3D space, actually a small line
+                */
+                void draw3D(Vector3 position);
+
             private:
                 ::Vector2 _position;
                 ::Color _color;

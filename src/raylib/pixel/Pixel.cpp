@@ -32,3 +32,8 @@ void indie::raylib::Pixel::draw()
 {
     ::DrawPixelV(_position, _color);
 }
+
+void indie::raylib::Pixel::draw3D(Vector3 position)
+{
+    ::DrawPoint3D(position, _color);
+}
