@@ -62,5 +62,5 @@ void indie::raylib::Circle::draw3D(Vector3 center, Vector3 rotationAxis, float r
 
 bool indie::raylib::Circle::checkCollision(::Vector2 center2, float radius2)
 {
-    ::CheckCollisionCircles(_center, _radius, center2, radius2);
+    return ::CheckCollisionCircles(_center, _radius, center2, radius2);
 }

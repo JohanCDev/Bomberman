@@ -44,7 +44,7 @@ void indie::raylib::BoundingBox::draw(::Color color)
 
 bool  indie::raylib::BoundingBox::checkCollisionBoxes(::BoundingBox box2)
 {
-    ::CheckCollisionBoxes(_boundingBox, box2);
+    return ::CheckCollisionBoxes(_boundingBox, box2);
 }
 
 // /**
