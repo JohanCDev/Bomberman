@@ -12,6 +12,7 @@
 #include <raylib.h>
 #include <string>
 #include "RColor.hpp"
+#include "Vec2.hpp"
 #include "events.hpp"
 
 namespace indie
@@ -107,7 +108,7 @@ namespace indie
          */
         static void drawRectangle(int posX, int posY, int width, int height, Color color);
 
-        static vec2u getWindowDimensions();
+        static indie::vec2u getWindowDimensions();
 
       protected:
       private:
