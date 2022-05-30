@@ -92,9 +92,9 @@ namespace indie
         if (indie::Raylib::isKeyPressed(KEY_UP))
             event.key.up = true;
         else
-            event.key.up = false;
+            event.key.enter = false;
         if (indie::Raylib::isKeyPressed(KEY_ENTER))
-            event.key.up = true;
+            event.key.enter = true;
         else
             event.key.up = false;
         if (indie::Raylib::isKeyPressed(KEY_LEFT_CONTROL))
