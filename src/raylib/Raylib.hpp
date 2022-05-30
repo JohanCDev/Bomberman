@@ -12,6 +12,7 @@
 #include <raylib.h>
 #include <string>
 #include "RColor.hpp"
+#include "Vec2.hpp"
 #include "events.hpp"
 
 namespace indie

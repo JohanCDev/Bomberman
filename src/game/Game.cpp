@@ -10,6 +10,7 @@
 #include <chrono>
 #include <iostream>
 #include <memory>
+#include "../gameEvents/GameEvents.hpp"
 #include "../raylib/Raylib.hpp"
 #include "../screens/IScreen.hpp"
 
@@ -29,7 +30,9 @@ indie::Game::~Game()
 
 bool indie::Game::processEvents()
 {
-    return true;
+    GameEvents gameEvent;
+
+    return gameEvent.inputUpdate(_event);
 }
 
 void indie::Game::update(float delta)
@@ -55,7 +58,7 @@ void indie::Game::run()
             .count();
     int64_t accumulator = 0;
     int64_t draw_aq = 0;
-    const float initUpdateMs = _fps * 1000;
+    const float initUpdateMs = static_cast<float>(_fps) * 1000;
     float updateMs = initUpdateMs;
     std::unique_ptr<ecs::Entity> entity = std::make_unique<ecs::Entity>();
     std::unique_ptr<ecs::Entity> entity2 = std::make_unique<ecs::Entity>();

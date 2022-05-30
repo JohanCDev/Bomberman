@@ -5,6 +5,7 @@ set(ECSROOT ${SRCROOT}ecs/)
 set(MAPROOT ${SRCROOT}map/)
 set(SCREENSROOT ${SRCROOT}screens/)
 set(GAMEROOT ${SRCROOT}game/)
+set(EVENTSROOT ${SRCROOT}gameEvents/)
 
 set(SRC
     ${SRCROOT}main.cpp
@@ -17,8 +18,8 @@ set(SRC
     ${ECSROOT}component/Wall.cpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
-    ${RAYLIBROOT}Raylib.cpp
     ${RAYLIBROOT}Raylib.hpp
+    ${RAYLIBROOT}Raylib.cpp
     ${ECSROOT}system/System.hpp
     ${MAPROOT}/MapGenerator.cpp
     ${MAPROOT}/MapGenerator.hpp
@@ -27,6 +28,8 @@ set(SRC
     ${SCREENSROOT}menu/MenuScreen.hpp
     ${SCREENSROOT}game/GameScreen.cpp
     ${SCREENSROOT}game/GameScreen.hpp
+    ${EVENTSROOT}GameEvents.cpp
+    ${EVENTSROOT}GameEvents.hpp
     ${GAMEROOT}Game.cpp
     ${GAMEROOT}Game.hpp
 )
