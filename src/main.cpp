@@ -27,7 +27,7 @@ int main(void)
 {
     indie::Game Game(60);
 
-    indie::raylib::Window::initWindow(1420, 800, "Indie Studio", false);
+    indie::raylib::Window::getInstance(1420, 800, "Indie Studio", false, 60);
 
     // while (!Raylib::windowShouldClose()) {
     //     if (Raylib::isKeyPressed(KEY_SPACE)) {
