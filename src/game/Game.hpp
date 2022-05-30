@@ -25,6 +25,7 @@ namespace indie
         ~Game();
         void run();
         void draw();
+        bool handleEvent();
         void update(float delta);
         bool processEvents();
 
