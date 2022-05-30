@@ -14,6 +14,7 @@
 #include "../screens/IScreen.hpp"
 #include "../screens/game/GameScreen.hpp"
 #include "../screens/menu/MenuScreen.hpp"
+#include "events.hpp"
 
 namespace indie
 {
@@ -35,6 +36,7 @@ namespace indie
         size_t _fps;
         indie::menu::MenuScreen *_menu;
         indie::menu::GameScreen *_game;
+        indie::Event _event;
     };
 } // namespace indie
 

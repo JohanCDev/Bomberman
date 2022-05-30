@@ -10,7 +10,7 @@
 #include <chrono>
 #include <iostream>
 #include <memory>
-#include "../events/Events.hpp"
+#include "../gameEvents/GameEvents.hpp"
 #include "../raylib/Raylib.hpp"
 #include "../screens/IScreen.hpp"
 
@@ -30,10 +30,9 @@ indie::Game::~Game()
 
 bool indie::Game::processEvents()
 {
-    Events events;
+    GameEvents gameEvent;
 
-    events.inputUpdate();
-    return true;
+    return gameEvent.inputUpdate(_event);
 }
 
 void indie::Game::update(float delta)
