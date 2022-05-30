@@ -107,7 +107,7 @@ namespace indie
          */
         static void drawRectangle(int posX, int posY, int width, int height, Color color);
 
-        static indie::vec2u getWindowDimensions();
+        static vec2u getWindowDimensions();
 
       protected:
       private:
