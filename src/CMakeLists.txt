@@ -6,6 +6,7 @@ set(RAYLIBROOT ${SRCROOT}raylib/)
 set(MAPROOT ${SRCROOT}map/)
 set(SCREENSROOT ${SRCROOT}screens/)
 set(GAMEROOT ${SRCROOT}game/)
+set(EVENTSROOT ${SRCROOT}gameEvents/)
 
 set(SRC
     ${SRCROOT}main.cpp
@@ -52,6 +53,8 @@ set(SRC
     ${SCREENSROOT}menu/MenuScreen.hpp
     ${SCREENSROOT}game/GameScreen.cpp
     ${SCREENSROOT}game/GameScreen.hpp
+    ${EVENTSROOT}GameEvents.cpp
+    ${EVENTSROOT}GameEvents.hpp
     ${GAMEROOT}Game.cpp
     ${GAMEROOT}Game.hpp
 )

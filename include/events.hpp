@@ -26,19 +26,6 @@ namespace indie
         /// representable using this format (such as the Enter key).
         using Key = char;
 
-        /// Represents a mouse button.
-        enum class MouseButton {
-            /// The left mouse button.
-            Left,
-            /// The right mouse button.
-            Right,
-            /// The middle (wheel) mouse button.
-            Middle,
-
-            /// Keep last -- the total number of mouse buttons.
-            Count
-        };
-
         /// Size events parameters (Event::Type::Resized).
         struct SizeEvent {
             /// Old size, in units.
@@ -49,30 +36,30 @@ namespace indie
 
         /// @brief Keyboard event parameters (Event::Type::KeyPressed, Event::Type::KeyReleased).
         struct KeyEvent {
-            /// Is the Alt key pressed?
-            bool alt;
-            /// Is the Control key pressed?
-            bool control;
-            /// Is the Shift key pressed?
-            bool shift;
-            /// Is the System key pressed?
-            bool system;
+            /// Is the Left Alt key pressed?
+            bool l_alt;
+            /// Is the Right Alt key pressed?
+            bool r_alt;
+            /// Is the Left Control key pressed?
+            bool l_control;
+            /// Is the Right Control key pressed?
+            bool r_control;
+            /// Is the Left Shift key pressed?
+            bool l_shift;
+            /// Is the Right Shift key pressed?
+            bool r_shift;
+            /// Is the up key pressed?
+            bool up;
+            /// Is the down key pressed?
+            bool down;
+            /// Is the left key pressed?
+            bool left;
+            /// Is the right key pressed?
+            bool right;
+            // Is the enter key pressed?
+            bool enter;
             /// Code of the key that has been pressed.
             Key code;
-        };
-
-        /// Mouse move event parameters (Event::Type::MouseMoved)
-        struct MouseMoveEvent {
-            /// Position of the mouse pointer, relative to the left of the owner window.
-            vec2i pos;
-        };
-
-        /// Mouse buttons events parameters (Event::Type::MouseButtonPressed, Event::Type::MouseButtonReleased).
-        struct MouseButtonEvent {
-            /// Code of the button that has been pressed.
-            MouseButton button;
-            /// Position of the mouse pointer, relative to the left of the owner window.
-            vec2i pos;
         };
 
         /// Enumeration of the different types of events.
@@ -85,12 +72,6 @@ namespace indie
             KeyPressed,
             /// A key was released (data in Event.key).
             KeyReleased,
-            /// A mouse button was pressed (data in Event.mouseButton).
-            MouseButtonPressed,
-            /// A mouse button was released (data in Event.mouseButton).
-            MouseButtonReleased,
-            /// The mouse cursor moved (data in Event.mouseMove).
-            MouseMoved,
 
             /// Keep last -- the total number of event types.
             Count
@@ -106,12 +87,8 @@ namespace indie
             SizeEvent size;
             /// Key event parameters (Event::KeyPressed, Event::KeyReleased).
             KeyEvent key;
-            /// Mouse move event parameters (Event::MouseMoved).
-            MouseMoveEvent mouseMove;
-            /// Mouse button event parameters (Event::MouseButtonPressed, Event::MouseButtonReleased).
-            MouseButtonEvent mouseButton;
         };
     };
-} // namespace arcade
+} // namespace indie
 
 #endif // !defined(ARCADE_EVENT_HPP_)
