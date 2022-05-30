@@ -33,10 +33,6 @@ set(SRC
     ${RAYLIBROOT}/draw/Draw.hpp
     ${RAYLIBROOT}/event/Event.cpp
     ${RAYLIBROOT}/event/Event.hpp
-    ${RAYLIBROOT}/line/Line.cpp
-    ${RAYLIBROOT}/line/Line.hpp
-    ${RAYLIBROOT}/pixel/Pixel.cpp
-    ${RAYLIBROOT}/pixel/Pixel.hpp
     ${RAYLIBROOT}/rectangle/Rectangle.cpp
     ${RAYLIBROOT}/rectangle/Rectangle.hpp
     ${RAYLIBROOT}/sound/Sound.cpp
