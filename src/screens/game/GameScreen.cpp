@@ -14,15 +14,15 @@ indie::menu::GameScreen::GameScreen()
 
 void indie::menu::GameScreen::draw()
 {
-    indie::vec2u WindowDim = indie::Raylib::getWindowDimensions();
-    indie::Raylib::beginDrawing();
-    indie::Raylib::clearBackground();
+    // indie::vec2u WindowDim = indie::Raylib::getWindowDimensions();
+    indie::raylib::Window::beginDrawing();
+    indie::raylib::Window::clearBackground();
 
     for (auto &ent : this->_entities) {
         ent->draw(ecs::drawableType::D2);
     }
 
-    indie::Raylib::endDrawing();
+    indie::raylib::Window::endDrawing();
 }
 
 void indie::menu::GameScreen::handleEvent(indie::Event &event)

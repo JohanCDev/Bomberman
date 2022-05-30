@@ -26,12 +26,12 @@ void indie::raylib::Window::destroyWindow()
 
 int indie::raylib::Window::getWidth()
 {
-    return _width;
+    return ::GetScreenWidth();
 }
 
 int indie::raylib::Window::getHeight()
 {
-    return _height;
+    return ::GetScreenHeight();
 }
 // ::Vector2 indie::raylib::Window::getWindowDimensions()
 // {
