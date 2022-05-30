@@ -69,3 +69,8 @@ void indie::raylib::Cube::drawWires()
 {
     ::DrawCubeWiresV(_position, _size, _color);
 }
+
+void indie::raylib::Cube::drawTexture(::Texture2D texture, float width, float height, float length)
+{
+    ::DrawCubeTexture(texture, _position, width, height, length, _color);
+}

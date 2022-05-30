@@ -58,6 +58,11 @@ namespace indie {
                 */
                 void drawWires();
 
+                /**
+                * @brief Draw cube textured
+                */
+                void drawTexture(::Texture2D texture, float width, float height, float length);
+
             private:
                 ::Vector3 _position;
                 ::Vector3 _size;
