@@ -14,7 +14,6 @@ indie::menu::GameScreen::GameScreen()
 
 void indie::menu::GameScreen::draw()
 {
-    // indie::vec2u WindowDim = indie::Raylib::getWindowDimensions();
     indie::raylib::Window::beginDrawing();
     indie::raylib::Window::clearBackground();
 

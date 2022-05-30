@@ -36,7 +36,6 @@ void ecs::Rectangle::draw(ecs::Transform transformCompo)
 
     if (this->_texture_path == "") {
         rectangle.draw();
-        // indie::raylib::drawRectangle(transformCompo.getX(), transformCompo.getY(), this->_width, this->_height, this->_color);
     }
 }
 

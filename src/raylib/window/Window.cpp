@@ -33,14 +33,6 @@ int indie::raylib::Window::getHeight()
 {
     return ::GetScreenHeight();
 }
-// ::Vector2 indie::raylib::Window::getWindowDimensions()
-// {
-//     return {static_cast<float>(_width), static_cast<float>(_height)};
-// }
-// indie::vec2u indie::raylib::Window::getWindowDimensions()
-// {
-//     return
-// }
 
 bool indie::raylib::Window::windowShouldClose()
 {

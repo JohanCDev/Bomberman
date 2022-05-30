@@ -91,14 +91,3 @@ void indie::raylib::Camera3D::update()
 {
     ::UpdateCamera(&_camera);
 }
-
-// void indie::raylib::Camera3D::BeginMode()
-// {
-//     Camera camera;
-//     camera.up = _camera.up;
-//     camera.fovy = _camera.fovy;
-//     camera.position = _camera.position;
-//     camera.target = _camera.target;
-//     camera.projection = _camera.projection;
-//     ::BeginMode3D(camera);
-// }

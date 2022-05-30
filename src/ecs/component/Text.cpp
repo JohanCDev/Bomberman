@@ -33,7 +33,6 @@ void ecs::Text::draw(ecs::Transform transformCompo)
     indie::raylib::Draw draw(transformCompo.getX(), transformCompo.getY(), this->_textSize, this->_color);
 
     draw.drawText(this->_text);
-    // indie::raylib::drawText(this->_text, transformCompo.getX(), transformCompo.getY(), this->_textSize, this->_color);
 }
 
 bool ecs::Text::isDrawable(ecs::drawableType drawType)

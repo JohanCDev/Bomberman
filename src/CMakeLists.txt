@@ -47,7 +47,6 @@ set(SRC
     ${RAYLIBROOT}/triangle/Triangle.hpp
     ${RAYLIBROOT}/window/Window.cpp
     ${RAYLIBROOT}/window/Window.hpp
-    ${RAYLIBROOT}Raylib.cpp
     ${RAYLIBROOT}Raylib.hpp
     ${ECSROOT}system/System.hpp
     ${MAPROOT}/MapGenerator.cpp

@@ -32,7 +32,7 @@ ecs::compoType ecs::Circle::getType()
 void ecs::Circle::draw(ecs::Transform transformCompo)
 {
     indie::raylib::Circle circle({transformCompo.getX(), transformCompo.getY()}, this->_radius, this->_color);
-    // indie::raylib::Circle::draw(transformCompo.getX(), transformCompo.getY(), this->_radius, this->_color);
+
     if (this->_texture_path == "") {
         circle.draw();
     }

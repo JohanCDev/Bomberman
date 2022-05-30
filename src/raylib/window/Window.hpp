@@ -24,8 +24,6 @@ namespace indie {
 
             static int getWidth();
             static int getHeight();
-            // static ::Vector2 getWindowDimensions();
-            // indie::vec2u getWindowDimensions();
 
             // Window function
             static void beginDrawing();

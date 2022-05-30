@@ -32,8 +32,8 @@ void ecs::Player::draw(ecs::Transform transformCompo)
 {
     Vector3 vec = {transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
     indie::raylib::Sphere sphere(vec, this->_radius, this->_color);
+
     sphere.draw();
-    // indie::raylib::drawSphere(vec, this->_radius, this->_color);
 }
 
 void ecs::Player::update(ecs::Transform transformCompo)
