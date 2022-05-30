@@ -14,18 +14,19 @@
 #include "../screens/IScreen.hpp"
 #include "../screens/game/GameScreen.hpp"
 #include "../screens/menu/MenuScreen.hpp"
+#include "../screens/options/OptionsScreen.hpp"
 #include "events.hpp"
 
 namespace indie
 {
     class Game {
       public:
-        enum class Screens { Game, Menu, Pause, ExitScreen, Count };
+        enum class Screens { Game, Menu, Options, ExitScreen, Count };
         Game(size_t baseFps = 60);
         ~Game();
         void run();
         void draw();
-        bool handleEvent();
+        int handleEvent();
         void update(float delta);
         bool processEvents();
 
@@ -37,6 +38,7 @@ namespace indie
         size_t _fps;
         indie::menu::MenuScreen *_menu;
         indie::menu::GameScreen *_game;
+        indie::menu::OptionsScreen *_options;
         indie::Event _event;
     };
 } // namespace indie

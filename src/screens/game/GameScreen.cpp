@@ -36,10 +36,10 @@ void indie::menu::GameScreen::draw()
     indie::Raylib::endDrawing();
 }
 
-bool indie::menu::GameScreen::handleEvent(indie::Event &event)
+int indie::menu::GameScreen::handleEvent(indie::Event &event)
 {
     (void)event;
-    return true;
+    return 0;
 }
 
 void indie::menu::GameScreen::update(float delta)

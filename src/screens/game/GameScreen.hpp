@@ -22,7 +22,7 @@ namespace indie
             ~GameScreen() = default;
             void draw() override;
             void update(float delta) override;
-            bool handleEvent(indie::Event &event) override;
+            int handleEvent(indie::Event &event) override;
             void addEntity(std::unique_ptr<ecs::Entity> entity) override;
 
           private:

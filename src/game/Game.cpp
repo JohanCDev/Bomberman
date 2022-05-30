@@ -20,12 +20,14 @@ indie::Game::Game(size_t baseFps)
     _actualScreen = Screens::Menu;
     _menu = new indie::menu::MenuScreen;
     _game = new indie::menu::GameScreen;
+    _options = new indie::menu::OptionsScreen;
 }
 
 indie::Game::~Game()
 {
     delete _menu;
     delete _game;
+    delete _options;
 }
 
 bool indie::Game::processEvents()
@@ -46,15 +48,17 @@ void indie::Game::draw()
     switch (_actualScreen) {
         case Screens::Menu: _menu->draw(); break;
         case Screens::Game: _game->draw(); break;
+        case Screens::Options: _options->draw(); break;
         default: break;
     }
 }
 
-bool indie::Game::handleEvent()
+int indie::Game::handleEvent()
 {
     switch (_actualScreen) {
         case Screens::Menu: return (_menu->handleEvent(_event));
         case Screens::Game: return (_game->handleEvent(_event));
+        case Screens::Options: return (_options->handleEvent(_event));
         default: break;
     }
     return true;
@@ -71,6 +75,7 @@ void indie::Game::run()
     // const float initUpdateMs = static_cast<float>(_fps) * 1000;
     // float updateMs = initUpdateMs;
 
+    int ret = 0;
     while (!Raylib::windowShouldClose()) {
         // newTime =
         //     std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
@@ -88,8 +93,15 @@ void indie::Game::run()
         // }
         // updateMs = initUpdateMs;
         // draw_aq += accumulator;
-        if (!handleEvent())
+        ret = handleEvent();
+        if (ret == 10)
             break;
+        if (ret == 1)
+            setActualScreen(Screens::Menu);
+        if (ret == 2)
+            setActualScreen(Screens::Game);
+        if (ret == 3)
+            setActualScreen(Screens::Options);
         draw();
         // _actualScreen = Screens::Game;
         // draw_aq = 0;

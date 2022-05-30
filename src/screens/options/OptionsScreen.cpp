@@ -1,42 +1,35 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2021
 ** Bomberman
 ** File description:
-** MenuScreen
+** OptionsScreen.cpp
 */
 
-#include "MenuScreen.hpp"
+#include "OptionsScreen.hpp"
 #include "../../raylib/Raylib.hpp"
 
-indie::menu::MenuScreen::MenuScreen() : _cursorPosition(NEW_GAME)
+indie::menu::OptionsScreen::OptionsScreen() : _cursorPosition(RESUME)
 {
     std::unique_ptr<ecs::Entity> new_game = std::make_unique<ecs::Entity>();
     new_game->addComponent<ecs::Transform>(static_cast<float>(400.0), static_cast<float>(500.0),
         static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
     new_game->addComponent<ecs::Rectangle>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
-    new_game->addComponent<ecs::Text>("New Game", static_cast<float>(50.0), BLACK);
+    new_game->addComponent<ecs::Text>("Resume", static_cast<float>(50.0), BLACK);
     addEntity(std::move(new_game));
 
     std::unique_ptr<ecs::Entity> load_game = std::make_unique<ecs::Entity>();
     load_game->addComponent<ecs::Transform>(static_cast<float>(400.0), static_cast<float>(600.0),
         static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
     load_game->addComponent<ecs::Rectangle>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
-    load_game->addComponent<ecs::Text>("Load Game", static_cast<float>(50.0), BLACK);
+    load_game->addComponent<ecs::Text>("Menu", static_cast<float>(50.0), BLACK);
     addEntity(std::move(load_game));
 
     std::unique_ptr<ecs::Entity> options = std::make_unique<ecs::Entity>();
     options->addComponent<ecs::Transform>(static_cast<float>(400.0), static_cast<float>(700.0), static_cast<float>(0.0),
         static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
     options->addComponent<ecs::Rectangle>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
-    options->addComponent<ecs::Text>("Options", static_cast<float>(50.0), BLACK);
+    options->addComponent<ecs::Text>("EXIT", static_cast<float>(50.0), BLACK);
     addEntity(std::move(options));
-
-    std::unique_ptr<ecs::Entity> quit = std::make_unique<ecs::Entity>();
-    quit->addComponent<ecs::Transform>(static_cast<float>(400.0), static_cast<float>(800.0), static_cast<float>(0.0),
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    quit->addComponent<ecs::Rectangle>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
-    quit->addComponent<ecs::Text>("Quit", static_cast<float>(50.0), BLACK);
-    addEntity(std::move(quit));
 
     std::unique_ptr<ecs::Entity> cursor = std::make_unique<ecs::Entity>();
     cursor->addComponent<ecs::Transform>(static_cast<float>(320.0), static_cast<float>(510.0), static_cast<float>(0.0),
@@ -45,7 +38,7 @@ indie::menu::MenuScreen::MenuScreen() : _cursorPosition(NEW_GAME)
     addEntity(std::move(cursor));
 }
 
-void indie::menu::MenuScreen::draw()
+void indie::menu::OptionsScreen::draw()
 {
     indie::vec2u WindowDim = indie::Raylib::getWindowDimensions();
     indie::Raylib::beginDrawing();
@@ -58,68 +51,60 @@ void indie::menu::MenuScreen::draw()
     indie::Raylib::endDrawing();
 }
 
-int indie::menu::MenuScreen::handleEvent(indie::Event &event)
+int indie::menu::OptionsScreen::handleEvent(indie::Event &event)
 {
     if (event.key.down) {
-        ecs::Transform *transformCompo = _entities.at(4)->getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
+        ecs::Transform *transformCompo = _entities.at(3)->getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
         transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(true)),
             static_cast<float>(0.0), static_cast<float>(0.0));
     }
     if (event.key.up) {
-        ecs::Transform *transformCompo = _entities.at(4)->getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
+        ecs::Transform *transformCompo = _entities.at(3)->getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
         transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(false)),
             static_cast<float>(0.0), static_cast<float>(0.0));
     }
-    if (event.key.enter && _cursorPosition == NEW_GAME)
+    if (event.key.enter && _cursorPosition == RESUME)
         return 2;
-    if (event.key.enter && _cursorPosition == OPTIONS)
-        return 3;
-    if (event.key.enter && _cursorPosition == QUIT)
+    if (event.key.enter && _cursorPosition == MENU)
+        return 1;
+    if (event.key.enter && _cursorPosition == EXIT)
         return 10;
     return 0;
 }
 
-void indie::menu::MenuScreen::update(float delta)
+void indie::menu::OptionsScreen::update(float delta)
 {
     (void)delta;
 }
 
-void indie::menu::MenuScreen::addEntity(std::unique_ptr<ecs::Entity> entity)
+void indie::menu::OptionsScreen::addEntity(std::unique_ptr<ecs::Entity> entity)
 {
     this->_entities.push_back(std::move(entity));
 }
 
-int indie::menu::MenuScreen::checkCursorPosition(bool direction)
+int indie::menu::OptionsScreen::checkCursorPosition(bool direction)
 {
     if (direction) {
-        if (_cursorPosition == NEW_GAME) {
-            _cursorPosition = LOAD_GAME;
-            return LOAD_GAME;
+        if (_cursorPosition == RESUME) {
+            _cursorPosition = MENU;
+            return MENU;
         }
-        if (_cursorPosition == LOAD_GAME) {
-            _cursorPosition = OPTIONS;
-            return OPTIONS;
+        if (_cursorPosition == MENU) {
+            _cursorPosition = EXIT;
+            return EXIT;
         }
-        if (_cursorPosition == OPTIONS) {
-            _cursorPosition = QUIT;
-            return QUIT;
-        }
-        if (_cursorPosition == QUIT)
-            return QUIT;
+        if (_cursorPosition == EXIT)
+            return EXIT;
     } else if (!direction) {
-        if (_cursorPosition == NEW_GAME)
-            return NEW_GAME;
-        if (_cursorPosition == LOAD_GAME) {
-            _cursorPosition = NEW_GAME;
-            return NEW_GAME;
+        if (_cursorPosition == RESUME)
+            return RESUME;
+        if (_cursorPosition == MENU) {
+            _cursorPosition = RESUME;
+            return RESUME;
         }
-        if (_cursorPosition == OPTIONS) {
-            _cursorPosition = LOAD_GAME;
-            return LOAD_GAME;
-        }
-        if (_cursorPosition == QUIT) {
-            _cursorPosition = OPTIONS;
-            return OPTIONS;
+        if (_cursorPosition == EXIT) {
+            _cursorPosition = MENU;
+            return MENU;
         }
     }
     return 0;

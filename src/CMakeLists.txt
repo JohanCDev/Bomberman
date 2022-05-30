@@ -28,6 +28,8 @@ set(SRC
     ${SCREENSROOT}menu/MenuScreen.hpp
     ${SCREENSROOT}game/GameScreen.cpp
     ${SCREENSROOT}game/GameScreen.hpp
+    ${SCREENSROOT}options/OptionsScreen.cpp
+    ${SCREENSROOT}options/OptionsScreen.hpp
     ${EVENTSROOT}GameEvents.cpp
     ${EVENTSROOT}GameEvents.hpp
     ${GAMEROOT}Game.cpp
