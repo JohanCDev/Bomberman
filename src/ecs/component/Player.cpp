@@ -30,7 +30,7 @@ ecs::compoType ecs::Player::getType()
 
 void ecs::Player::draw(ecs::Transform transformCompo)
 {
-    Vector3 vec = {transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
+    Vector3 vec = {transformCompo.getX(), transformCompo.getY(), 0};
     indie::Raylib::drawSphere(vec, this->_radius, this->_color);
 }
 

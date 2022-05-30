@@ -14,63 +14,66 @@
 #include <vector>
 #include "../component/Component.hpp"
 
-namespace ecs
+namespace indie
 {
-    class Entity {
-      public:
-        Entity();
-        ~Entity();
+    namespace ecs
+    {
+        class Entity {
+          public:
+            Entity();
+            ~Entity();
 
-        template <typename T, typename... Args> void addComponent(Args... args)
-        {
-            this->_componentVector.push_back(std::unique_ptr<T>(new T{std::forward<Args>(args)...}));
-        }
-
-        bool hasCompoType(ecs::compoType type)
-        {
-            for (auto &compo : _componentVector) {
-                if (compo->getType() == type)
-                    return (true);
+            template <typename T, typename... Args> void addComponent(Args... args)
+            {
+                this->_componentVector.push_back(std::unique_ptr<T>(new T{std::forward<Args>(args)...}));
             }
-            return (false);
-        }
 
-        template <typename T> T *getComponent(ecs::compoType type)
-        {
-            for (auto &compo : _componentVector) {
-                if (compo->getType() == type) {
-                    return (dynamic_cast<T *>(compo.get()));
+            bool hasCompoType(indie::ecs::compoType type)
+            {
+                for (auto &compo : _componentVector) {
+                    if (compo->getType() == type)
+                        return (true);
                 }
+                return (false);
             }
-            return (nullptr);
-        }
 
-        void draw(ecs::drawableType drawType)
-        {
-            for (auto &compo : _componentVector) {
-                if (compo->isDrawable(drawType) == true && this->_alive == true) {
-                    ecs::Drawable *drawableCompo = dynamic_cast<ecs::Drawable *>(compo.get());
-                    ecs::Transform *component = getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
-                    drawableCompo->draw(*component);
+            template <typename T> T *getComponent(indie::ecs::compoType type)
+            {
+                for (auto &compo : _componentVector) {
+                    if (compo->getType() == type) {
+                        return (dynamic_cast<T *>(compo.get()));
+                    }
                 }
+                return (nullptr);
             }
-        }
 
-        void setAlive(bool alive)
-        {
-            this->_alive = alive;
-        }
+            /*void draw(ecs::drawableType drawType)
+            {
+                for (auto &compo : _componentVector) {
+                    if (compo->isDrawable(drawType) == true && this->_alive == true) {
+                        ecs::Drawable *drawableCompo = dynamic_cast<ecs::Drawable *>(compo.get());
+                        ecs::Transform *component = getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
+                        drawableCompo->draw(*component);
+                    }
+                }
+            }*/
 
-        bool getAlive(void)
-        {
-            return (this->_alive);
-        }
+            void setAlive(bool alive)
+            {
+                this->_alive = alive;
+            }
 
-      protected:
-      private:
-        std::vector<std::unique_ptr<IComponent>> _componentVector;
-        bool _alive;
-    };
-} // namespace ecs
+            bool getAlive(void)
+            {
+                return (this->_alive);
+            }
+
+          protected:
+          private:
+            std::vector<std::unique_ptr<IComponent>> _componentVector;
+            bool _alive;
+        };
+    } // namespace ecs
+} // namespace indie
 
 #endif /* !ENTITY_HPP_ */

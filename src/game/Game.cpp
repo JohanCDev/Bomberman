@@ -60,20 +60,22 @@ void indie::Game::run()
     std::unique_ptr<ecs::Entity> entity = std::make_unique<ecs::Entity>();
     std::unique_ptr<ecs::Entity> entity2 = std::make_unique<ecs::Entity>();
     std::unique_ptr<ecs::Entity> entity3 = std::make_unique<ecs::Entity>();
+    std::unique_ptr<ecs::ISystem> drawSystem = std::make_unique<ecs::DrawSystem>();
 
-    entity->addComponent<ecs::Transform>(static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0),
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity->addComponent<ecs::Text>("INDIE STUDIOOOO MENU BONJOURRRRRR", static_cast<float>(50.0), BLACK);
+    entity->addComponent<ecs::Transform>(
+        static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    entity->addComponent<ecs::Drawable2D>("INDIE STUDIOOOO MENU BONJOURRRRRR", static_cast<float>(50.0), BLACK);
     this->_menu->addEntity(std::move(entity));
 
-    entity2->addComponent<ecs::Transform>(static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0),
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity2->addComponent<ecs::Text>("INDIE STUDIOOOO GAME BONJOURRRRRR", static_cast<float>(50.0), BLACK);
-    entity3->addComponent<ecs::Transform>(static_cast<float>(500.0), static_cast<float>(500.0), static_cast<float>(0.0),
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity3->addComponent<ecs::Rectangle>("", static_cast<float>(100.0), static_cast<float>(250.0), GREEN);
+    entity2->addComponent<ecs::Transform>(
+        static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    entity2->addComponent<ecs::Drawable2D>("INDIE STUDIOOOO GAME BONJOURRRRRR", static_cast<float>(50.0), BLACK);
+    entity3->addComponent<ecs::Transform>(
+        static_cast<float>(500.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    entity3->addComponent<ecs::Drawable2D>(static_cast<float>(100.0), static_cast<float>(250.0), GREEN);
     this->_game->addEntity(std::move(entity2));
     this->_game->addEntity(std::move(entity3));
+    this->_game->addSystem(std::move(drawSystem));
 
     while (!Raylib::windowShouldClose()) {
         newTime =

@@ -7,11 +7,11 @@
 
 #include "Entity.hpp"
 
-ecs::Entity::Entity()
+indie::ecs::Entity::Entity()
 {
     this->_alive = true;
 }
 
-ecs::Entity::~Entity()
+indie::ecs::Entity::~Entity()
 {
 }

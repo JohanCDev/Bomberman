@@ -18,8 +18,8 @@ void indie::menu::GameScreen::draw()
     indie::Raylib::beginDrawing();
     indie::Raylib::clearBackground();
 
-    for (auto &ent : this->_entities) {
-        ent->draw(ecs::drawableType::D2);
+    for (auto &system: this->_systems) {
+        system->update(this->_entities);
     }
 
     indie::Raylib::endDrawing();
@@ -37,4 +37,9 @@ void indie::menu::GameScreen::update(float delta)
 
 void indie::menu::GameScreen::addEntity(std::unique_ptr<ecs::Entity> entity) {
     this->_entities.push_back(std::move(entity));
+}
+
+void indie::menu::GameScreen::addSystem(std::unique_ptr<ecs::ISystem> system)
+{
+    this->_systems.push_back(std::move(system));
 }

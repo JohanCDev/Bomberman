@@ -18,9 +18,10 @@ void indie::menu::MenuScreen::draw()
     indie::Raylib::beginDrawing();
     indie::Raylib::clearBackground();
 
-    for (auto &ent : this->_entities) {
-        ent->draw(ecs::drawableType::D2);
+    for (auto &system: this->_systems) {
+        system->update(this->_entities);
     }
+
 
     indie::Raylib::drawRectangle(WindowDim.x / 2 - 250 / 2, WindowDim.y / 4 - 100 / 2, 250, 100, BLUE);
     indie::Raylib::endDrawing();
@@ -36,6 +37,12 @@ void indie::menu::MenuScreen::update(float delta)
     (void)delta;
 }
 
-void indie::menu::MenuScreen::addEntity(std::unique_ptr<ecs::Entity> entity) {
+void indie::menu::MenuScreen::addEntity(std::unique_ptr<ecs::Entity> entity)
+{
     this->_entities.push_back(std::move(entity));
+}
+
+void indie::menu::MenuScreen::addSystem(std::unique_ptr<ecs::ISystem> system)
+{
+    this->_systems.push_back(std::move(system));
 }

@@ -9,12 +9,14 @@ set(GAMEROOT ${SRCROOT}game/)
 set(SRC
     ${SRCROOT}main.cpp
     ${ECSROOT}component/Component.hpp
-    ${ECSROOT}component/Circle.cpp
-    ${ECSROOT}component/Rectangle.cpp
-    ${ECSROOT}component/Player.cpp
-    ${ECSROOT}component/Text.cpp
+    #${ECSROOT}component/Circle.cpp
+    #${ECSROOT}component/Rectangle.cpp
+    #${ECSROOT}component/Player.cpp
+    #${ECSROOT}component/Text.cpp
     ${ECSROOT}component/Transform.cpp
-    ${ECSROOT}component/Wall.cpp
+    ${ECSROOT}component/Drawable.cpp
+    ${ECSROOT}system/System.cpp
+    #${ECSROOT}component/Wall.cpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
     ${RAYLIBROOT}Raylib.cpp
