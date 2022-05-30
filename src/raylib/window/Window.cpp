@@ -7,15 +7,13 @@
 
 #include "Window.hpp"
 
-indie::raylib::Window::Window(int width, int height) : _width(width), _height(height) {}
-
-void indie::raylib::Window::initWindow(const std::string title, bool resizable, int baseFps)
+void indie::raylib::Window::initWindow(int width, int height, const std::string title, bool resizable, int baseFps)
 {
     if (resizable)
         ::SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
     else
         ::SetConfigFlags(FLAG_VSYNC_HINT);
-    ::InitWindow(_width, _height, title.c_str());
+    ::InitWindow(width, height, title.c_str());
     ::SetTargetFPS(baseFps);
 }
 

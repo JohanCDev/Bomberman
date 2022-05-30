@@ -14,11 +14,8 @@ namespace indie {
     namespace raylib {
     class Window {
         public:
-            Window(int width = 1920, int height = 1080);
-            ~Window() = default;
-
             // Setup function
-            void initWindow(const std::string title = "Window",
+            static void initWindow(int width = 1920, int height = 1080, const std::string title = "Window",
                 bool resizable = true, int baseFps = 60);
             static void destroyWindow();
 
@@ -30,10 +27,6 @@ namespace indie {
             static void endDrawing();
             static void clearBackground();
             static bool windowShouldClose();
-
-        private:
-            int _width;
-            int _height;
         };
     }
 }
