@@ -36,10 +36,8 @@ void ecs::Wall::draw(ecs::Transform transformCompo)
         Vector3 vec = {transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
         indie::raylib::Cube cube(transformCompo.getX(), transformCompo.getY(), transformCompo.getZ(), this->_width, this->_height, (float)2.0, WHITE);
 
-        // PAS DE FONCTION DRAW RECTANGLE 3D...
-        // indie::raylib::drawRectangle3D(vec, this->_width, this->_height, (float)2.0, this->_color);
+        cube.draw();
         cube.drawWires();
-
     } else {
         Vector3 vec = {transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
         indie::raylib::Cube cube(transformCompo.getX(), transformCompo.getY(), transformCompo.getZ(), this->_width, this->_height, (float)2.0, WHITE);
