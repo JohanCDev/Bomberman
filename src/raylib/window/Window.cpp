@@ -15,6 +15,7 @@ void indie::raylib::Window::initWindow(int width, int height, const std::string 
         ::SetConfigFlags(FLAG_VSYNC_HINT);
     ::InitWindow(width, height, title.c_str());
     ::SetTargetFPS(baseFps);
+    toggleFullScreen();
 }
 
 void indie::raylib::Window::destroyWindow()
@@ -50,4 +51,9 @@ void indie::raylib::Window::endDrawing()
 void indie::raylib::Window::clearBackground()
 {
     ::ClearBackground(RAYWHITE);
+}
+
+void indie::raylib::Window::toggleFullScreen()
+{
+    ::ToggleFullscreen();
 }

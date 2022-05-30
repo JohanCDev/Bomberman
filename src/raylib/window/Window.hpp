@@ -27,6 +27,7 @@ namespace indie {
             static void endDrawing();
             static void clearBackground();
             static bool windowShouldClose();
+            static void toggleFullScreen();
         };
     }
 }
