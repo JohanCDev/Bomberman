@@ -10,9 +10,9 @@
 #include <chrono>
 #include <iostream>
 #include <memory>
+#include "../events/Events.hpp"
 #include "../raylib/Raylib.hpp"
 #include "../screens/IScreen.hpp"
-#include "../events/Events.hpp"
 
 indie::Game::Game(size_t baseFps)
 {
@@ -59,7 +59,7 @@ void indie::Game::run()
             .count();
     int64_t accumulator = 0;
     int64_t draw_aq = 0;
-    const float initUpdateMs = _fps * 1000;
+    const float initUpdateMs = static_cast<float>(_fps) * 1000;
     float updateMs = initUpdateMs;
 
     while (!Raylib::windowShouldClose()) {
