@@ -12,8 +12,8 @@ set(SRC
     ${ECSROOT}component/Component.hpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
-    ${RAYLIBROOT}Raylib.cpp
     ${RAYLIBROOT}Raylib.hpp
+    ${RAYLIBROOT}Raylib.cpp
     ${ECSROOT}system/System.hpp
     ${MAPROOT}/MapGenerator.cpp
     ${MAPROOT}/MapGenerator.hpp
@@ -22,10 +22,10 @@ set(SRC
     ${SCREENSROOT}menu/MenuScreen.hpp
     ${SCREENSROOT}game/GameScreen.cpp
     ${SCREENSROOT}game/GameScreen.hpp
-    ${GAMEROOT}Game.cpp
-    ${GAMEROOT}Game.hpp
     ${EVENTSROOT}Events.cpp
     ${EVENTSROOT}Events.hpp
+    ${GAMEROOT}Game.cpp
+    ${GAMEROOT}Game.hpp
 )
 
 set(INCDIRS
