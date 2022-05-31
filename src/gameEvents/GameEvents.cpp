@@ -136,26 +136,24 @@ namespace indie
 
             float xAxisLeft = GetGamepadAxisMovement(controllerId, 0);
             float yAxisLeft = GetGamepadAxisMovement(controllerId, 1);
+            float xAxisRight = GetGamepadAxisMovement(controllerId, 2);
+            float yAxisRight = GetGamepadAxisMovement(controllerId, 3);
 
-            if (xAxisLeft <= -1 && xAxisLeft >= -0.75)
+            if (xAxisLeft >= -1 && xAxisLeft <= -0.75)
                 event.controller.leftJoystick = indie::Event::JoystickDirection::LEFT;
             else if (xAxisLeft >= 0.75 && xAxisLeft <= 1)
                 event.controller.leftJoystick = indie::Event::JoystickDirection::RIGHT;
-            else if (yAxisLeft <= -1 && yAxisLeft >= -0.75)
+            else if (yAxisLeft >= -1 && yAxisLeft <= -0.75)
                 event.controller.leftJoystick = indie::Event::JoystickDirection::UP;
             else if (yAxisLeft >= 0.75 && yAxisLeft <= 1)
                 event.controller.leftJoystick = indie::Event::JoystickDirection::DOWN;
             else
                 event.controller.leftJoystick = indie::Event::JoystickDirection::JOYSTICK_NONE;
-
-            float xAxisRight = GetGamepadAxisMovement(controllerId, 2);
-            float yAxisRight = GetGamepadAxisMovement(controllerId, 3);
-
-            if (xAxisRight <= -1 && xAxisRight >= -0.75)
+            if (xAxisRight >= -1 && xAxisRight <= -0.75)
                 event.controller.rightJoystick = indie::Event::JoystickDirection::LEFT;
             else if (xAxisRight >= 0.75 && xAxisRight <= 1)
                 event.controller.rightJoystick = indie::Event::JoystickDirection::RIGHT;
-            else if (yAxisRight <= -1 && yAxisRight >= -0.75)
+            else if (yAxisRight >= -1 && yAxisRight <= -0.75)
                 event.controller.rightJoystick = indie::Event::JoystickDirection::UP;
             else if (yAxisRight >= 0.75 && yAxisRight <= 1)
                 event.controller.rightJoystick = indie::Event::JoystickDirection::DOWN;
