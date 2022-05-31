@@ -8,7 +8,7 @@
 #ifndef SYSTEM_HPP_
 #define SYSTEM_HPP_
 
-#include "../component/Component.hpp"
+#include "../component/IComponent.hpp"
 #include "../entity/Entity.hpp"
 
 namespace indie
@@ -39,10 +39,20 @@ namespace indie
           private:
         };
 
-        class DrawSystem : public ISystem {
+        class Draw2DSystem : public ISystem {
           public:
-            DrawSystem();
-            ~DrawSystem();
+            Draw2DSystem();
+            ~Draw2DSystem();
+
+            void update(std::vector<std::unique_ptr<indie::ecs::Entity>> &entities) override;
+
+          private:
+        };
+
+        class Draw3DSystem : public ISystem {
+          public:
+            Draw3DSystem();
+            ~Draw3DSystem();
 
             void update(std::vector<std::unique_ptr<indie::ecs::Entity>> &entities) override;
 

@@ -12,7 +12,10 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include "../component/Component.hpp"
+#include "../component/Drawable/Drawable2D.hpp"
+#include "../component/Drawable/Drawable3D.hpp"
+#include "../component/IComponent.hpp"
+#include "../component/Transform/Transform.hpp"
 
 namespace indie
 {

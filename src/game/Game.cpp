@@ -60,7 +60,9 @@ void indie::Game::run()
     std::unique_ptr<ecs::Entity> entity = std::make_unique<ecs::Entity>();
     std::unique_ptr<ecs::Entity> entity2 = std::make_unique<ecs::Entity>();
     std::unique_ptr<ecs::Entity> entity3 = std::make_unique<ecs::Entity>();
-    std::unique_ptr<ecs::ISystem> drawSystem = std::make_unique<ecs::DrawSystem>();
+    std::unique_ptr<ecs::Entity> entity4 = std::make_unique<ecs::Entity>();
+    std::unique_ptr<ecs::ISystem> draw2DSystem = std::make_unique<ecs::Draw2DSystem>();
+    std::unique_ptr<ecs::ISystem> draw3DSystem = std::make_unique<ecs::Draw3DSystem>();
 
     entity->addComponent<ecs::Transform>(
         static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
@@ -73,9 +75,14 @@ void indie::Game::run()
     entity3->addComponent<ecs::Transform>(
         static_cast<float>(500.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
     entity3->addComponent<ecs::Drawable2D>(static_cast<float>(100.0), static_cast<float>(250.0), GREEN);
+    entity4->addComponent<ecs::Transform>(
+        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    entity4->addComponent<ecs::Drawable3D>(static_cast<float>(20.0), GREEN);
     this->_game->addEntity(std::move(entity2));
     this->_game->addEntity(std::move(entity3));
-    this->_game->addSystem(std::move(drawSystem));
+    this->_game->addEntity(std::move(entity4));
+    this->_game->addSystem(std::move(draw2DSystem));
+    this->_game->addSystem(std::move(draw3DSystem));
 
     while (!Raylib::windowShouldClose()) {
         newTime =

@@ -18,7 +18,7 @@ void indie::menu::GameScreen::draw()
     indie::Raylib::beginDrawing();
     indie::Raylib::clearBackground();
 
-    for (auto &system: this->_systems) {
+    for (auto &system : this->_systems) {
         system->update(this->_entities);
     }
 
@@ -35,7 +35,8 @@ void indie::menu::GameScreen::update(float delta)
     (void)delta;
 }
 
-void indie::menu::GameScreen::addEntity(std::unique_ptr<ecs::Entity> entity) {
+void indie::menu::GameScreen::addEntity(std::unique_ptr<ecs::Entity> entity)
+{
     this->_entities.push_back(std::move(entity));
 }
 

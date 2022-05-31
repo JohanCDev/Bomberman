@@ -1,11 +1,12 @@
 /*
 ** EPITECH PROJECT, 2022
-** Drawable
+** Drawable2D
 ** File description:
-** Drawable
+** Drawable2D
 */
 
-#include "Component.hpp"
+#include "Drawable2D.hpp"
+#include "../IComponent.hpp"
 
 indie::ecs::Drawable2D::Drawable2D()
 {

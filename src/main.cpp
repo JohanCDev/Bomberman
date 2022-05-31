@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include "RColor.hpp"
-#include "ecs/component/Component.hpp"
+#include "ecs/component/IComponent.hpp"
 #include "ecs/entity/Entity.hpp"
 #include "game/Game.hpp"
 #include "map/MapGenerator.hpp"

@@ -8,11 +8,6 @@
 #ifndef COMPONENT_HPP_
 #define COMPONENT_HPP_
 
-extern "C"
-{
-#include <raylib.h>
-}
-
 #include <iostream>
 #include "../../raylib/Raylib.hpp"
 
@@ -23,9 +18,9 @@ namespace indie
 
         class Transform;
 
-        enum compoType { TRANSFORM, PLAYER, WALL, DRAWABLE2D, UNKOWN };
+        enum compoType { TRANSFORM, DRAWABLE2D, DRAWABLE3D, UNKOWN };
 
-        enum drawableType { CIRCLE, TEXT, RECTANGLE, UNKNOWN };
+        enum drawableType { CIRCLE = 0, TEXT = 1, RECTANGLE = 2, SPHERE = 3, CUBE = 4, UNKNOWN = 5 };
 
         class IComponent {
           public:
@@ -35,64 +30,7 @@ namespace indie
           private:
         };
 
-        class Drawable2D : public IComponent {
-          public:
-            Drawable2D();
-            Drawable2D(float radius, Color color);
-            Drawable2D(std::string text, float fontSize, Color color);
-            Drawable2D(float height, float width, Color color);
-            ~Drawable2D();
-            ecs::compoType getType();
-            ecs::drawableType getDrawType();
-            Color getColor();
-            float getRadius();
-            float getHeight();
-            float getWidth();
-            float getFontSize();
-            std::string getText();
-
-          private:
-            float _radius;
-            float _height;
-            float _width;
-            std::string _text;
-            float _fontSize;
-            Color _color;
-            indie::ecs::compoType _compoType;
-            indie::ecs::drawableType _drawableType;
-        };
-
-        class NonDrawable : public IComponent {
-          public:
-            virtual ~NonDrawable()
-            {
-            }
-            virtual ecs::compoType getType() = 0;
-
-          private:
-        };
-
-        class Transform : public NonDrawable {
-          public:
-            Transform();
-            Transform(float posX, float posY, float speedX, float speedY);
-            ~Transform();
-            ecs::compoType getType(void) override;
-            void printProperties();
-            void update(float posX, float posY, float speedX, float speedY);
-            float getX() const;
-            float getY() const;
-            void setX(float posX);
-            void setY(float posY);
-            float getSpeedX() const;
-            float getSpeedY() const;
-
-          private:
-            float _posX;
-            float _posY;
-            float _speedX;
-            float _speedY;
-        };
+        
 
         /*class Player : public Drawable {
           public:

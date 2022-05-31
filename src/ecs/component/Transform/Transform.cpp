@@ -5,7 +5,8 @@
 ** Transform
 */
 
-#include "Component.hpp"
+#include "Transform.hpp"
+#include "../IComponent.hpp"
 
 indie::ecs::Transform::Transform()
 {

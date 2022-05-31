@@ -8,13 +8,17 @@ set(GAMEROOT ${SRCROOT}game/)
 
 set(SRC
     ${SRCROOT}main.cpp
-    ${ECSROOT}component/Component.hpp
+    ${ECSROOT}component/IComponent.hpp
     #${ECSROOT}component/Circle.cpp
     #${ECSROOT}component/Rectangle.cpp
     #${ECSROOT}component/Player.cpp
     #${ECSROOT}component/Text.cpp
-    ${ECSROOT}component/Transform.cpp
-    ${ECSROOT}component/Drawable.cpp
+    ${ECSROOT}component/Transform/Transform.cpp
+    ${ECSROOT}component/Transform/Transform.hpp
+    ${ECSROOT}component/Drawable/Drawable2D.cpp
+    ${ECSROOT}component/Drawable/Drawable2D.hpp
+    ${ECSROOT}component/Drawable/Drawable3D.cpp
+    ${ECSROOT}component/Drawable/Drawable3D.hpp
     ${ECSROOT}system/System.cpp
     #${ECSROOT}component/Wall.cpp
     ${ECSROOT}entity/Entity.cpp
