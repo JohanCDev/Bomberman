@@ -77,6 +77,70 @@ namespace indie
             Count
         };
 
+        /// Controller button input
+        enum class ControllerCode {
+            /// Nothing
+            NONE,
+            /// Up arrow
+            UP_BUTTON,
+            /// Right arrow
+            RIGHT_BUTTON,
+            /// Down arrow
+            DOWN_BUTTON,
+            /// Left arrow
+            LEFT_BUTTON,
+            /// Triangle key
+            T_BUTTON,
+            /// Circle button
+            O_BUTTON,
+            /// Cross button
+            X_BUTTON,
+            /// Square button
+            S_BUTTON,
+            /// L1
+            L1_BUTTON,
+            /// L2
+            L2_BUTTON,
+            /// R1
+            R1_BUTTON,
+            /// R2
+            R2_BUTTON,
+            /// Share button
+            SHARE_BUTTON,
+            /// Touchpad button
+            TOUCHPAD_BUTTON,
+            /// Option button
+            OPTION_BUTTON,
+            /// L3
+            L3_BUTTON,
+            /// R3
+            R3_BUTTON
+        };
+
+        /// Right joystick events
+        enum class JoystickDirection {
+            /// Nothing is happening
+            NONE,
+            /// Joystick going up
+            UP,
+            /// Joystick going right
+            RIGHT,
+            /// Joystick going down
+            DOWN,
+            /// Joystick going left
+            LEFT,
+        };
+
+        /// Event happening on the controller
+        struct ControllerEvent {
+            /// Controller button input
+            ControllerCode code;
+            /// Left joystick events
+            JoystickDirection leftJoystick;
+            /// Right joystick events
+            JoystickDirection rightJoystick;
+        };
+
         // Member data
 
         /// Type of the event.
@@ -87,6 +151,8 @@ namespace indie
             SizeEvent size;
             /// Key event parameters (Event::KeyPressed, Event::KeyReleased).
             KeyEvent key;
+            /// Controller events
+            ControllerEvent controller;
         };
     };
 } // namespace indie
