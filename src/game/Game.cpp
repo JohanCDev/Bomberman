@@ -32,6 +32,15 @@ bool indie::Game::processEvents()
 {
     GameEvents gameEvent;
 
+    gameEvent.inputUpdate(_event);
+
+    if (_event.controller.code != 0) {
+        std::cout << _event.controller.code << "1\n";
+    }
+    if (_event.controller.leftJoystick != 0) {
+        std::cout << _event.controller.leftJoystick << "2\n";
+    }
+
     return gameEvent.inputUpdate(_event);
 }
 

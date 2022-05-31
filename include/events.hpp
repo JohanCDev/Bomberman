@@ -72,15 +72,14 @@ namespace indie
             KeyPressed,
             /// A key was released (data in Event.key).
             KeyReleased,
-
             /// Keep last -- the total number of event types.
             Count
         };
 
         /// Controller button input
-        enum class ControllerCode {
-            /// Nothing
-            NONE,
+        enum ControllerCode {
+            /// Nothing is happening
+            CONTROLLER_NONE,
             /// Up arrow
             UP_BUTTON,
             /// Right arrow
@@ -118,9 +117,9 @@ namespace indie
         };
 
         /// Right joystick events
-        enum class JoystickDirection {
+        enum JoystickDirection {
             /// Nothing is happening
-            NONE,
+            JOYSTICK_NONE,
             /// Joystick going up
             UP,
             /// Joystick going right
@@ -128,13 +127,13 @@ namespace indie
             /// Joystick going down
             DOWN,
             /// Joystick going left
-            LEFT,
+            LEFT
         };
 
         /// Event happening on the controller
         struct ControllerEvent {
             /// Controller button input
-            ControllerCode code;
+            int code;
             /// Left joystick events
             JoystickDirection leftJoystick;
             /// Right joystick events
