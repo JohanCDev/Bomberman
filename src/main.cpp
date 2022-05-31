@@ -27,8 +27,8 @@ int main(void)
 {
     indie::Game Game(60);
 
-    indie::Raylib::initWindow(1420, 800, "Indie Studio", false);
-    ToggleFullscreen();
+    indie::raylib::Window::getInstance(1420, 800, "Indie Studio", false, 60);
+
     // while (!Raylib::windowShouldClose()) {
     //     if (Raylib::isKeyPressed(KEY_SPACE)) {
     //         std::cout << "a" << std::endl;

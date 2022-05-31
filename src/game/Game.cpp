@@ -78,7 +78,7 @@ void indie::Game::run()
     this->_game->addEntity(std::move(entity2));
     this->_game->addEntity(std::move(entity3));
 
-    while (!Raylib::windowShouldClose()) {
+    while (!indie::raylib::Window::windowShouldClose()) {
         newTime =
             std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
                 .count();
@@ -98,7 +98,7 @@ void indie::Game::run()
         _actualScreen = Screens::Game;
         draw_aq = 0;
     }
-    indie::Raylib::destroyWindow();
+    indie::raylib::Window::destroyWindow();
 }
 
 void indie::Game::setActualScreen(Screens newScreen)

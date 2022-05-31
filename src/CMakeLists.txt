@@ -2,6 +2,7 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
 set(RAYLIBROOT ${SRCROOT}raylib/)
 set(ECSROOT ${SRCROOT}ecs/)
+set(RAYLIBROOT ${SRCROOT}raylib/)
 set(MAPROOT ${SRCROOT}map/)
 set(SCREENSROOT ${SRCROOT}screens/)
 set(GAMEROOT ${SRCROOT}game/)
@@ -18,8 +19,32 @@ set(SRC
     ${ECSROOT}component/Wall.cpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
+    ${ECSROOT}system/System.hpp
+    ${RAYLIBROOT}/boundingbox/BoundingBox.cpp
+    ${RAYLIBROOT}/boundingbox/BoundingBox.hpp
+    ${RAYLIBROOT}/camera3d/Camera3D.cpp
+    ${RAYLIBROOT}/camera3d/Camera3D.hpp
+    ${RAYLIBROOT}/circle/Circle.cpp
+    ${RAYLIBROOT}/circle/Circle.hpp
+    ${RAYLIBROOT}/cube/Cube.cpp
+    ${RAYLIBROOT}/cube/Cube.hpp
+    ${RAYLIBROOT}/cylinder/Cylinder.cpp
+    ${RAYLIBROOT}/cylinder/Cylinder.hpp
+    ${RAYLIBROOT}/draw/Draw.cpp
+    ${RAYLIBROOT}/draw/Draw.hpp
+    ${RAYLIBROOT}/event/Event.cpp
+    ${RAYLIBROOT}/event/Event.hpp
+    ${RAYLIBROOT}/rectangle/Rectangle.cpp
+    ${RAYLIBROOT}/rectangle/Rectangle.hpp
+    ${RAYLIBROOT}/sound/Sound.cpp
+    ${RAYLIBROOT}/sound/Sound.hpp
+    ${RAYLIBROOT}/sphere/Sphere.cpp
+    ${RAYLIBROOT}/sphere/Sphere.hpp
+    ${RAYLIBROOT}/triangle/Triangle.cpp
+    ${RAYLIBROOT}/triangle/Triangle.hpp
+    ${RAYLIBROOT}/window/Window.cpp
+    ${RAYLIBROOT}/window/Window.hpp
     ${RAYLIBROOT}Raylib.hpp
-    ${RAYLIBROOT}Raylib.cpp
     ${ECSROOT}system/System.hpp
     ${MAPROOT}/MapGenerator.cpp
     ${MAPROOT}/MapGenerator.hpp

@@ -34,11 +34,14 @@ void ecs::Wall::draw(ecs::Transform transformCompo)
 {
     if (this->_texture_path == "") {
         Vector3 vec = {transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
-        indie::Raylib::drawRectangle3D(vec, this->_width, this->_height, (float)2.0, this->_color);
-        indie::Raylib::drawCubeWires(vec, this->_width, this->_height, (float)2.0, WHITE);
+        indie::raylib::Cube cube(transformCompo.getX(), transformCompo.getY(), transformCompo.getZ(), this->_width, this->_height, (float)2.0, WHITE);
+
+        cube.draw();
+        cube.drawWires();
     } else {
         Vector3 vec = {transformCompo.getX(), transformCompo.getY(), transformCompo.getZ()};
-        indie::Raylib::drawCubeTexture(this->_texture, vec, this->_width, this->_height, (float)2.0, this->_color);
+        indie::raylib::Cube cube(transformCompo.getX(), transformCompo.getY(), transformCompo.getZ(), this->_width, this->_height, (float)2.0, WHITE);
+        cube.drawTexture(this->_texture, this->_width, this->_height, (float)2.0);
     }
 }
 

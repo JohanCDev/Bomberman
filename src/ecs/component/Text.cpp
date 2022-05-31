@@ -30,7 +30,9 @@ ecs::compoType ecs::Text::getType()
 
 void ecs::Text::draw(ecs::Transform transformCompo)
 {
-    indie::Raylib::drawText(this->_text, transformCompo.getX(), transformCompo.getY(), this->_textSize, this->_color);
+    indie::raylib::Draw draw(transformCompo.getX(), transformCompo.getY(), this->_textSize, this->_color);
+
+    draw.drawText(this->_text);
 }
 
 bool ecs::Text::isDrawable(ecs::drawableType drawType)
