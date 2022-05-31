@@ -17,7 +17,9 @@ namespace indie {
                 Event() = default;
                 ~Event() = default;
 
-                // Event function
+                /**
+                * @brief Check if a key has been pressed once
+                */
                 static bool isKeyPressed(KeyboardKey key);
             protected:
             private:

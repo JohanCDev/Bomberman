@@ -30,17 +30,43 @@ namespace indie {
                 */
                 static Window *getInstance(int width, int height, const std::string title, bool resizable, int baseFps);
 
-                // Setup function
+                /**
+                * @brief Close window and unload OpenGL context
+                */
                 static void destroyWindow();
 
+                /**
+                * @brief Close window and unload OpenGL context
+                */
                 static int getWidth();
+                /**
+                * @brief Close window and unload OpenGL context
+                */
                 static int getHeight();
 
-                // Window function
+                /**
+                * @brief Setup canvas (framebuffer) to start drawing
+                */
                 static void beginDrawing();
+
+                /**
+                * @brief End canvas drawing and swap buffers (double buffering)
+                */
                 static void endDrawing();
+
+                /**
+                * @brief Set background color (framebuffer clear color)
+                */
                 static void clearBackground();
+
+                /**
+                * @brief Check if KEY_ESCAPE pressed or Close icon pressed
+                */
                 static bool windowShouldClose();
+
+                /**
+                * @brief Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)
+                */
                 static void toggleFullScreen();
             private:
                 static Window *_window;
