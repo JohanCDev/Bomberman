@@ -80,20 +80,9 @@ namespace indie
                     return (nullptr);
                 }
 
-                void setAlive(bool alive)
-                {
-                    this->_alive = alive;
-                }
-
-                bool getAlive(void)
-                {
-                    return (this->_alive);
-                }
-
               protected:
               private:
                 std::vector<std::unique_ptr<indie::ecs::component::IComponent>> _componentVector;
-                bool _alive;
             };
         } // namespace entity
     }     // namespace ecs

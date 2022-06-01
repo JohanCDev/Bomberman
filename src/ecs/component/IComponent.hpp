@@ -19,7 +19,7 @@ namespace indie
         {
             class Transform;
 
-            enum compoType { TRANSFORM, DRAWABLE2D, DRAWABLE3D, UNKOWN };
+            enum compoType { TRANSFORM, DRAWABLE2D, DRAWABLE3D, ALIVE, UNKOWN };
 
             enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, UNKNOWN };
 

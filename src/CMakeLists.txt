@@ -21,6 +21,8 @@ set(SRC
     ${ECSROOT}component/Drawable2D/Drawable2D.hpp
     ${ECSROOT}component/Drawable3D/Drawable3D.cpp
     ${ECSROOT}component/Drawable3D/Drawable3D.hpp
+    ${ECSROOT}component/Alive/Alive.cpp
+    ${ECSROOT}component/Alive/Alive.hpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
     ${ECSROOT}system/Draw2D/Draw2D.cpp

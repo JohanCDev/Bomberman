@@ -9,7 +9,6 @@
 
 indie::ecs::entity::Entity::Entity()
 {
-    this->_alive = true;
 }
 
 indie::ecs::entity::Entity::~Entity()
