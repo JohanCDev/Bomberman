@@ -25,7 +25,16 @@ namespace indie
 
             class IComponent {
               public:
+                /**
+                 * @brief Create a new IComponent.
+                 */
                 virtual ~IComponent() = default;
+
+                /**
+                 * @brief Get type of the component.
+                 *
+                 * @return the compoType value of the component.
+                 */
                 virtual indie::ecs::component::compoType getType() = 0;
 
               private:

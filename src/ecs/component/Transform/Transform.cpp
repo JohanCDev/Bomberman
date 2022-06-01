@@ -33,11 +33,6 @@ indie::ecs::component::compoType indie::ecs::component::Transform::getType(void)
     return (indie::ecs::component::compoType::TRANSFORM);
 }
 
-void indie::ecs::component::Transform::printProperties()
-{
-    std::cout << this->_posX << " " << this->_posY << " " << this->_speedX << " " << this->_speedY << std::endl;
-}
-
 void indie::ecs::component::Transform::update(float posX, float posY, float speedX, float speedY)
 {
     this->_posX = posX;

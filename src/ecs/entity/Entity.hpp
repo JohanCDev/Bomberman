@@ -25,14 +25,34 @@ namespace indie
         {
             class Entity {
               public:
+                /**
+                 * @brief Create new entity.
+                 */
                 Entity();
+
+                /**
+                 * @brief Destroy entity.
+                 */
                 ~Entity();
 
+                /**
+                 * @brief Add component to entity.
+                 *
+                 * @param T the component to add.
+                 * @param args the necessary params to create the component.
+                 */
                 template <typename T, typename... Args> void addComponent(Args... args)
                 {
                     this->_componentVector.push_back(std::unique_ptr<T>(new T{std::forward<Args>(args)...}));
                 }
 
+                /**
+                 * @brief Check if the entity have a component of the given type.
+                 *
+                 * @param type the compoType value to check.
+                 *
+                 * @return a boolean at true if the component is present.
+                 */
                 bool hasCompoType(indie::ecs::component::compoType type)
                 {
                     for (auto &compo : _componentVector) {
@@ -42,6 +62,14 @@ namespace indie
                     return (false);
                 }
 
+                /**
+                 * @brief Get a component of the given type.
+                 *
+                 * @param T the type of component to get.
+                 * @param type the compoType value of component to get.
+                 *
+                 * @return a pointer to the component asked.
+                 */
                 template <typename T> T *getComponent(indie::ecs::component::compoType type)
                 {
                     for (auto &compo : _componentVector) {
