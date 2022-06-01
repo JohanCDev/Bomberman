@@ -159,7 +159,9 @@ namespace indie
                 event.controller.rightJoystick = indie::Event::JoystickDirection::DOWN;
             else
                 event.controller.rightJoystick = indie::Event::JoystickDirection::JOYSTICK_NONE;
-        }
+            event.controller.connected = true;
+        } else
+            event.controller.connected = true;
     }
 
     bool GameEvents::inputUpdate(indie::Event &event)

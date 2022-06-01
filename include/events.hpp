@@ -138,6 +138,8 @@ namespace indie
             JoystickDirection leftJoystick;
             /// Right joystick events
             JoystickDirection rightJoystick;
+            /// Is controller connected?
+            bool connected;
         };
 
         // Member data
