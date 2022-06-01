@@ -29,6 +29,11 @@ indie::ecs::system::SystemType indie::ecs::system::Draw2DSystem::getSystemType()
 void indie::ecs::system::Draw2DSystem::update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities)
 {
     for (auto &entity : entities) {
+        if (entity->hasCompoType(indie::ecs::component::compoType::ALIVE)
+            && entity->getComponent<indie::ecs::component::Alive>(indie::ecs::component::compoType::ALIVE)->getAlive()
+                == false) {
+            continue;
+        }
         if (entity->hasCompoType(indie::ecs::component::compoType::DRAWABLE2D)) {
             auto drawableCompo =
                 entity->getComponent<indie::ecs::component::Drawable2D>(indie::ecs::component::compoType::DRAWABLE2D);

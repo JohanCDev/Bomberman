@@ -9,7 +9,7 @@
 
 indie::ecs::component::Alive::Alive()
 {
-    this->_alive = true;
+    this->_alive = false;
 }
 
 indie::ecs::component::Alive::Alive(bool alive)

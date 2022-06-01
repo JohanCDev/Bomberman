@@ -72,15 +72,18 @@ void indie::Game::run()
 
     entity->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity->addComponent<indie::ecs::component::Drawable2D>("INDIE STUDIOOOO MENU BONJOURRRRRR", static_cast<float>(50.0), BLACK);
+    entity->addComponent<indie::ecs::component::Drawable2D>(
+        "INDIE STUDIOOOO MENU BONJOURRRRRR", static_cast<float>(50.0), BLACK);
     this->_menu->addEntity(std::move(entity));
 
     entity2->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity2->addComponent<indie::ecs::component::Drawable2D>("INDIE STUDIOOOO GAME BONJOURRRRRR", static_cast<float>(50.0), BLACK);
+    entity2->addComponent<indie::ecs::component::Drawable2D>(
+        "INDIE STUDIOOOO GAME BONJOURRRRRR", static_cast<float>(50.0), BLACK);
     entity3->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(500.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity3->addComponent<indie::ecs::component::Drawable2D>(static_cast<float>(100.0), static_cast<float>(250.0), GREEN);
+    entity3->addComponent<indie::ecs::component::Drawable2D>(
+        static_cast<float>(100.0), static_cast<float>(250.0), GREEN);
     entity4->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(0.0), static_cast<float>(0.0));
     entity4->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(2.0), BLUE);

@@ -12,6 +12,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include "../component/Alive/Alive.hpp"
 #include "../component/Drawable2D/Drawable2D.hpp"
 #include "../component/Drawable3D/Drawable3D.hpp"
 #include "../component/IComponent.hpp"

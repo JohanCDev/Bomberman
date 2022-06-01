@@ -34,6 +34,10 @@ void indie::ecs::system::Draw3DSystem::drawCube(auto drawableCompo, auto transfo
 void indie::ecs::system::Draw3DSystem::update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities)
 {
     for (auto &entity : entities) {
+        if (entity->hasCompoType(indie::ecs::component::compoType::ALIVE)
+            && entity->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)->getAlive() == false) {
+            continue;
+        }
         if (entity->hasCompoType(indie::ecs::component::compoType::DRAWABLE3D)) {
             auto drawableCompo =
                 entity->getComponent<indie::ecs::component::Drawable3D>(indie::ecs::component::compoType::DRAWABLE3D);
