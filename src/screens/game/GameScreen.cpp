@@ -15,14 +15,15 @@ indie::menu::GameScreen::GameScreen()
 
 void indie::menu::GameScreen::draw()
 {
+    indie::raylib::Camera3D camera = getCamera();
     indie::raylib::Window::beginDrawing();
     indie::raylib::Window::clearBackground();
 
     for (auto &system : this->_systems) {
         if (system->getSystemType() == indie::ecs::system::SystemType::DRAWABLE3DSYSTEM) {
-            getCamera().beginMode();
+            camera.beginMode();
             system->update(this->_entities);
-            getCamera().endMode();
+            camera.endMode();
         } else {
             system->update(this->_entities);
         }
