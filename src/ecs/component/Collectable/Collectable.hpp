@@ -18,10 +18,26 @@ namespace indie
         {
             class Collectable : public IComponent {
               public:
+                /**
+                 * @brief Create new collectable component.
+                 */
                 Collectable();
+
+                /**
+                 * @brief Create new collectable component with bonusType.
+                 */
                 Collectable(indie::ecs::component::bonusType type);
+
+                /**
+                 * @brief Destroy collectable component.
+                 */
                 ~Collectable();
 
+                /**
+                 * @brief Get type of the bonus.
+                 *
+                 * @return the bonusType value of the component.
+                 */
                 indie::ecs::component::bonusType getBonusType() const;
 
                 /**
