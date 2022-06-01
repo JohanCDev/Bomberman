@@ -52,12 +52,27 @@ void indie::raylib::Triangle::draw()
     ::DrawTriangle(_v1, _v2, _v3, _color);
 }
 
+void indie::raylib::Triangle::draw(::Vector2 v1, ::Vector2 v2, ::Vector2 v3, ::Color color)
+{
+    ::DrawTriangle(v1, v2, v3, color);
+}
+
 void indie::raylib::Triangle::drawLines()
 {
     ::DrawTriangleLines(_v1, _v2, _v3, _color);
 }
 
-void indie::raylib::Triangle::draw3D(Vector3 v1, Vector3 v2, Vector3 v3)
+void indie::raylib::Triangle::drawLines(::Vector2 v1, ::Vector2 v2, ::Vector2 v3, ::Color color)
+{
+    ::DrawTriangleLines(v1, v2, v3, color);
+}
+
+void indie::raylib::Triangle::draw3D(::Vector3 v1, ::Vector3 v2, ::Vector3 v3)
 {
     ::DrawTriangle3D(v1, v2, v3, _color);
+}
+
+void indie::raylib::Triangle::draw3D(::Vector3 v1, ::Vector3 v2, ::Vector3 v3, ::Color color)
+{
+    ::DrawTriangle3D(v1, v2, v3, color);
 }

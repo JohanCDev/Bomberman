@@ -61,16 +61,19 @@ namespace indie {
                 * @brief Draw a color-filled triangle (vertex in counter-clockwise order!)
                 */
                 void draw();
+                static void draw(::Vector2 v1, ::Vector2 v2, ::Vector2 v3, ::Color color);
 
                 /**
                 * @brief Draw triangle outline (vertex in counter-clockwise order!)
                 */
                 void drawLines();
+                static void drawLines(::Vector2 v1, ::Vector2 v2, ::Vector2 v3, ::Color color);
 
                 /**
                 * @brief Draw a color-filled triangle (vertex in counter-clockwise order!)
                 */
-                void draw3D(Vector3 v1, Vector3 v2, Vector3 v3);
+                void draw3D(::Vector3 v1, ::Vector3 v2, ::Vector3 v3);
+                static void draw3D(::Vector3 v1, ::Vector3 v2, ::Vector3 v3, ::Color color);
 
             private:
                 ::Vector2 _v1;
