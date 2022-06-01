@@ -59,14 +59,6 @@ namespace indie
           private:
         };
     } // namespace ecs
-    /**
-     * @brief poll an event on the window
-     *
-     * @param event event to poll
-     * @return true if there is an event in the queue
-     * @return false if there isn't no event
-     */
-    static bool pollEvent(indie::Event &event);
 } // namespace indie
 
 #endif /* !SYSTEM_HPP_ */

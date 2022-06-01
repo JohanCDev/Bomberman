@@ -32,8 +32,10 @@ ecs::compoType ecs::Rectangle::getType()
 
 void ecs::Rectangle::draw(ecs::Transform transformCompo)
 {
+    indie::raylib::Rectangle rectangle(transformCompo.getX(), transformCompo.getY(), this->_width, this->_height);
+
     if (this->_texture_path == "") {
-        indie::Raylib::drawRectangle(transformCompo.getX(), transformCompo.getY(), this->_width, this->_height, this->_color);
+        rectangle.draw();
     }
 }
 

@@ -35,10 +35,10 @@ void indie::ecs::Draw2DSystem::update(std::vector<std::unique_ptr<ecs::Entity>> 
             if (drawableCompo != nullptr && transformCompo != nullptr) {
                 switch (drawableCompo->getDrawType()) {
                     case ecs::drawableType::CIRCLE:
-                        indie::Raylib::drawCircle(transformCompo->getX(), transformCompo->getY(),
+                        indie::raylib::Circle::draw(transformCompo->getX(), transformCompo->getY(),
                             drawableCompo->getRadius(), drawableCompo->getColor());
                     case ecs::drawableType::TEXT:
-                        indie::Raylib::drawText(drawableCompo->getText(), transformCompo->getX(),
+                        indie::raylib::Draw::drawText(drawableCompo->getText(), transformCompo->getX(),
                             transformCompo->getY(), drawableCompo->getFontSize(), drawableCompo->getColor());
                     case ecs::drawableType::RECTANGLE:
                         indie::Raylib::drawRectangle(transformCompo->getX(), transformCompo->getY(),

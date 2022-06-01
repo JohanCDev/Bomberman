@@ -24,5 +24,21 @@ indie::ecs::Text::~Text()
 
 indie::ecs::compoType indie::ecs::Text::getType()
 {
-    return (indie::ecs::compoType::DRAWABLE2D);
+    return (ecs::compoType::TEXT);
+}
+
+void ecs::Text::draw(ecs::Transform transformCompo)
+{
+    indie::raylib::Draw draw(transformCompo.getX(), transformCompo.getY(), this->_textSize, this->_color);
+
+    draw.drawText(this->_text);
+}
+
+bool ecs::Text::isDrawable(ecs::drawableType drawType)
+{
+    if (this->_drawType == drawType) {
+        return (true);
+    } else {
+        return (false);
+    }
 }

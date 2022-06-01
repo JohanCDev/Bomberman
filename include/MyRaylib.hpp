@@ -8,6 +8,7 @@
 #ifndef MYRAYLIB_HPP_
 #define MYRAYLIB_HPP_
 
+#include "Vec2.hpp"
 #include "Vec3.hpp"
 
 #define RBLACK (rColor){ 0, 0, 0, 255 }
@@ -55,6 +56,29 @@ namespace indie
             int projection;
         } RCamera3D;
 
+        /**
+         * @brief 2D Camera implementation
+         */
+        typedef struct RCamera2D {
+            /**
+             * @brief Camera offset (displacement from target)
+             */
+            indie::vec2u offset;
+            /**
+             * @brief Camera target (rotation and zoom origin)
+             */
+            indie::vec2u target;
+            /**
+             * @brief Camera rotation in degrees
+             *
+             */
+            float rotation;
+            /**
+             * @brief Camera zoom (scaling), should be 1.0f by default
+             */
+            float zoom;
+        } RCamera2D;
+
         // Rectangle, 4 components
         typedef struct RRectangle {
             float x;      // Rectangle top-left corner position x
@@ -71,6 +95,14 @@ namespace indie
             int mipmaps; // Mipmap levels, 1 by default
             int format;  // Data format (PixelFormat type)
         } RImage;
+
+        // Matrix, 4x4 components, column major, OpenGL style, right handed
+        typedef struct RMatrix {
+            float m0, m4, m8, m12;  // RMatrix first row (4 components)
+            float m1, m5, m9, m13;  // RMatrix second row (4 components)
+            float m2, m6, m10, m14; // RMatrix third row (4 components)
+            float m3, m7, m11, m15; // RMatrix fourth row (4 components)
+        } RMatrix;
 
         // Texture, tex data stored in GPU memory (VRAM)
         typedef struct RTexture {
@@ -93,6 +125,25 @@ namespace indie
             RTexture texture; // Color buffer attachment texture
             RTexture depth;   // Depth buffer attachment texture
         } RRenderTexture;
+
+        // GlyphInfo, font characters glyphs info
+        typedef struct RGlyphInfo {
+            int value;              // Character value (Unicode)
+            int offsetX;            // Character offset X when drawing
+            int offsetY;            // Character offset Y when drawing
+            int advanceX;           // Character advance position X
+            RImage image;            // Character image data
+        } RGlyphInfo;
+
+        // Font, font texture and GlyphInfo array data
+        typedef struct RFont {
+            int baseSize;           // Base size (default chars height)
+            int glyphCount;         // Number of glyph characters
+            int glyphPadding;       // Padding around the glyph characters
+            Texture2D texture;      // Texture atlas containing the glyphs
+            RRectangle *recs;        // Rectangles in texture for the glyphs
+            RGlyphInfo *glyphs;      // Glyphs info data
+        } RFont;
     } // namespace ray
 } // namespace indie
 

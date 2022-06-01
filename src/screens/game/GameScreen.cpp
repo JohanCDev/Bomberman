@@ -14,15 +14,14 @@ indie::menu::GameScreen::GameScreen()
 
 void indie::menu::GameScreen::draw()
 {
-    indie::vec2u WindowDim = indie::Raylib::getWindowDimensions();
-    indie::Raylib::beginDrawing();
-    indie::Raylib::clearBackground();
+    indie::raylib::Window::beginDrawing();
+    indie::raylib::Window::clearBackground();
 
     for (auto &system : this->_systems) {
         system->update(this->_entities);
     }
 
-    indie::Raylib::endDrawing();
+    indie::raylib::Window::endDrawing();
 }
 
 void indie::menu::GameScreen::handleEvent(indie::Event &event)
