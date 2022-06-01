@@ -81,21 +81,25 @@ namespace indie {
                 * @brief Draw a cylinder/cone
                 */
                 void draw();
+                static void draw(::Vector3 position, float radiusTop, float radiusBottom, float height, int slices, ::Color color);
 
                 /**
                 * @brief Draw a cylinder with base at startPos and top at endPos
                 */
-                void drawEx(Vector3 startPos, Vector3 endPos);
+                void drawEx(::Vector3 startPos, ::Vector3 endPos);
+                static void drawEx(::Vector3 startPos, ::Vector3 endPos, float radiusTop, float radiusBottom, float height, int slices, ::Color color);
 
                 /**
                 * @brief Draw a cylinder/cone wires
                 */
                 void drawWires();
+                static void drawWires(::Vector3 position, float radiusTop, float radiusBottom, float height, int slices, ::Color color);
 
                 /**
                 * @brief Draw a cylinder wires with base at startPos and top at endPos
                 */
-                void drawWiresEx(Vector3 startPos, Vector3 endPos);
+                void drawWiresEx(::Vector3 startPos, ::Vector3 endPos);
+                static void drawWiresEx(::Vector3 startPos, ::Vector3 endPos, float radiusTop, float radiusBottom, float height, int slices, ::Color color);
 
             private:
                 ::Vector3 _position;
