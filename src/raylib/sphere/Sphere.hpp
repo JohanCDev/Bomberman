@@ -51,16 +51,19 @@ namespace indie {
                 * @brief Draw sphere
                 */
                 void draw();
+                static void draw(::Vector3 centerPosition, float radius, ::Color color);
 
                 /**
                 * @brief Draw sphere wire
                 */
                 void drawWires(int rings, int slices);
+                static void drawWires(::Vector3 centerPosition, float radius, int rings, int slices, ::Color color);
 
                 /**
                 * @brief Check collision spheres
                 */
                 bool checkCollisionSpheres(const ::Vector3& sphere2, float radius2);
+                static bool checkCollisionSpheres(const ::Vector3 &centerPosition, float radius, const ::Vector3 &sphere2, float radius2);
 
             private:
                 ::Vector3 _centerPosition;

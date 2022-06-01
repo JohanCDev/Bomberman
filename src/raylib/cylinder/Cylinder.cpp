@@ -75,9 +75,14 @@ void indie::raylib::Cylinder::draw()
     ::DrawCylinder(_position, _radiusTop, _radiusBottom, _height, _slices, _color);
 }
 
-void indie::raylib::Cylinder::drawEx(::Vector3 startPos, ::Vector3 endPos)
+void indie::raylib::Cylinder::draw(::Vector3 position, float radiusTop, float radiusBottom, float height, int slices, ::Color color)
 {
-    ::DrawCylinderEx(startPos, endPos, _radiusTop, _radiusBottom, _slices, _color);
+    ::DrawCylinder(position, radiusTop, radiusBottom, height, slices, color);
+}
+
+void indie::raylib::Cylinder::drawEx(::Vector3 startPos, ::Vector3 endPos, float radiusTop, float radiusBottom, float height, int slices, ::Color color)
+{
+    ::DrawCylinderEx(startPos, endPos, radiusTop, radiusBottom, slices, color);
 }
 
 void indie::raylib::Cylinder::drawWires()
@@ -85,7 +90,17 @@ void indie::raylib::Cylinder::drawWires()
     ::DrawCylinderWires(_position, _radiusTop, _radiusBottom, _height, _slices, _color);
 }
 
+void indie::raylib::Cylinder::drawWires(::Vector3 position, float radiusTop, float radiusBottom, float height, int slices, ::Color color)
+{
+    ::DrawCylinderWires(position, radiusTop, radiusBottom, height, slices, color);
+}
+
 void indie::raylib::Cylinder::drawWiresEx(Vector3 startPos, Vector3 endPos)
 {
     ::DrawCylinderWiresEx(startPos, endPos, _radiusTop, _radiusBottom, _slices, _color);
+}
+
+void indie::raylib::Cylinder::drawWiresEx(::Vector3 startPos, ::Vector3 endPos, float radiusTop, float radiusBottom, float height, int slices, ::Color color)
+{
+    ::DrawCylinderWiresEx(startPos, endPos, radiusTop, radiusBottom, slices, color);
 }
