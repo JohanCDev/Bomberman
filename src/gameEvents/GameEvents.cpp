@@ -125,20 +125,20 @@ namespace indie
 
     void GameEvents::getControllerEvents(indie::Event &event, int controllerId)
     {
-        if (IsGamepadAvailable(controllerId)) {
-            if (IsGamepadButtonDown(controllerId, indie::Event::ControllerCode::X_BUTTON))
+        if (indie::raylib::Event::isGamepadAvailable(controllerId)) {
+            if (indie::raylib::Event::isGamepadButtonPressed(controllerId, indie::Event::ControllerCode::X_BUTTON))
                 event.controller[controllerId].code = indie::Event::ControllerCode::X_BUTTON;
-            else if (IsGamepadButtonDown(controllerId, indie::Event::ControllerCode::O_BUTTON))
+            else if (indie::raylib::Event::isGamepadButtonPressed(controllerId, indie::Event::ControllerCode::O_BUTTON))
                 event.controller[controllerId].code = indie::Event::ControllerCode::O_BUTTON;
-            else if (IsGamepadButtonDown(controllerId, indie::Event::ControllerCode::OPTION_BUTTON))
+            else if (indie::raylib::Event::isGamepadButtonPressed(controllerId, indie::Event::ControllerCode::OPTION_BUTTON))
                 event.controller[controllerId].code = indie::Event::ControllerCode::OPTION_BUTTON;
             else
                 event.controller[controllerId].code = indie::Event::ControllerCode::CONTROLLER_NONE;
 
-            float xAxisLeft = GetGamepadAxisMovement(controllerId, 0);
-            float yAxisLeft = GetGamepadAxisMovement(controllerId, 1);
-            float xAxisRight = GetGamepadAxisMovement(controllerId, 2);
-            float yAxisRight = GetGamepadAxisMovement(controllerId, 3);
+            float xAxisLeft = indie::raylib::Event::getGamepadAxisMovement(controllerId, 0);
+            float yAxisLeft = indie::raylib::Event::getGamepadAxisMovement(controllerId, 1);
+            float xAxisRight = indie::raylib::Event::getGamepadAxisMovement(controllerId, 2);
+            float yAxisRight = indie::raylib::Event::getGamepadAxisMovement(controllerId, 3);
 
             if (xAxisLeft >= -1 && xAxisLeft <= -0.75)
                 event.controller[controllerId].leftJoystick = indie::Event::JoystickDirection::LEFT;
