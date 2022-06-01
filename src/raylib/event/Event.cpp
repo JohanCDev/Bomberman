@@ -14,15 +14,15 @@ bool indie::raylib::Event::isKeyPressed(KeyboardKey key)
 
 bool indie::raylib::Event::isGamepadAvailable(int gamepad)
 {
-    ::IsGamepadAvailable(gamepad);
+    return ::IsGamepadAvailable(gamepad);
 }
 
 int indie::raylib::Event::getGamepadButtonPressed(void)
 {
-    ::GetGamepadButtonPressed();
+    return ::GetGamepadButtonPressed();
 }
 
 float indie::raylib::Event::getGamepadAxisMovement(int gamepad, int axis)
 {
-    ::GetGamepadAxisMovement(gamepad, axis);
+    return ::GetGamepadAxisMovement(gamepad, axis);
 }
