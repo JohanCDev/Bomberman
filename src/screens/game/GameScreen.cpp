@@ -9,7 +9,7 @@
 #include "../../raylib/Raylib.hpp"
 
 indie::menu::GameScreen::GameScreen()
-    : _camera((Vector3){0.0, 10.0, 10.0}, (Vector3){0.0, 0.0, 0.0}, (Vector3){0.0, 1.0, 0.0}, 45.0, CAMERA_PERSPECTIVE)
+    : _camera({0.0, 10.0, 10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, 45.0, CAMERA_PERSPECTIVE)
 {
 }
 
