@@ -17,9 +17,9 @@ bool indie::raylib::Event::isGamepadAvailable(int gamepad)
     return ::IsGamepadAvailable(gamepad);
 }
 
-int indie::raylib::Event::getGamepadButtonPressed(void)
+bool indie::raylib::Event::isGamepadButtonPressed(int gamepadId, int buttonId)
 {
-    return ::GetGamepadButtonPressed();
+    return ::IsGamepadButtonPressed(gamepadId, buttonId);
 }
 
 float indie::raylib::Event::getGamepadAxisMovement(int gamepad, int axis)
