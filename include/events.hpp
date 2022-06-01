@@ -153,7 +153,7 @@ namespace indie
             /// Key event parameters (Event::KeyPressed, Event::KeyReleased).
             KeyEvent key;
             /// Controller events
-            ControllerEvent controller;
+            ControllerEvent controller[4];
         };
     };
 } // namespace indie
