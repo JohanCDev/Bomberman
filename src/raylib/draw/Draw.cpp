@@ -59,9 +59,19 @@ void indie::raylib::Draw::drawFPS()
     ::DrawFPS(_posX, _posY);
 }
 
+void indie::raylib::Draw::drawFPS(int posX, int posY)
+{
+    ::DrawFPS(posX, posY);
+}
+
 void indie::raylib::Draw::drawTextEx(::Font font, const char *text, ::Vector2 position, float spacing)
 {
     ::DrawTextEx(font, text, position, _fontSize, spacing, _color);
+}
+
+void indie::raylib::Draw::drawTextEx(::Font font, const char *text, ::Vector2 position, float fontSize, float spacing, ::Color color)
+{
+    ::DrawTextEx(font, text, position, fontSize, spacing, color);
 }
 
 void indie::raylib::Draw::drawTextPro(::Font font, const char *text, ::Vector2 position, ::Vector2 origin, float rotation, float spacing)
@@ -69,9 +79,19 @@ void indie::raylib::Draw::drawTextPro(::Font font, const char *text, ::Vector2 p
     ::DrawTextPro(font, text, position, origin, rotation, _fontSize, spacing, _color);
 }
 
+void indie::raylib::Draw::drawTextPro(::Font font, const char *text, ::Vector2 position, ::Vector2 origin, float rotation, float fontSize, float spacing, ::Color color)
+{
+    ::DrawTextPro(font, text, position, origin, rotation, fontSize, spacing, color);
+}
+
 void indie::raylib::Draw::drawTextCodepoint(::Font font, int codepoint, ::Vector2 position)
 {
     ::DrawTextCodepoint(font, codepoint, position,  _fontSize, _color);
+}
+
+void indie::raylib::Draw::drawTextCodepoint(::Font font, int codepoint, ::Vector2 position, float fontSize, ::Color color)
+{
+    ::DrawTextCodepoint(font, codepoint, position,  fontSize, color);
 }
 
 void indie::raylib::Draw::drawPlane(::Vector3 centerPos, ::Vector2 size)
@@ -79,9 +99,14 @@ void indie::raylib::Draw::drawPlane(::Vector3 centerPos, ::Vector2 size)
     ::DrawPlane(centerPos, size, _color);
 }
 
-void indie::raylib::Draw::drawRay(::Ray ray)
+void indie::raylib::Draw::drawPlane(::Vector3 centerPos, ::Vector2 size, ::Color color)
 {
-    ::DrawRay(ray, _color);
+    ::DrawPlane(centerPos, size, color);
+}
+
+void indie::raylib::Draw::drawRay(::Ray ray, ::Color color)
+{
+    ::DrawRay(ray, color);
 }
 
 void indie::raylib::Draw::drawGrid(int slices, float spacing)

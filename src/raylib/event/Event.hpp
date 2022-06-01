@@ -21,8 +21,22 @@ namespace indie {
                 * @brief Check if a key has been pressed once
                 */
                 static bool isKeyPressed(KeyboardKey key);
-            protected:
-            private:
+
+                // Input-related functions: gamepads
+                /**
+                * @brief Check if a gamepad is available
+                */
+                static bool isGamepadAvailable(int gamepad);
+
+                /**
+                * @brief Get the last gamepad button pressed
+                */
+                static int getGamepadButtonPressed(void);
+
+                /**
+                * @brief Get axis movement value for a gamepad axis
+                */
+                static float getGamepadAxisMovement(int gamepad, int axis);
         };
     }
 }

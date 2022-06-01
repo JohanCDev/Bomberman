@@ -44,13 +44,28 @@ void indie::raylib::Sphere::draw()
     ::DrawSphere(_centerPosition, _radius, _color);
 }
 
+void indie::raylib::Sphere::draw(::Vector3 centerPosition, float radius, ::Color color)
+{
+    ::DrawSphere(centerPosition, radius, color);
+}
+
 void indie::raylib::Sphere::drawWires(int rings, int slices)
 {
     ::DrawSphereWires(_centerPosition, _radius, rings, slices, _color);
 }
 
+void indie::raylib::Sphere::drawWires(::Vector3 centerPosition, float radius, int rings, int slices, ::Color color)
+{
+    ::DrawSphereWires(centerPosition, radius, rings, slices, color);
+}
+
 bool indie::raylib::Sphere::checkCollisionSpheres(const ::Vector3& sphere2, float radius2)
 {
     return ::CheckCollisionSpheres(_centerPosition, _radius, sphere2, radius2);
+}
+
+bool indie::raylib::Sphere::checkCollisionSpheres(const ::Vector3 &centerPosition, float radius, const ::Vector3 &sphere2, float radius2)
+{
+    return ::CheckCollisionSpheres(centerPosition, radius, sphere2, radius2);
 }
 

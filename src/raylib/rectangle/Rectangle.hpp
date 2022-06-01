@@ -52,11 +52,8 @@ namespace indie {
                 * @brief Draw rectangle
                 */
                 void draw();
-
-                /**
-                * @brief Draw rectangle with color as parameter
-                */
-                void draw(Color color);
+                void draw(::Color color);
+                static void draw(int posX, int posY, int width, int height, ::Color color);
 
                 /**
                 * @brief Get collision rectangle for two rectangles collision
