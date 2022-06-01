@@ -23,6 +23,10 @@ set(SRC
     ${ECSROOT}component/Drawable3D/Drawable3D.hpp
     ${ECSROOT}component/Alive/Alive.cpp
     ${ECSROOT}component/Alive/Alive.hpp
+    ${ECSROOT}component/Collectable/Collectable.cpp
+    ${ECSROOT}component/Collectable/Collectable.hpp
+    ${ECSROOT}component/Inventory/Inventory.cpp
+    ${ECSROOT}component/Inventory/Inventory.hpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
     ${ECSROOT}system/Draw2D/Draw2D.cpp

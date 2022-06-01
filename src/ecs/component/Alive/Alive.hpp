@@ -25,7 +25,7 @@ namespace indie
 
                 void setAlive(bool alive);
                 bool getAlive() const;
-                indie::ecs::component::compoType getType();
+                indie::ecs::component::compoType getType() const;
 
               private:
                 bool _alive;

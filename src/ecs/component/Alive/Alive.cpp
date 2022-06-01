@@ -31,7 +31,7 @@ bool indie::ecs::component::Alive::getAlive() const
     return (this->_alive);
 }
 
-indie::ecs::component::compoType indie::ecs::component::Alive::getType()
+indie::ecs::component::compoType indie::ecs::component::Alive::getType() const
 {
     return (indie::ecs::component::compoType::ALIVE);
 }

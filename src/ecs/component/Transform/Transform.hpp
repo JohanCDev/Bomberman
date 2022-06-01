@@ -43,7 +43,7 @@ namespace indie
                  *
                  * @return the compoType value of the component.
                  */
-                indie::ecs::component::compoType getType(void) override;
+                indie::ecs::component::compoType getType(void) const override;
 
                 /**
                  * @brief Update the value of the component.

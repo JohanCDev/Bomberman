@@ -28,7 +28,7 @@ indie::ecs::component::Transform::~Transform()
 {
 }
 
-indie::ecs::component::compoType indie::ecs::component::Transform::getType(void)
+indie::ecs::component::compoType indie::ecs::component::Transform::getType(void) const
 {
     return (indie::ecs::component::compoType::TRANSFORM);
 }

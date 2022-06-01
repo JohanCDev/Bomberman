@@ -19,9 +19,11 @@ namespace indie
         {
             class Transform;
 
-            enum compoType { TRANSFORM, DRAWABLE2D, DRAWABLE3D, ALIVE, COLLECTABLE, UNKOWN };
+            enum compoType { TRANSFORM, DRAWABLE2D, DRAWABLE3D, ALIVE, COLLECTABLE, INVENTORY, UNKNOWNCOMPO };
 
-            enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, UNKNOWN };
+            enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, UNKNOWNDRAWABLE };
+
+            enum bonusType { BOMBUP, SPEEDUP, FIREUP, WALLPASS, UNKNOWNBONUS };
 
             class IComponent {
               public:
@@ -35,7 +37,7 @@ namespace indie
                  *
                  * @return the compoType value of the component.
                  */
-                virtual indie::ecs::component::compoType getType() = 0;
+                virtual indie::ecs::component::compoType getType() const = 0;
 
               private:
             };

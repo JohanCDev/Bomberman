@@ -15,7 +15,7 @@ indie::ecs::component::Drawable3D::Drawable3D()
     this->_width = 0.0;
     this->_color = WHITE;
     this->_compoType = indie::ecs::component::compoType::DRAWABLE3D;
-    this->_drawableType = indie::ecs::component::drawableType::UNKNOWN;
+    this->_drawableType = indie::ecs::component::drawableType::UNKNOWNDRAWABLE;
 }
 
 indie::ecs::component::Drawable3D::Drawable3D(float radius, Color color)
@@ -42,7 +42,7 @@ indie::ecs::component::Drawable3D::~Drawable3D()
 {
 }
 
-indie::ecs::component::compoType indie::ecs::component::Drawable3D::getType()
+indie::ecs::component::compoType indie::ecs::component::Drawable3D::getType() const
 {
     return (this->_compoType);
 }

@@ -59,7 +59,7 @@ namespace indie
                  *
                  * @return the compoType value of the component.
                  */
-                indie::ecs::component::compoType getType();
+                indie::ecs::component::compoType getType() const;
 
                 /**
                  * @brief Get the draw type of the component.
