@@ -79,8 +79,8 @@ void indie::Game::run()
         static_cast<float>(500.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
     entity3->addComponent<ecs::Drawable2D>(static_cast<float>(100.0), static_cast<float>(250.0), GREEN);
     entity4->addComponent<ecs::Transform>(
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity4->addComponent<ecs::Drawable3D>(static_cast<float>(20.0), GREEN);
+        static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    entity4->addComponent<ecs::Drawable3D>(static_cast<float>(2.0), BLUE);
     this->_game->addEntity(std::move(entity2));
     this->_game->addEntity(std::move(entity3));
     this->_game->addEntity(std::move(entity4));

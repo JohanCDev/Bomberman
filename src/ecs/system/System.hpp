@@ -16,11 +16,14 @@ namespace indie
     namespace ecs
     {
 
+        enum SystemType { DRAWABLE3DSYSTEM, DRAWABLE2DSYSTEM, MOVEMENTSYSTEM };
+
         class ISystem {
           public:
             virtual ~ISystem() = default;
 
             virtual void update(std::vector<std::unique_ptr<indie::ecs::Entity>> &entities) = 0;
+            virtual indie::ecs::SystemType getSystemType() const = 0;
 
           private:
         };
@@ -35,6 +38,7 @@ namespace indie
             }
 
             void update(std::vector<std::unique_ptr<indie::ecs::Entity>> &entities) override;
+            indie::ecs::SystemType getSystemType() const override;
 
           private:
         };
@@ -44,7 +48,10 @@ namespace indie
             Draw2DSystem();
             ~Draw2DSystem();
 
+            void drawText(auto drawableCompo, auto transformCompo);
+            void drawRectangle(auto drawableCompo, auto transformCompo);
             void update(std::vector<std::unique_ptr<indie::ecs::Entity>> &entities) override;
+            indie::ecs::SystemType getSystemType() const override;
 
           private:
         };
@@ -54,7 +61,10 @@ namespace indie
             Draw3DSystem();
             ~Draw3DSystem();
 
+            void drawSphere(auto drawableCompo, auto transformCompo);
+            void drawCube(auto drawableCompo, auto transformCompo);
             void update(std::vector<std::unique_ptr<indie::ecs::Entity>> &entities) override;
+            indie::ecs::SystemType getSystemType() const override;
 
           private:
         };

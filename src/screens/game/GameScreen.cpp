@@ -9,6 +9,7 @@
 #include "../../raylib/Raylib.hpp"
 
 indie::menu::GameScreen::GameScreen()
+    : _camera((Vector3){0.0, 10.0, 10.0}, (Vector3){0.0, 0.0, 0.0}, (Vector3){0.0, 1.0, 0.0}, 45.0, CAMERA_PERSPECTIVE)
 {
 }
 
@@ -18,7 +19,13 @@ void indie::menu::GameScreen::draw()
     indie::raylib::Window::clearBackground();
 
     for (auto &system : this->_systems) {
-        system->update(this->_entities);
+        if (system->getSystemType() == indie::ecs::SystemType::DRAWABLE3DSYSTEM) {
+            getCamera().beginMode();
+            system->update(this->_entities);
+            getCamera().endMode();
+        } else {
+            system->update(this->_entities);
+        }
     }
 
     indie::raylib::Window::endDrawing();
@@ -42,4 +49,9 @@ void indie::menu::GameScreen::addEntity(std::unique_ptr<ecs::Entity> entity)
 void indie::menu::GameScreen::addSystem(std::unique_ptr<ecs::ISystem> system)
 {
     this->_systems.push_back(std::move(system));
+}
+
+indie::raylib::Camera3D indie::menu::GameScreen::getCamera() const
+{
+    return (this->_camera);
 }

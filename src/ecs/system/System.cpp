@@ -26,6 +26,35 @@ indie::ecs::Draw2DSystem::~Draw2DSystem()
 {
 }
 
+void indie::ecs::Draw2DSystem::drawText(auto drawableCompo, auto transformCompo)
+{
+    indie::raylib::Draw text(
+        transformCompo->getX(), transformCompo->getY(), drawableCompo->getFontSize(), drawableCompo->getColor());
+    text.drawText(drawableCompo->getText());
+}
+
+void indie::ecs::Draw2DSystem::drawRectangle(auto drawableCompo, auto transformCompo)
+{
+    indie::raylib::Rectangle rect(
+        transformCompo->getX(), transformCompo->getY(), drawableCompo->getWidth(), drawableCompo->getHeight());
+    rect.draw(drawableCompo->getColor());
+}
+
+indie::ecs::SystemType indie::ecs::MovementSystem::getSystemType() const
+{
+    return (indie::ecs::SystemType::MOVEMENTSYSTEM);
+}
+
+indie::ecs::SystemType indie::ecs::Draw2DSystem::getSystemType() const
+{
+    return (indie::ecs::SystemType::DRAWABLE2DSYSTEM);
+}
+
+indie::ecs::SystemType indie::ecs::Draw3DSystem::getSystemType() const
+{
+    return (indie::ecs::SystemType::DRAWABLE3DSYSTEM);
+}
+
 void indie::ecs::Draw2DSystem::update(std::vector<std::unique_ptr<ecs::Entity>> &entities)
 {
     for (auto &entity : entities) {
@@ -37,13 +66,9 @@ void indie::ecs::Draw2DSystem::update(std::vector<std::unique_ptr<ecs::Entity>> 
                     case ecs::drawableType::CIRCLE:
                         indie::raylib::Circle::draw(transformCompo->getX(), transformCompo->getY(),
                             drawableCompo->getRadius(), drawableCompo->getColor());
-                    case ecs::drawableType::TEXT:
-                        indie::raylib::Draw::drawText(drawableCompo->getText(), transformCompo->getX(),
-                            transformCompo->getY(), drawableCompo->getFontSize(), drawableCompo->getColor());
-                    case ecs::drawableType::RECTANGLE:
-                        indie::Raylib::drawRectangle(transformCompo->getX(), transformCompo->getY(),
-                            drawableCompo->getWidth(), drawableCompo->getHeight(), drawableCompo->getColor());
-                    case ecs::drawableType::UNKNOWN: continue;
+                    case ecs::drawableType::TEXT: drawText(drawableCompo, transformCompo);
+                    case ecs::drawableType::RECTANGLE: drawRectangle(drawableCompo, transformCompo);
+                    default: continue;
                 }
             }
         }
@@ -58,22 +83,35 @@ indie::ecs::Draw3DSystem::~Draw3DSystem()
 {
 }
 
-void indie::ecs::Draw3DSystem::update(std::vector<std::unique_ptr<ecs::Entity>> &entities)
+void indie::ecs::Draw3DSystem::drawSphere(auto drawableCompo, auto transformCompo)
 {
     Vector3 pos = {0.0, 0.0, 0.0};
 
+    pos = {transformCompo->getX(), transformCompo->getY(), 0.0};
+    indie::raylib::Sphere sphere(pos, drawableCompo->getRadius(), drawableCompo->getColor());
+    sphere.draw();
+}
+
+void indie::ecs::Draw3DSystem::drawCube(auto drawableCompo, auto transformCompo)
+{
+    Vector3 pos = {0.0, 0.0, 0.0};
+
+    pos = {transformCompo->getX(), transformCompo->getY(), 0.0};
+    indie::raylib::Cube cube(
+        pos.x, pos.y, pos.z, drawableCompo->getWidth(), drawableCompo->getHeight(), drawableCompo->getLength());
+    cube.draw();
+}
+
+void indie::ecs::Draw3DSystem::update(std::vector<std::unique_ptr<ecs::Entity>> &entities)
+{
     for (auto &entity : entities) {
         if (entity->hasCompoType(indie::ecs::compoType::DRAWABLE3D)) {
             auto drawableCompo = entity->getComponent<indie::ecs::Drawable3D>(indie::ecs::compoType::DRAWABLE3D);
             auto transformCompo = entity->getComponent<indie::ecs::Transform>(indie::ecs::compoType::TRANSFORM);
             switch (drawableCompo->getDrawType()) {
-                case ecs::drawableType::SPHERE:
-                    pos = {transformCompo->getX(), transformCompo->getY(), 0.0};
-                    indie::Raylib::drawSphere(pos, drawableCompo->getRadius(), drawableCompo->getColor());
-                case ecs::drawableType::CUBE:
-                    pos = {transformCompo->getX(), transformCompo->getY(), 0.0};
-                    indie::Raylib::drawRectangle3D(
-                        pos, drawableCompo->getWidth(), drawableCompo->getHeight(), 2.0, drawableCompo->getColor());
+                case ecs::drawableType::SPHERE: drawSphere(drawableCompo, transformCompo);
+                case ecs::drawableType::CUBE: drawCube(drawableCompo, transformCompo);
+                default: continue;
             }
         }
     }

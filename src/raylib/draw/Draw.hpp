@@ -62,7 +62,7 @@ namespace indie
             /**
              * @brief Draw text (using default font)
              */
-            static void drawText(const std::string text);
+            void drawText(const std::string text);
 
             /**
              * @brief Draw current FPS
