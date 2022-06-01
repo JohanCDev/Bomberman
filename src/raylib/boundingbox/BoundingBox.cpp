@@ -23,5 +23,5 @@ void indie::raylib::BoundingBox::draw(::Vector3 min, ::Vector3 max, ::Color colo
 
 bool indie::raylib::BoundingBox::checkCollisionBoxes(::BoundingBox box1, ::BoundingBox box2)
 {
-    ::CheckCollisionBoxes(box1, box2);
+    return ::CheckCollisionBoxes(box1, box2);
 }
