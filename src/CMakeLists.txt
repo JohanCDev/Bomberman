@@ -17,15 +17,17 @@ set(SRC
     #${ECSROOT}component/Text.cpp
     ${ECSROOT}component/Transform/Transform.cpp
     ${ECSROOT}component/Transform/Transform.hpp
-    ${ECSROOT}component/Drawable/Drawable2D.cpp
-    ${ECSROOT}component/Drawable/Drawable2D.hpp
-    ${ECSROOT}component/Drawable/Drawable3D.cpp
-    ${ECSROOT}component/Drawable/Drawable3D.hpp
-    ${ECSROOT}system/System.cpp
-    #${ECSROOT}component/Wall.cpp
+    ${ECSROOT}component/Drawable2D/Drawable2D.cpp
+    ${ECSROOT}component/Drawable2D/Drawable2D.hpp
+    ${ECSROOT}component/Drawable3D/Drawable3D.cpp
+    ${ECSROOT}component/Drawable3D/Drawable3D.hpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
-    ${ECSROOT}system/System.hpp
+    ${ECSROOT}system/Draw2D/Draw2D.cpp
+    ${ECSROOT}system/Draw2D/Draw2D.hpp
+    ${ECSROOT}system/Draw3D/Draw3D.cpp
+    ${ECSROOT}system/Draw3D/Draw3D.hpp
+    ${ECSROOT}system/ISystem.hpp
     ${RAYLIBROOT}/boundingbox/BoundingBox.cpp
     ${RAYLIBROOT}/boundingbox/BoundingBox.hpp
     ${RAYLIBROOT}/camera3d/Camera3D.cpp
@@ -51,7 +53,6 @@ set(SRC
     ${RAYLIBROOT}/window/Window.cpp
     ${RAYLIBROOT}/window/Window.hpp
     ${RAYLIBROOT}Raylib.hpp
-    ${ECSROOT}system/System.hpp
     ${MAPROOT}/MapGenerator.cpp
     ${MAPROOT}/MapGenerator.hpp
     ${SCREENSROOT}IScreen.hpp

@@ -14,28 +14,31 @@ namespace indie
 {
     namespace ecs
     {
-        class Transform : public IComponent {
-          public:
-            Transform();
-            Transform(float posX, float posY, float speedX, float speedY);
-            ~Transform();
-            ecs::compoType getType(void) override;
-            void printProperties();
-            void update(float posX, float posY, float speedX, float speedY);
-            float getX() const;
-            float getY() const;
-            void setX(float posX);
-            void setY(float posY);
-            float getSpeedX() const;
-            float getSpeedY() const;
+        namespace component
+        {
+            class Transform : public IComponent {
+              public:
+                Transform();
+                Transform(float posX, float posY, float speedX, float speedY);
+                ~Transform();
+                indie::ecs::component::compoType getType(void) override;
+                void printProperties();
+                void update(float posX, float posY, float speedX, float speedY);
+                float getX() const;
+                float getY() const;
+                void setX(float posX);
+                void setY(float posY);
+                float getSpeedX() const;
+                float getSpeedY() const;
 
-          private:
-            float _posX;
-            float _posY;
-            float _speedX;
-            float _speedY;
-        };
-    } // namespace ecs
+              private:
+                float _posX;
+                float _posY;
+                float _speedX;
+                float _speedY;
+            };
+        } // namespace component
+    }     // namespace ecs
 } // namespace indie
 
 #endif /* !TRANSFORM_HPP_ */

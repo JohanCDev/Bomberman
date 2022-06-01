@@ -15,112 +15,111 @@ namespace indie
 {
     namespace ecs
     {
+        namespace component
+        {
+            class Transform;
 
-        class Transform;
+            enum compoType { TRANSFORM, DRAWABLE2D, DRAWABLE3D, UNKOWN };
 
-        enum compoType { TRANSFORM, DRAWABLE2D, DRAWABLE3D, UNKOWN };
+            enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, UNKNOWN };
 
-        enum drawableType { CIRCLE = 0, TEXT = 1, RECTANGLE = 2, SPHERE = 3, CUBE = 4, UNKNOWN = 5 };
+            class IComponent {
+              public:
+                virtual ~IComponent() = default;
+                virtual indie::ecs::component::compoType getType() = 0;
 
-        class IComponent {
-          public:
-            virtual ~IComponent() = default;
-            virtual ecs::compoType getType() = 0;
+              private:
+            };
 
-          private:
-        };
+            /*class Player : public Drawable {
+              public:
+                Player();
+                Player(std::string texture, float radius, Color color);
+                ~Player();
+                ecs::compoType getType() override;
+                void draw(ecs::Transform transformCompo) override;
+                void update(ecs::Transform transformCompo);
+                bool isDrawable(ecs::drawableType drawType);
 
-        
+              private:
+                float _radius;
+                ecs::drawableType _drawType;
+                Color _color;
+                std::string _texture;
+            };
 
-        /*class Player : public Drawable {
-          public:
-            Player();
-            Player(std::string texture, float radius, Color color);
-            ~Player();
-            ecs::compoType getType() override;
-            void draw(ecs::Transform transformCompo) override;
-            void update(ecs::Transform transformCompo);
-            bool isDrawable(ecs::drawableType drawType);
+            class Wall : public Drawable {
+              public:
+                Wall();
+                Wall(std::string texture, float height, float width, Color color);
+                ~Wall();
+                ecs::compoType getType() override;
+                void draw(ecs::Transform transformCompo) override;
+                bool isDrawable(ecs::drawableType drawType);
 
-          private:
-            float _radius;
-            ecs::drawableType _drawType;
-            Color _color;
-            std::string _texture;
-        };
+              private:
+                float _width;
+                float _height;
+                Color _color;
+                ecs::drawableType _drawType;
+                std::string _texture_path;
+                Texture2D _texture;
+            };
 
-        class Wall : public Drawable {
-          public:
-            Wall();
-            Wall(std::string texture, float height, float width, Color color);
-            ~Wall();
-            ecs::compoType getType() override;
-            void draw(ecs::Transform transformCompo) override;
-            bool isDrawable(ecs::drawableType drawType);
+            class Rectangle : public Drawable {
+              public:
+                Rectangle();
+                Rectangle(std::string texture, float height, float width, Color color);
+                ~Rectangle();
+                ecs::compoType getType() override;
+                void draw(ecs::Transform transformCompo) override;
+                void update(ecs::Transform transformCompo);
+                bool isDrawable(ecs::drawableType drawType);
 
-          private:
-            float _width;
-            float _height;
-            Color _color;
-            ecs::drawableType _drawType;
-            std::string _texture_path;
-            Texture2D _texture;
-        };
+              private:
+                float _height;
+                float _width;
+                ecs::drawableType _drawType;
+                Color _color;
+                std::string _texture_path;
+                Texture2D _texture;
+            };
 
-        class Rectangle : public Drawable {
-          public:
-            Rectangle();
-            Rectangle(std::string texture, float height, float width, Color color);
-            ~Rectangle();
-            ecs::compoType getType() override;
-            void draw(ecs::Transform transformCompo) override;
-            void update(ecs::Transform transformCompo);
-            bool isDrawable(ecs::drawableType drawType);
+            class Circle : public Drawable {
+              public:
+                Circle();
+                Circle(std::string texture, float radius, Color color);
+                ~Circle();
+                ecs::compoType getType() override;
+                void draw(ecs::Transform transformCompo) override;
+                void update(ecs::Transform transformCompo);
+                bool isDrawable(ecs::drawableType drawType);
 
-          private:
-            float _height;
-            float _width;
-            ecs::drawableType _drawType;
-            Color _color;
-            std::string _texture_path;
-            Texture2D _texture;
-        };
+              private:
+                float _radius;
+                ecs::drawableType _drawType;
+                Color _color;
+                std::string _texture_path;
+                Texture2D _texture;
+            };*/
 
-        class Circle : public Drawable {
-          public:
-            Circle();
-            Circle(std::string texture, float radius, Color color);
-            ~Circle();
-            ecs::compoType getType() override;
-            void draw(ecs::Transform transformCompo) override;
-            void update(ecs::Transform transformCompo);
-            bool isDrawable(ecs::drawableType drawType);
+            /*class Text : public IComponent {
+              public:
+                Text();
+                Text(std::string text, float textSize, Color color);
+                ~Text();
+                ecs::compoType getType() override;
+                void update(ecs::Transform transformCompo);
+                // bool isDrawable(ecs::drawableType drawType);
 
-          private:
-            float _radius;
-            ecs::drawableType _drawType;
-            Color _color;
-            std::string _texture_path;
-            Texture2D _texture;
-        };*/
-
-        /*class Text : public IComponent {
-          public:
-            Text();
-            Text(std::string text, float textSize, Color color);
-            ~Text();
-            ecs::compoType getType() override;
-            void update(ecs::Transform transformCompo);
-            // bool isDrawable(ecs::drawableType drawType);
-
-          private:
-            float _textSize;
-            // ecs::drawableType _drawType;
-            Color _color;
-            std::string _text;
-        };*/
-
-    } // namespace ecs
+              private:
+                float _textSize;
+                // ecs::drawableType _drawType;
+                Color _color;
+                std::string _text;
+            };*/
+        } // namespace component
+    }     // namespace ecs
 } // namespace indie
 
 #endif /* !COMPONENT_HPP_ */

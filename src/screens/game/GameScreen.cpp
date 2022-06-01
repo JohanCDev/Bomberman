@@ -19,7 +19,7 @@ void indie::menu::GameScreen::draw()
     indie::raylib::Window::clearBackground();
 
     for (auto &system : this->_systems) {
-        if (system->getSystemType() == indie::ecs::SystemType::DRAWABLE3DSYSTEM) {
+        if (system->getSystemType() == indie::ecs::system::SystemType::DRAWABLE3DSYSTEM) {
             getCamera().beginMode();
             system->update(this->_entities);
             getCamera().endMode();
@@ -41,12 +41,12 @@ void indie::menu::GameScreen::update(float delta)
     (void)delta;
 }
 
-void indie::menu::GameScreen::addEntity(std::unique_ptr<ecs::Entity> entity)
+void indie::menu::GameScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
 {
     this->_entities.push_back(std::move(entity));
 }
 
-void indie::menu::GameScreen::addSystem(std::unique_ptr<ecs::ISystem> system)
+void indie::menu::GameScreen::addSystem(std::unique_ptr<indie::ecs::system::ISystem> system)
 {
     this->_systems.push_back(std::move(system));
 }

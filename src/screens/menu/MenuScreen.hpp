@@ -24,12 +24,12 @@ namespace indie
             void draw() override;
             void update(float delta) override;
             void handleEvent(indie::Event &event) override;
-            void addEntity(std::unique_ptr<ecs::Entity> entity) override;
-            void addSystem(std::unique_ptr<ecs::ISystem> system) override;
+            void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
+            void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
 
           private:
-            std::vector<std::unique_ptr<indie::ecs::Entity>> _entities;
-            std::vector<std::unique_ptr<indie::ecs::ISystem>> _systems;
+            std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
+            std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
         };
     } // namespace menu
 } // namespace indie

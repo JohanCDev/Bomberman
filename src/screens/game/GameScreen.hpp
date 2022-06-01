@@ -11,7 +11,7 @@
 #include <memory>
 #include <vector>
 #include "../../ecs/entity/Entity.hpp"
-#include "../../ecs/system/System.hpp"
+#include "../../ecs/system/ISystem.hpp"
 #include "../IScreen.hpp"
 
 namespace indie
@@ -25,13 +25,13 @@ namespace indie
             void draw() override;
             void update(float delta) override;
             void handleEvent(indie::Event &event) override;
-            void addEntity(std::unique_ptr<ecs::Entity> entity) override;
-            void addSystem(std::unique_ptr<ecs::ISystem> system) override;
+            void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
+            void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
             indie::raylib::Camera3D getCamera() const;
 
           private:
-            std::vector<std::unique_ptr<indie::ecs::Entity>> _entities;
-            std::vector<std::unique_ptr<indie::ecs::ISystem>> _systems;
+            std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
+            std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
             indie::raylib::Camera3D _camera;
         };
     } // namespace menu
