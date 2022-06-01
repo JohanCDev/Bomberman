@@ -52,11 +52,13 @@ namespace indie {
                 * @brief Draw cube
                 */
                 void draw();
+                static void draw(::Vector3 position, ::Vector3 size, ::Color color);
 
                 /**
                 * @brief Draw cube wire
                 */
                 void drawWires();
+                static void drawWires(::Vector3 position, ::Vector3 size, ::Color color);
 
                 /**
                 * @brief Draw cube textured
