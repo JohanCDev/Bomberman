@@ -96,6 +96,12 @@ namespace indie
                  */
                 float getLength();
 
+                std::string getTexturePath() const;
+                void setTexturePath(std::string texturePath);
+
+                Texture2D getTexture() const;
+                void setTexture(std::string texturePath);
+
               private:
                 float _radius;
                 float _height;

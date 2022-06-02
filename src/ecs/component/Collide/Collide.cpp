@@ -40,4 +40,7 @@ void indie::ecs::component::Collide::setYCollide(bool collide)
     this->_yCollide = collide;
 }
 
-bool checkCollision(indie::ecs::component::Collide *otherEntityCollide);
+bool indie::ecs::component::Collide::checkCollision(indie::ecs::component::Collide *otherEntityCollide)
+{
+    return (true);
+}
