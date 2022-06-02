@@ -100,6 +100,7 @@ Texture2D indie::ecs::component::Drawable3D::getTexture() const
 
 void indie::ecs::component::Drawable3D::setTexture(std::string texturePath)
 {
+    indie::raylib::Texture2D::unload(this->_texture);
     this->_texturePath = texturePath;
     this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
 }

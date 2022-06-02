@@ -16,9 +16,16 @@ void indie::ecs::system::Draw2DSystem::drawText(auto drawableCompo, auto transfo
 
 void indie::ecs::system::Draw2DSystem::drawRectangle(auto drawableCompo, auto transformCompo)
 {
-    indie::raylib::Rectangle rect(
-        transformCompo->getX(), transformCompo->getY(), drawableCompo->getWidth(), drawableCompo->getHeight());
-    rect.draw(drawableCompo->getColor());
+    if (drawableCompo->getTexturePath() == "") {
+        indie::raylib::Rectangle::draw(transformCompo->getX(), transformCompo->getY(), drawableCompo->getWidth(),
+            drawableCompo->getHeight(), drawableCompo->getColor());
+    } else {
+        Texture2D texture = drawableCompo->getTexture();
+        texture.width = drawableCompo->getWidth();
+        texture.height = drawableCompo->getHeight();
+        indie::raylib::Texture2D::draw(
+            texture, transformCompo->getX(), transformCompo->getY(), drawableCompo->getColor());
+    }
 }
 
 indie::ecs::system::SystemType indie::ecs::system::Draw2DSystem::getSystemType() const

@@ -83,7 +83,7 @@ void indie::Game::run()
     entity3->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(500.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
     entity3->addComponent<indie::ecs::component::Drawable2D>(
-        static_cast<float>(100.0), static_cast<float>(250.0), GREEN);
+        "src/boite.png", static_cast<float>(100.0), static_cast<float>(250.0), WHITE);
     entity4->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(0.0), static_cast<float>(0.0));
     entity4->addComponent<indie::ecs::component::Drawable3D>(
