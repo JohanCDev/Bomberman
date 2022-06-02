@@ -10,6 +10,9 @@
 #include <chrono>
 #include <iostream>
 #include <memory>
+#include "../ecs/system/Draw2D/Draw2D.hpp"
+#include "../ecs/system/Draw3D/Draw3D.hpp"
+#include "../ecs/system/Movement/Movement.hpp"
 #include "../gameEvents/GameEvents.hpp"
 #include "../raylib/Raylib.hpp"
 #include "../screens/IScreen.hpp"
@@ -60,23 +63,35 @@ void indie::Game::run()
     int64_t draw_aq = 0;
     const float initUpdateMs = static_cast<float>(_fps) * 1000;
     float updateMs = initUpdateMs;
-    std::unique_ptr<ecs::Entity> entity = std::make_unique<ecs::Entity>();
-    std::unique_ptr<ecs::Entity> entity2 = std::make_unique<ecs::Entity>();
-    std::unique_ptr<ecs::Entity> entity3 = std::make_unique<ecs::Entity>();
+    std::unique_ptr<indie::ecs::entity::Entity> entity = std::make_unique<indie::ecs::entity::Entity>();
+    std::unique_ptr<indie::ecs::entity::Entity> entity2 = std::make_unique<indie::ecs::entity::Entity>();
+    std::unique_ptr<indie::ecs::entity::Entity> entity3 = std::make_unique<indie::ecs::entity::Entity>();
+    std::unique_ptr<indie::ecs::entity::Entity> entity4 = std::make_unique<indie::ecs::entity::Entity>();
+    std::unique_ptr<indie::ecs::system::ISystem> draw2DSystem = std::make_unique<indie::ecs::system::Draw2DSystem>();
+    std::unique_ptr<indie::ecs::system::ISystem> draw3DSystem = std::make_unique<indie::ecs::system::Draw3DSystem>();
 
-    entity->addComponent<ecs::Transform>(static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0),
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity->addComponent<ecs::Text>("INDIE STUDIOOOO MENU BONJOURRRRRR", static_cast<float>(50.0), BLACK);
+    entity->addComponent<indie::ecs::component::Transform>(
+        static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    entity->addComponent<indie::ecs::component::Drawable2D>(
+        "INDIE STUDIOOOO MENU BONJOURRRRRR", static_cast<float>(50.0), BLACK);
     this->_menu->addEntity(std::move(entity));
 
-    entity2->addComponent<ecs::Transform>(static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0),
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity2->addComponent<ecs::Text>("INDIE STUDIOOOO GAME BONJOURRRRRR", static_cast<float>(50.0), BLACK);
-    entity3->addComponent<ecs::Transform>(static_cast<float>(500.0), static_cast<float>(500.0), static_cast<float>(0.0),
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity3->addComponent<ecs::Rectangle>("", static_cast<float>(100.0), static_cast<float>(250.0), GREEN);
+    entity2->addComponent<indie::ecs::component::Transform>(
+        static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    entity2->addComponent<indie::ecs::component::Drawable2D>(
+        "INDIE STUDIOOOO GAME BONJOURRRRRR", static_cast<float>(50.0), BLACK);
+    entity3->addComponent<indie::ecs::component::Transform>(
+        static_cast<float>(500.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    entity3->addComponent<indie::ecs::component::Drawable2D>(
+        static_cast<float>(100.0), static_cast<float>(250.0), GREEN);
+    entity4->addComponent<indie::ecs::component::Transform>(
+        static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    entity4->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(2.0), BLUE);
     this->_game->addEntity(std::move(entity2));
     this->_game->addEntity(std::move(entity3));
+    this->_game->addEntity(std::move(entity4));
+    this->_game->addSystem(std::move(draw2DSystem));
+    this->_game->addSystem(std::move(draw3DSystem));
 
     while (!indie::raylib::Window::windowShouldClose()) {
         newTime =
