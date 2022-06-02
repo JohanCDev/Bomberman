@@ -50,6 +50,13 @@ namespace indie {
                 */
                 bool checkCollisionBoxes(::BoundingBox box2);
                 static bool checkCollisionBoxes(::BoundingBox box1, ::BoundingBox box2);
+
+                /**
+                * @brief Check collision between box and sphere
+                */
+                bool checkCollisionBoxSphere(::Vector3 center, float radius);
+                static bool checkCollisionBoxSphere(::BoundingBox box, ::Vector3 center, float radius);
+
             private:
                 ::BoundingBox _boundingBox;
                 ::Color _color;

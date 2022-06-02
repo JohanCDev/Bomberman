@@ -65,3 +65,13 @@ bool indie::raylib::BoundingBox::checkCollisionBoxes(::BoundingBox box1, ::Bound
 {
     return ::CheckCollisionBoxes(box1, box2);
 }
+
+bool indie::raylib::BoundingBox::checkCollisionBoxSphere(::Vector3 center, float radius)
+{
+    return ::CheckCollisionBoxSphere(_boundingBox, center, radius);
+}
+
+bool indie::raylib::BoundingBox::checkCollisionBoxSphere(::BoundingBox box, ::Vector3 center, float radius)
+{
+    return ::CheckCollisionBoxSphere(box, center, radius);
+}
