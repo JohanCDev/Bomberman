@@ -58,6 +58,8 @@ set(SRC
     ${RAYLIBROOT}/sphere/Sphere.hpp
     ${RAYLIBROOT}/triangle/Triangle.cpp
     ${RAYLIBROOT}/triangle/Triangle.hpp
+    ${RAYLIBROOT}/texture2d/Texture2D.cpp
+    ${RAYLIBROOT}/texture2d/Texture2D.hpp
     ${RAYLIBROOT}/window/Window.cpp
     ${RAYLIBROOT}/window/Window.hpp
     ${RAYLIBROOT}Raylib.hpp

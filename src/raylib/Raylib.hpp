@@ -22,6 +22,7 @@
 #include "rectangle/Rectangle.hpp"
 #include "sound/Sound.hpp"
 #include "sphere/Sphere.hpp"
+#include "texture2d/Texture2D.hpp"
 #include "triangle/Triangle.hpp"
 #include "window/Window.hpp"
 
