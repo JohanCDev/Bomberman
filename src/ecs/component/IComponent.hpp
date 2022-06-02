@@ -28,6 +28,7 @@ namespace indie
                 INVENTORY,
                 EXPLODABLE,
                 COLLIDE,
+                SOUND,
                 UNKNOWNCOMPO
             };
 

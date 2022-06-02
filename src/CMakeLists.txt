@@ -27,6 +27,8 @@ set(SRC
     ${ECSROOT}component/Explodable/Explodable.hpp
     ${ECSROOT}component/Collide/Collide.cpp
     ${ECSROOT}component/Collide/Collide.hpp
+    ${ECSROOT}component/Sound/Sound.cpp
+    ${ECSROOT}component/Sound/Sound.hpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
     ${ECSROOT}system/Draw2D/Draw2D.cpp
@@ -35,6 +37,8 @@ set(SRC
     ${ECSROOT}system/Draw3D/Draw3D.hpp
     ${ECSROOT}system/Collide/Collide.cpp
     ${ECSROOT}system/Collide/Collide.hpp
+    ${ECSROOT}system/Sound/Sound.cpp
+    ${ECSROOT}system/Sound/Sound.hpp
     ${ECSROOT}system/ISystem.hpp
     ${RAYLIBROOT}/boundingbox/BoundingBox.cpp
     ${RAYLIBROOT}/boundingbox/BoundingBox.hpp

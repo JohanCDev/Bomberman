@@ -20,6 +20,7 @@
 #include "../component/Explodable/Explodable.hpp"
 #include "../component/IComponent.hpp"
 #include "../component/Inventory/Inventory.hpp"
+#include "../component/Sound/Sound.hpp"
 #include "../component/Transform/Transform.hpp"
 
 namespace indie
