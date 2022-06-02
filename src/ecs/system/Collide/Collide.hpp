@@ -1,15 +1,14 @@
 /*
 ** EPITECH PROJECT, 2022
-** Untitled (Workspace)
+** Collide
 ** File description:
-** System
+** Collide
 */
 
-#ifndef SYSTEM_HPP_
-#define SYSTEM_HPP_
+#ifndef COLLIDE_HPP_
+#define COLLIDE_HPP_
 
-#include "../component/IComponent.hpp"
-#include "../entity/Entity.hpp"
+#include "../ISystem.hpp"
 
 namespace indie
 {
@@ -17,33 +16,30 @@ namespace indie
     {
         namespace system
         {
-            enum SystemType { DRAWABLE3DSYSTEM, DRAWABLE2DSYSTEM, MOVEMENTSYSTEM, COLLIDESYSTEM };
-
-            class ISystem {
+            class Collide : public ISystem {
               public:
-                /**
-                 * @brief Destroy system.
-                 */
-                virtual ~ISystem() = default;
+                Collide();
+                ~Collide();
 
                 /**
                  * @brief Update all the entities with the system properties.
                  *
                  * @param entities vector of entites to update
                  */
-                virtual void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities) = 0;
+                void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities);
 
                 /**
                  * @brief Get the type of system.
                  *
                  * @return enum value correspond to the type of system
                  */
-                virtual indie::ecs::system::SystemType getSystemType() const = 0;
+                indie::ecs::system::SystemType getSystemType() const;
 
+              protected:
               private:
             };
         } // namespace system
     }     // namespace ecs
 } // namespace indie
 
-#endif /* !SYSTEM_HPP_ */
+#endif /* !COLLIDE_HPP_ */

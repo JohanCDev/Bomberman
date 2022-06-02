@@ -27,6 +27,7 @@ namespace indie
                 COLLECTABLE,
                 INVENTORY,
                 EXPLODABLE,
+                COLLIDE,
                 UNKNOWNCOMPO
             };
 

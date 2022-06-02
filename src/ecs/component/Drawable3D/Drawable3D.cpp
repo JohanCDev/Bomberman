@@ -14,6 +14,7 @@ indie::ecs::component::Drawable3D::Drawable3D()
     this->_height = 0.0;
     this->_width = 0.0;
     this->_color = WHITE;
+    this->_texturePath = "";
     this->_compoType = indie::ecs::component::compoType::DRAWABLE3D;
     this->_drawableType = indie::ecs::component::drawableType::UNKNOWNDRAWABLE;
 }
@@ -24,16 +25,19 @@ indie::ecs::component::Drawable3D::Drawable3D(float radius, Color color)
     this->_height = 0.0;
     this->_width = 0.0;
     this->_color = color;
+    this->_texturePath = "";
     this->_compoType = indie::ecs::component::compoType::DRAWABLE3D;
     this->_drawableType = indie::ecs::component::drawableType::SPHERE;
 }
 
-indie::ecs::component::Drawable3D::Drawable3D(float width, float height, float length, Color color)
+indie::ecs::component::Drawable3D::Drawable3D(
+    std::string texturePath, float width, float height, float length, Color color)
 {
     this->_radius = 0.0;
     this->_height = height;
     this->_width = width;
     this->_color = color;
+    this->_texturePath = texturePath;
     this->_compoType = indie::ecs::component::compoType::DRAWABLE3D;
     this->_drawableType = indie::ecs::component::drawableType::CUBE;
 }

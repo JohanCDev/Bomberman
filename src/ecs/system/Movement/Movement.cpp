@@ -12,8 +12,14 @@ void indie::ecs::MovementSystem::update(std::vector<std::unique_ptr<indie::ecs::
     for (auto &entity : entities) {
         if (entity->getAlive() == true && entity->hasCompoType(ecs::compoType::TRANSFORM)) {
             indie::ecs::Transform *transformCompo = entity->getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
-            transformCompo->setX(transformCompo->getX() + transformCompo->getSpeedX());
-            transformCompo->setY(transformCompo->getY() + transformCompo->getSpeedY());
+            if (entity->hasCompoType(indie::ecs::component::compoType::COLLIDE)
+                && entity->getComponent<ecs::Collide>(ecs::compoType::COLLIDE)->getXCollide() != false) {
+                transformCompo->setX(transformCompo->getX() + transformCompo->getSpeedX());
+            }
+            if (entity->hasCompoType(indie::ecs::component::compoType::COLLIDE)
+                && entity->getComponent<ecs::Collide>(ecs::compoType::COLLIDE)->getYCollide() != false) {
+                transformCompo->setY(transformCompo->getY() + transformCompo->getSpeedY());
+            }
         }
     }
 }

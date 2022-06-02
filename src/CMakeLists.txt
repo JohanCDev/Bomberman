@@ -25,12 +25,16 @@ set(SRC
     ${ECSROOT}component/Inventory/Inventory.hpp
     ${ECSROOT}component/Explodable/Explodable.cpp
     ${ECSROOT}component/Explodable/Explodable.hpp
+    ${ECSROOT}component/Collide/Collide.cpp
+    ${ECSROOT}component/Collide/Collide.hpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
     ${ECSROOT}system/Draw2D/Draw2D.cpp
     ${ECSROOT}system/Draw2D/Draw2D.hpp
     ${ECSROOT}system/Draw3D/Draw3D.cpp
     ${ECSROOT}system/Draw3D/Draw3D.hpp
+    ${ECSROOT}system/Collide/Collide.cpp
+    ${ECSROOT}system/Collide/Collide.hpp
     ${ECSROOT}system/ISystem.hpp
     ${RAYLIBROOT}/boundingbox/BoundingBox.cpp
     ${RAYLIBROOT}/boundingbox/BoundingBox.hpp
