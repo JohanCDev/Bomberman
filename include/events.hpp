@@ -72,9 +72,74 @@ namespace indie
             KeyPressed,
             /// A key was released (data in Event.key).
             KeyReleased,
-
             /// Keep last -- the total number of event types.
             Count
+        };
+
+        /// Controller button input
+        enum ControllerCode {
+            /// Nothing is happening
+            CONTROLLER_NONE,
+            /// Up arrow
+            UP_BUTTON,
+            /// Right arrow
+            RIGHT_BUTTON,
+            /// Down arrow
+            DOWN_BUTTON,
+            /// Left arrow
+            LEFT_BUTTON,
+            /// Triangle key
+            T_BUTTON,
+            /// Circle button
+            O_BUTTON,
+            /// Cross button
+            X_BUTTON,
+            /// Square button
+            S_BUTTON,
+            /// L1
+            L1_BUTTON,
+            /// L2
+            L2_BUTTON,
+            /// R1
+            R1_BUTTON,
+            /// R2
+            R2_BUTTON,
+            /// Share button
+            SHARE_BUTTON,
+            /// Touchpad button
+            TOUCHPAD_BUTTON,
+            /// Option button
+            OPTION_BUTTON,
+            /// L3
+            L3_BUTTON,
+            /// R3
+            R3_BUTTON
+        };
+
+        /// Right joystick events
+        enum JoystickDirection {
+            /// Nothing is happening
+            JOYSTICK_NONE,
+            /// Joystick going up
+            UP,
+            /// Joystick going right
+            RIGHT,
+            /// Joystick going down
+            DOWN,
+            /// Joystick going left
+            LEFT
+        };
+
+        /// Event happening on the controller
+        struct ControllerEvent {
+            /// Controller button input
+            int code;
+            /// Left joystick events
+            JoystickDirection leftJoystick;
+            /// Right joystick events
+            JoystickDirection rightJoystick;
+            /// Is controller connected?
+            bool connected;
         };
 
         // Member data
@@ -87,6 +152,8 @@ namespace indie
             SizeEvent size;
             /// Key event parameters (Event::KeyPressed, Event::KeyReleased).
             KeyEvent key;
+            /// Controller events
+            ControllerEvent controller[4];
         };
     };
 } // namespace indie

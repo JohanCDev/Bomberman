@@ -55,9 +55,14 @@ void indie::raylib::Rectangle::draw()
     ::DrawRectangle(_rectangle.x, _rectangle.y,  _rectangle.width,  _rectangle.height, _color);
 }
 
-void indie::raylib::Rectangle::draw(Color color)
+void indie::raylib::Rectangle::draw(::Color color)
 {
     ::DrawRectangle(_rectangle.x, _rectangle.y,  _rectangle.width,  _rectangle.height, color);
+}
+
+void indie::raylib::Rectangle::draw(int posX, int posY, int width, int height, ::Color color)
+{
+    ::DrawRectangle(posX, posY,  width, height, color);
 }
 
 ::Rectangle indie::raylib::Rectangle::getCollision(::Rectangle rec2) const {

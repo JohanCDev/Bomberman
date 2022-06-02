@@ -41,6 +41,10 @@ void indie::raylib::Circle::draw(float x, float y, float radius, ::Color color) 
     ::DrawCircle(x, y, radius, color);
 }
 
+void indie::raylib::Circle::draw(::Vector2 center, float radius, ::Color color) {
+    ::DrawCircleV(center, radius, color);
+}
+
 void indie::raylib::Circle::draw() {
     ::DrawCircleV(_center, _radius, _color);
 }

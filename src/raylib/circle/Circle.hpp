@@ -49,11 +49,12 @@ namespace indie
              */
             void setColor(::Color color);
 
-            /**
-             * @brief Draw a color-filled circle (Vector version)
-             */
-            static void draw(float x, float y, float radius, ::Color color);
-            void draw();
+                /**
+                * @brief Draw a color-filled circle (Vector version)
+                */
+                static void draw(float x, float y, float radius, ::Color color);
+                static void draw(::Vector2 center, float radius, ::Color color);
+                void draw();
 
             /**
              * @brief Draw a piece of a circle
