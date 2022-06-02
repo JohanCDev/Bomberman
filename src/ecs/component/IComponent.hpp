@@ -19,7 +19,16 @@ namespace indie
         {
             class Transform;
 
-            enum compoType { TRANSFORM, DRAWABLE2D, DRAWABLE3D, ALIVE, COLLECTABLE, INVENTORY, UNKNOWNCOMPO };
+            enum compoType {
+                TRANSFORM,
+                DRAWABLE2D,
+                DRAWABLE3D,
+                ALIVE,
+                COLLECTABLE,
+                INVENTORY,
+                EXPLODABLE,
+                UNKNOWNCOMPO
+            };
 
             enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, UNKNOWNDRAWABLE };
 
@@ -41,94 +50,6 @@ namespace indie
 
               private:
             };
-
-            /*class Player : public Drawable {
-              public:
-                Player();
-                Player(std::string texture, float radius, Color color);
-                ~Player();
-                ecs::compoType getType() override;
-                void draw(ecs::Transform transformCompo) override;
-                void update(ecs::Transform transformCompo);
-                bool isDrawable(ecs::drawableType drawType);
-
-              private:
-                float _radius;
-                ecs::drawableType _drawType;
-                Color _color;
-                std::string _texture;
-            };
-
-            class Wall : public Drawable {
-              public:
-                Wall();
-                Wall(std::string texture, float height, float width, Color color);
-                ~Wall();
-                ecs::compoType getType() override;
-                void draw(ecs::Transform transformCompo) override;
-                bool isDrawable(ecs::drawableType drawType);
-
-              private:
-                float _width;
-                float _height;
-                Color _color;
-                ecs::drawableType _drawType;
-                std::string _texture_path;
-                Texture2D _texture;
-            };
-
-            class Rectangle : public Drawable {
-              public:
-                Rectangle();
-                Rectangle(std::string texture, float height, float width, Color color);
-                ~Rectangle();
-                ecs::compoType getType() override;
-                void draw(ecs::Transform transformCompo) override;
-                void update(ecs::Transform transformCompo);
-                bool isDrawable(ecs::drawableType drawType);
-
-              private:
-                float _height;
-                float _width;
-                ecs::drawableType _drawType;
-                Color _color;
-                std::string _texture_path;
-                Texture2D _texture;
-            };
-
-            class Circle : public Drawable {
-              public:
-                Circle();
-                Circle(std::string texture, float radius, Color color);
-                ~Circle();
-                ecs::compoType getType() override;
-                void draw(ecs::Transform transformCompo) override;
-                void update(ecs::Transform transformCompo);
-                bool isDrawable(ecs::drawableType drawType);
-
-              private:
-                float _radius;
-                ecs::drawableType _drawType;
-                Color _color;
-                std::string _texture_path;
-                Texture2D _texture;
-            };*/
-
-            /*class Text : public IComponent {
-              public:
-                Text();
-                Text(std::string text, float textSize, Color color);
-                ~Text();
-                ecs::compoType getType() override;
-                void update(ecs::Transform transformCompo);
-                // bool isDrawable(ecs::drawableType drawType);
-
-              private:
-                float _textSize;
-                // ecs::drawableType _drawType;
-                Color _color;
-                std::string _text;
-            };*/
         } // namespace component
     }     // namespace ecs
 } // namespace indie

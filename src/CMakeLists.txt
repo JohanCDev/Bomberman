@@ -11,10 +11,6 @@ set(EVENTSROOT ${SRCROOT}gameEvents/)
 set(SRC
     ${SRCROOT}main.cpp
     ${ECSROOT}component/IComponent.hpp
-    #${ECSROOT}component/Circle.cpp
-    #${ECSROOT}component/Rectangle.cpp
-    #${ECSROOT}component/Player.cpp
-    #${ECSROOT}component/Text.cpp
     ${ECSROOT}component/Transform/Transform.cpp
     ${ECSROOT}component/Transform/Transform.hpp
     ${ECSROOT}component/Drawable2D/Drawable2D.cpp
@@ -27,6 +23,8 @@ set(SRC
     ${ECSROOT}component/Collectable/Collectable.hpp
     ${ECSROOT}component/Inventory/Inventory.cpp
     ${ECSROOT}component/Inventory/Inventory.hpp
+    ${ECSROOT}component/Explodable/Explodable.cpp
+    ${ECSROOT}component/Explodable/Explodable.hpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
     ${ECSROOT}system/Draw2D/Draw2D.cpp
