@@ -24,6 +24,7 @@ namespace indie
             void update(float delta) override;
             void handleEvent(indie::Event &event) override;
             void addEntity(std::unique_ptr<ecs::Entity> entity) override;
+            void initMap(std::vector<std::vector<char>> map);
 
           private:
             std::vector<std::unique_ptr<ecs::Entity>> _entities;

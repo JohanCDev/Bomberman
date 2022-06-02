@@ -6,6 +6,7 @@
 */
 
 #include "Game.hpp"
+#include "../map/MapGenerator.hpp"
 #include <algorithm>
 #include <chrono>
 #include <iostream>
@@ -49,6 +50,10 @@ void indie::Game::draw()
 
 void indie::Game::run()
 {
+
+    indie::map::MapGenerator map;
+
+    map.createWall();
     int64_t newTime = 0;
     int64_t currentTime =
         std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
@@ -74,6 +79,7 @@ void indie::Game::run()
     entity3->addComponent<ecs::Rectangle>("", static_cast<float>(100.0), static_cast<float>(250.0), GREEN);
     this->_game->addEntity(std::move(entity2));
     this->_game->addEntity(std::move(entity3));
+    this->_game->initMap(map.getMap());
 
     while (!Raylib::windowShouldClose()) {
         newTime =

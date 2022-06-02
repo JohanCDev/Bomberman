@@ -38,3 +38,13 @@ void indie::menu::GameScreen::update(float delta)
 void indie::menu::GameScreen::addEntity(std::unique_ptr<ecs::Entity> entity) {
     this->_entities.push_back(std::move(entity));
 }
+
+void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
+{
+    for (int i = 0; i < 21; i++) {
+        for (int j = 0; j < 21; j++) {
+            std::cout << map[i][j];
+        }
+        std::cout << std::endl;
+    }
+}
