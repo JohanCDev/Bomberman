@@ -123,10 +123,56 @@ namespace indie
             event.key.r_shift = false;
     }
 
+    void GameEvents::getControllerEvents(indie::Event &event, int controllerId)
+    {
+        if (indie::raylib::Event::isGamepadAvailable(controllerId)) {
+            if (indie::raylib::Event::isGamepadButtonPressed(controllerId, indie::Event::ControllerCode::X_BUTTON))
+                event.controller[controllerId].code = indie::Event::ControllerCode::X_BUTTON;
+            else if (indie::raylib::Event::isGamepadButtonPressed(controllerId, indie::Event::ControllerCode::O_BUTTON))
+                event.controller[controllerId].code = indie::Event::ControllerCode::O_BUTTON;
+            else if (indie::raylib::Event::isGamepadButtonPressed(controllerId, indie::Event::ControllerCode::OPTION_BUTTON))
+                event.controller[controllerId].code = indie::Event::ControllerCode::OPTION_BUTTON;
+            else
+                event.controller[controllerId].code = indie::Event::ControllerCode::CONTROLLER_NONE;
+
+            float xAxisLeft = indie::raylib::Event::getGamepadAxisMovement(controllerId, 0);
+            float yAxisLeft = indie::raylib::Event::getGamepadAxisMovement(controllerId, 1);
+            float xAxisRight = indie::raylib::Event::getGamepadAxisMovement(controllerId, 2);
+            float yAxisRight = indie::raylib::Event::getGamepadAxisMovement(controllerId, 3);
+
+            if (xAxisLeft >= -1 && xAxisLeft <= -0.75)
+                event.controller[controllerId].leftJoystick = indie::Event::JoystickDirection::LEFT;
+            else if (xAxisLeft >= 0.75 && xAxisLeft <= 1)
+                event.controller[controllerId].leftJoystick = indie::Event::JoystickDirection::RIGHT;
+            else if (yAxisLeft >= -1 && yAxisLeft <= -0.75)
+                event.controller[controllerId].leftJoystick = indie::Event::JoystickDirection::UP;
+            else if (yAxisLeft >= 0.75 && yAxisLeft <= 1)
+                event.controller[controllerId].leftJoystick = indie::Event::JoystickDirection::DOWN;
+            else
+                event.controller[controllerId].leftJoystick = indie::Event::JoystickDirection::JOYSTICK_NONE;
+            if (xAxisRight >= -1 && xAxisRight <= -0.75)
+                event.controller[controllerId].rightJoystick = indie::Event::JoystickDirection::LEFT;
+            else if (xAxisRight >= 0.75 && xAxisRight <= 1)
+                event.controller[controllerId].rightJoystick = indie::Event::JoystickDirection::RIGHT;
+            else if (yAxisRight >= -1 && yAxisRight <= -0.75)
+                event.controller[controllerId].rightJoystick = indie::Event::JoystickDirection::UP;
+            else if (yAxisRight >= 0.75 && yAxisRight <= 1)
+                event.controller[controllerId].rightJoystick = indie::Event::JoystickDirection::DOWN;
+            else
+                event.controller[controllerId].rightJoystick = indie::Event::JoystickDirection::JOYSTICK_NONE;
+            event.controller[controllerId].connected = true;
+        } else
+            event.controller[controllerId].connected = false;
+    }
+
     bool GameEvents::inputUpdate(indie::Event &event)
     {
         this->getCharKeys(event);
         this->getSystemKeys(event);
+        this->getControllerEvents(event, 0);
+        this->getControllerEvents(event, 1);
+        this->getControllerEvents(event, 2);
+        this->getControllerEvents(event, 3);
         if (indie::raylib::Event::isKeyPressed(KEY_ESCAPE))
             return false;
         return true;

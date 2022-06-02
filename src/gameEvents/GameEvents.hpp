@@ -37,6 +37,14 @@ namespace indie
          * @param event event class to modify
          */
         void getSystemKeys(indie::Event &event);
+
+        /**
+         * @brief Get a controller event
+         *
+         * @param event event class to modify
+         * @param controllerId id of the controller
+         */
+        void getControllerEvents(indie::Event &event, int controllerId);
     };
 } // namespace indie
 

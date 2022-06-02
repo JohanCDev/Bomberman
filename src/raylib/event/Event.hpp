@@ -29,9 +29,9 @@ namespace indie {
                 static bool isGamepadAvailable(int gamepad);
 
                 /**
-                * @brief Get the last gamepad button pressed
+                * @brief Check if a specific button on a specific gamepad is pressed
                 */
-                static int getGamepadButtonPressed(void);
+                static bool isGamepadButtonPressed(int gamepadId, int buttonId);
 
                 /**
                 * @brief Get axis movement value for a gamepad axis

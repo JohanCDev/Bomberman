@@ -10,57 +10,59 @@
 
 #include "../Raylib.hpp"
 
-namespace indie {
-    namespace raylib {
+namespace indie
+{
+    namespace raylib
+    {
         class Draw {
-            public:
-                Draw(int posX = 0, int posY = 0, float fontSize = 100, ::Color color = BLACK);
-                ~Draw() = default;
+          public:
+            Draw(int posX = 0, int posY = 0, float fontSize = 100, ::Color color = BLACK);
+            ~Draw() = default;
 
-                /**
-                * @brief Get posX
-                */
-                int getPositionX() const;
+            /**
+             * @brief Get posX
+             */
+            int getPositionX() const;
 
-                /**
-                * @brief Set posX
-                */
-                void setPositionX(int positionX);
+            /**
+             * @brief Set posX
+             */
+            void setPositionX(int positionX);
 
-                /**
-                * @brief Get posY
-                */
-                int getPositionY() const;
+            /**
+             * @brief Get posY
+             */
+            int getPositionY() const;
 
-                /**
-                * @brief Set posY
-                */
-                void setPositionY(int positionY);
+            /**
+             * @brief Set posY
+             */
+            void setPositionY(int positionY);
 
-                /**
-                * @brief Get font size
-                */
-                float getFontSize() const;
+            /**
+             * @brief Get font size
+             */
+            float getFontSize() const;
 
-                /**
-                * @brief Set font size
-                */
-                void setFontSize(float fontSize);
+            /**
+             * @brief Set font size
+             */
+            void setFontSize(float fontSize);
 
-                /**
-                * @brief Get color
-                */
-                ::Color getColor() const;
+            /**
+             * @brief Get color
+             */
+            ::Color getColor() const;
 
-                /**
-                * @brief Set color
-                */
-                void setColor(::Color color);
+            /**
+             * @brief Set color
+             */
+            void setColor(::Color color);
 
-                /**
-                * @brief Draw text (using default font)
-                */
-                void drawText(const std::string text);
+            /**
+             * @brief Draw text (using default font)
+             */
+            void drawText(const std::string text);
 
                 /**
                 * @brief Draw current FPS
@@ -103,13 +105,13 @@ namespace indie {
                 */
                 static void drawGrid(int slices, float spacing);
 
-            private:
-                int _posX;
-                int _posY;
-                float _fontSize;
-                ::Color _color;
+          private:
+            int _posX;
+            int _posY;
+            float _fontSize;
+            ::Color _color;
         };
-    }
-}
+    } // namespace raylib
+} // namespace indie
 
 #endif /* !DRAW_HPP_ */
