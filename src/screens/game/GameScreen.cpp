@@ -9,20 +9,27 @@
 #include "../../raylib/Raylib.hpp"
 
 indie::menu::GameScreen::GameScreen()
+    : _camera({0.0, 10.0, 10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, 45.0, CAMERA_PERSPECTIVE)
 {
 }
 
 void indie::menu::GameScreen::draw()
 {
-    indie::vec2u WindowDim = indie::Raylib::getWindowDimensions();
-    indie::Raylib::beginDrawing();
-    indie::Raylib::clearBackground();
+    indie::raylib::Camera3D camera = getCamera();
+    indie::raylib::Window::beginDrawing();
+    indie::raylib::Window::clearBackground();
 
-    for (auto &ent : this->_entities) {
-        ent->draw(ecs::drawableType::D2);
+    for (auto &system : this->_systems) {
+        if (system->getSystemType() == indie::ecs::system::SystemType::DRAWABLE3DSYSTEM) {
+            camera.beginMode();
+            system->update(this->_entities);
+            camera.endMode();
+        } else {
+            system->update(this->_entities);
+        }
     }
 
-    indie::Raylib::endDrawing();
+    indie::raylib::Window::endDrawing();
 }
 
 void indie::menu::GameScreen::handleEvent(indie::Event &event)
@@ -35,8 +42,19 @@ void indie::menu::GameScreen::update(float delta)
     (void)delta;
 }
 
-void indie::menu::GameScreen::addEntity(std::unique_ptr<ecs::Entity> entity) {
+void indie::menu::GameScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
+{
     this->_entities.push_back(std::move(entity));
+}
+
+void indie::menu::GameScreen::addSystem(std::unique_ptr<indie::ecs::system::ISystem> system)
+{
+    this->_systems.push_back(std::move(system));
+}
+
+indie::raylib::Camera3D indie::menu::GameScreen::getCamera() const
+{
+    return (this->_camera);
 }
 
 void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
