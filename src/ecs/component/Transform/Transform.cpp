@@ -10,10 +10,10 @@
 
 indie::ecs::component::Transform::Transform()
 {
-    this->_posX = 0;
-    this->_posY = 0;
-    this->_speedX = 0;
-    this->_speedY = 0;
+    this->_posX = 0.0;
+    this->_posY = 0.0;
+    this->_speedX = 0.0;
+    this->_speedY = 0.0;
 }
 
 indie::ecs::component::Transform::Transform(float posX, float posY, float speedX, float speedY)
