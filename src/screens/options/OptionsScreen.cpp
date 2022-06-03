@@ -10,7 +10,7 @@
 
 indie::menu::OptionsScreen::OptionsScreen() : _cursorPosition(RESUME)
 {
-    std::unique_ptr<ecs::Entity> new_game = std::make_unique<ecs::Entity>();
+    /*std::unique_ptr<ecs::Entity> new_game = std::make_unique<ecs::Entity>();
     new_game->addComponent<ecs::Transform>(static_cast<float>(400.0), static_cast<float>(500.0),
         static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
     new_game->addComponent<ecs::Rectangle>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
@@ -35,31 +35,28 @@ indie::menu::OptionsScreen::OptionsScreen() : _cursorPosition(RESUME)
     cursor->addComponent<ecs::Transform>(static_cast<float>(320.0), static_cast<float>(510.0), static_cast<float>(0.0),
         static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
     cursor->addComponent<ecs::Rectangle>("", static_cast<float>(40.0), static_cast<float>(40.0), RED);
-    addEntity(std::move(cursor));
+    addEntity(std::move(cursor));*/
 }
 
 void indie::menu::OptionsScreen::draw()
 {
-    indie::vec2u WindowDim = indie::Raylib::getWindowDimensions();
-    indie::Raylib::beginDrawing();
-    indie::Raylib::clearBackground();
+    indie::raylib::Window::beginDrawing();
+    indie::raylib::Window::clearBackground();
 
-    for (auto &ent : this->_entities) {
-        ent->draw(ecs::drawableType::D2);
-    }
-
-    indie::Raylib::endDrawing();
+    indie::raylib::Window::endDrawing();
 }
 
 int indie::menu::OptionsScreen::handleEvent(indie::Event &event)
 {
     if (event.key.down) {
-        ecs::Transform *transformCompo = _entities.at(3)->getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
+        indie::ecs::component::Transform *transformCompo =
+            _entities.at(3)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(true)),
             static_cast<float>(0.0), static_cast<float>(0.0));
     }
     if (event.key.up) {
-        ecs::Transform *transformCompo = _entities.at(3)->getComponent<ecs::Transform>(ecs::compoType::TRANSFORM);
+        ecs::component::Transform *transformCompo =
+            _entities.at(3)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(false)),
             static_cast<float>(0.0), static_cast<float>(0.0));
     }
@@ -77,9 +74,14 @@ void indie::menu::OptionsScreen::update(float delta)
     (void)delta;
 }
 
-void indie::menu::OptionsScreen::addEntity(std::unique_ptr<ecs::Entity> entity)
+void indie::menu::OptionsScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
 {
     this->_entities.push_back(std::move(entity));
+}
+
+void indie::menu::OptionsScreen::addSystem(std::unique_ptr<indie::ecs::system::ISystem> system)
+{
+    this->_systems.push_back(std::move(system));
 }
 
 int indie::menu::OptionsScreen::checkCursorPosition(bool direction)

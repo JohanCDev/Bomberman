@@ -13,63 +13,63 @@ namespace indie
 {
     void GameEvents::getCharKeys(indie::Event &event)
     {
-        if (indie::Raylib::isKeyPressed(KEY_A))
+        if (indie::raylib::Event::isKeyPressed(KEY_A))
             event.key.code = 'a';
-        else if (indie::Raylib::isKeyPressed(KEY_B))
+        else if (indie::raylib::Event::isKeyPressed(KEY_B))
             event.key.code = 'b';
-        else if (indie::Raylib::isKeyPressed(KEY_C))
+        else if (indie::raylib::Event::isKeyPressed(KEY_C))
             event.key.code = 'c';
-        else if (indie::Raylib::isKeyPressed(KEY_D))
+        else if (indie::raylib::Event::isKeyPressed(KEY_D))
             event.key.code = 'd';
-        else if (indie::Raylib::isKeyPressed(KEY_E))
+        else if (indie::raylib::Event::isKeyPressed(KEY_E))
             event.key.code = 'e';
-        else if (indie::Raylib::isKeyPressed(KEY_F))
+        else if (indie::raylib::Event::isKeyPressed(KEY_F))
             event.key.code = 'f';
-        else if (indie::Raylib::isKeyPressed(KEY_G))
+        else if (indie::raylib::Event::isKeyPressed(KEY_G))
             event.key.code = 'g';
-        else if (indie::Raylib::isKeyPressed(KEY_H))
+        else if (indie::raylib::Event::isKeyPressed(KEY_H))
             event.key.code = 'h';
-        else if (indie::Raylib::isKeyPressed(KEY_I))
+        else if (indie::raylib::Event::isKeyPressed(KEY_I))
             event.key.code = 'i';
-        else if (indie::Raylib::isKeyPressed(KEY_J))
+        else if (indie::raylib::Event::isKeyPressed(KEY_J))
             event.key.code = 'j';
-        else if (indie::Raylib::isKeyPressed(KEY_K))
+        else if (indie::raylib::Event::isKeyPressed(KEY_K))
             event.key.code = 'k';
-        else if (indie::Raylib::isKeyPressed(KEY_L))
+        else if (indie::raylib::Event::isKeyPressed(KEY_L))
             event.key.code = 'l';
-        else if (indie::Raylib::isKeyPressed(KEY_M))
+        else if (indie::raylib::Event::isKeyPressed(KEY_M))
             event.key.code = 'm';
-        else if (indie::Raylib::isKeyPressed(KEY_N))
+        else if (indie::raylib::Event::isKeyPressed(KEY_N))
             event.key.code = 'n';
-        else if (indie::Raylib::isKeyPressed(KEY_O))
+        else if (indie::raylib::Event::isKeyPressed(KEY_O))
             event.key.code = 'o';
-        else if (indie::Raylib::isKeyPressed(KEY_P))
+        else if (indie::raylib::Event::isKeyPressed(KEY_P))
             event.key.code = 'p';
-        else if (indie::Raylib::isKeyPressed(KEY_Q))
+        else if (indie::raylib::Event::isKeyPressed(KEY_Q))
             event.key.code = 'q';
-        else if (indie::Raylib::isKeyPressed(KEY_R))
+        else if (indie::raylib::Event::isKeyPressed(KEY_R))
             event.key.code = 'r';
-        else if (indie::Raylib::isKeyPressed(KEY_S))
+        else if (indie::raylib::Event::isKeyPressed(KEY_S))
             event.key.code = 's';
-        else if (indie::Raylib::isKeyPressed(KEY_T))
+        else if (indie::raylib::Event::isKeyPressed(KEY_T))
             event.key.code = 't';
-        else if (indie::Raylib::isKeyPressed(KEY_U))
+        else if (indie::raylib::Event::isKeyPressed(KEY_U))
             event.key.code = 'u';
-        else if (indie::Raylib::isKeyPressed(KEY_V))
+        else if (indie::raylib::Event::isKeyPressed(KEY_V))
             event.key.code = 'v';
-        else if (indie::Raylib::isKeyPressed(KEY_W))
+        else if (indie::raylib::Event::isKeyPressed(KEY_W))
             event.key.code = 'w';
-        else if (indie::Raylib::isKeyPressed(KEY_X))
+        else if (indie::raylib::Event::isKeyPressed(KEY_X))
             event.key.code = 'x';
-        else if (indie::Raylib::isKeyPressed(KEY_Y))
+        else if (indie::raylib::Event::isKeyPressed(KEY_Y))
             event.key.code = 'y';
-        else if (indie::Raylib::isKeyPressed(KEY_Z))
+        else if (indie::raylib::Event::isKeyPressed(KEY_Z))
             event.key.code = 'z';
-        else if (indie::Raylib::isKeyPressed(KEY_SPACE))
+        else if (indie::raylib::Event::isKeyPressed(KEY_SPACE))
             event.key.code = ' ';
-        else if (indie::Raylib::isKeyPressed(KEY_APOSTROPHE))
+        else if (indie::raylib::Event::isKeyPressed(KEY_APOSTROPHE))
             event.key.code = '\'';
-        else if (indie::Raylib::isKeyPressed(KEY_TAB))
+        else if (indie::raylib::Event::isKeyPressed(KEY_TAB))
             event.key.code = '\t';
         else
             event.key.code = '\0';
@@ -77,57 +77,103 @@ namespace indie
 
     void GameEvents::getSystemKeys(indie::Event &event)
     {
-        if (indie::Raylib::isKeyPressed(KEY_DOWN))
+        if (indie::raylib::Event::isKeyPressed(KEY_DOWN))
             event.key.down = true;
         else
             event.key.down = false;
-        if (indie::Raylib::isKeyPressed(KEY_RIGHT))
+        if (indie::raylib::Event::isKeyPressed(KEY_RIGHT))
             event.key.right = true;
         else
             event.key.right = false;
-        if (indie::Raylib::isKeyPressed(KEY_LEFT))
+        if (indie::raylib::Event::isKeyPressed(KEY_LEFT))
             event.key.left = true;
         else
             event.key.left = false;
-        if (indie::Raylib::isKeyPressed(KEY_UP))
+        if (indie::raylib::Event::isKeyPressed(KEY_UP))
             event.key.up = true;
         else
             event.key.up = false;
-        if (indie::Raylib::isKeyPressed(KEY_ENTER))
+        if (indie::raylib::Event::isKeyPressed(KEY_ENTER))
             event.key.enter = true;
         else
             event.key.enter = false;
-        if (indie::Raylib::isKeyPressed(KEY_LEFT_CONTROL))
+        if (indie::raylib::Event::isKeyPressed(KEY_LEFT_CONTROL))
             event.key.l_control = true;
         else
             event.key.l_control = false;
-        if (indie::Raylib::isKeyPressed(KEY_RIGHT_CONTROL))
+        if (indie::raylib::Event::isKeyPressed(KEY_RIGHT_CONTROL))
             event.key.r_control = true;
         else
             event.key.r_control = false;
-        if (indie::Raylib::isKeyPressed(KEY_LEFT_ALT))
+        if (indie::raylib::Event::isKeyPressed(KEY_LEFT_ALT))
             event.key.l_alt = true;
         else
             event.key.l_alt = false;
-        if (indie::Raylib::isKeyPressed(KEY_RIGHT_ALT))
+        if (indie::raylib::Event::isKeyPressed(KEY_RIGHT_ALT))
             event.key.r_alt = true;
         else
             event.key.r_alt = false;
-        if (indie::Raylib::isKeyPressed(KEY_LEFT_SHIFT))
+        if (indie::raylib::Event::isKeyPressed(KEY_LEFT_SHIFT))
             event.key.l_shift = true;
         else
             event.key.l_shift = false;
-        if (indie::Raylib::isKeyPressed(KEY_RIGHT_SHIFT))
+        if (indie::raylib::Event::isKeyPressed(KEY_RIGHT_SHIFT))
             event.key.r_shift = true;
         else
             event.key.r_shift = false;
+    }
+
+    void GameEvents::getControllerEvents(indie::Event &event, int controllerId)
+    {
+        if (indie::raylib::Event::isGamepadAvailable(controllerId)) {
+            if (indie::raylib::Event::isGamepadButtonPressed(controllerId, indie::Event::ControllerCode::X_BUTTON))
+                event.controller[controllerId].code = indie::Event::ControllerCode::X_BUTTON;
+            else if (indie::raylib::Event::isGamepadButtonPressed(controllerId, indie::Event::ControllerCode::O_BUTTON))
+                event.controller[controllerId].code = indie::Event::ControllerCode::O_BUTTON;
+            else if (indie::raylib::Event::isGamepadButtonPressed(controllerId, indie::Event::ControllerCode::OPTION_BUTTON))
+                event.controller[controllerId].code = indie::Event::ControllerCode::OPTION_BUTTON;
+            else
+                event.controller[controllerId].code = indie::Event::ControllerCode::CONTROLLER_NONE;
+
+            float xAxisLeft = indie::raylib::Event::getGamepadAxisMovement(controllerId, 0);
+            float yAxisLeft = indie::raylib::Event::getGamepadAxisMovement(controllerId, 1);
+            float xAxisRight = indie::raylib::Event::getGamepadAxisMovement(controllerId, 2);
+            float yAxisRight = indie::raylib::Event::getGamepadAxisMovement(controllerId, 3);
+
+            if (xAxisLeft >= -1 && xAxisLeft <= -0.75)
+                event.controller[controllerId].leftJoystick = indie::Event::JoystickDirection::LEFT;
+            else if (xAxisLeft >= 0.75 && xAxisLeft <= 1)
+                event.controller[controllerId].leftJoystick = indie::Event::JoystickDirection::RIGHT;
+            else if (yAxisLeft >= -1 && yAxisLeft <= -0.75)
+                event.controller[controllerId].leftJoystick = indie::Event::JoystickDirection::UP;
+            else if (yAxisLeft >= 0.75 && yAxisLeft <= 1)
+                event.controller[controllerId].leftJoystick = indie::Event::JoystickDirection::DOWN;
+            else
+                event.controller[controllerId].leftJoystick = indie::Event::JoystickDirection::JOYSTICK_NONE;
+            if (xAxisRight >= -1 && xAxisRight <= -0.75)
+                event.controller[controllerId].rightJoystick = indie::Event::JoystickDirection::LEFT;
+            else if (xAxisRight >= 0.75 && xAxisRight <= 1)
+                event.controller[controllerId].rightJoystick = indie::Event::JoystickDirection::RIGHT;
+            else if (yAxisRight >= -1 && yAxisRight <= -0.75)
+                event.controller[controllerId].rightJoystick = indie::Event::JoystickDirection::UP;
+            else if (yAxisRight >= 0.75 && yAxisRight <= 1)
+                event.controller[controllerId].rightJoystick = indie::Event::JoystickDirection::DOWN;
+            else
+                event.controller[controllerId].rightJoystick = indie::Event::JoystickDirection::JOYSTICK_NONE;
+            event.controller[controllerId].connected = true;
+        } else
+            event.controller[controllerId].connected = false;
     }
 
     bool GameEvents::inputUpdate(indie::Event &event)
     {
         this->getCharKeys(event);
         this->getSystemKeys(event);
-        if (indie::Raylib::isKeyPressed(KEY_ESCAPE))
+        this->getControllerEvents(event, 0);
+        this->getControllerEvents(event, 1);
+        this->getControllerEvents(event, 2);
+        this->getControllerEvents(event, 3);
+        if (indie::raylib::Event::isKeyPressed(KEY_ESCAPE))
             return false;
         return true;
     }
