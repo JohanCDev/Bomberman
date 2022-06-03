@@ -28,12 +28,14 @@ indie::ecs::component::Drawable2D::Drawable2D(float radius, Color color)
     this->_drawableType = indie::ecs::component::drawableType::CIRCLE;
 }
 
-indie::ecs::component::Drawable2D::Drawable2D(float height, float width, Color color)
+indie::ecs::component::Drawable2D::Drawable2D(std::string texturePath, float height, float width, Color color)
 {
     this->_radius = 0.0;
     this->_height = height;
     this->_width = width;
     this->_color = color;
+    this->_texturePath = texturePath;
+    this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
     this->_compoType = indie::ecs::component::compoType::DRAWABLE2D;
     this->_drawableType = indie::ecs::component::drawableType::RECTANGLE;
 }
@@ -92,4 +94,26 @@ float indie::ecs::component::Drawable2D::getHeight()
 float indie::ecs::component::Drawable2D::getWidth()
 {
     return (this->_width);
+}
+
+std::string indie::ecs::component::Drawable2D::getTexturePath() const
+{
+    return (this->_texturePath);
+}
+
+void indie::ecs::component::Drawable2D::setTexturePath(std::string texturePath)
+{
+    this->_texturePath = texturePath;
+}
+
+Texture2D indie::ecs::component::Drawable2D::getTexture() const
+{
+    return (this->_texture);
+}
+
+void indie::ecs::component::Drawable2D::setTexture(std::string texturePath)
+{
+    indie::raylib::Texture2D::unload(this->_texture);
+    this->_texturePath = texturePath;
+    this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
 }

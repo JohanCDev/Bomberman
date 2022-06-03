@@ -7,7 +7,8 @@
 
 #include "BoundingBox.hpp"
 
-indie::raylib::BoundingBox::BoundingBox(::Vector3 min, ::Vector3 max, ::Color color) {
+indie::raylib::BoundingBox::BoundingBox(::Vector3 min, ::Vector3 max, ::Color color)
+{
     _boundingBox.min = min;
     _boundingBox.max = max;
     _color = color;
@@ -24,11 +25,13 @@ void indie::raylib::BoundingBox::setBoundingBox(::Vector3 min, ::Vector3 max)
     _boundingBox.max = max;
 }
 
-::Color indie::raylib::BoundingBox::getColor() const {
+::Color indie::raylib::BoundingBox::getColor() const
+{
     return _color;
 }
 
-void indie::raylib::BoundingBox::setColor(::Color color) {
+void indie::raylib::BoundingBox::setColor(::Color color)
+{
     _color = color;
 }
 
@@ -56,7 +59,7 @@ void indie::raylib::BoundingBox::draw(::Vector3 min, ::Vector3 max, ::Color colo
     ::DrawBoundingBox(box, color);
 }
 
-bool  indie::raylib::BoundingBox::checkCollisionBoxes(::BoundingBox box2)
+bool indie::raylib::BoundingBox::checkCollisionBoxes(::BoundingBox box2)
 {
     return ::CheckCollisionBoxes(_boundingBox, box2);
 }
