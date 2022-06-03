@@ -36,10 +36,27 @@ indie::ecs::system::SystemType indie::ecs::system::Draw2DSystem::getSystemType()
 void indie::ecs::system::Draw2DSystem::update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities)
 {
     for (auto &entity : entities) {
+        std::vector<indie::ecs::component::Drawable2D *> compoVector = entity->getDrawableVector();
         if (entity->hasCompoType(indie::ecs::component::compoType::ALIVE)
             && entity->getComponent<indie::ecs::component::Alive>(indie::ecs::component::compoType::ALIVE)->getAlive()
                 == false) {
             continue;
+        }
+        for (auto &compo : compoVector) {
+            if (compo->getType() == indie::ecs::component::compoType::DRAWABLE2D) {
+                auto transformCompo =
+                    entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
+                if (transformCompo != nullptr) {
+                    switch (compo->getDrawType()) {
+                        case indie::ecs::component::drawableType::CIRCLE:
+                            indie::raylib::Circle::draw(
+                                transformCompo->getX(), transformCompo->getY(), compo->getRadius(), compo->getColor());
+                        case indie::ecs::component::drawableType::TEXT: drawText(compo, transformCompo);
+                        case indie::ecs::component::drawableType::RECTANGLE: drawRectangle(compo, transformCompo);
+                        default: continue;
+                    }
+                }
+            }
         }
         if (entity->hasCompoType(indie::ecs::component::compoType::DRAWABLE2D)) {
             auto drawableCompo =
