@@ -17,7 +17,14 @@ namespace indie
     {
         namespace system
         {
-            enum SystemType { DRAWABLE3DSYSTEM, DRAWABLE2DSYSTEM, MOVEMENTSYSTEM, COLLIDESYSTEM, SOUNDSYSTEM };
+            enum SystemType {
+                DRAWABLE3DSYSTEM,
+                DRAWABLE2DSYSTEM,
+                MOVEMENTSYSTEM,
+                COLLIDESYSTEM,
+                SOUNDSYSTEM,
+                EXPLODABLESYSTEM
+            };
 
             class ISystem {
               public:

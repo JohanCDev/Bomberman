@@ -45,6 +45,11 @@ void indie::ecs::component::Explodable::setDropped(bool dropped)
     this->_dropped = dropped;
 }
 
+void indie::ecs::component::Explodable::setExploded(bool exploded)
+{
+    this->_exploded = exploded;
+}
+
 float indie::ecs::component::Explodable::getRange() const
 {
     return (this->_range);
@@ -58,4 +63,9 @@ int indie::ecs::component::Explodable::getExplosionTime() const
 bool indie::ecs::component::Explodable::getDropped() const
 {
     return (this->_dropped);
+}
+
+bool indie::ecs::component::Explodable::getExploded() const
+{
+    return (true);
 }

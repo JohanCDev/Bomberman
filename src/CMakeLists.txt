@@ -41,6 +41,8 @@ set(SRC
     ${ECSROOT}system/Collide/Collide.hpp
     ${ECSROOT}system/Sound/Sound.cpp
     ${ECSROOT}system/Sound/Sound.hpp
+    ${ECSROOT}system/Explodable/Explodable.cpp
+    ${ECSROOT}system/Explodable/Explodable.hpp
     ${ECSROOT}system/ISystem.hpp
     ${RAYLIBROOT}/boundingbox/BoundingBox.cpp
     ${RAYLIBROOT}/boundingbox/BoundingBox.hpp

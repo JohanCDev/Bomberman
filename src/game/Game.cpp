@@ -98,7 +98,8 @@ void indie::Game::run()
     entity4->addComponent<indie::ecs::component::Collide>();
     entity5->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(-2.0), static_cast<float>(1.0), static_cast<float>(0.02), static_cast<float>(0.0));
-    entity5->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(1.0), BLUE);
+    entity5->addComponent<indie::ecs::component::Drawable3D>(
+        "src/boite.png", static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(1.0), BLUE);
     entity5->addComponent<indie::ecs::component::Collide>();
     // entity4->addComponent<indie::ecs::component::Sound>("src/maybe-next-time.wav", false);
     this->_game->addEntity(std::move(entity2));
