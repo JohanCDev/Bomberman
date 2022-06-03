@@ -18,6 +18,7 @@ namespace indie
             class Collide : public IComponent {
               public:
                 Collide();
+                Collide(BoundingBox boundingBox);
                 ~Collide();
 
                 /**
@@ -35,9 +36,17 @@ namespace indie
                 bool getXCollide() const;
                 bool getYCollide() const;
 
+                void setCollide(bool collide);
+                bool getCollide() const;
+
+                BoundingBox getBoundingBox() const;
+                void setBoundingBox(BoundingBox boundingBox);
+
               private:
+                bool _collide;
                 bool _xCollide;
                 bool _yCollide;
+                BoundingBox _boundingBox;
             };
         } // namespace component
     }     // namespace ecs

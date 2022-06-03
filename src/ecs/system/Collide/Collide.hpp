@@ -28,6 +28,15 @@ namespace indie
                  */
                 void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities);
 
+                void checkCubeCollision(auto drawable, auto collide, indie::ecs::component::Transform *transform,
+                    auto otherEntityCollide, auto otherEntityDrawable,
+                    indie::ecs::component::Transform *otherTransform);
+
+                void checkSphereCollision(auto collide, auto transform, auto drawable,
+                    indie::ecs::component::Transform *otherEntityTransform,
+                    indie::ecs::component::Collide *otherEntityCollide,
+                    indie::ecs::component::Drawable3D *otherEntityDrawable);
+
                 /**
                  * @brief Get the type of system.
                  *

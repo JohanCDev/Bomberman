@@ -35,6 +35,8 @@ set(SRC
     ${ECSROOT}system/Draw2D/Draw2D.hpp
     ${ECSROOT}system/Draw3D/Draw3D.cpp
     ${ECSROOT}system/Draw3D/Draw3D.hpp
+    ${ECSROOT}system/Movement/Movement.cpp
+    ${ECSROOT}system/Movement/Movement.hpp
     ${ECSROOT}system/Collide/Collide.cpp
     ${ECSROOT}system/Collide/Collide.hpp
     ${ECSROOT}system/Sound/Sound.cpp

@@ -11,6 +11,10 @@ indie::ecs::component::Collide::Collide()
 {
 }
 
+indie::ecs::component::Collide::Collide(BoundingBox boundingBox) : _boundingBox(boundingBox)
+{
+}
+
 indie::ecs::component::Collide::~Collide()
 {
 }
@@ -43,4 +47,24 @@ void indie::ecs::component::Collide::setYCollide(bool collide)
 bool indie::ecs::component::Collide::checkCollision(indie::ecs::component::Collide *otherEntityCollide)
 {
     return (true);
+}
+
+BoundingBox indie::ecs::component::Collide::getBoundingBox() const
+{
+    return (this->_boundingBox);
+}
+
+void indie::ecs::component::Collide::setBoundingBox(BoundingBox boundingBox)
+{
+    this->_boundingBox = boundingBox;
+}
+
+void indie::ecs::component::Collide::setCollide(bool collide)
+{
+    this->_collide = collide;
+}
+
+bool indie::ecs::component::Collide::getCollide() const
+{
+    return (this->_collide);
 }
