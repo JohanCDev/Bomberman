@@ -68,6 +68,17 @@ namespace indie
                     return (false);
                 }
 
+                std::vector<indie::ecs::component::Drawable2D *> getDrawableVector() const
+                {
+                    std::vector<indie::ecs::component::Drawable2D *> vector;
+                    for (auto &compo : _componentVector) {
+                        if (compo->getType() == indie::ecs::component::compoType::DRAWABLE2D) {
+                            vector.push_back(dynamic_cast<indie::ecs::component::Drawable2D *>(compo.get()));
+                        }
+                    }
+                    return (vector);
+                }
+
                 /**
                  * @brief Get a component of the given type.
                  *
