@@ -9,10 +9,12 @@
 
 indie::ecs::component::Collide::Collide()
 {
+    _collide = false;
 }
 
 indie::ecs::component::Collide::Collide(BoundingBox boundingBox) : _boundingBox(boundingBox)
 {
+    _collide = false;
 }
 
 indie::ecs::component::Collide::~Collide()
