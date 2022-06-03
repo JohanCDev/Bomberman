@@ -32,7 +32,9 @@ void indie::ecs::system::Collide::checkSphereCollision(auto collide, auto transf
         drawable->getLength() / static_cast<float>(2.0)};
     indie::raylib::BoundingBox box1(min, max);
     Vector3 pos = {otherEntityTransform->getX(), otherEntityTransform->getY(), 0.0};
-    if (indie::raylib::BoundingBox::checkCollisionBoxSphere(box1.getBoundingBox(), pos, otherEntityDrawable->getRadius()) == true) {
+    if (indie::raylib::BoundingBox::checkCollisionBoxSphere(
+            box1.getBoundingBox(), pos, otherEntityDrawable->getRadius())
+        == true) {
         collide->setCollide(true);
         otherEntityCollide->setCollide(true);
     }
@@ -58,6 +60,7 @@ void indie::ecs::system::Collide::checkCubeCollision(auto drawable, auto collide
     indie::raylib::BoundingBox box2(min2, max2);
     if (indie::raylib::BoundingBox::checkCollisionBoxes(box1.getBoundingBox(), box2.getBoundingBox()) == true) {
         collide->setCollide(true);
+        otherEntityCollide->setCollide(true);
     }
 }
 
@@ -67,27 +70,26 @@ void indie::ecs::system::Collide::update(std::vector<std::unique_ptr<indie::ecs:
         if (entity->hasCompoType(ecs::component::compoType::COLLIDE)) {
             indie::ecs::component::Collide *collide =
                 entity->getComponent<ecs::component::Collide>(ecs::component::compoType::COLLIDE);
+            auto drawableCompo =
+                entity->getComponent<ecs::component::Drawable3D>(ecs::component::compoType::DRAWABLE3D);
+            auto transformCompo = entity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             for (auto &otherEntity : entities) {
                 if (otherEntity != entity && otherEntity->hasCompoType(indie::ecs::component::compoType::DRAWABLE3D)) {
                     auto otherEntityCollide =
                         otherEntity->getComponent<ecs::component::Collide>(ecs::component::compoType::COLLIDE);
                     auto otherEntityDrawable =
                         otherEntity->getComponent<ecs::component::Drawable3D>(ecs::component::compoType::DRAWABLE3D);
-                    if (otherEntityDrawable->getDrawType() == indie::ecs::component::drawableType::CUBE) {
-                        checkCubeCollision(
-                            entity->getComponent<ecs::component::Drawable3D>(ecs::component::compoType::DRAWABLE3D),
-                            collide,
-                            entity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM),
-                            otherEntityCollide, otherEntityDrawable,
+                    if (otherEntityDrawable->getDrawType() == indie::ecs::component::drawableType::CUBE
+                        && drawableCompo->getDrawType() == indie::ecs::component::drawableType::CUBE) {
+                        checkCubeCollision(drawableCompo, collide, transformCompo, otherEntityCollide,
+                            otherEntityDrawable,
                             otherEntity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM));
                     }
-                    if (otherEntityDrawable->getDrawType() == indie::ecs::component::drawableType::SPHERE) {
-                        checkSphereCollision(collide,
-                            entity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM),
-                            entity->getComponent<ecs::component::Drawable3D>(ecs::component::compoType::DRAWABLE3D),
+                    if (otherEntityDrawable->getDrawType() == indie::ecs::component::drawableType::SPHERE
+                        && drawableCompo->getDrawType() == indie::ecs::component::drawableType::CUBE) {
+                        checkSphereCollision(collide, transformCompo, drawableCompo,
                             otherEntity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM),
-                            otherEntity->getComponent<ecs::component::Collide>(ecs::component::compoType::COLLIDE),
-                            otherEntityDrawable);
+                            otherEntityCollide, otherEntityDrawable);
                     }
                 }
             }

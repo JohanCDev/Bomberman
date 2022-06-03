@@ -11,7 +11,6 @@
 indie::menu::GameScreen::GameScreen()
     : _camera({0.0, 10.0, 10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, 45.0, CAMERA_PERSPECTIVE)
 {
-    this->_i = 0;
 }
 
 void indie::menu::GameScreen::draw()
@@ -29,15 +28,6 @@ void indie::menu::GameScreen::draw()
             system->update(this->_entities);
         }
     }
-    this->_i++;
-    std::cout << _i << std::endl;
-    if (this->_i == 120)
-        for (auto &entity : this->_entities) {
-            if (entity->hasCompoType(indie::ecs::component::SOUND) == true) {
-                auto soundCompo = entity->getComponent<indie::ecs::component::Sound>(indie::ecs::component::SOUND);
-                soundCompo->setPlay(true);
-            }
-        }
     indie::raylib::Window::endDrawing();
 }
 

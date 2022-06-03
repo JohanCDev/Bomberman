@@ -33,7 +33,6 @@ namespace indie
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
             indie::raylib::Camera3D _camera;
-            int _i;
         };
     } // namespace menu
 } // namespace indie
