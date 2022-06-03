@@ -30,9 +30,9 @@ void indie::ecs::system::Collide::checkSphereCollision(auto collide, auto transf
     Vector3 max = {transform->getX() + drawable->getWidth() / static_cast<float>(2.0),
         transform->getY() + drawable->getHeight() / static_cast<float>(2.0),
         drawable->getLength() / static_cast<float>(2.0)};
-    BoundingBox box1(min, max);
+    indie::raylib::BoundingBox box1(min, max);
     Vector3 pos = {otherEntityTransform->getX(), otherEntityTransform->getY(), 0.0};
-    if (indie::raylib::BoundingBox::checkCollisionBoxSphere(box1, pos, otherEntityDrawable->getRadius()) == true) {
+    if (indie::raylib::BoundingBox::checkCollisionBoxSphere(box1.getBoundingBox(), pos, otherEntityDrawable->getRadius()) == true) {
         collide->setCollide(true);
         otherEntityCollide->setCollide(true);
     }
@@ -48,15 +48,15 @@ void indie::ecs::system::Collide::checkCubeCollision(auto drawable, auto collide
     Vector3 max = {transform->getX() + drawable->getWidth() / static_cast<float>(2.0),
         transform->getY() + drawable->getHeight() / static_cast<float>(2.0),
         drawable->getLength() / static_cast<float>(2.0)};
-    BoundingBox box1(min, max);
+    indie::raylib::BoundingBox box1(min, max);
     Vector3 min2 = {otherTransform->getX() - otherEntityDrawable->getWidth() / static_cast<float>(2.0),
         otherTransform->getY() - otherEntityDrawable->getHeight() / static_cast<float>(2.0),
         -(otherEntityDrawable->getLength() / static_cast<float>(2.0))};
     Vector3 max2 = {otherTransform->getX() + otherEntityDrawable->getWidth() / static_cast<float>(2.0),
         otherTransform->getY() + otherEntityDrawable->getHeight() / static_cast<float>(2.0),
         otherEntityDrawable->getLength() / static_cast<float>(2.0)};
-    BoundingBox box2(min2, max2);
-    if (indie::raylib::BoundingBox::checkCollisionBoxes(box1, box2) == true) {
+    indie::raylib::BoundingBox box2(min2, max2);
+    if (indie::raylib::BoundingBox::checkCollisionBoxes(box1.getBoundingBox(), box2.getBoundingBox()) == true) {
         collide->setCollide(true);
     }
 }
