@@ -12,6 +12,7 @@ indie::ecs::component::Explodable::Explodable()
     this->_range = 0.0;
     this->_explosionTime = 2;
     this->_dropped = false;
+    this->_exploded = false;
 }
 
 indie::ecs::component::Explodable::Explodable(float range, int explosionTime)
@@ -19,6 +20,7 @@ indie::ecs::component::Explodable::Explodable(float range, int explosionTime)
     this->_range = range;
     this->_explosionTime = explosionTime;
     this->_dropped = false;
+    this->_exploded = false;
 }
 
 indie::ecs::component::Explodable::~Explodable()
