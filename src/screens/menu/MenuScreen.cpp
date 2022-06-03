@@ -14,35 +14,35 @@ indie::menu::MenuScreen::MenuScreen() : _cursorPosition(NEW_GAME)
     std::unique_ptr<ecs::entity::Entity> new_game = std::make_unique<ecs::entity::Entity>();
     new_game->addComponent<ecs::component::Transform>(
         static_cast<float>(400.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    new_game->addComponent<ecs::component::Drawable2D>(static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
     new_game->addComponent<ecs::component::Drawable2D>("New Game", static_cast<float>(50.0), BLACK);
+    new_game->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
     addEntity(std::move(new_game));
 
     std::unique_ptr<ecs::entity::Entity> load_game = std::make_unique<ecs::entity::Entity>();
     load_game->addComponent<ecs::component::Transform>(
         static_cast<float>(400.0), static_cast<float>(600.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    load_game->addComponent<ecs::component::Drawable2D>(static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
     load_game->addComponent<ecs::component::Drawable2D>("Load Game", static_cast<float>(50.0), BLACK);
+    load_game->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
     addEntity(std::move(load_game));
 
     std::unique_ptr<ecs::entity::Entity> options = std::make_unique<ecs::entity::Entity>();
     options->addComponent<ecs::component::Transform>(
         static_cast<float>(400.0), static_cast<float>(700.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    options->addComponent<ecs::component::Drawable2D>(static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
     options->addComponent<ecs::component::Drawable2D>("Options", static_cast<float>(50.0), BLACK);
+    options->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
     addEntity(std::move(options));
 
     std::unique_ptr<ecs::entity::Entity> quit = std::make_unique<ecs::entity::Entity>();
     quit->addComponent<ecs::component::Transform>(
         static_cast<float>(400.0), static_cast<float>(800.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    quit->addComponent<ecs::component::Drawable2D>(static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
     quit->addComponent<ecs::component::Drawable2D>("Quit", static_cast<float>(50.0), BLACK);
+    quit->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
     addEntity(std::move(quit));
 
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
     cursor->addComponent<ecs::component::Transform>(
         static_cast<float>(320.0), static_cast<float>(510.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    cursor->addComponent<ecs::component::Drawable2D>(static_cast<float>(40.0), static_cast<float>(40.0), RED);
+    cursor->addComponent<ecs::component::Drawable2D>("", static_cast<float>(40.0), static_cast<float>(40.0), RED);
     addEntity(std::move(cursor));
 }
 

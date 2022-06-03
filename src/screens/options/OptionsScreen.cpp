@@ -10,38 +10,42 @@
 
 indie::menu::OptionsScreen::OptionsScreen() : _cursorPosition(RESUME)
 {
-    /*std::unique_ptr<ecs::Entity> new_game = std::make_unique<ecs::Entity>();
-    new_game->addComponent<ecs::Transform>(static_cast<float>(400.0), static_cast<float>(500.0),
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    new_game->addComponent<ecs::Rectangle>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
-    new_game->addComponent<ecs::Text>("Resume", static_cast<float>(50.0), BLACK);
+    std::unique_ptr<ecs::entity::Entity> new_game = std::make_unique<ecs::entity::Entity>();
+    new_game->addComponent<ecs::component::Transform>(
+        static_cast<float>(400.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    new_game->addComponent<ecs::component::Drawable2D>("Resume", static_cast<float>(50.0), BLACK);
+    new_game->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
     addEntity(std::move(new_game));
 
-    std::unique_ptr<ecs::Entity> load_game = std::make_unique<ecs::Entity>();
-    load_game->addComponent<ecs::Transform>(static_cast<float>(400.0), static_cast<float>(600.0),
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    load_game->addComponent<ecs::Rectangle>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
-    load_game->addComponent<ecs::Text>("Menu", static_cast<float>(50.0), BLACK);
+    std::unique_ptr<ecs::entity::Entity> load_game = std::make_unique<ecs::entity::Entity>();
+    load_game->addComponent<ecs::component::Transform>(
+        static_cast<float>(400.0), static_cast<float>(600.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    load_game->addComponent<ecs::component::Drawable2D>("Menu", static_cast<float>(50.0), BLACK);
+    load_game->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
     addEntity(std::move(load_game));
 
-    std::unique_ptr<ecs::Entity> options = std::make_unique<ecs::Entity>();
-    options->addComponent<ecs::Transform>(static_cast<float>(400.0), static_cast<float>(700.0), static_cast<float>(0.0),
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    options->addComponent<ecs::Rectangle>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
-    options->addComponent<ecs::Text>("EXIT", static_cast<float>(50.0), BLACK);
+    std::unique_ptr<ecs::entity::Entity> options = std::make_unique<ecs::entity::Entity>();
+    options->addComponent<ecs::component::Transform>(
+        static_cast<float>(400.0), static_cast<float>(700.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    options->addComponent<ecs::component::Drawable2D>("EXIT", static_cast<float>(50.0), BLACK);
+    options->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
     addEntity(std::move(options));
 
-    std::unique_ptr<ecs::Entity> cursor = std::make_unique<ecs::Entity>();
-    cursor->addComponent<ecs::Transform>(static_cast<float>(320.0), static_cast<float>(510.0), static_cast<float>(0.0),
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    cursor->addComponent<ecs::Rectangle>("", static_cast<float>(40.0), static_cast<float>(40.0), RED);
-    addEntity(std::move(cursor));*/
+    std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
+    cursor->addComponent<ecs::component::Transform>(
+        static_cast<float>(320.0), static_cast<float>(510.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    cursor->addComponent<ecs::component::Drawable2D>("", static_cast<float>(40.0), static_cast<float>(40.0), RED);
+    addEntity(std::move(cursor));
 }
 
 void indie::menu::OptionsScreen::draw()
 {
     indie::raylib::Window::beginDrawing();
     indie::raylib::Window::clearBackground();
+
+    for (auto &system : this->_systems) {
+        system->update(this->_entities);
+    }
 
     indie::raylib::Window::endDrawing();
 }

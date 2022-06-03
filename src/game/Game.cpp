@@ -89,6 +89,8 @@ void indie::Game::run()
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystem = std::make_unique<indie::ecs::system::Draw2DSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemMenu =
         std::make_unique<indie::ecs::system::Draw2DSystem>();
+    std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemOption =
+        std::make_unique<indie::ecs::system::Draw2DSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> draw3DSystem = std::make_unique<indie::ecs::system::Draw3DSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> movementSystem =
         std::make_unique<indie::ecs::system::MovementSystem>();
@@ -101,6 +103,8 @@ void indie::Game::run()
         "INDIE STUDIOOOO MENU BONJOURRRRRR", static_cast<float>(50.0), BLACK);
     this->_menu->addEntity(std::move(entity));
     this->_menu->addSystem(std::move(draw2DSystemMenu));
+
+    this->_options->addSystem(std::move(draw2DSystemOption));
 
     entity2->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
