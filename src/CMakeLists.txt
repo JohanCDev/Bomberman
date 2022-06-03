@@ -29,6 +29,8 @@ set(SRC
     ${ECSROOT}component/Collide/Collide.hpp
     ${ECSROOT}component/Sound/Sound.cpp
     ${ECSROOT}component/Sound/Sound.hpp
+    ${ECSROOT}component/Destroyable/Destroyable.cpp
+    ${ECSROOT}component/Destroyable/Destroyable.hpp
     ${ECSROOT}entity/Entity.cpp
     ${ECSROOT}entity/Entity.hpp
     ${ECSROOT}system/Draw2D/Draw2D.cpp

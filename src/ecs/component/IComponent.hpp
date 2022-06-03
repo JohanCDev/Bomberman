@@ -29,6 +29,7 @@ namespace indie
                 EXPLODABLE,
                 COLLIDE,
                 SOUND,
+                DESTROYABLE,
                 UNKNOWNCOMPO
             };
 
