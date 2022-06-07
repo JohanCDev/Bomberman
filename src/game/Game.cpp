@@ -6,7 +6,6 @@
 */
 
 #include "Game.hpp"
-#include "../map/MapGenerator.hpp"
 #include <algorithm>
 #include <chrono>
 #include <iostream>
@@ -17,6 +16,7 @@
 #include "../ecs/system/Movement/Movement.hpp"
 #include "../ecs/system/Sound/Sound.hpp"
 #include "../gameEvents/GameEvents.hpp"
+#include "../map/MapGenerator.hpp"
 #include "../raylib/Raylib.hpp"
 #include "../screens/IScreen.hpp"
 
@@ -58,7 +58,6 @@ void indie::Game::draw()
 
 void indie::Game::run()
 {
-
     indie::map::MapGenerator map;
 
     map.createWall();
@@ -73,7 +72,8 @@ void indie::Game::run()
     std::unique_ptr<indie::ecs::entity::Entity> entity = std::make_unique<indie::ecs::entity::Entity>();
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystem = std::make_unique<indie::ecs::system::Draw2DSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> draw3DSystem = std::make_unique<indie::ecs::system::Draw3DSystem>();
-    std::unique_ptr<indie::ecs::system::ISystem> movementSystem = std::make_unique<indie::ecs::system::MovementSystem>();
+    std::unique_ptr<indie::ecs::system::ISystem> movementSystem =
+        std::make_unique<indie::ecs::system::MovementSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
     std::unique_ptr<indie::ecs::system::ISystem> collideSystem = std::make_unique<indie::ecs::system::Collide>();
 
@@ -81,7 +81,14 @@ void indie::Game::run()
         static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
     entity->addComponent<indie::ecs::component::Drawable2D>(
         "INDIE STUDIOOOO GAME BONJOURRRRRR", static_cast<float>(50.0), BLACK);
+
+    std::unique_ptr<indie::ecs::entity::Entity> entityX = std::make_unique<indie::ecs::entity::Entity>();
+    entityX->addComponent<indie::ecs::component::Transform>(
+        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    entityX->addComponent<indie::ecs::component::Drawable3D>(
+        "", static_cast<float>(10.5), static_cast<float>(0.05), static_cast<float>(10), LIGHTGRAY);
     this->_game->initMap(map.getMap());
+    this->_game->addEntity(std::move(entityX));
     this->_game->addEntity(std::move(entity));
     this->_game->addSystem(std::move(draw2DSystem));
     this->_game->addSystem(std::move(draw3DSystem));
