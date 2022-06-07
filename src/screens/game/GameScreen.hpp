@@ -13,6 +13,7 @@
 #include "../../ecs/entity/Entity.hpp"
 #include "../../ecs/system/ISystem.hpp"
 #include "../IScreen.hpp"
+#include "events.hpp"
 
 namespace indie
 {
