@@ -84,6 +84,8 @@ set(SRC
     ${SCREENSROOT}options/OptionsScreen.hpp
     ${SCREENSROOT}pre_menu/PreMenuScreen.cpp
     ${SCREENSROOT}pre_menu/PreMenuScreen.hpp
+    ${SCREENSROOT}set_fps/SetFpsScreen.cpp
+    ${SCREENSROOT}set_fps/SetFpsScreen.hpp
     ${EVENTSROOT}GameEvents.cpp
     ${EVENTSROOT}GameEvents.hpp
     ${GAMEROOT}Game.cpp

@@ -31,6 +31,16 @@ namespace indie {
                 static Window *getInstance(int width, int height, const std::string title, bool resizable, int baseFps);
 
                 /**
+                * @brief Get current FPS
+                */
+                static int getFPS(void);
+
+                /**
+                * @brief Set target FPS (maximum)
+                */
+                static void setTargetFPS(int fps);
+
+                /**
                 * @brief Close window and unload OpenGL context
                 */
                 static void destroyWindow();

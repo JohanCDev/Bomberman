@@ -22,6 +22,7 @@ indie::Game::Game(size_t baseFps)
     _game = new indie::menu::GameScreen;
     _options = new indie::menu::OptionsScreen;
     _premenu = new indie::menu::PreMenuScreen;
+    _setFps = new indie::menu::SetFpsScreen;
 }
 
 indie::Game::~Game()
@@ -30,6 +31,7 @@ indie::Game::~Game()
     delete _game;
     delete _options;
     delete _premenu;
+    delete _setFps;
 }
 
 bool indie::Game::processEvents()
@@ -52,6 +54,7 @@ void indie::Game::draw()
         case Screens::Game: _game->draw(); break;
         case Screens::Options: _options->draw(); break;
         case Screens::PreMenu: _premenu->draw(); break;
+        case Screens::SetFps: _setFps->draw(); break;
         default: break;
     }
 }
@@ -63,6 +66,7 @@ int indie::Game::handleEvent()
         case Screens::Game: return (_game->handleEvent(_event));
         case Screens::Options: return (_options->handleEvent(_event));
         case Screens::PreMenu: return (_premenu->handleEvent(_event));
+        case Screens::SetFps: return (_setFps->handleEvent(_event));
         default: break;
     }
     return true;
@@ -121,6 +125,8 @@ void indie::Game::handleScreensSwap(int ret)
         setActualScreen(Screens::Options);
     if (ret == 4)
         setActualScreen(Screens::PreMenu);
+    if (ret == 99)
+        setActualScreen(Screens::SetFps);
 }
 
 void indie::Game::reinitGame()

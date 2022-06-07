@@ -8,13 +8,20 @@
 #include "OptionsScreen.hpp"
 #include "../../raylib/Raylib.hpp"
 
-indie::menu::OptionsScreen::OptionsScreen() : _cursorPosition(RESUME)
+indie::menu::OptionsScreen::OptionsScreen() : _cursorPosition(SET_FPS)
 {
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
     cursor->addComponent<ecs::component::Transform>(
-        static_cast<float>(320.0), static_cast<float>(510.0), static_cast<float>(0.0), static_cast<float>(0.0));
+        static_cast<float>(320.0), static_cast<float>(410.0), static_cast<float>(0.0), static_cast<float>(0.0));
     cursor->addComponent<ecs::component::Drawable2D>("", static_cast<float>(40.0), static_cast<float>(40.0), RED);
     addEntity(std::move(cursor));
+
+    std::unique_ptr<ecs::entity::Entity> set_fps = std::make_unique<ecs::entity::Entity>();
+    set_fps->addComponent<ecs::component::Transform>(
+        static_cast<float>(400.0), static_cast<float>(400.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    set_fps->addComponent<ecs::component::Drawable2D>("Set Fps", static_cast<float>(50.0), BLACK);
+    set_fps->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    addEntity(std::move(set_fps));
 
     std::unique_ptr<ecs::entity::Entity> new_game = std::make_unique<ecs::entity::Entity>();
     new_game->addComponent<ecs::component::Transform>(
@@ -68,6 +75,8 @@ int indie::menu::OptionsScreen::handleEvent(indie::Event &event)
         transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(false)),
             static_cast<float>(0.0), static_cast<float>(0.0));
     }
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == SET_FPS)
+        return 99;
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == RESUME)
         return 2;
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MENU)
@@ -95,6 +104,10 @@ void indie::menu::OptionsScreen::addSystem(std::unique_ptr<indie::ecs::system::I
 int indie::menu::OptionsScreen::checkCursorPosition(bool direction)
 {
     if (direction) {
+        if (_cursorPosition == SET_FPS) {
+            _cursorPosition = RESUME;
+            return RESUME;
+        }
         if (_cursorPosition == RESUME) {
             _cursorPosition = MENU;
             return MENU;
@@ -106,8 +119,12 @@ int indie::menu::OptionsScreen::checkCursorPosition(bool direction)
         if (_cursorPosition == EXIT)
             return EXIT;
     } else if (!direction) {
-        if (_cursorPosition == RESUME)
-            return RESUME;
+        if (_cursorPosition == SET_FPS)
+            return SET_FPS;
+        if (_cursorPosition == RESUME) {
+            _cursorPosition = SET_FPS;
+            return SET_FPS;
+        }
         if (_cursorPosition == MENU) {
             _cursorPosition = RESUME;
             return RESUME;
