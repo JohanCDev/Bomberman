@@ -66,12 +66,12 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      - name: build-desktop-on-ubuntu
-        run: |
-          mkdir build
-          cd build && cmake ..
-          cmake --build .
-#          cd ..
+#      - name: build-desktop-on-ubuntu
+#        run: |
+#          mkdir build
+#          cd build && cmake ..
+#          cmake --build .
+##          cd ..
 
       - name: build-web-on-ubuntu
         run: |
