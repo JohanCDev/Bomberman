@@ -29,11 +29,16 @@ namespace indie
     {
         namespace entity
         {
+
+            enum entityType { PLAYER1, PLAYER2, PLAYER3, PLAYER4, WALL, BOXES, TEXT, BOMB, UNKNOWN };
+
             class Entity {
               public:
                 /**
                  * @brief Create new entity.
                  */
+                Entity(entityType type);
+
                 Entity();
 
                 /**
@@ -97,9 +102,11 @@ namespace indie
                     return (nullptr);
                 }
 
-              protected:
+                indie::ecs::entity::entityType getEntityType() const;
+
               private:
                 std::vector<std::unique_ptr<indie::ecs::component::IComponent>> _componentVector;
+                entity::entityType _type;
             };
         } // namespace entity
     }     // namespace ecs

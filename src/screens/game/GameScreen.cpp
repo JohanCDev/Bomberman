@@ -31,11 +31,6 @@ void indie::menu::GameScreen::draw()
     indie::raylib::Window::endDrawing();
 }
 
-void indie::menu::GameScreen::handleEvent(indie::Event &event)
-{
-    (void)event;
-}
-
 void indie::menu::GameScreen::update(float delta)
 {
     (void)delta;
@@ -54,4 +49,27 @@ void indie::menu::GameScreen::addSystem(std::unique_ptr<indie::ecs::system::ISys
 indie::raylib::Camera3D indie::menu::GameScreen::getCamera() const
 {
     return (this->_camera);
+}
+
+void indie::menu::GameScreen::handleEvent(indie::Event &event)
+{
+    indie::ecs::component::Transform *transformCompo = nullptr;
+
+    if (event.controller[0].code == indie::Event::X_BUTTON) {
+        for (auto &entity : _entities) {
+            if (entity->getEntityType() == indie::ecs::entity::PLAYER1) {
+                transformCompo =
+                    entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
+            }
+        }
+        if (transformCompo != nullptr) {
+            std::unique_ptr<indie::ecs::entity::Entity> entity =
+                std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOMB);
+            //entity->addComponent<indie::ecs::component::Collide>();
+            entity->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.25), RED);
+            entity->addComponent<indie::ecs::component::Transform>(static_cast<float>(transformCompo->getX()),
+                static_cast<float>(transformCompo->getY()), static_cast<float>(0.0), static_cast<float>(0.0));
+            addEntity(std::move(entity));
+        }
+    }
 }
