@@ -66,11 +66,11 @@ jobs:
 
       - uses: actions/checkout@v2
 
-#      - name: build-desktop-on-ubuntu
-#        run: |
-#          mkdir build
-#          cd build && cmake ..
-#          cmake --build .
+      - name: build-desktop-on-ubuntu
+        run: |
+          mkdir build
+          cd build && cmake ..
+          cmake --build .
 #          cd ..
 
       - name: build-web-on-ubuntu
@@ -80,54 +80,54 @@ jobs:
           cd build && make
 #          cd ../..
 
-#  build-on-windows:
-#    runs-on: windows-latest
-#    steps:
+  build-on-windows:
+    runs-on: windows-latest
+    steps:
 
-#      - name: install-raylib-windows-build
-#        run: |
-#          git clone https://github.com/Microsoft/vcpkg.git
-#          cd vcpkg
-#          bootstrap-vcpkg.bat
-#          vcpkg integrate install
-#          vcpkg install raylib
+      - name: install-raylib-windows-build
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git
+          cd vcpkg
+          bootstrap-vcpkg.bat
+          vcpkg integrate install
+          vcpkg install raylib
 #          cd ..
 #          Remove-Item -Force -Recurse vcpkg
 
-#      - name: install-emscriptensdk-windows-build
-#        run: |
-#          git clone https://github.com/emscripten-core/emsdk.git
-#          cd emsdk
-#          ./emsdk install latest
-#          ./emsdk activate latest
-#          emsdk_env.bat
+      - name: install-emscriptensdk-windows-build
+        run: |
+          git clone https://github.com/emscripten-core/emsdk.git
+          cd emsdk
+          ./emsdk install latest
+          ./emsdk activate latest
+          emsdk_env.bat
 #          cd ..
 
-#      - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-#      - name: build-desktop-on-windows
-#        run: |
-#          mkdir build && cd build
-#          cmake .. -DCMAKE_BUILD_TYPE=Debug
-#          cmake --build .
+      - name: build-desktop-on-windows
+        run: |
+          mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Debug
+          cmake --build .
 
-#      - name: check-binary
-#        shell: bash
-#        if: matrix.name == 'Linux'
-#        run: test -f build/bomberman
+      - name: check-binary
+        shell: bash
+        if: matrix.name == 'Linux'
+        run: test -f build/bomberman
 
-#  to_github:
-#    needs:
-#      - build-on-ubuntu
-#      - build-on-windows
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          fetch-depth: 0
-#      - uses: pixta-dev/repository-mirroring-action@v1
-#        with:
-#          target_repo_url:
-#            ${{ secrets.EPI_REPO_URL }}
-#          ssh_private_key:
-#            ${{ secrets.EPI_MIRRORING_KEY }}
+  to_github:
+    needs:
+      - build-on-ubuntu
+      - build-on-windows
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url:
+            ${{ secrets.EPI_REPO_URL }}
+          ssh_private_key:
+            ${{ secrets.EPI_MIRRORING_KEY }}
