@@ -1,6 +1,5 @@
 name: Build
 
-
 on:  
   push:
     branches:
@@ -23,7 +22,7 @@ jobs:
   build-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+
       - name: install-raylib-ubuntu-prerequisites
         run: |
           sudo apt install -y build-essential \
@@ -64,22 +63,24 @@ jobs:
           source ./emsdk_env.sh
           cd ..
 
-      - name: build-on-ubuntu
+      - uses: actions/checkout@v2
+
+      - name: build-desktop-on-ubuntu
         run: |
           mkdir build
           cd build && cmake ..
           cmake --build .
           cd ..
 
-      - name: print-check-ubuntu
+      - name: build-web-on-ubuntu
         run: |
-          ls -l
-          ls -l build
+          emcmake cmake -S . -B build -DPLATFORM=Web
+          cd build && make
+          cd ../..
 
   build-on-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v1
 
       - name: install-raylib-windows-build
         run: |
@@ -100,12 +101,14 @@ jobs:
           emsdk_env.bat
           cd ..
 
-      - name: build-on-windows
+      - uses: actions/checkout@v1
+
+      - name: build-desktop-on-windows
         run: |
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Debug
           cmake --build .
-    
+
       - name: check-binary
         shell: bash
         if: matrix.name == 'Linux'
