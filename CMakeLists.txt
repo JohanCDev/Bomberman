@@ -16,8 +16,13 @@ find_package(raylib REQUIRED)
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 
 set(SRC_INTERFACE
-    ${INCROOT}test.hpp
+    ${INCROOT}Colors.hpp
+    ${INCROOT}events.hpp
+    ${INCROOT}vec2.hpp
+    ${INCROOT}vec3.hpp
+    ${INCROOT}vec4.hpp
 )
+
 set(INTERFACES_NAME interface)
 
 add_library(${INTERFACES_NAME} INTERFACE)
