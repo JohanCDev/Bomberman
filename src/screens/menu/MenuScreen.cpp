@@ -79,7 +79,7 @@ int indie::menu::MenuScreen::handleEvent(indie::Event &event)
         return 4;
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == OPTIONS)
         return 3;
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == QUIT)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == EXIT)
         return 10;
     return 0;
 }
@@ -106,11 +106,11 @@ int indie::menu::MenuScreen::checkCursorPosition(bool direction)
             return OPTIONS;
         }
         if (_cursorPosition == OPTIONS) {
-            _cursorPosition = QUIT;
-            return QUIT;
+            _cursorPosition = EXIT;
+            return EXIT;
         }
-        if (_cursorPosition == QUIT)
-            return QUIT;
+        if (_cursorPosition == EXIT)
+            return EXIT;
     } else if (!direction) {
         if (_cursorPosition == NEW_GAME)
             return NEW_GAME;
@@ -122,7 +122,7 @@ int indie::menu::MenuScreen::checkCursorPosition(bool direction)
             _cursorPosition = LOAD_GAME;
             return LOAD_GAME;
         }
-        if (_cursorPosition == QUIT) {
+        if (_cursorPosition == EXIT) {
             _cursorPosition = OPTIONS;
             return OPTIONS;
         }

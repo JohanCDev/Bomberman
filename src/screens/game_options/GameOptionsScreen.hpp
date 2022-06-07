@@ -17,10 +17,9 @@ namespace indie
 {
     namespace menu
     {
-        enum cursorPositionGameOptions { RESUME = 510, SAVE = 610, MENU2 = 710, EXIT2 = 810 };
-
         class GameOptionsScreen : public IScreen {
           public:
+            enum cursorPosition { RESUME = 510, SAVE = 610, MENU = 710, EXIT = 810 };
             GameOptionsScreen();
             ~GameOptionsScreen() = default;
             void draw() override;

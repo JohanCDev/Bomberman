@@ -17,6 +17,7 @@
 #include "../ecs/system/Movement/Movement.hpp"
 #include "../ecs/system/Sound/Sound.hpp"
 #include "../screens/IScreen.hpp"
+#include "../screens/end/EndScreen.hpp"
 #include "../screens/game/GameScreen.hpp"
 #include "../screens/menu/MenuScreen.hpp"
 #include "../screens/options/OptionsScreen.hpp"
@@ -28,7 +29,7 @@ namespace indie
 {
     class Game {
       public:
-        enum class Screens { Game, Menu, Options, PreMenu, GameOptions, ExitScreen, Count };
+        enum class Screens { Game, Menu, Options, PreMenu, GameOptions, End, Count };
         Game(size_t baseFps = 60);
         ~Game();
         void run();
@@ -50,6 +51,7 @@ namespace indie
         indie::menu::OptionsScreen *_options;
         indie::menu::PreMenuScreen *_premenu;
         indie::menu::GameOptionsScreen *_gameoptions;
+        indie::menu::EndScreen *_end;
         indie::Event _event;
     };
 } // namespace indie

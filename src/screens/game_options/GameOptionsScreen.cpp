@@ -77,9 +77,9 @@ int indie::menu::GameOptionsScreen::handleEvent(indie::Event &event)
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == RESUME)
         return 2;
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MENU2)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MENU)
         return 1;
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == EXIT2)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == EXIT)
         return 10;
     return 0;
 }
@@ -107,15 +107,15 @@ int indie::menu::GameOptionsScreen::checkCursorPosition(bool direction)
             return SAVE;
         }
         if (_cursorPosition == SAVE) {
-            _cursorPosition = MENU2;
-            return MENU2;
+            _cursorPosition = MENU;
+            return MENU;
         }
-        if (_cursorPosition == MENU2) {
-            _cursorPosition = EXIT2;
-            return EXIT2;
+        if (_cursorPosition == MENU) {
+            _cursorPosition = EXIT;
+            return EXIT;
         }
-        if (_cursorPosition == EXIT2)
-            return EXIT2;
+        if (_cursorPosition == EXIT)
+            return EXIT;
     } else if (!direction) {
         if (_cursorPosition == RESUME) {
             return RESUME;
@@ -124,13 +124,13 @@ int indie::menu::GameOptionsScreen::checkCursorPosition(bool direction)
             _cursorPosition = RESUME;
             return RESUME;
         }
-        if (_cursorPosition == MENU2) {
+        if (_cursorPosition == MENU) {
             _cursorPosition = SAVE;
             return SAVE;
         }
-        if (_cursorPosition == EXIT2) {
-            _cursorPosition = MENU2;
-            return MENU2;
+        if (_cursorPosition == EXIT) {
+            _cursorPosition = MENU;
+            return MENU;
         }
     }
     return 0;
