@@ -52,11 +52,13 @@ void indie::raylib::Cube::setSize(float newWidth, float newHeight, float newLeng
     _size.z = newLength;
 }
 
-::Color indie::raylib::Cube::getColor() const {
+::Color indie::raylib::Cube::getColor() const
+{
     return _color;
 }
 
-void indie::raylib::Cube::setColor(::Color color) {
+void indie::raylib::Cube::setColor(::Color color)
+{
     _color = color;
 }
 
@@ -80,7 +82,8 @@ void indie::raylib::Cube::drawWires(::Vector3 position, ::Vector3 size, ::Color 
     ::DrawCubeWiresV(position, size, color);
 }
 
-void indie::raylib::Cube::drawTexture(::Texture2D texture, float width, float height, float length)
+void indie::raylib::Cube::drawTexture(
+    ::Texture2D texture, ::Vector3 position, float width, float height, float length, ::Color color)
 {
-    ::DrawCubeTexture(texture, _position, width, height, length, _color);
+    ::DrawCubeTexture(texture, position, width, height, length, color);
 }

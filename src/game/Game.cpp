@@ -11,9 +11,11 @@
 #include <chrono>
 #include <iostream>
 #include <memory>
+#include "../ecs/system/Collide/Collide.hpp"
 #include "../ecs/system/Draw2D/Draw2D.hpp"
 #include "../ecs/system/Draw3D/Draw3D.hpp"
 #include "../ecs/system/Movement/Movement.hpp"
+#include "../ecs/system/Sound/Sound.hpp"
 #include "../gameEvents/GameEvents.hpp"
 #include "../raylib/Raylib.hpp"
 #include "../screens/IScreen.hpp"
@@ -72,8 +74,13 @@ void indie::Game::run()
     std::unique_ptr<indie::ecs::entity::Entity> entity2 = std::make_unique<indie::ecs::entity::Entity>();
     std::unique_ptr<indie::ecs::entity::Entity> entity3 = std::make_unique<indie::ecs::entity::Entity>();
     std::unique_ptr<indie::ecs::entity::Entity> entity4 = std::make_unique<indie::ecs::entity::Entity>();
+    std::unique_ptr<indie::ecs::entity::Entity> entity5 = std::make_unique<indie::ecs::entity::Entity>();
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystem = std::make_unique<indie::ecs::system::Draw2DSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> draw3DSystem = std::make_unique<indie::ecs::system::Draw3DSystem>();
+    std::unique_ptr<indie::ecs::system::ISystem> movementSystem =
+        std::make_unique<indie::ecs::system::MovementSystem>();
+    std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
+    std::unique_ptr<indie::ecs::system::ISystem> collideSystem = std::make_unique<indie::ecs::system::Collide>();
 
     entity->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
@@ -88,16 +95,27 @@ void indie::Game::run()
     entity3->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(500.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
     entity3->addComponent<indie::ecs::component::Drawable2D>(
-        static_cast<float>(100.0), static_cast<float>(250.0), GREEN);
+        "src/boite.png", static_cast<float>(100.0), static_cast<float>(250.0), WHITE);
     entity4->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity4->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(2.0), BLUE);
+        static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(-0.02), static_cast<float>(0.0));
+    entity4->addComponent<indie::ecs::component::Drawable3D>(
+        "src/boite.png", static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(1.0), WHITE);
+    entity4->addComponent<indie::ecs::component::Collide>();
+    entity5->addComponent<indie::ecs::component::Transform>(
+        static_cast<float>(-2.0), static_cast<float>(1.0), static_cast<float>(0.02), static_cast<float>(0.0));
+    entity5->addComponent<indie::ecs::component::Drawable3D>(
+        "src/boite.png", static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(1.0), BLUE);
+    entity5->addComponent<indie::ecs::component::Collide>();
+    // entity4->addComponent<indie::ecs::component::Sound>("src/maybe-next-time.wav", false);
     this->_game->addEntity(std::move(entity2));
     this->_game->addEntity(std::move(entity3));
     this->_game->addEntity(std::move(entity4));
+    this->_game->addEntity(std::move(entity5));
     this->_game->addSystem(std::move(draw2DSystem));
     this->_game->addSystem(std::move(draw3DSystem));
-    this->_game->initMap(map.getMap());
+    this->_game->addSystem(std::move(movementSystem));
+    this->_game->addSystem(std::move(soundSystem));
+    this->_game->addSystem(std::move(collideSystem));
 
     while (!indie::raylib::Window::windowShouldClose()) {
         newTime =

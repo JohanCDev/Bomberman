@@ -5,8 +5,7 @@
 ** Explodable
 */
 
-#ifndef EXPLODABLE_HPP_
-#define EXPLODABLE_HPP_
+#pragma once
 
 #include "../IComponent.hpp"
 
@@ -27,18 +26,19 @@ namespace indie
                 void setRange(float range);
                 void setExplosionTime(int explosionTime);
                 void setDropped(bool dropped);
+                void setExploded(bool exploded);
 
                 float getRange() const;
                 int getExplosionTime() const;
                 bool getDropped() const;
+                bool getExploded() const;
 
               private:
                 float _range;
                 int _explosionTime;
                 bool _dropped;
+                bool _exploded;
             };
         } // namespace component
     }     // namespace ecs
 } // namespace indie
-
-#endif /* !EXPLODABLE_HPP_ */

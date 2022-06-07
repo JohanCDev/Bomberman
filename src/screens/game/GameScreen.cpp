@@ -28,7 +28,6 @@ void indie::menu::GameScreen::draw()
             system->update(this->_entities);
         }
     }
-
     indie::raylib::Window::endDrawing();
 }
 
