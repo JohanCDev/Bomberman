@@ -16,7 +16,7 @@ void indie::ecs::system::Draw3DSystem::drawSphere(auto drawableCompo, auto trans
 {
     Vector3 pos = {0.0, 0.0, 0.0};
 
-    pos = {transformCompo->getX(), transformCompo->getY(), 0.0};
+    pos = {transformCompo->getX(), 0.0, transformCompo->getY()};
     indie::raylib::Sphere::draw(pos, drawableCompo->getRadius(), drawableCompo->getColor());
     indie::raylib::Sphere::drawWires(pos, drawableCompo->getRadius(), 50, 5.0, BLACK);
 }
@@ -25,7 +25,7 @@ void indie::ecs::system::Draw3DSystem::drawCube(auto drawableCompo, auto transfo
 {
     Vector3 pos = {0.0, 0.0, 0.0};
 
-    pos = {transformCompo->getX(), transformCompo->getY(), 0.0};
+    pos = {transformCompo->getX(), 0.0, transformCompo->getY()};
     Vector3 size = {drawableCompo->getWidth(), drawableCompo->getHeight(), drawableCompo->getLength()};
     if (drawableCompo->getTexturePath() == "") {
         indie::raylib::Cube::draw(pos, size, drawableCompo->getColor());
