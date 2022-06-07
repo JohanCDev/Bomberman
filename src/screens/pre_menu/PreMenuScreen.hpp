@@ -1,17 +1,15 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2021
 ** Bomberman
 ** File description:
-** GameScreen
+** PreMenuScreen.cpp
 */
 
-#ifndef GAMESCREEN_HPP_
-#define GAMESCREEN_HPP_
+#ifndef PRE_MENU_SCREEN_HPP_
+#define PRE_MENU_SCREEN_HPP_
 
-#include <memory>
 #include <vector>
 #include "../../ecs/entity/Entity.hpp"
-#include "../../ecs/system/ISystem.hpp"
 #include "../IScreen.hpp"
 #include "../ecs/system/Collide/Collide.hpp"
 #include "../ecs/system/Draw2D/Draw2D.hpp"
@@ -23,23 +21,21 @@ namespace indie
 {
     namespace menu
     {
-        class GameScreen : public IScreen {
+        class PreMenuScreen : public IScreen {
           public:
-            GameScreen();
-            ~GameScreen() = default;
+            PreMenuScreen();
+            ~PreMenuScreen() = default;
             void draw() override;
             void update(float delta) override;
             int handleEvent(indie::Event &event) override;
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
-            indie::raylib::Camera3D getCamera() const;
 
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
-            indie::raylib::Camera3D _camera;
         };
     } // namespace menu
 } // namespace indie
 
-#endif /* !MENUSCREEN_HPP_ */
+#endif /* !PRE_MENU_SCREEN_HPP_ */

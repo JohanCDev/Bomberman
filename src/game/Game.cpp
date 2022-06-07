@@ -10,11 +10,6 @@
 #include <chrono>
 #include <iostream>
 #include <memory>
-#include "../ecs/system/Collide/Collide.hpp"
-#include "../ecs/system/Draw2D/Draw2D.hpp"
-#include "../ecs/system/Draw3D/Draw3D.hpp"
-#include "../ecs/system/Movement/Movement.hpp"
-#include "../ecs/system/Sound/Sound.hpp"
 #include "../gameEvents/GameEvents.hpp"
 #include "../raylib/Raylib.hpp"
 #include "../screens/IScreen.hpp"
@@ -26,6 +21,7 @@ indie::Game::Game(size_t baseFps)
     _menu = new indie::menu::MenuScreen;
     _game = new indie::menu::GameScreen;
     _options = new indie::menu::OptionsScreen;
+    _premenu = new indie::menu::PreMenuScreen;
 }
 
 indie::Game::~Game()
@@ -33,6 +29,7 @@ indie::Game::~Game()
     delete _menu;
     delete _game;
     delete _options;
+    delete _premenu;
 }
 
 bool indie::Game::processEvents()
@@ -54,6 +51,7 @@ void indie::Game::draw()
         case Screens::Menu: _menu->draw(); break;
         case Screens::Game: _game->draw(); break;
         case Screens::Options: _options->draw(); break;
+        case Screens::PreMenu: _premenu->draw(); break;
         default: break;
     }
 }
@@ -64,6 +62,7 @@ int indie::Game::handleEvent()
         case Screens::Menu: return (_menu->handleEvent(_event));
         case Screens::Game: return (_game->handleEvent(_event));
         case Screens::Options: return (_options->handleEvent(_event));
+        case Screens::PreMenu: return (_premenu->handleEvent(_event));
         default: break;
     }
     return true;
@@ -81,59 +80,6 @@ void indie::Game::run()
     int64_t draw_aq = 0;
     const float initUpdateMs = static_cast<float>(_fps) * 1000;
     float updateMs = initUpdateMs;
-    std::unique_ptr<indie::ecs::entity::Entity> entity = std::make_unique<indie::ecs::entity::Entity>();
-    std::unique_ptr<indie::ecs::entity::Entity> entity2 = std::make_unique<indie::ecs::entity::Entity>();
-    std::unique_ptr<indie::ecs::entity::Entity> entity3 = std::make_unique<indie::ecs::entity::Entity>();
-    std::unique_ptr<indie::ecs::entity::Entity> entity4 = std::make_unique<indie::ecs::entity::Entity>();
-    std::unique_ptr<indie::ecs::entity::Entity> entity5 = std::make_unique<indie::ecs::entity::Entity>();
-    std::unique_ptr<indie::ecs::system::ISystem> draw2DSystem = std::make_unique<indie::ecs::system::Draw2DSystem>();
-    std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemMenu =
-        std::make_unique<indie::ecs::system::Draw2DSystem>();
-    std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemOption =
-        std::make_unique<indie::ecs::system::Draw2DSystem>();
-    std::unique_ptr<indie::ecs::system::ISystem> draw3DSystem = std::make_unique<indie::ecs::system::Draw3DSystem>();
-    std::unique_ptr<indie::ecs::system::ISystem> movementSystem =
-        std::make_unique<indie::ecs::system::MovementSystem>();
-    std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
-    std::unique_ptr<indie::ecs::system::ISystem> collideSystem = std::make_unique<indie::ecs::system::Collide>();
-
-    entity->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity->addComponent<indie::ecs::component::Drawable2D>(
-        "INDIE STUDIOOOO MENU BONJOURRRRRR", static_cast<float>(50.0), BLACK);
-    this->_menu->addEntity(std::move(entity));
-    this->_menu->addSystem(std::move(draw2DSystemMenu));
-
-    this->_options->addSystem(std::move(draw2DSystemOption));
-
-    entity2->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity2->addComponent<indie::ecs::component::Drawable2D>(
-        "INDIE STUDIOOOO GAME BONJOURRRRRR", static_cast<float>(50.0), BLACK);
-    entity3->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(500.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity3->addComponent<indie::ecs::component::Drawable2D>(
-        "src/boite.png", static_cast<float>(100.0), static_cast<float>(250.0), WHITE);
-    entity4->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(-0.02), static_cast<float>(0.0));
-    entity4->addComponent<indie::ecs::component::Drawable3D>(
-        "src/boite.png", static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(1.0), WHITE);
-    entity4->addComponent<indie::ecs::component::Collide>();
-    entity5->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(-2.0), static_cast<float>(1.0), static_cast<float>(0.02), static_cast<float>(0.0));
-    entity5->addComponent<indie::ecs::component::Drawable3D>(
-        "src/boite.png", static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(1.0), BLUE);
-    entity5->addComponent<indie::ecs::component::Collide>();
-    // entity4->addComponent<indie::ecs::component::Sound>("src/maybe-next-time.wav", false);
-    this->_game->addEntity(std::move(entity2));
-    this->_game->addEntity(std::move(entity3));
-    this->_game->addEntity(std::move(entity4));
-    this->_game->addEntity(std::move(entity5));
-    this->_game->addSystem(std::move(draw2DSystem));
-    this->_game->addSystem(std::move(draw3DSystem));
-    this->_game->addSystem(std::move(movementSystem));
-    this->_game->addSystem(std::move(soundSystem));
-    this->_game->addSystem(std::move(collideSystem));
 
     while (!indie::raylib::Window::windowShouldClose()) {
         newTime =
@@ -155,17 +101,32 @@ void indie::Game::run()
         ret = handleEvent();
         if (ret == 10)
             break;
-        if (ret == 1)
-            setActualScreen(Screens::Menu);
-        if (ret == 2)
-            setActualScreen(Screens::Game);
-        if (ret == 3)
-            setActualScreen(Screens::Options);
+        handleScreensSwap(ret);
         draw();
         // _actualScreen = Screens::Game;
         // draw_aq = 0;
     }
     indie::raylib::Window::destroyWindow();
+}
+
+void indie::Game::handleScreensSwap(int ret)
+{
+    if (ret == 1) {
+        reinitGame();
+        setActualScreen(Screens::Menu);
+    }
+    if (ret == 2)
+        setActualScreen(Screens::Game);
+    if (ret == 3)
+        setActualScreen(Screens::Options);
+    if (ret == 4)
+        setActualScreen(Screens::PreMenu);
+}
+
+void indie::Game::reinitGame()
+{
+    delete _game;
+    _game = new indie::menu::GameScreen;
 }
 
 void indie::Game::setActualScreen(Screens newScreen)

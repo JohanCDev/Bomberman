@@ -10,6 +10,12 @@
 
 indie::menu::OptionsScreen::OptionsScreen() : _cursorPosition(RESUME)
 {
+    std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
+    cursor->addComponent<ecs::component::Transform>(
+        static_cast<float>(320.0), static_cast<float>(510.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    cursor->addComponent<ecs::component::Drawable2D>("", static_cast<float>(40.0), static_cast<float>(40.0), RED);
+    addEntity(std::move(cursor));
+
     std::unique_ptr<ecs::entity::Entity> new_game = std::make_unique<ecs::entity::Entity>();
     new_game->addComponent<ecs::component::Transform>(
         static_cast<float>(400.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
@@ -31,11 +37,9 @@ indie::menu::OptionsScreen::OptionsScreen() : _cursorPosition(RESUME)
     options->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
     addEntity(std::move(options));
 
-    std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
-    cursor->addComponent<ecs::component::Transform>(
-        static_cast<float>(320.0), static_cast<float>(510.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    cursor->addComponent<ecs::component::Drawable2D>("", static_cast<float>(40.0), static_cast<float>(40.0), RED);
-    addEntity(std::move(cursor));
+    std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemOption =
+        std::make_unique<indie::ecs::system::Draw2DSystem>();
+    addSystem(std::move(draw2DSystemOption));
 }
 
 void indie::menu::OptionsScreen::draw()
@@ -52,23 +56,23 @@ void indie::menu::OptionsScreen::draw()
 
 int indie::menu::OptionsScreen::handleEvent(indie::Event &event)
 {
-    if (event.key.down) {
+    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN) {
         indie::ecs::component::Transform *transformCompo =
-            _entities.at(3)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(true)),
             static_cast<float>(0.0), static_cast<float>(0.0));
     }
-    if (event.key.up) {
+    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP) {
         ecs::component::Transform *transformCompo =
-            _entities.at(3)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(false)),
             static_cast<float>(0.0), static_cast<float>(0.0));
     }
-    if (event.key.enter && _cursorPosition == RESUME)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == RESUME)
         return 2;
-    if (event.key.enter && _cursorPosition == MENU)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MENU)
         return 1;
-    if (event.key.enter && _cursorPosition == EXIT)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == EXIT)
         return 10;
     return 0;
 }

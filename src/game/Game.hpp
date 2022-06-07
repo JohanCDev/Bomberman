@@ -11,17 +11,23 @@
 #include <cstddef>
 #include <map>
 #include <memory>
+#include "../ecs/system/Collide/Collide.hpp"
+#include "../ecs/system/Draw2D/Draw2D.hpp"
+#include "../ecs/system/Draw3D/Draw3D.hpp"
+#include "../ecs/system/Movement/Movement.hpp"
+#include "../ecs/system/Sound/Sound.hpp"
 #include "../screens/IScreen.hpp"
 #include "../screens/game/GameScreen.hpp"
 #include "../screens/menu/MenuScreen.hpp"
 #include "../screens/options/OptionsScreen.hpp"
 #include "events.hpp"
+#include "../screens/pre_menu/PreMenuScreen.hpp"
 
 namespace indie
 {
     class Game {
       public:
-        enum class Screens { Game, Menu, Options, ExitScreen, Count };
+        enum class Screens { Game, Menu, Options, PreMenu, ExitScreen, Count };
         Game(size_t baseFps = 60);
         ~Game();
         void run();
@@ -30,6 +36,8 @@ namespace indie
         void update(float delta);
         bool processEvents();
 
+        void handleScreensSwap(int ret);
+        void reinitGame();
         void setActualScreen(Screens newScreen);
 
       protected:
@@ -39,6 +47,7 @@ namespace indie
         indie::menu::MenuScreen *_menu;
         indie::menu::GameScreen *_game;
         indie::menu::OptionsScreen *_options;
+        indie::menu::PreMenuScreen *_premenu;
         indie::Event _event;
     };
 } // namespace indie
