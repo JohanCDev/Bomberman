@@ -11,17 +11,13 @@
 #include <vector>
 #include "../../ecs/entity/Entity.hpp"
 #include "../IScreen.hpp"
-#include "../ecs/system/Collide/Collide.hpp"
 #include "../ecs/system/Draw2D/Draw2D.hpp"
-#include "../ecs/system/Draw3D/Draw3D.hpp"
-#include "../ecs/system/Movement/Movement.hpp"
-#include "../ecs/system/Sound/Sound.hpp"
 
 namespace indie
 {
     namespace menu
     {
-        enum cursorPositionOptions { FPS = 410, RESUME = 510, MENU = 610, EXIT = 710 };
+        enum cursorPositionOptions { FPS = 410, MENU = 510, EXIT = 610 };
 
         class OptionsScreen : public IScreen {
           public:

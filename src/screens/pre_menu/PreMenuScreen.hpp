@@ -11,11 +11,7 @@
 #include <vector>
 #include "../../ecs/entity/Entity.hpp"
 #include "../IScreen.hpp"
-#include "../ecs/system/Collide/Collide.hpp"
 #include "../ecs/system/Draw2D/Draw2D.hpp"
-#include "../ecs/system/Draw3D/Draw3D.hpp"
-#include "../ecs/system/Movement/Movement.hpp"
-#include "../ecs/system/Sound/Sound.hpp"
 
 namespace indie
 {

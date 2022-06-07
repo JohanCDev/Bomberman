@@ -1,15 +1,13 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2021
 ** Bomberman
 ** File description:
-** MenuScreen
+** GameOptionsScreen.hpp
 */
 
-#ifndef MENUSCREEN_HPP_
-#define MENUSCREEN_HPP_
+#ifndef GAME_OPTIONS_SCREEN_HPP_
+#define GAME_OPTIONS_SCREEN_HPP_
 
-#include <memory>
-#include <raylib.h>
 #include <vector>
 #include "../../ecs/entity/Entity.hpp"
 #include "../IScreen.hpp"
@@ -19,12 +17,12 @@ namespace indie
 {
     namespace menu
     {
-        enum cursorPositionMenu { NEW_GAME = 510, LOAD_GAME = 610, OPTIONS = 710, QUIT = 810 };
+        enum cursorPositionGameOptions { RESUME = 510, SAVE = 610, MENU2 = 710, EXIT2 = 810 };
 
-        class MenuScreen : public IScreen {
+        class GameOptionsScreen : public IScreen {
           public:
-            MenuScreen();
-            ~MenuScreen() = default;
+            GameOptionsScreen();
+            ~GameOptionsScreen() = default;
             void draw() override;
             void update(float delta) override;
             int handleEvent(indie::Event &event) override;
@@ -41,4 +39,4 @@ namespace indie
     } // namespace menu
 } // namespace indie
 
-#endif /* !MENUSCREEN_HPP_ */
+#endif /* !GAME_OPTIONS_SCREEN_HPP_ */

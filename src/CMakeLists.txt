@@ -84,6 +84,8 @@ set(SRC
     ${SCREENSROOT}options/OptionsScreen.hpp
     ${SCREENSROOT}pre_menu/PreMenuScreen.cpp
     ${SCREENSROOT}pre_menu/PreMenuScreen.hpp
+    ${SCREENSROOT}game_options/GameOptionsScreen.hpp
+    ${SCREENSROOT}game_options/GameOptionsScreen.cpp
     ${EVENTSROOT}GameEvents.cpp
     ${EVENTSROOT}GameEvents.hpp
     ${GAMEROOT}Game.cpp

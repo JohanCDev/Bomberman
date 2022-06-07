@@ -21,13 +21,14 @@
 #include "../screens/menu/MenuScreen.hpp"
 #include "../screens/options/OptionsScreen.hpp"
 #include "events.hpp"
+#include "../screens/game_options/GameOptionsScreen.hpp"
 #include "../screens/pre_menu/PreMenuScreen.hpp"
 
 namespace indie
 {
     class Game {
       public:
-        enum class Screens { Game, Menu, Options, PreMenu, ExitScreen, Count };
+        enum class Screens { Game, Menu, Options, PreMenu, GameOptions, ExitScreen, Count };
         Game(size_t baseFps = 60);
         ~Game();
         void run();
@@ -48,6 +49,7 @@ namespace indie
         indie::menu::GameScreen *_game;
         indie::menu::OptionsScreen *_options;
         indie::menu::PreMenuScreen *_premenu;
+        indie::menu::GameOptionsScreen *_gameoptions;
         indie::Event _event;
     };
 } // namespace indie

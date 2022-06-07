@@ -67,7 +67,7 @@ void indie::menu::GameScreen::draw()
 int indie::menu::GameScreen::handleEvent(indie::Event &event)
 {
     if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON)
-        return 3;
+        return 5;
     return 0;
 }
 
