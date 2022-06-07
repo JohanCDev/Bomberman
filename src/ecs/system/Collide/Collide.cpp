@@ -67,14 +67,15 @@ void indie::ecs::system::Collide::checkCubeCollision(auto drawable, auto collide
 void indie::ecs::system::Collide::update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities)
 {
     for (auto &entity : entities) {
-        if (entity->hasCompoType(ecs::component::compoType::COLLIDE)) {
+        if (entity->hasCompoType(ecs::component::compoType::COLLIDE) == true) {
             indie::ecs::component::Collide *collide =
                 entity->getComponent<ecs::component::Collide>(ecs::component::compoType::COLLIDE);
             auto drawableCompo =
                 entity->getComponent<ecs::component::Drawable3D>(ecs::component::compoType::DRAWABLE3D);
             auto transformCompo = entity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             for (auto &otherEntity : entities) {
-                if (otherEntity != entity && otherEntity->hasCompoType(indie::ecs::component::compoType::DRAWABLE3D)) {
+                if (otherEntity != entity && otherEntity->hasCompoType(indie::ecs::component::compoType::DRAWABLE3D)
+                    && otherEntity->hasCompoType(indie::ecs::component::compoType::COLLIDE)) {
                     auto otherEntityCollide =
                         otherEntity->getComponent<ecs::component::Collide>(ecs::component::compoType::COLLIDE);
                     auto otherEntityDrawable =
