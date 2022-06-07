@@ -10,6 +10,8 @@
 
 indie::menu::SetFpsScreen::SetFpsScreen() : _cursorPosition(FPS_30)
 {
+    _fps = indie::raylib::Window::getFPS();
+
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
     cursor->addComponent<ecs::component::Transform>(
         static_cast<float>(320.0), static_cast<float>(410.0), static_cast<float>(0.0), static_cast<float>(0.0));
@@ -19,29 +21,29 @@ indie::menu::SetFpsScreen::SetFpsScreen() : _cursorPosition(FPS_30)
     std::unique_ptr<ecs::entity::Entity> fps_text = std::make_unique<ecs::entity::Entity>();
     fps_text->addComponent<ecs::component::Transform>(
         static_cast<float>(400.0), static_cast<float>(300.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    fps_text->addComponent<ecs::component::Drawable2D>("FPS", static_cast<float>(50.0), BLACK);
-    fps_text->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    fps_text->addComponent<ecs::component::Drawable2D>("Choose the FPS", static_cast<float>(50.0), BLACK);
+    fps_text->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(470.0), BLUE);
     addEntity(std::move(fps_text));
 
     std::unique_ptr<ecs::entity::Entity> set_fps_30 = std::make_unique<ecs::entity::Entity>();
     set_fps_30->addComponent<ecs::component::Transform>(
         static_cast<float>(400.0), static_cast<float>(400.0), static_cast<float>(0.0), static_cast<float>(0.0));
     set_fps_30->addComponent<ecs::component::Drawable2D>("30", static_cast<float>(50.0), BLACK);
-    set_fps_30->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    set_fps_30->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(70.0), BLUE);
     addEntity(std::move(set_fps_30));
 
     std::unique_ptr<ecs::entity::Entity> set_fps_60 = std::make_unique<ecs::entity::Entity>();
     set_fps_60->addComponent<ecs::component::Transform>(
         static_cast<float>(400.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
     set_fps_60->addComponent<ecs::component::Drawable2D>("60", static_cast<float>(50.0), BLACK);
-    set_fps_60->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    set_fps_60->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(70.0), BLUE);
     addEntity(std::move(set_fps_60));
 
     std::unique_ptr<ecs::entity::Entity> options = std::make_unique<ecs::entity::Entity>();
     options->addComponent<ecs::component::Transform>(
         static_cast<float>(400.0), static_cast<float>(600.0), static_cast<float>(0.0), static_cast<float>(0.0));
     options->addComponent<ecs::component::Drawable2D>("Back to options", static_cast<float>(50.0), BLACK);
-    options->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    options->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(470.0), BLUE);
     addEntity(std::move(options));
 
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemOption =
@@ -63,8 +65,6 @@ void indie::menu::SetFpsScreen::draw()
 
 int indie::menu::SetFpsScreen::handleEvent(indie::Event &event)
 {
-    int fps = 0;
-
     if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN) {
         indie::ecs::component::Transform *transformCompo =
             _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
@@ -79,17 +79,9 @@ int indie::menu::SetFpsScreen::handleEvent(indie::Event &event)
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == FPS_30) {
         indie::raylib::Window::setTargetFPS(30);
-        indie::raylib::Draw::drawFPS(10, 10);
-        fps = indie::raylib::Window::getFPS();
-        std::cout << "FPS: " << fps << std::endl;
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == FPS_60) {
         indie::raylib::Window::setTargetFPS(60);
-        indie::raylib::Draw::drawFPS(10, 10);
-        fps = indie::raylib::Window::getFPS();
-        std::cout << "FPS: " << fps << std::endl;
-        // int fps = indie::raylib::Window::getFPS();
-        // std::cout << fps << std::endl;
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == OPTIONS)
         return 3;
