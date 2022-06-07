@@ -35,8 +35,8 @@ void indie::menu::EndScreen::draw()
 
 int indie::menu::EndScreen::handleEvent(indie::Event &event)
 {
-    if (event.controller[0].code == indie::Event::ControllerCode::T_BUTTON)
-        return 2;
+    if (event.controller[0].code == indie::Event::ControllerCode::X_BUTTON)
+        return 1;
     return 0;
 }
 

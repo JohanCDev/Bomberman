@@ -139,6 +139,8 @@ void indie::Game::reinitGame()
 {
     delete _game;
     _game = new indie::menu::GameScreen;
+    delete _premenu;
+    _premenu = new indie::menu::PreMenuScreen;
 }
 
 void indie::Game::setActualScreen(Screens newScreen)
