@@ -18,6 +18,7 @@
 #include "../ecs/system/Draw3D/Draw3D.hpp"
 #include "../ecs/system/Movement/Movement.hpp"
 #include "../ecs/system/Sound/Sound.hpp"
+#include "events.hpp"
 
 namespace indie
 {
@@ -33,6 +34,7 @@ namespace indie
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
             indie::raylib::Camera3D getCamera() const;
+            void initMap(std::vector<std::vector<char>> map);
 
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;

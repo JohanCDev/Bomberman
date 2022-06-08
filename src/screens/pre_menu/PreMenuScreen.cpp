@@ -33,7 +33,7 @@ indie::menu::PreMenuScreen::PreMenuScreen()
 void indie::menu::PreMenuScreen::draw()
 {
     indie::raylib::Window::beginDrawing();
-    indie::raylib::Window::clearBackground();
+    indie::raylib::Window::clearBackground(WHITE);
 
     for (auto &system : this->_systems) {
         system->update(this->_entities);

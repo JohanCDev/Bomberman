@@ -1,9 +1,8 @@
 name: Build
 
-
-on:  
+on:
   push:
-    branches:
+    branches-ignore:
       - master
     paths:
       - "**/CMakeLists.txt"
@@ -23,7 +22,7 @@ jobs:
   build-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+
       - name: install-raylib-ubuntu-prerequisites
         run: |
           sudo apt install -y build-essential \
@@ -46,40 +45,44 @@ jobs:
           cmake -DBUILD_SHARED_LIBS=ON ..
           make
           sudo make install
-          cd ..
-          rm -fr raylib
+#          cd ..
+#          rm -fr raylib
 
       - name: install-emscriptensdk-ubuntu-prerequisites
         run: |
-          sudo apt install -y git \
+          sudo apt install -y \
+            git \
             python3 \
             cmake
 
       - name: install-emscriptensdk-ubuntu-build
         run: |
-          git clone https://github.com/emscripten-core/emsdk.git
-          cd emsdk
+          git clone https://github.com/emscripten-core/emsdk.git ~/emsdk
+          cd ~/emsdk
           ./emsdk install latest
           ./emsdk activate latest
-          source ./emsdk_env.sh
-          cd ..
+#          source ./emsdk_env.sh
+#          cd ..
 
-      - name: build-on-ubuntu
-        run: |
-          mkdir build
-          cd build && cmake ..
-          cmake --build .
-          cd ..
+      - uses: actions/checkout@v2
 
-      - name: print-check-ubuntu
+#      - name: build-desktop-on-ubuntu
+#        run: |
+#          mkdir build
+#          cd build && cmake ..
+#          cmake --build .
+##          cd ..
+
+      - name: build-web-on-ubuntu
         run: |
-          ls -l
-          ls -l build
+          source ~/emsdk/emsdk_env.sh
+          emcmake cmake -S . -B build -DPLATFORM=Web
+          cd build && make
+#          cd ../..
 
   build-on-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v1
 
       - name: install-raylib-windows-build
         run: |
@@ -88,8 +91,8 @@ jobs:
           bootstrap-vcpkg.bat
           vcpkg integrate install
           vcpkg install raylib
-          cd ..
-          Remove-Item -Force -Recurse vcpkg
+#          cd ..
+#          Remove-Item -Force -Recurse vcpkg
 
       - name: install-emscriptensdk-windows-build
         run: |
@@ -98,14 +101,16 @@ jobs:
           ./emsdk install latest
           ./emsdk activate latest
           emsdk_env.bat
-          cd ..
+#          cd ..
 
-      - name: build-on-windows
+      - uses: actions/checkout@v1
+
+      - name: build-desktop-on-windows
         run: |
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Debug
           cmake --build .
-    
+
       - name: check-binary
         shell: bash
         if: matrix.name == 'Linux'

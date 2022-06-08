@@ -11,6 +11,7 @@
 #include <iostream>
 #include <memory>
 #include "../gameEvents/GameEvents.hpp"
+#include "../map/MapGenerator.hpp"
 #include "../raylib/Raylib.hpp"
 #include "../screens/IScreen.hpp"
 
@@ -80,6 +81,9 @@ void indie::Game::run()
 {
     int ret = 0;
 
+    indie::map::MapGenerator map;
+
+    map.createWall();
     int64_t newTime = 0;
     int64_t currentTime =
         std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
@@ -88,6 +92,13 @@ void indie::Game::run()
     int64_t draw_aq = 0;
     const float initUpdateMs = static_cast<float>(_fps) * 1000;
     float updateMs = initUpdateMs;
+    std::unique_ptr<indie::ecs::entity::Entity> entityX = std::make_unique<indie::ecs::entity::Entity>();
+    entityX->addComponent<indie::ecs::component::Transform>(
+        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    entityX->addComponent<indie::ecs::component::Drawable3D>(
+        "", static_cast<float>(10.5), static_cast<float>(0.05), static_cast<float>(10), LIGHTGRAY);
+    this->_game->initMap(map.getMap());
+    this->_game->addEntity(std::move(entityX));
 
     while (!indie::raylib::Window::windowShouldClose()) {
         newTime =
