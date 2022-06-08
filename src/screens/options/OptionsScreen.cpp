@@ -10,6 +10,10 @@
 
 indie::menu::OptionsScreen::OptionsScreen() : _cursorPosition(MENU)
 {
+}
+
+void indie::menu::OptionsScreen::init()
+{
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
     cursor->addComponent<ecs::component::Transform>(
         static_cast<float>(320.0), static_cast<float>(510.0), static_cast<float>(0.0), static_cast<float>(0.0));

@@ -12,6 +12,10 @@ indie::menu::PreMenuScreen::PreMenuScreen()
     : _nb_players(1), _is_player2_playing(false), _is_player3_playing(false), _is_player4_playing(false),
       _is_player1_ready(false), _is_player2_ready(false), _is_player3_ready(false), _is_player4_ready(false)
 {
+}
+
+void indie::menu::PreMenuScreen::init()
+{
     std::unique_ptr<ecs::entity::Entity> launch_game = std::make_unique<ecs::entity::Entity>();
     launch_game->addComponent<ecs::component::Transform>(
         static_cast<float>(600.0), static_cast<float>(850.0), static_cast<float>(0.0), static_cast<float>(0.0));

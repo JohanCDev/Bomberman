@@ -28,6 +28,7 @@ namespace indie
           public:
             GameScreen();
             ~GameScreen() = default;
+            void init() override;
             void draw() override;
             void update(float delta) override;
             int handleEvent(indie::Event &event) override;

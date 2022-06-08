@@ -10,6 +10,10 @@
 
 indie::menu::EndScreen::EndScreen()
 {
+}
+
+void indie::menu::EndScreen::init()
+{
     std::unique_ptr<ecs::entity::Entity> launch_game = std::make_unique<ecs::entity::Entity>();
     launch_game->addComponent<ecs::component::Transform>(
         static_cast<float>(600.0), static_cast<float>(850.0), static_cast<float>(0.0), static_cast<float>(0.0));

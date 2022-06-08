@@ -32,6 +32,7 @@ namespace indie
         enum class Screens { Game, Menu, Options, PreMenu, GameOptions, End, Count };
         Game(size_t baseFps = 60);
         ~Game();
+        void init_scenes();
         void run();
         void draw();
         int handleEvent();

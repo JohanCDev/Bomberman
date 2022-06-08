@@ -24,6 +24,7 @@ namespace indie
             enum cursorPosition { NEW_GAME = 510, LOAD_GAME = 610, OPTIONS = 710, EXIT = 810 };
             MenuScreen();
             ~MenuScreen() = default;
+            void init() override;
             void draw() override;
             void update(float delta) override;
             int handleEvent(indie::Event &event) override;

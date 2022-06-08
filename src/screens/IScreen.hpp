@@ -18,6 +18,7 @@ namespace indie
     class IScreen {
       public:
         virtual ~IScreen() = default;
+        virtual void init() = 0;
         virtual void draw() = 0;
         virtual void update(float delta) = 0;
         virtual int handleEvent(indie::Event &event) = 0;

@@ -22,6 +22,7 @@ namespace indie
             enum cursorPosition { RESUME = 510, SAVE = 610, MENU = 710, EXIT = 810 };
             GameOptionsScreen();
             ~GameOptionsScreen() = default;
+            void init() override;
             void draw() override;
             void update(float delta) override;
             int handleEvent(indie::Event &event) override;
