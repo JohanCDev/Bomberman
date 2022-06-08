@@ -16,7 +16,7 @@ indie::menu::MenuScreen::MenuScreen()
 void indie::menu::MenuScreen::draw()
 {
     indie::raylib::Window::beginDrawing();
-    indie::raylib::Window::clearBackground();
+    indie::raylib::Window::clearBackground(RAYWHITE);
 
     for (auto &system : this->_systems) {
         system->update(this->_entities);

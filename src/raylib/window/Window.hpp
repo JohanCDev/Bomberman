@@ -59,7 +59,7 @@ namespace indie
             /**
              * @brief Set background color (framebuffer clear color)
              */
-            static void clearBackground();
+            static void clearBackground(Color color);
 
             /**
              * @brief Check if KEY_ESCAPE pressed or Close icon pressed
