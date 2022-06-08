@@ -35,7 +35,8 @@ indie::ecs::component::Drawable2D::Drawable2D(std::string texturePath, float hei
     this->_width = width;
     this->_color = color;
     this->_texturePath = texturePath;
-    this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
+    if (!texturePath.empty())
+        this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
     this->_compoType = indie::ecs::component::compoType::DRAWABLE2D;
     this->_drawableType = indie::ecs::component::drawableType::RECTANGLE;
 }
