@@ -38,4 +38,28 @@
         255, 255, 0, 255 \
     }
 
+#define GREENPLAYERCOLOR \
+    CLITERAL(Color)      \
+    {                    \
+        92, 87, 62, 255  \
+    }
+
+#define YELLOWPLAYERCOLOR  \
+    CLITERAL(Color)        \
+    {                      \
+        245, 212, 145, 255 \
+    }
+
+#define REDPLAYERCOLOR   \
+    CLITERAL(Color)      \
+    {                    \
+        209, 73, 91, 255 \
+    }
+
+#define BLUEPLAYERCOLOR    \
+    CLITERAL(Color)        \
+    {                      \
+        163, 231, 252, 255 \
+    }
+
 #endif
