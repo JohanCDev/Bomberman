@@ -10,10 +10,12 @@
 
 #include <memory>
 #include <vector>
+
 #include "../../ecs/entity/Entity.hpp"
 #include "../../ecs/system/ISystem.hpp"
 #include "../IScreen.hpp"
 #include "events.hpp"
+#include "uiPlayerDisplay/UIPlayerDisplay.hpp"
 
 namespace indie
 {
@@ -32,6 +34,7 @@ namespace indie
 
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
+            std::vector<std::unique_ptr<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>> _infoPlayers;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
             indie::raylib::Camera3D _camera;
         };

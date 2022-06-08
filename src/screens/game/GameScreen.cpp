@@ -6,11 +6,29 @@
 */
 
 #include "GameScreen.hpp"
+#include "../../player/Player.hpp"
 #include "../../raylib/Raylib.hpp"
+#include "Colors.hpp"
+#include "uiPlayerDisplay/UIPlayerDisplay.hpp"
 
 indie::menu::GameScreen::GameScreen()
     : _camera({0.0, 10.0, 10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, 45.0, CAMERA_PERSPECTIVE)
 {
+    player::Player player1(BLUEPLAYERCOLOR, 0, {0, 0});
+    player::Player player2(REDPLAYERCOLOR, 1, {0, 0});
+    player::Player player3(YELLOWPLAYERCOLOR, 2, {0, 0});
+    player::Player player4(GREENPLAYERCOLOR, 3, {0, 0});
+    this->_infoPlayers.push_back(std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(
+        player1, (vec2f){50.0, 50.0}, (vec2f){200.0, 300.0}));
+    this->_infoPlayers.push_back(std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(
+        player2, (vec2f){50.0, 950.0}, (vec2f){200.0, 300.0}));
+    this->_infoPlayers.push_back(std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(
+        player3, (vec2f){1600.0, 50.0}, (vec2f){200.0, 300.0}));
+    this->_infoPlayers.push_back(std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(
+        player4, (vec2f){1600.0, 950.0}, (vec2f){200.0, 300.0}));
+    for (auto &uiDisplay : this->_infoPlayers) {
+        uiDisplay->create();
+    }
 }
 
 void indie::menu::GameScreen::draw()
@@ -27,6 +45,10 @@ void indie::menu::GameScreen::draw()
         } else {
             system->update(this->_entities);
         }
+    }
+    for (auto &uiDisplay : this->_infoPlayers) {
+        if (uiDisplay->getPlayer().getIsAlive())
+            uiDisplay->draw();
     }
     indie::raylib::Window::endDrawing();
 }

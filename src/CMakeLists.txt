@@ -84,6 +84,8 @@ set(SRC_SCREEN
     ${SCREENSROOT}menu/MenuScreen.hpp
     ${SCREENSROOT}game/GameScreen.cpp
     ${SCREENSROOT}game/GameScreen.hpp
+    ${SCREENSROOT}game/uiPlayerDisplay/UIPlayerDisplay.cpp
+    ${SCREENSROOT}game/uiPlayerDisplay/UIPlayerDisplay.hpp
 )
 
 set(SRC_MAP
