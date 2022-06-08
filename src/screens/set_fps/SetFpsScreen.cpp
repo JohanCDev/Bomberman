@@ -10,8 +10,6 @@
 
 indie::menu::SetFpsScreen::SetFpsScreen() : _cursorPosition(FPS_30)
 {
-    _fps = indie::raylib::Window::getFPS();
-
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
     cursor->addComponent<ecs::component::Transform>(
         static_cast<float>(320.0), static_cast<float>(410.0), static_cast<float>(0.0), static_cast<float>(0.0));

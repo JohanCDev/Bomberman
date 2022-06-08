@@ -40,7 +40,6 @@ namespace indie
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
             int _cursorPosition;
-            int _fps;
         };
     } // namespace menu
 } // namespace indie
