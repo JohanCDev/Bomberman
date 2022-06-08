@@ -47,7 +47,7 @@ namespace indie
                  * @param width the width of the rectangle.
                  * @param color the color of the rectangle.
                  */
-                Drawable2D(float height, float width, Color color);
+                Drawable2D(std::string texturePath, float height, float width, Color color);
 
                 /**
                  * @brief Destroy the component.
@@ -98,6 +98,12 @@ namespace indie
                  */
                 std::string getText();
 
+                std::string getTexturePath() const;
+                void setTexturePath(std::string texturePath);
+
+                Texture2D getTexture() const;
+                void setTexture(std::string texturePath);
+
               private:
                 float _radius;
                 float _height;
@@ -105,6 +111,8 @@ namespace indie
                 std::string _text;
                 float _fontSize;
                 Color _color;
+                std::string _texturePath;
+                Texture2D _texture;
                 indie::ecs::component::compoType _compoType;
                 indie::ecs::component::drawableType _drawableType;
             };

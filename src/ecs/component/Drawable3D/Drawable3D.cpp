@@ -14,6 +14,7 @@ indie::ecs::component::Drawable3D::Drawable3D()
     this->_height = 0.0;
     this->_width = 0.0;
     this->_color = WHITE;
+    this->_texturePath = "";
     this->_compoType = indie::ecs::component::compoType::DRAWABLE3D;
     this->_drawableType = indie::ecs::component::drawableType::UNKNOWNDRAWABLE;
 }
@@ -24,16 +25,21 @@ indie::ecs::component::Drawable3D::Drawable3D(float radius, Color color)
     this->_height = 0.0;
     this->_width = 0.0;
     this->_color = color;
+    this->_texturePath = "";
     this->_compoType = indie::ecs::component::compoType::DRAWABLE3D;
     this->_drawableType = indie::ecs::component::drawableType::SPHERE;
 }
 
-indie::ecs::component::Drawable3D::Drawable3D(float width, float height, float length, Color color)
+indie::ecs::component::Drawable3D::Drawable3D(
+    std::string texturePath, float width, float height, float length, Color color)
 {
     this->_radius = 0.0;
     this->_height = height;
     this->_width = width;
+    this->_length = length;
     this->_color = color;
+    this->_texturePath = texturePath;
+    this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
     this->_compoType = indie::ecs::component::compoType::DRAWABLE3D;
     this->_drawableType = indie::ecs::component::drawableType::CUBE;
 }
@@ -75,4 +81,26 @@ float indie::ecs::component::Drawable3D::getWidth()
 float indie::ecs::component::Drawable3D::getLength()
 {
     return (this->_length);
+}
+
+std::string indie::ecs::component::Drawable3D::getTexturePath() const
+{
+    return (this->_texturePath);
+}
+
+void indie::ecs::component::Drawable3D::setTexturePath(std::string texturePath)
+{
+    this->_texturePath = texturePath;
+}
+
+Texture2D indie::ecs::component::Drawable3D::getTexture() const
+{
+    return (this->_texture);
+}
+
+void indie::ecs::component::Drawable3D::setTexture(std::string texturePath)
+{
+    indie::raylib::Texture2D::unload(this->_texture);
+    this->_texturePath = texturePath;
+    this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
 }

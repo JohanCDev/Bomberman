@@ -8,6 +8,7 @@
 #ifndef DRAWABLE3D_HPP_
 #define DRAWABLE3D_HPP_
 
+#include <string>
 #include "../IComponent.hpp"
 
 namespace indie
@@ -39,7 +40,7 @@ namespace indie
                  * @param length the length of the cube.
                  * @param color the color of the cube.
                  */
-                Drawable3D(float height, float width, float length, Color color);
+                Drawable3D(std::string texturePath, float height, float width, float length, Color color);
 
                 /**
                  * @brief Destroy drawable 3d component.
@@ -95,12 +96,20 @@ namespace indie
                  */
                 float getLength();
 
+                std::string getTexturePath() const;
+                void setTexturePath(std::string texturePath);
+
+                Texture2D getTexture() const;
+                void setTexture(std::string texturePath);
+
               private:
                 float _radius;
                 float _height;
                 float _width;
                 float _length;
                 Color _color;
+                std::string _texturePath;
+                Texture2D _texture;
                 indie::ecs::component::compoType _compoType;
                 indie::ecs::component::drawableType _drawableType;
             };

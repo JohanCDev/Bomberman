@@ -13,9 +13,14 @@
 #include <string>
 #include <vector>
 #include "../component/Alive/Alive.hpp"
+#include "../component/Collectable/Collectable.hpp"
+#include "../component/Collide/Collide.hpp"
 #include "../component/Drawable2D/Drawable2D.hpp"
 #include "../component/Drawable3D/Drawable3D.hpp"
+#include "../component/Explodable/Explodable.hpp"
 #include "../component/IComponent.hpp"
+#include "../component/Inventory/Inventory.hpp"
+#include "../component/Sound/Sound.hpp"
 #include "../component/Transform/Transform.hpp"
 
 namespace indie
@@ -61,6 +66,17 @@ namespace indie
                             return (true);
                     }
                     return (false);
+                }
+
+                std::vector<indie::ecs::component::Drawable2D *> getDrawableVector() const
+                {
+                    std::vector<indie::ecs::component::Drawable2D *> vector;
+                    for (auto &compo : _componentVector) {
+                        if (compo->getType() == indie::ecs::component::compoType::DRAWABLE2D) {
+                            vector.push_back(dynamic_cast<indie::ecs::component::Drawable2D *>(compo.get()));
+                        }
+                    }
+                    return (vector);
                 }
 
                 /**
