@@ -94,6 +94,8 @@ void indie::Game::run()
 
     init_scenes();
     map.createWall();
+    this->_game->initMap(map.getMap());
+
     int64_t newTime = 0;
     int64_t currentTime =
         std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
@@ -102,7 +104,6 @@ void indie::Game::run()
     int64_t draw_aq = 0;
     const float initUpdateMs = static_cast<float>(_fps) * 1000;
     float updateMs = initUpdateMs;
-    this->_game->initMap(map.getMap());
 
     while (!indie::raylib::Window::windowShouldClose()) {
         newTime =
@@ -154,8 +155,13 @@ void indie::Game::reinitGame()
 {
     delete _game;
     _game = new indie::menu::GameScreen;
+    _game->init();
+    indie::map::MapGenerator map;
+    map.createWall();
+    this->_game->initMap(map.getMap());
     delete _premenu;
     _premenu = new indie::menu::PreMenuScreen;
+    _premenu->init();
 }
 
 void indie::Game::setActualScreen(Screens newScreen)

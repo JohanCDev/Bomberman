@@ -29,6 +29,10 @@ namespace indie
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
 
             int getNbPlayers() const;
+            bool isPlayer2Playing() const;
+            bool isPlayer3Playing() const;
+            bool isPlayer4Playing() const;
+
             bool check_if_players_are_ready();
             void handlePlayer1(indie::Event &event);
             void handlePlayer2(indie::Event &event);
@@ -39,16 +43,20 @@ namespace indie
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
             int _nb_players;
+
             bool _is_player2_playing;
             bool _is_player3_playing;
             bool _is_player4_playing;
+
             bool _is_player1_ready;
             bool _is_player2_ready;
             bool _is_player3_ready;
             bool _is_player4_ready;
+
             int _player2_pos;
             int _player3_pos;
             int _player4_pos;
+
             int _player1_ready_pos;
             int _player2_ready_pos;
             int _player3_ready_pos;

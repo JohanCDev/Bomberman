@@ -16,6 +16,13 @@ indie::menu::PreMenuScreen::PreMenuScreen()
 
 void indie::menu::PreMenuScreen::init()
 {
+    std::unique_ptr<ecs::entity::Entity> background = std::make_unique<ecs::entity::Entity>();
+    background->addComponent<ecs::component::Transform>(
+        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    background->addComponent<ecs::component::Drawable2D>(
+        "assets/menu/bg.png", static_cast<float>(1200.0), static_cast<float>(2000.0), WHITE);
+    addEntity(std::move(background));
+
     std::unique_ptr<ecs::entity::Entity> launch_game = std::make_unique<ecs::entity::Entity>();
     launch_game->addComponent<ecs::component::Transform>(
         static_cast<float>(600.0), static_cast<float>(850.0), static_cast<float>(0.0), static_cast<float>(0.0));
@@ -26,7 +33,8 @@ void indie::menu::PreMenuScreen::init()
     std::unique_ptr<ecs::entity::Entity> player1 = std::make_unique<ecs::entity::Entity>();
     player1->addComponent<ecs::component::Transform>(
         static_cast<float>(200.0), static_cast<float>(300.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    player1->addComponent<ecs::component::Drawable2D>("", static_cast<float>(500.0), static_cast<float>(300.0), BLUE);
+    player1->addComponent<ecs::component::Drawable2D>(
+        "assets/menu/blue.png", static_cast<float>(400.0), static_cast<float>(300.0), WHITE);
     addEntity(std::move(player1));
 
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemPreMenu =
@@ -78,6 +86,21 @@ int indie::menu::PreMenuScreen::getNbPlayers() const
     return _nb_players;
 }
 
+bool indie::menu::PreMenuScreen::isPlayer2Playing() const
+{
+    return _is_player2_playing;
+}
+
+bool indie::menu::PreMenuScreen::isPlayer3Playing() const
+{
+    return _is_player3_playing;
+}
+
+bool indie::menu::PreMenuScreen::isPlayer4Playing() const
+{
+    return _is_player4_playing;
+}
+
 bool indie::menu::PreMenuScreen::check_if_players_are_ready()
 {
     if (!_is_player1_ready)
@@ -96,8 +119,9 @@ void indie::menu::PreMenuScreen::handlePlayer1(indie::Event &event)
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && !_is_player1_ready) {
         std::unique_ptr<ecs::entity::Entity> ready = std::make_unique<ecs::entity::Entity>();
         ready->addComponent<ecs::component::Transform>(
-            static_cast<float>(280.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
-        ready->addComponent<ecs::component::Drawable2D>("READY", static_cast<float>(40.0), BLACK);
+            static_cast<float>(200.0), static_cast<float>(350.0), static_cast<float>(0.0), static_cast<float>(0.0));
+        ready->addComponent<ecs::component::Drawable2D>(
+            "assets/menu/ready.png", static_cast<float>(300.0), static_cast<float>(300.0), WHITE);
         addEntity(std::move(ready));
         _player1_ready_pos = _entities.size() - 1;
         _is_player1_ready = true;
@@ -116,7 +140,7 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
         player2->addComponent<ecs::component::Transform>(
             static_cast<float>(600.0), static_cast<float>(300.0), static_cast<float>(0.0), static_cast<float>(0.0));
         player2->addComponent<ecs::component::Drawable2D>(
-            "", static_cast<float>(500.0), static_cast<float>(300.0), RED);
+            "assets/menu/red.png", static_cast<float>(400.0), static_cast<float>(300.0), WHITE);
         addEntity(std::move(player2));
         _nb_players++;
         _player2_pos = _entities.size() - 1;
@@ -133,8 +157,9 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
         && _is_player2_playing) {
         std::unique_ptr<ecs::entity::Entity> ready = std::make_unique<ecs::entity::Entity>();
         ready->addComponent<ecs::component::Transform>(
-            static_cast<float>(680.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
-        ready->addComponent<ecs::component::Drawable2D>("READY", static_cast<float>(40.0), BLACK);
+            static_cast<float>(600.0), static_cast<float>(350.0), static_cast<float>(0.0), static_cast<float>(0.0));
+        ready->addComponent<ecs::component::Drawable2D>(
+            "assets/menu/ready.png", static_cast<float>(300.0), static_cast<float>(300.0), WHITE);
         addEntity(std::move(ready));
         _player2_ready_pos = _entities.size() - 1;
         _is_player2_ready = true;
@@ -162,7 +187,7 @@ void indie::menu::PreMenuScreen::handlePlayer3(indie::Event &event)
         player3->addComponent<ecs::component::Transform>(
             static_cast<float>(1000.0), static_cast<float>(300.0), static_cast<float>(0.0), static_cast<float>(0.0));
         player3->addComponent<ecs::component::Drawable2D>(
-            "", static_cast<float>(500.0), static_cast<float>(300.0), GREEN);
+            "assets/menu/green.png", static_cast<float>(400.0), static_cast<float>(300.0), WHITE);
         addEntity(std::move(player3));
         _player3_pos = _entities.size() - 1;
         _nb_players++;
@@ -179,8 +204,9 @@ void indie::menu::PreMenuScreen::handlePlayer3(indie::Event &event)
         && _is_player3_playing) {
         std::unique_ptr<ecs::entity::Entity> ready = std::make_unique<ecs::entity::Entity>();
         ready->addComponent<ecs::component::Transform>(
-            static_cast<float>(1080.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
-        ready->addComponent<ecs::component::Drawable2D>("READY", static_cast<float>(40.0), BLACK);
+            static_cast<float>(1000.0), static_cast<float>(350.0), static_cast<float>(0.0), static_cast<float>(0.0));
+        ready->addComponent<ecs::component::Drawable2D>(
+            "assets/menu/ready.png", static_cast<float>(300.0), static_cast<float>(300.0), WHITE);
         addEntity(std::move(ready));
         _player3_ready_pos = _entities.size() - 1;
         _is_player3_ready = true;
@@ -208,7 +234,7 @@ void indie::menu::PreMenuScreen::handlePlayer4(indie::Event &event)
         player4->addComponent<ecs::component::Transform>(
             static_cast<float>(1400.0), static_cast<float>(300.0), static_cast<float>(0.0), static_cast<float>(0.0));
         player4->addComponent<ecs::component::Drawable2D>(
-            "", static_cast<float>(500.0), static_cast<float>(300.0), YELLOW);
+            "assets/menu/yellow.png", static_cast<float>(400.0), static_cast<float>(300.0), WHITE);
         addEntity(std::move(player4));
         _player4_pos = _entities.size() - 1;
         _nb_players++;
@@ -225,8 +251,9 @@ void indie::menu::PreMenuScreen::handlePlayer4(indie::Event &event)
         && _is_player4_playing) {
         std::unique_ptr<ecs::entity::Entity> ready = std::make_unique<ecs::entity::Entity>();
         ready->addComponent<ecs::component::Transform>(
-            static_cast<float>(1480.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
-        ready->addComponent<ecs::component::Drawable2D>("READY", static_cast<float>(40.0), BLACK);
+            static_cast<float>(1400.0), static_cast<float>(350.0), static_cast<float>(0.0), static_cast<float>(0.0));
+        ready->addComponent<ecs::component::Drawable2D>(
+            "assets/menu/ready.png", static_cast<float>(300.0), static_cast<float>(300.0), WHITE);
         addEntity(std::move(ready));
         _player4_ready_pos = _entities.size() - 1;
         _is_player4_ready = true;
