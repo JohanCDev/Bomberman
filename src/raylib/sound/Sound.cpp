@@ -8,7 +8,7 @@
 #include "Sound.hpp"
 
 indie::raylib::Sound::Sound(const std::string& fileName) {
-    ::LoadSound(fileName.c_str());
+    _sound = ::LoadSound(fileName.c_str());
 }
 
 indie::raylib::Sound::~Sound() {
