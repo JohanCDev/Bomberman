@@ -57,9 +57,9 @@ namespace indie
             static void endDrawing();
 
             /**
-             * @brief Set background color (framebuffer clear color)
-             */
-            static void clearBackground();
+            * @brief Set background color (framebuffer clear color)
+            */
+            static void clearBackground(Color color);
 
             /**
              * @brief Check if KEY_ESCAPE pressed or Close icon pressed
