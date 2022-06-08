@@ -51,7 +51,7 @@ namespace indie
                     return (this->_mainEntity.back()
                                 ->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)
                                 ->getY()
-                        + 30.f);
+                        + 25.f);
                 }
 
                 indie::player::Player UIPlayerDisplay::getPlayer() const
@@ -67,7 +67,7 @@ namespace indie
                     std::string speedStr("Speed: " + std::to_string(this->_player->getSpeed()));
                     std::string bombsStr("Bomb stock: " + std::to_string(this->_player->getBombStock()) + " / "
                         + std::to_string(this->_player->getMaxBombStock()));
-                    std::string crossWallInfo(this->_player->getCrossWalls() ? "Activated" : "Not actvated");
+                    std::string crossWallInfo(this->_player->getCrossWalls() ? "Yes" : "No");
                     std::string crossWallsStr("Cross walls: " + crossWallInfo);
                     std::string bombsRadiusStr("Bomb Radius: " + std::to_string(this->_player->getBombRadius()));
 
