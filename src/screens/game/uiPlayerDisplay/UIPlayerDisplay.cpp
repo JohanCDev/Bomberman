@@ -51,7 +51,7 @@ namespace indie
                     return (this->_mainEntity.back()
                                 ->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)
                                 ->getY()
-                        + 22.f);
+                        + 30.f);
                 }
 
                 indie::player::Player UIPlayerDisplay::getPlayer() const
@@ -75,11 +75,11 @@ namespace indie
                         "", this->_size.x, this->_size.y, this->_player->getColor());
                     container->addComponent<ecs::component::Transform>(this->_position.x, this->_position.y, 0.f, 0.f);
                     this->_mainEntity.push_back(std::move(container));
-                    create_single_text_entity(playerStr, {this->_position.x + 2, this->_position.y + 2});
-                    create_single_text_entity(speedStr, {this->_position.x + 2, this->getNextYPos()});
-                    create_single_text_entity(bombsStr, {this->_position.x + 2, this->getNextYPos()});
-                    create_single_text_entity(crossWallsStr, {this->_position.x + 2, this->getNextYPos()});
-                    create_single_text_entity(bombsRadiusStr, {this->_position.x + 2, this->getNextYPos()});
+                    create_single_text_entity(playerStr, {this->_position.x + 5, this->_position.y + 5});
+                    create_single_text_entity(speedStr, {this->_position.x + 10, this->getNextYPos()});
+                    create_single_text_entity(bombsStr, {this->_position.x + 10, this->getNextYPos()});
+                    create_single_text_entity(crossWallsStr, {this->_position.x + 10, this->getNextYPos()});
+                    create_single_text_entity(bombsRadiusStr, {this->_position.x + 10, this->getNextYPos()});
                 }
 
                 void UIPlayerDisplay::draw()
