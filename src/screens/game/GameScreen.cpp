@@ -18,15 +18,20 @@ indie::menu::GameScreen::GameScreen()
     player::Player player2(REDPLAYERCOLOR, 1, {0, 0});
     player::Player player3(YELLOWPLAYERCOLOR, 2, {0, 0});
     player::Player player4(GREENPLAYERCOLOR, 3, {0, 0});
+    vec2f uiSize = vec2f({150.f, 200.f});
+    vec2f topLeftPos = vec2f({25.f, 25.f});
+    vec2f topRightPos = vec2f({1512.f - 225.f, 25.f});
+    vec2f bottomLeftPos = vec2f({25.f, 982.f - 175.f});
+    vec2f bottomRightPos = vec2f({1512.f - 225.f, 982.f - 175.f});
 
-    this->_infoPlayers.push_back(std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(
-        player1, (vec2f){25.f, 25.f}, (vec2f){150.0, 200.0}));
-    this->_infoPlayers.push_back(std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(
-        player2, (vec2f){25.f, 982.f - 175.f}, (vec2f){150.0, 200.0}));
-    this->_infoPlayers.push_back(std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(
-        player3, (vec2f){1512.f - 225.f, 25.f}, (vec2f){150.0, 200.0}));
-    this->_infoPlayers.push_back(std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(
-        player4, (vec2f){1512.f - 225.f, 982.f - 175.f}, (vec2f){150.0, 200.0}));
+    this->_infoPlayers.push_back(
+        std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player1, topLeftPos, uiSize));
+    this->_infoPlayers.push_back(
+        std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player2, topRightPos, uiSize));
+    this->_infoPlayers.push_back(
+        std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player3, bottomLeftPos, uiSize));
+    this->_infoPlayers.push_back(
+        std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player4, bottomRightPos, uiSize));
     for (auto &uiDisplay : this->_infoPlayers) {
         uiDisplay->create();
     }
