@@ -11,7 +11,7 @@
 indie::menu::SetSoundScreen::SetSoundScreen() : _cursorPosition(SOUND_0)
 {
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
-    cursor->addComponent<ecs::component::Transform>(320.0f, 710.0f, 0.0f, 0.0f);
+    cursor->addComponent<ecs::component::Transform>(320.0f, 310.0f, 0.0f, 0.0f);
     cursor->addComponent<ecs::component::Drawable2D>("", 40.0f, 40.0f, RED);
     addEntity(std::move(cursor));
 

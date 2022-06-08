@@ -24,6 +24,7 @@ indie::Game::Game(size_t baseFps)
     _premenu = new indie::menu::PreMenuScreen;
     _setFps = new indie::menu::SetFpsScreen;
     _setSound = new indie::menu::SetSoundScreen;
+    _setMusic = new indie::menu::SetMusicScreen;
 }
 
 indie::Game::~Game()
@@ -34,6 +35,7 @@ indie::Game::~Game()
     delete _premenu;
     delete _setFps;
     delete _setSound;
+    delete _setMusic;
 }
 
 bool indie::Game::processEvents()
@@ -58,6 +60,7 @@ void indie::Game::draw()
         case Screens::PreMenu: _premenu->draw(); break;
         case Screens::SetFps: _setFps->draw(); break;
         case Screens::SetSound: _setSound->draw(); break;
+        case Screens::SetMusic: _setMusic->draw(); break;
         default: break;
     }
 }
@@ -71,6 +74,7 @@ int indie::Game::handleEvent()
         case Screens::PreMenu: return (_premenu->handleEvent(_event));
         case Screens::SetFps: return (_setFps->handleEvent(_event));
         case Screens::SetSound: return (_setSound->handleEvent(_event));
+        case Screens::SetMusic: return (_setMusic->handleEvent(_event));
         default: break;
     }
     return true;
@@ -133,6 +137,8 @@ void indie::Game::handleScreensSwap(int ret)
         setActualScreen(Screens::SetFps);
     if (ret == 98)
         setActualScreen(Screens::SetSound);
+    if (ret == 97)
+        setActualScreen(Screens::SetMusic);
 }
 
 void indie::Game::reinitGame()
