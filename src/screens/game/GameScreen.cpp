@@ -41,6 +41,18 @@ void indie::menu::GameScreen::addEntity(std::unique_ptr<indie::ecs::entity::Enti
     this->_entities.push_back(std::move(entity));
 }
 
+void indie::menu::GameScreen::removeEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
+{
+    int count = 0;
+
+    for (auto &ent : this->_entities) {
+        if (ent == entity) {
+            this->_entities.erase(this->_entities.begin() + count);
+        }
+        count++;
+    }
+}
+
 void indie::menu::GameScreen::addSystem(std::unique_ptr<indie::ecs::system::ISystem> system)
 {
     this->_systems.push_back(std::move(system));

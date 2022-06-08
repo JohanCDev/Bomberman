@@ -70,8 +70,6 @@ void indie::Game::run()
     float updateMs = initUpdateMs;
     std::unique_ptr<indie::ecs::entity::Entity> entity =
         std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::TEXT);
-    std::unique_ptr<indie::ecs::entity::Entity> entity2 =
-        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::TEXT);
     std::unique_ptr<indie::ecs::entity::Entity> entity4 =
         std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::PLAYER1);
     std::unique_ptr<indie::ecs::entity::Entity> entity5 =
@@ -90,10 +88,6 @@ void indie::Game::run()
         "INDIE STUDIOOOO MENU BONJOURRRRRR", static_cast<float>(50.0), BLACK);
     this->_menu->addEntity(std::move(entity));
 
-    entity2->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity2->addComponent<indie::ecs::component::Drawable2D>(
-        "src/button.png", static_cast<float>(150.0), static_cast<float>(350.0), WHITE);
     entity4->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(-0.02), static_cast<float>(0.0));
     entity4->addComponent<indie::ecs::component::Drawable3D>(
@@ -106,7 +100,6 @@ void indie::Game::run()
     entity5->addComponent<indie::ecs::component::Collide>();
     //  entity4->addComponent<indie::ecs::component::Sound>("src/maybe-next-time.wav", false);
 
-    this->_game->addEntity(std::move(entity2));
     this->_game->addEntity(std::move(entity4));
     this->_game->addEntity(std::move(entity5));
     this->_game->addSystem(std::move(draw2DSystem));

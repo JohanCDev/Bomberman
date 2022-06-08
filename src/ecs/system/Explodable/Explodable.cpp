@@ -17,6 +17,8 @@ indie::ecs::system::Explodable::~Explodable()
 
 void indie::ecs::system::Explodable::update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities)
 {
+    int count = 0;
+
     for (auto &entity : entities) {
         if (entity->hasCompoType(indie::ecs::component::compoType::EXPLODABLE) == true) {
             auto explodableCompo =
@@ -32,10 +34,12 @@ void indie::ecs::system::Explodable::update(std::vector<std::unique_ptr<indie::e
                         std::chrono::duration_cast<std::chrono::seconds>(t_now - explodableCompo->getTStart());
                     if (explodableCompo->getSeconds() <= elapsed) {
                         explodableCompo->setExploded(true);
+                        entities.erase(entities.begin() + count);
                     }
                 }
             }
         }
+        count++;
     }
 }
 
