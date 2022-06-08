@@ -38,10 +38,10 @@
         255, 255, 0, 255 \
     }
 
-#define GREENPLAYERCOLOR \
-    CLITERAL(Color)      \
-    {                    \
-        92, 87, 62, 255  \
+#define GREENPLAYERCOLOR   \
+    CLITERAL(Color)        \
+    {                      \
+        175, 213, 170, 255 \
     }
 
 #define YELLOWPLAYERCOLOR  \
