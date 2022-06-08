@@ -19,8 +19,10 @@ indie::menu::MenuScreen::MenuScreen() : _cursorPosition(NEW_GAME)
     std::unique_ptr<ecs::entity::Entity> new_game = std::make_unique<ecs::entity::Entity>();
     new_game->addComponent<ecs::component::Transform>(
         static_cast<float>(400.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    new_game->addComponent<ecs::component::Drawable2D>("New Game", static_cast<float>(50.0), BLACK);
-    new_game->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    new_game->addComponent<ecs::component::Drawable2D>(
+        "assets/menu/new_game.png", static_cast<float>(50.0), static_cast<float>(50.0), WHITE);
+    // new_game->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0),
+    // BLUE);
     addEntity(std::move(new_game));
 
     std::unique_ptr<ecs::entity::Entity> load_game = std::make_unique<ecs::entity::Entity>();

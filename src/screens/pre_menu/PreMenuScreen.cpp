@@ -139,11 +139,21 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
         _entities.erase(_entities.begin() + _player2_ready_pos);
         _is_player2_ready = false;
     }
+    if (!event.controller[1].connected && _is_player2_playing) {
+        _entities.erase(_entities.begin() + _player2_pos);
+        _nb_players--;
+        _is_player2_playing = false;
+        if (_is_player2_ready) {
+            _entities.erase(_entities.begin() + _player2_ready_pos);
+            _is_player2_ready = false;
+        }
+    }
 }
 
 void indie::menu::PreMenuScreen::handlePlayer3(indie::Event &event)
 {
-    if (event.controller[2].connected && (event.controller[2].code == indie::Event::ControllerCode::X_BUTTON)) {
+    if (event.controller[2].connected && (event.controller[2].code == indie::Event::ControllerCode::X_BUTTON)
+        && !_is_player3_playing) {
         std::unique_ptr<ecs::entity::Entity> player3 = std::make_unique<ecs::entity::Entity>();
         player3->addComponent<ecs::component::Transform>(
             static_cast<float>(1000.0), static_cast<float>(300.0), static_cast<float>(0.0), static_cast<float>(0.0));
@@ -175,11 +185,21 @@ void indie::menu::PreMenuScreen::handlePlayer3(indie::Event &event)
         _entities.erase(_entities.begin() + _player3_ready_pos);
         _is_player3_ready = false;
     }
+    if (!event.controller[2].connected && _is_player3_playing) {
+        _entities.erase(_entities.begin() + _player3_pos);
+        _nb_players--;
+        _is_player3_playing = false;
+        if (_is_player3_ready) {
+            _entities.erase(_entities.begin() + _player3_ready_pos);
+            _is_player3_ready = false;
+        }
+    }
 }
 
 void indie::menu::PreMenuScreen::handlePlayer4(indie::Event &event)
 {
-    if (event.controller[3].connected && (event.controller[3].code == indie::Event::ControllerCode::X_BUTTON)) {
+    if (event.controller[3].connected && (event.controller[3].code == indie::Event::ControllerCode::X_BUTTON)
+        && !_is_player4_playing) {
         std::unique_ptr<ecs::entity::Entity> player4 = std::make_unique<ecs::entity::Entity>();
         player4->addComponent<ecs::component::Transform>(
             static_cast<float>(1400.0), static_cast<float>(300.0), static_cast<float>(0.0), static_cast<float>(0.0));
@@ -210,5 +230,14 @@ void indie::menu::PreMenuScreen::handlePlayer4(indie::Event &event)
     if ((event.controller[3].code == indie::Event::ControllerCode::O_BUTTON) && _is_player4_ready) {
         _entities.erase(_entities.begin() + _player4_ready_pos);
         _is_player4_ready = false;
+    }
+    if (!event.controller[3].connected && _is_player4_playing) {
+        _entities.erase(_entities.begin() + _player4_pos);
+        _nb_players--;
+        _is_player4_playing = false;
+        if (_is_player4_ready) {
+            _entities.erase(_entities.begin() + _player4_ready_pos);
+            _is_player4_ready = false;
+        }
     }
 }
