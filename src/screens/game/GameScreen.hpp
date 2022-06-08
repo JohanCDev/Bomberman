@@ -13,6 +13,7 @@
 #include "../../ecs/entity/Entity.hpp"
 #include "../../ecs/system/ISystem.hpp"
 #include "../IScreen.hpp"
+#include "events.hpp"
 
 namespace indie
 {
@@ -29,6 +30,7 @@ namespace indie
             void removeEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
             indie::raylib::Camera3D getCamera() const;
+            void initMap(std::vector<std::vector<char>> map);
 
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;

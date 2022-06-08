@@ -59,9 +59,9 @@ void indie::raylib::Window::endDrawing()
     ::EndDrawing();
 }
 
-void indie::raylib::Window::clearBackground()
+void indie::raylib::Window::clearBackground(Color color)
 {
-    ::ClearBackground(RAYWHITE);
+    ::ClearBackground(color);
 }
 
 void indie::raylib::Window::toggleFullScreen()

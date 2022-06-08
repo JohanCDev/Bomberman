@@ -7,9 +7,9 @@ set(MAPROOT ${SRCROOT}map/)
 set(SCREENSROOT ${SRCROOT}screens/)
 set(GAMEROOT ${SRCROOT}game/)
 set(EVENTSROOT ${SRCROOT}gameEvents/)
+set(PLAYERROOT ${SRCROOT}player/)
 
-set(SRC
-    ${SRCROOT}main.cpp
+set(SRC_ECS
     ${ECSROOT}component/IComponent.hpp
     ${ECSROOT}component/Transform/Transform.cpp
     ${ECSROOT}component/Transform/Transform.hpp
@@ -46,6 +46,9 @@ set(SRC
     ${ECSROOT}system/Explodable/Explodable.cpp
     ${ECSROOT}system/Explodable/Explodable.hpp
     ${ECSROOT}system/ISystem.hpp
+)
+
+set(SRC_RAY
     ${RAYLIBROOT}/boundingbox/BoundingBox.cpp
     ${RAYLIBROOT}/boundingbox/BoundingBox.hpp
     ${RAYLIBROOT}/camera3d/Camera3D.cpp
@@ -60,6 +63,8 @@ set(SRC
     ${RAYLIBROOT}/draw/Draw.hpp
     ${RAYLIBROOT}/event/Event.cpp
     ${RAYLIBROOT}/event/Event.hpp
+    ${RAYLIBROOT}/music/Music.cpp
+    ${RAYLIBROOT}/music/Music.hpp
     ${RAYLIBROOT}/rectangle/Rectangle.cpp
     ${RAYLIBROOT}/rectangle/Rectangle.hpp
     ${RAYLIBROOT}/sound/Sound.cpp
@@ -73,17 +78,46 @@ set(SRC
     ${RAYLIBROOT}/window/Window.cpp
     ${RAYLIBROOT}/window/Window.hpp
     ${RAYLIBROOT}Raylib.hpp
-    ${MAPROOT}/MapGenerator.cpp
-    ${MAPROOT}/MapGenerator.hpp
+)
+
+set(SRC_SCREEN
     ${SCREENSROOT}IScreen.hpp
     ${SCREENSROOT}menu/MenuScreen.cpp
     ${SCREENSROOT}menu/MenuScreen.hpp
     ${SCREENSROOT}game/GameScreen.cpp
     ${SCREENSROOT}game/GameScreen.hpp
-    ${EVENTSROOT}GameEvents.cpp
-    ${EVENTSROOT}GameEvents.hpp
+)
+
+set(SRC_MAP
+    ${MAPROOT}/MapGenerator.cpp
+    ${MAPROOT}/MapGenerator.hpp
+)
+
+set(SRC_EVENTS
+    ${EVENTSROOT}/GameEvents.cpp
+    ${EVENTSROOT}/GameEvents.hpp
+)
+
+set(SRC_GAME
     ${GAMEROOT}Game.cpp
     ${GAMEROOT}Game.hpp
+)
+
+set(SRC_PLAYER
+    ${PLAYERROOT}Player.cpp
+    ${PLAYERROOT}Player.hpp
+)
+
+
+set(SRC
+    ${SRCROOT}main.cpp
+    ${SRC_ECS}
+    ${SRC_RAY}
+    ${SRC_SCREEN}
+    ${SRC_MAP}
+    ${SRC_EVENTS}
+    ${SRC_GAME}
+    ${SRC_PLAYER}
 )
 
 set(INCDIRS
