@@ -77,16 +77,6 @@ void indie::Game::run()
     std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
     std::unique_ptr<indie::ecs::system::ISystem> collideSystem = std::make_unique<indie::ecs::system::Collide>();
 
-    entity->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity->addComponent<indie::ecs::component::Drawable2D>(
-        "INDIE STUDIOOOO MENU BONJOURRRRRR", static_cast<float>(50.0), BLACK);
-    this->_menu->addEntity(std::move(entity));
-
-    entity2->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity2->addComponent<indie::ecs::component::Drawable2D>(
-        "INDIE STUDIOOOO GAME BONJOURRRRRR", static_cast<float>(50.0), BLACK);
     entity3->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(500.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
     entity3->addComponent<indie::ecs::component::Drawable2D>(
@@ -102,7 +92,6 @@ void indie::Game::run()
         "src/boite.png", static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(1.0), BLUE);
     entity5->addComponent<indie::ecs::component::Collide>();
     // entity4->addComponent<indie::ecs::component::Sound>("src/maybe-next-time.wav", false);
-    this->_game->addEntity(std::move(entity2));
     this->_game->addEntity(std::move(entity3));
     this->_game->addEntity(std::move(entity4));
     this->_game->addEntity(std::move(entity5));
