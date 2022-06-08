@@ -65,7 +65,7 @@ void indie::menu::GameScreen::handleEvent(indie::Event &event)
         if (transformCompo != nullptr) {
             std::unique_ptr<indie::ecs::entity::Entity> entity =
                 std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOMB);
-            //entity->addComponent<indie::ecs::component::Collide>();
+            entity->addComponent<indie::ecs::component::Explodable>(static_cast<float>(2.0), 2);
             entity->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.25), RED);
             entity->addComponent<indie::ecs::component::Transform>(static_cast<float>(transformCompo->getX()),
                 static_cast<float>(transformCompo->getY()), static_cast<float>(0.0), static_cast<float>(0.0));

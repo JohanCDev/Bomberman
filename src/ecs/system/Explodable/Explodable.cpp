@@ -26,6 +26,13 @@ void indie::ecs::system::Explodable::update(std::vector<std::unique_ptr<indie::e
                     explodableCompo->setExploded(false);
                     explodableCompo->setDropped(false);
                     // destroy entity with destroyable component in range
+                } else {
+                    auto t_now = std::chrono::system_clock::now();
+                    std::chrono::seconds elapsed =
+                        std::chrono::duration_cast<std::chrono::seconds>(t_now - explodableCompo->getTStart());
+                    if (explodableCompo->getSeconds() <= elapsed) {
+                        explodableCompo->setExploded(true);
+                    }
                 }
             }
         }

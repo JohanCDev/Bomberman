@@ -13,6 +13,7 @@
 #include "../ecs/system/Collide/Collide.hpp"
 #include "../ecs/system/Draw2D/Draw2D.hpp"
 #include "../ecs/system/Draw3D/Draw3D.hpp"
+#include "../ecs/system/Explodable/Explodable.hpp"
 #include "../ecs/system/Movement/Movement.hpp"
 #include "../ecs/system/Sound/Sound.hpp"
 #include "../gameEvents/GameEvents.hpp"
@@ -81,6 +82,7 @@ void indie::Game::run()
         std::make_unique<indie::ecs::system::MovementSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
     std::unique_ptr<indie::ecs::system::ISystem> collideSystem = std::make_unique<indie::ecs::system::Collide>();
+    std::unique_ptr<indie::ecs::system::Explodable> explodeSystem = std::make_unique<indie::ecs::system::Explodable>();
 
     entity->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
@@ -91,7 +93,7 @@ void indie::Game::run()
     entity2->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(100.0), static_cast<float>(100.0), static_cast<float>(0.0), static_cast<float>(0.0));
     entity2->addComponent<indie::ecs::component::Drawable2D>(
-        "INDIE STUDIOOOO GAME BONJOURRRRRR", static_cast<float>(50.0), BLACK);
+        "src/button.png", static_cast<float>(150.0), static_cast<float>(350.0), WHITE);
     entity4->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(-0.02), static_cast<float>(0.0));
     entity4->addComponent<indie::ecs::component::Drawable3D>(
@@ -103,6 +105,7 @@ void indie::Game::run()
         "src/boite.png", static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(1.0), BLUE);
     entity5->addComponent<indie::ecs::component::Collide>();
     //  entity4->addComponent<indie::ecs::component::Sound>("src/maybe-next-time.wav", false);
+
     this->_game->addEntity(std::move(entity2));
     this->_game->addEntity(std::move(entity4));
     this->_game->addEntity(std::move(entity5));
@@ -111,6 +114,7 @@ void indie::Game::run()
     this->_game->addSystem(std::move(movementSystem));
     this->_game->addSystem(std::move(soundSystem));
     this->_game->addSystem(std::move(collideSystem));
+    this->_game->addSystem(std::move(explodeSystem));
 
     while (!indie::raylib::Window::windowShouldClose()) {
         newTime =
