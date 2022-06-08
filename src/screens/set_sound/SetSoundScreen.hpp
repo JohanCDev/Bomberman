@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2021
 ** Bomberman
 ** File description:
-** OptionsScreen.hpp
+** SetSoundScreen.hpp
 */
 
-#ifndef OptionsSCREEN_HPP_
-#define OptionsSCREEN_HPP_
+#ifndef SETSOUNDSCREEN_HPP_
+#define SETSOUNDSCREEN_HPP_
 
 #include <vector>
 #include "../../ecs/entity/Entity.hpp"
@@ -21,12 +21,13 @@ namespace indie
 {
     namespace menu
     {
-        enum cursorPositionOptions { SET_SOUND = 310, SET_FPS = 410, RESUME = 510, MENU = 610, EXIT = 710 };
+        class SetSoundScreen : public IScreen {
 
-        class OptionsScreen : public IScreen {
+        enum cursorPositionOptions { SOUND = 210, SOUND_0 = 310, SOUND_25 = 410, SOUND_50 = 510, SOUND_75 = 610, SOUND_100 = 710, OPTIONS = 810 };
+
           public:
-            OptionsScreen();
-            ~OptionsScreen() = default;
+            SetSoundScreen();
+            ~SetSoundScreen() = default;
             void draw() override;
             void update(float delta) override;
             int handleEvent(indie::Event &event) override;
@@ -39,8 +40,9 @@ namespace indie
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
             int _cursorPosition;
+            int _fps;
         };
     } // namespace menu
 } // namespace indie
 
-#endif /* !OPTIONSSCREEN_HPP_ */
+#endif /* !SetFpsScreen_HPP_ */

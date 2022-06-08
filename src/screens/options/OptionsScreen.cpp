@@ -8,44 +8,45 @@
 #include "OptionsScreen.hpp"
 #include "../../raylib/Raylib.hpp"
 
-indie::menu::OptionsScreen::OptionsScreen() : _cursorPosition(SET_FPS)
+indie::menu::OptionsScreen::OptionsScreen() : _cursorPosition(SET_SOUND)
 {
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
-    cursor->addComponent<ecs::component::Transform>(
-        static_cast<float>(320.0), static_cast<float>(410.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    cursor->addComponent<ecs::component::Drawable2D>("", static_cast<float>(40.0), static_cast<float>(40.0), RED);
+    cursor->addComponent<ecs::component::Transform>(320.0f, 310.0f, 0.0f, 0.0f);
+    cursor->addComponent<ecs::component::Drawable2D>("", 40.0f, 40.0f, RED);
     addEntity(std::move(cursor));
+
+    std::unique_ptr<ecs::entity::Entity> set_sound = std::make_unique<ecs::entity::Entity>();
+    set_sound->addComponent<ecs::component::Transform>(400.0f, 300.0f, 0.0f, 0.0f);
+    set_sound->addComponent<ecs::component::Drawable2D>("Set sound", 50.0f, BLACK);
+    set_sound->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
+    addEntity(std::move(set_sound));
 
     std::unique_ptr<ecs::entity::Entity> set_fps = std::make_unique<ecs::entity::Entity>();
     set_fps->addComponent<ecs::component::Transform>(
-        static_cast<float>(400.0), static_cast<float>(400.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    set_fps->addComponent<ecs::component::Drawable2D>("Set Fps", static_cast<float>(50.0), BLACK);
-    set_fps->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+        400.0f, 400.0f, 0.0f, 0.0f);
+    set_fps->addComponent<ecs::component::Drawable2D>("Set FPS", 50.0f, BLACK);
+    set_fps->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
     addEntity(std::move(set_fps));
 
     std::unique_ptr<ecs::entity::Entity> new_game = std::make_unique<ecs::entity::Entity>();
-    new_game->addComponent<ecs::component::Transform>(
-        static_cast<float>(400.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    new_game->addComponent<ecs::component::Drawable2D>("Resume", static_cast<float>(50.0), BLACK);
-    new_game->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    new_game->addComponent<ecs::component::Transform>(400.0f, 500.0f, 0.0f, 0.0f);
+    new_game->addComponent<ecs::component::Drawable2D>("Resume", 50.0f, BLACK);
+    new_game->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
     addEntity(std::move(new_game));
 
     std::unique_ptr<ecs::entity::Entity> load_game = std::make_unique<ecs::entity::Entity>();
-    load_game->addComponent<ecs::component::Transform>(
-        static_cast<float>(400.0), static_cast<float>(600.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    load_game->addComponent<ecs::component::Drawable2D>("Menu", static_cast<float>(50.0), BLACK);
-    load_game->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    load_game->addComponent<ecs::component::Transform>(400.0f, 600.0f, 0.0f, 0.0f);
+    load_game->addComponent<ecs::component::Drawable2D>("Menu", 50.0f, BLACK);
+    load_game->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
     addEntity(std::move(load_game));
 
     std::unique_ptr<ecs::entity::Entity> options = std::make_unique<ecs::entity::Entity>();
-    options->addComponent<ecs::component::Transform>(
-        static_cast<float>(400.0), static_cast<float>(700.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    options->addComponent<ecs::component::Drawable2D>("EXIT", static_cast<float>(50.0), BLACK);
-    options->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    options->addComponent<ecs::component::Transform>(400.0f, 700.0f, 0.0f, 0.0f);
+    options->addComponent<ecs::component::Drawable2D>("EXIT", 50.0f, BLACK);
+    options->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
     addEntity(std::move(options));
 
-    std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemOption =
-        std::make_unique<indie::ecs::system::Draw2DSystem>();
+    std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemOption = std::make_unique<indie::ecs::system::Draw2DSystem>();
     addSystem(std::move(draw2DSystemOption));
 }
 
@@ -64,19 +65,17 @@ void indie::menu::OptionsScreen::draw()
 int indie::menu::OptionsScreen::handleEvent(indie::Event &event)
 {
     if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN) {
-        indie::ecs::component::Transform *transformCompo =
-            _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-        transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(true)),
-            static_cast<float>(0.0), static_cast<float>(0.0));
+        indie::ecs::component::Transform *transformCompo = _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+        transformCompo->update(320.0f, checkCursorPosition(true), 0.0f, 0.0f);
     }
     if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP) {
-        ecs::component::Transform *transformCompo =
-            _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-        transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(false)),
-            static_cast<float>(0.0), static_cast<float>(0.0));
+        ecs::component::Transform *transformCompo = _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+        transformCompo->update(320.0f, checkCursorPosition(false), 0.0f, 0.0f);
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == SET_FPS)
         return 99;
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == SET_SOUND)
+        return 98;
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == RESUME)
         return 2;
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MENU)
@@ -104,6 +103,10 @@ void indie::menu::OptionsScreen::addSystem(std::unique_ptr<indie::ecs::system::I
 int indie::menu::OptionsScreen::checkCursorPosition(bool direction)
 {
     if (direction) {
+        if (_cursorPosition == SET_SOUND) {
+            _cursorPosition = SET_FPS;
+            return RESUME;
+        }
         if (_cursorPosition == SET_FPS) {
             _cursorPosition = RESUME;
             return RESUME;
@@ -116,11 +119,17 @@ int indie::menu::OptionsScreen::checkCursorPosition(bool direction)
             _cursorPosition = EXIT;
             return EXIT;
         }
-        if (_cursorPosition == EXIT)
+        if (_cursorPosition == EXIT) {
             return EXIT;
+        }
     } else if (!direction) {
-        if (_cursorPosition == SET_FPS)
-            return SET_FPS;
+        if (_cursorPosition == SET_SOUND) {
+            return SET_SOUND;
+        }
+        if (_cursorPosition == SET_FPS) {
+            _cursorPosition = SET_SOUND;
+            return SET_SOUND;
+        }
         if (_cursorPosition == RESUME) {
             _cursorPosition = SET_FPS;
             return SET_FPS;
