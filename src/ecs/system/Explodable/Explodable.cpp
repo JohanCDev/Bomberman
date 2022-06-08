@@ -15,6 +15,27 @@ indie::ecs::system::Explodable::~Explodable()
 {
 }
 
+void indie::ecs::system::Explodable::destroyBoxes(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities,
+    indie::ecs::component::Explodable *explodableCompo, indie::ecs::component::Transform *bombTransformCompo)
+{
+    for (auto &entity : entities) {
+        if (entity->hasCompoType(indie::ecs::component::compoType::DESTROYABLE)
+            && entity->hasCompoType(indie::ecs::component::compoType::ALIVE) == true) {
+            auto transformCompo =
+                entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
+            if ((transformCompo->getX() <= bombTransformCompo->getX() + explodableCompo->getRange())
+                && (transformCompo->getY() <= bombTransformCompo->getY() + explodableCompo->getRange())) {
+                entity->getComponent<indie::ecs::component::Alive>(indie::ecs::component::compoType::ALIVE)
+                    ->setAlive(false);
+            } else if (transformCompo->getX() <= bombTransformCompo->getX() - explodableCompo->getRange()
+                && transformCompo->getY() <= bombTransformCompo->getY() - explodableCompo->getRange()) {
+                entity->getComponent<indie::ecs::component::Alive>(indie::ecs::component::compoType::ALIVE)
+                    ->setAlive(false);
+            }
+        }
+    }
+}
+
 void indie::ecs::system::Explodable::update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities)
 {
     int count = 0;
@@ -27,7 +48,8 @@ void indie::ecs::system::Explodable::update(std::vector<std::unique_ptr<indie::e
                 if (explodableCompo->getExploded() == true) {
                     explodableCompo->setExploded(false);
                     explodableCompo->setDropped(false);
-                    // destroy entity with destroyable component in range
+                    destroyBoxes(entities, explodableCompo,
+                        entity->getComponent<ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM));
                 } else {
                     auto t_now = std::chrono::system_clock::now();
                     std::chrono::seconds elapsed =
