@@ -83,6 +83,7 @@ void indie::Game::run()
     entityX->addComponent<indie::ecs::component::Drawable3D>(
         "", static_cast<float>(10.5), static_cast<float>(0.05), static_cast<float>(10), LIGHTGRAY);
     this->_game->initMap(map.getMap());
+    this->_game->initEntity();
     this->_game->addEntity(std::move(entityX));
     this->_game->addSystem(std::move(draw2DSystem));
     this->_game->addSystem(std::move(draw3DSystem));

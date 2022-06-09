@@ -32,6 +32,7 @@ namespace indie
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
             indie::raylib::Camera3D getCamera() const;
             void initMap(std::vector<std::vector<char>> map);
+            void initEntity();
 
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;

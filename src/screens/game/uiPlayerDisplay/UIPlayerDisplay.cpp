@@ -51,8 +51,8 @@ namespace indie
                 {
                     std::unique_ptr<indie::ecs::entity::Entity> sprite = std::make_unique<indie::ecs::entity::Entity>();
 
-                    sprite->addComponent<ecs::component::Drawable2D>(this->getPlayerSpriteFilepath(),
-                        static_cast<float>(700.0), static_cast<float>(700.0), this->_player->getColor());
+                    sprite->addComponent<ecs::component::Drawable2D>(
+                        this->getPlayerSpriteFilepath(), static_cast<float>(70.0), static_cast<float>(70.0), WHITE);
                     sprite->addComponent<indie::ecs::component::Transform>(
                         this->_position.x, this->_position.y, static_cast<float>(0.0), static_cast<float>(0.0));
                     this->_mainEntity.push_back(std::move(sprite));
