@@ -19,6 +19,7 @@
 #include "Vec2.hpp"
 
 #include <memory>
+#include <string>
 
 namespace indie
 {
@@ -32,7 +33,9 @@ namespace indie
                   public:
                     UIPlayerDisplay(indie::player::Player &player, vec2f pos, vec2f size);
                     ~UIPlayerDisplay() = default;
-                    void create_single_text_entity(std::string &str, vec2f position);
+                    void createSingleTextEntity(std::string &str, vec2f position);
+                    void createImage();
+                    const std::string getPlayerSpriteFilepath() const;
                     float getNextYPos() const;
                     indie::player::Player getPlayer() const;
                     void create();
