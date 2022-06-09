@@ -117,3 +117,28 @@ void indie::ecs::component::Drawable2D::setTexture(std::string texturePath)
     this->_texturePath = texturePath;
     this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
 }
+
+void indie::ecs::component::Drawable2D::setText(std::string text)
+{
+    this->_text = text;
+}
+
+void indie::ecs::component::Drawable2D::setFontSize(float fontSize)
+{
+    this->_fontSize = fontSize;
+}
+
+void indie::ecs::component::Drawable2D::setRadius(float radius)
+{
+    this->_radius = radius;
+}
+
+void indie::ecs::component::Drawable2D::setHeight(float height)
+{
+    this->_height = height;
+}
+
+void indie::ecs::component::Drawable2D::setWidth(float width)
+{
+    this->_width = width;
+}

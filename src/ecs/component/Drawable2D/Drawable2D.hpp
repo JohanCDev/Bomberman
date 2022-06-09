@@ -93,6 +93,16 @@ namespace indie
                  */
                 float getFontSize();
 
+                void setRadius(float radius);
+
+                void setHeight(float height);
+
+                void setWidth(float width);
+
+                void setFontSize(float fontSize);
+
+                void setText(std::string text);
+
                 /**
                  * @brief Get the text value.
                  */
