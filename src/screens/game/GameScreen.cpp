@@ -6,7 +6,10 @@
 */
 
 #include "GameScreen.hpp"
+#include "../../player/Player.hpp"
 #include "../../raylib/Raylib.hpp"
+#include "Colors.hpp"
+#include "uiPlayerDisplay/UIPlayerDisplay.hpp"
 
 indie::menu::GameScreen::GameScreen()
     : _camera({0.0, 10.0, 10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, 45.0, CAMERA_PERSPECTIVE)
@@ -28,6 +31,10 @@ void indie::menu::GameScreen::draw()
             system->update(this->_entities);
         }
     }
+    for (auto &uiDisplay : this->_infoPlayers) {
+        if (uiDisplay->getPlayer().getIsAlive())
+            uiDisplay->draw();
+    }
     indie::raylib::Window::endDrawing();
     for (auto &entity : _entities) {
         if (entity->hasCompoType(indie::ecs::component::COLLIDE) == true) {
@@ -37,9 +44,8 @@ void indie::menu::GameScreen::draw()
     }
 }
 
-void indie::menu::GameScreen::update(float delta)
+void indie::menu::GameScreen::update()
 {
-    (void)delta;
 }
 
 void indie::menu::GameScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
@@ -67,6 +73,31 @@ void indie::menu::GameScreen::addSystem(std::unique_ptr<indie::ecs::system::ISys
 indie::raylib::Camera3D indie::menu::GameScreen::getCamera() const
 {
     return (this->_camera);
+}
+
+void indie::menu::GameScreen::initEntity()
+{
+    player::Player player1(BLUEPLAYERCOLOR, 0, {0, 0});
+    player::Player player2(REDPLAYERCOLOR, 1, {0, 0});
+    player::Player player3(YELLOWPLAYERCOLOR, 2, {0, 0});
+    player::Player player4(GREENPLAYERCOLOR, 3, {0, 0});
+    vec2f uiSize = vec2f({150.f, 200.f});
+    vec2f topLeftPos = vec2f({40.f, 40.f});
+    vec2f topRightPos = vec2f({1512.f - 225.f, 40.f});
+    vec2f bottomLeftPos = vec2f({40.f, 982.f - 175.f});
+    vec2f bottomRightPos = vec2f({1512.f - 225.f, 982.f - 175.f});
+
+    this->_infoPlayers.push_back(
+        std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player1, topLeftPos, uiSize));
+    this->_infoPlayers.push_back(
+        std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player2, topRightPos, uiSize));
+    this->_infoPlayers.push_back(
+        std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player3, bottomLeftPos, uiSize));
+    this->_infoPlayers.push_back(
+        std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player4, bottomRightPos, uiSize));
+    for (auto &uiDisplay : this->_infoPlayers) {
+        uiDisplay->create();
+    }
 }
 
 void indie::menu::GameScreen::handleEvent(indie::Event &event)

@@ -31,7 +31,7 @@ namespace indie
             /// Old size, in units.
             vec2u oldSize;
             /// New size, in units.
-            vec2u newSize;
+            vec2i newSize;
         };
 
         /// @brief Keyboard event parameters (Event::Type::KeyPressed, Event::Type::KeyReleased).

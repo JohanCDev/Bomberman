@@ -16,29 +16,14 @@
 
 int main(void)
 {
-    indie::Game Game(60);
+    try {
+        indie::Game Game(60);
+        indie::raylib::Window::getInstance(1512, 982, "Indie Studio", false, 60);
 
-    indie::raylib::Window::getInstance(1420, 800, "Indie Studio", false, 60);
-
-    // while (!Raylib::windowShouldClose()) {
-    //     if (Raylib::isKeyPressed(KEY_SPACE)) {
-    //         std::cout << "a" << std::endl;
-    //     }
-    //     Raylib::beginDrawing();
-    //     Raylib::clearBackground();
-    //     Raylib::drawText("L'INDIE STUDIO EST FINIIIIIII", 100, 100, 50, BLACK);
-    //     Raylib::drawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2, 10.0, RED);
-    //     Raylib::endDrawing();
-    // }
-    // entity.addComponent<ecs::Position>(100.0, 100.0);
-    // entity.addComponent<ecs::Movement>(30.0, 30.0);
-    // entity.getPosition();
-    // entity.getMovement();
-
-    // MapGenerator map;
-    // map.createWall();
-    // printMap(map.getMap());
-    Game.run();
-    // Raylib::destroyWindow();
+        Game.init();
+        Game.run();
+    } catch (std::exception) {
+        std::cerr << "An error occured" << std::endl;
+    }
     return (0);
 }

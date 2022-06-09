@@ -7,7 +7,9 @@
 
 #include "Window.hpp"
 
-indie::raylib::Window *indie::raylib::Window::_window = nullptr;;
+#include <iostream>
+
+indie::raylib::Window *indie::raylib::Window::_window = nullptr;
 
 indie::raylib::Window::Window(int width, int height, const std::string title, bool resizable, int baseFps)
 {
@@ -17,13 +19,13 @@ indie::raylib::Window::Window(int width, int height, const std::string title, bo
         ::SetConfigFlags(FLAG_VSYNC_HINT);
     ::InitWindow(width, height, title.c_str());
     ::SetTargetFPS(baseFps);
-    toggleFullScreen();
-
+    ::MaximizeWindow();
 }
 
-indie::raylib::Window *indie::raylib::Window::getInstance(int width, int height, const std::string title, bool resizable, int baseFps)
+indie::raylib::Window *indie::raylib::Window::getInstance(
+    int width, int height, const std::string title, bool resizable, int baseFps)
 {
-    if(_window == nullptr){
+    if (_window == nullptr) {
         _window = new Window(width, height, title, resizable, baseFps);
     }
     return _window;
