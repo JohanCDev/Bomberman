@@ -41,10 +41,13 @@ bool indie::Game::processEvents()
     return gameEvent.inputUpdate(_event);
 }
 
-void indie::Game::update(float delta)
+void indie::Game::update()
 {
-    (void)delta;
-    return;
+    switch (_actualScreen) {
+        case Screens::Menu: _menu->update(); break;
+        case Screens::Game: _game->update(); break;
+        default: break;
+    }
 }
 
 void indie::Game::draw()
@@ -56,19 +59,9 @@ void indie::Game::draw()
     }
 }
 
-void indie::Game::run()
+void indie::Game::init()
 {
     indie::map::MapGenerator map;
-
-    map.createWall();
-    int64_t newTime = 0;
-    int64_t currentTime =
-        std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
-            .count();
-    int64_t accumulator = 0;
-    int64_t draw_aq = 0;
-    const float initUpdateMs = static_cast<float>(_fps) * 1000;
-    float updateMs = initUpdateMs;
     std::unique_ptr<indie::ecs::entity::Entity> entity = std::make_unique<indie::ecs::entity::Entity>();
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystem = std::make_unique<indie::ecs::system::Draw2DSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> draw3DSystem = std::make_unique<indie::ecs::system::Draw3DSystem>();
@@ -76,8 +69,9 @@ void indie::Game::run()
         std::make_unique<indie::ecs::system::MovementSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
     std::unique_ptr<indie::ecs::system::ISystem> collideSystem = std::make_unique<indie::ecs::system::Collide>();
-
     std::unique_ptr<indie::ecs::entity::Entity> entityX = std::make_unique<indie::ecs::entity::Entity>();
+
+    map.createWall();
     entityX->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
     entityX->addComponent<indie::ecs::component::Drawable3D>(
@@ -90,26 +84,16 @@ void indie::Game::run()
     this->_game->addSystem(std::move(movementSystem));
     this->_game->addSystem(std::move(soundSystem));
     this->_game->addSystem(std::move(collideSystem));
+    _actualScreen = Screens::Game;
+}
 
+void indie::Game::run()
+{
     while (!indie::raylib::Window::windowShouldClose()) {
-        newTime =
-            std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
-                .count();
-        accumulator += newTime - currentTime;
-        if (accumulator > 10 * initUpdateMs)
-            updateMs = accumulator;
-        currentTime = newTime;
         if (!processEvents())
             break;
-        while (accumulator >= updateMs) {
-            update(updateMs / 1000.f);
-            accumulator -= updateMs;
-        }
-        updateMs = initUpdateMs;
-        draw_aq += accumulator;
+        update();
         draw();
-        _actualScreen = Screens::Game;
-        draw_aq = 0;
     }
     indie::raylib::Window::destroyWindow();
 }

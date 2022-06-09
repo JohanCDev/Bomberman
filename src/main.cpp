@@ -19,6 +19,8 @@ int main(void)
     try {
         indie::Game Game(60);
         indie::raylib::Window::getInstance(1512, 982, "Indie Studio", false, 60);
+
+        Game.init();
         Game.run();
     } catch (std::exception) {
         std::cerr << "An error occured" << std::endl;
