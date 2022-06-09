@@ -29,6 +29,17 @@ indie::raylib::Window *indie::raylib::Window::getInstance(int width, int height,
     return _window;
 }
 
+int indie::raylib::Window::getFPS(void)
+{
+    return ::GetFPS();
+}
+
+void indie::raylib::Window::setTargetFPS(int fps)
+{
+    ::SetTargetFPS(fps);
+}
+
+
 void indie::raylib::Window::destroyWindow()
 {
     ::CloseWindow();

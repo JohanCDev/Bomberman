@@ -15,37 +15,32 @@ indie::menu::GameOptionsScreen::GameOptionsScreen() : _cursorPosition(RESUME)
 void indie::menu::GameOptionsScreen::init()
 {
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
-    cursor->addComponent<ecs::component::Transform>(
-        static_cast<float>(320.0), static_cast<float>(510.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    cursor->addComponent<ecs::component::Drawable2D>("", static_cast<float>(40.0), static_cast<float>(40.0), RED);
+    cursor->addComponent<ecs::component::Transform>(320.0f, 510.0f, 0.0f, 0.0f);
+    cursor->addComponent<ecs::component::Drawable2D>("", 40.0f, 40.0f, RED);
     addEntity(std::move(cursor));
 
     std::unique_ptr<ecs::entity::Entity> new_game = std::make_unique<ecs::entity::Entity>();
-    new_game->addComponent<ecs::component::Transform>(
-        static_cast<float>(400.0), static_cast<float>(500.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    new_game->addComponent<ecs::component::Drawable2D>("Resume", static_cast<float>(50.0), BLACK);
-    new_game->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    new_game->addComponent<ecs::component::Transform>(400.0f, 500.0f, 0.0f, 0.0f);
+    new_game->addComponent<ecs::component::Drawable2D>("Resume", 50.0f, BLACK);
+    new_game->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
     addEntity(std::move(new_game));
 
     std::unique_ptr<ecs::entity::Entity> save = std::make_unique<ecs::entity::Entity>();
-    save->addComponent<ecs::component::Transform>(
-        static_cast<float>(400.0), static_cast<float>(600.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    save->addComponent<ecs::component::Drawable2D>("Save", static_cast<float>(50.0), BLACK);
-    save->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    save->addComponent<ecs::component::Transform>(400.0f, 600.0f, 0.0f, 0.0f);
+    save->addComponent<ecs::component::Drawable2D>("Save", 50.0f, BLACK);
+    save->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
     addEntity(std::move(save));
 
     std::unique_ptr<ecs::entity::Entity> load_game = std::make_unique<ecs::entity::Entity>();
-    load_game->addComponent<ecs::component::Transform>(
-        static_cast<float>(400.0), static_cast<float>(700.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    load_game->addComponent<ecs::component::Drawable2D>("Menu", static_cast<float>(50.0), BLACK);
-    load_game->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    load_game->addComponent<ecs::component::Transform>(400.0f, 700.0f, 0.0f, 0.0f);
+    load_game->addComponent<ecs::component::Drawable2D>("Menu", 50.0f, BLACK);
+    load_game->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
     addEntity(std::move(load_game));
 
     std::unique_ptr<ecs::entity::Entity> options = std::make_unique<ecs::entity::Entity>();
-    options->addComponent<ecs::component::Transform>(
-        static_cast<float>(400.0), static_cast<float>(800.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    options->addComponent<ecs::component::Drawable2D>("Exit", static_cast<float>(50.0), BLACK);
-    options->addComponent<ecs::component::Drawable2D>("", static_cast<float>(70.0), static_cast<float>(270.0), BLUE);
+    options->addComponent<ecs::component::Transform>(400.0f, 800.0f, 0.0f, 0.0f);
+    options->addComponent<ecs::component::Drawable2D>("Exit", 50.0f, BLACK);
+    options->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
     addEntity(std::move(options));
 
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemGameOptions =
@@ -70,14 +65,12 @@ int indie::menu::GameOptionsScreen::handleEvent(indie::Event &event)
     if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN) {
         indie::ecs::component::Transform *transformCompo =
             _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-        transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(true)),
-            static_cast<float>(0.0), static_cast<float>(0.0));
+        transformCompo->update(320.0f, checkCursorPosition(true), 0.0f, 0.0f);
     }
     if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP) {
         ecs::component::Transform *transformCompo =
             _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-        transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(false)),
-            static_cast<float>(0.0), static_cast<float>(0.0));
+        transformCompo->update(320.0f, checkCursorPosition(false), 0.0f, 0.0f);
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == RESUME)
         return 2;

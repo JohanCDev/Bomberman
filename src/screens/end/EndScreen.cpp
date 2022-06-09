@@ -15,10 +15,8 @@ indie::menu::EndScreen::EndScreen()
 void indie::menu::EndScreen::init()
 {
     std::unique_ptr<ecs::entity::Entity> launch_game = std::make_unique<ecs::entity::Entity>();
-    launch_game->addComponent<ecs::component::Transform>(
-        static_cast<float>(600.0), static_cast<float>(850.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    launch_game->addComponent<ecs::component::Drawable2D>(
-        "Press X to go back to the menu", static_cast<float>(40.0), BLACK);
+    launch_game->addComponent<ecs::component::Transform>(600.0f, 850.0f, 0.0f, 0.0f);
+    launch_game->addComponent<ecs::component::Drawable2D>("Press X to go back to the menu", 40.0f, BLACK);
     addEntity(std::move(launch_game));
 
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemEnd = std::make_unique<indie::ecs::system::Draw2DSystem>();

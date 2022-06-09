@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2021
 ** Bomberman
 ** File description:
-** OptionsScreen.hpp
+** SetMusicScreen.hpp
 */
 
-#ifndef OptionsSCREEN_HPP_
-#define OptionsSCREEN_HPP_
+#ifndef SETMUSICSCREEN_HPP_
+#define SETMUSICSCREEN_HPP_
 
 #include <vector>
 #include "../../ecs/entity/Entity.hpp"
@@ -17,11 +17,20 @@ namespace indie
 {
     namespace menu
     {
-        class OptionsScreen : public IScreen {
+        class SetMusicScreen : public IScreen {
+            enum cursorPositionOptions {
+                MUSIC = 210,
+                MUSIC_0 = 310,
+                MUSIC_25 = 410,
+                MUSIC_50 = 510,
+                MUSIC_75 = 610,
+                MUSIC_100 = 710,
+                OPTIONS = 810
+            };
+
           public:
-            enum cursorPositionOptions { SET_MUSIC = 210, SET_SOUND = 310, SET_FPS = 410, MENU = 510, EXIT = 610 };
-            OptionsScreen();
-            ~OptionsScreen() = default;
+            SetMusicScreen();
+            ~SetMusicScreen() = default;
             void init() override;
             void draw() override;
             void update(float delta) override;
@@ -39,4 +48,4 @@ namespace indie
     } // namespace menu
 } // namespace indie
 
-#endif /* !OPTIONSSCREEN_HPP_ */
+#endif /* !SetFpsScreen_HPP_ */

@@ -92,6 +92,12 @@ set(SRC_SCREEN
     ${SCREENSROOT}game_options/GameOptionsScreen.cpp
     ${SCREENSROOT}end/EndScreen.cpp
     ${SCREENSROOT}end/EndScreen.hpp
+    ${SCREENSROOT}set_fps/SetFpsScreen.cpp
+    ${SCREENSROOT}set_fps/SetFpsScreen.hpp
+    ${SCREENSROOT}set_music/SetMusicScreen.cpp
+    ${SCREENSROOT}set_music/SetMusicScreen.hpp
+    ${SCREENSROOT}set_sound/SetSoundScreen.cpp
+    ${SCREENSROOT}set_sound/SetSoundScreen.hpp
 )
 
 set(SRC_MAP

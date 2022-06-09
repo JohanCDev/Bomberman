@@ -17,24 +17,18 @@ indie::menu::PreMenuScreen::PreMenuScreen()
 void indie::menu::PreMenuScreen::init()
 {
     std::unique_ptr<ecs::entity::Entity> background = std::make_unique<ecs::entity::Entity>();
-    background->addComponent<ecs::component::Transform>(
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    background->addComponent<ecs::component::Drawable2D>(
-        "assets/menu/bg.png", static_cast<float>(1200.0), static_cast<float>(2000.0), WHITE);
+    background->addComponent<ecs::component::Transform>(0.0f, 0.0f, 0.0f, 0.0f);
+    background->addComponent<ecs::component::Drawable2D>("assets/menu/bg.png", 1200.0f, 2000.0f, WHITE);
     addEntity(std::move(background));
 
     std::unique_ptr<ecs::entity::Entity> launch_game = std::make_unique<ecs::entity::Entity>();
-    launch_game->addComponent<ecs::component::Transform>(
-        static_cast<float>(600.0), static_cast<float>(850.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    launch_game->addComponent<ecs::component::Drawable2D>(
-        "Press Triangle to start the game", static_cast<float>(40.0), BLACK);
+    launch_game->addComponent<ecs::component::Transform>(600.0f, 850.0f, 0.0f, 0.0f);
+    launch_game->addComponent<ecs::component::Drawable2D>("Press Triangle to start the game", 40.0f, BLACK);
     addEntity(std::move(launch_game));
 
     std::unique_ptr<ecs::entity::Entity> player1 = std::make_unique<ecs::entity::Entity>();
-    player1->addComponent<ecs::component::Transform>(
-        static_cast<float>(200.0), static_cast<float>(300.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    player1->addComponent<ecs::component::Drawable2D>(
-        "assets/menu/blue.png", static_cast<float>(400.0), static_cast<float>(300.0), WHITE);
+    player1->addComponent<ecs::component::Transform>(200.0f, 300.0f, 0.0f, 0.0f);
+    player1->addComponent<ecs::component::Drawable2D>("assets/menu/blue.png", 400.0f, 300.0f, WHITE);
     addEntity(std::move(player1));
 
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemPreMenu =
@@ -118,10 +112,8 @@ void indie::menu::PreMenuScreen::handlePlayer1(indie::Event &event)
 {
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && !_is_player1_ready) {
         std::unique_ptr<ecs::entity::Entity> ready = std::make_unique<ecs::entity::Entity>();
-        ready->addComponent<ecs::component::Transform>(
-            static_cast<float>(200.0), static_cast<float>(350.0), static_cast<float>(0.0), static_cast<float>(0.0));
-        ready->addComponent<ecs::component::Drawable2D>(
-            "assets/menu/ready.png", static_cast<float>(300.0), static_cast<float>(300.0), WHITE);
+        ready->addComponent<ecs::component::Transform>(200.0f, 350.0f, 0.0f, 0.0f);
+        ready->addComponent<ecs::component::Drawable2D>("assets/menu/ready.png", 300.0f, 300.0f, WHITE);
         addEntity(std::move(ready));
         _player1_ready_pos = _entities.size() - 1;
         _is_player1_ready = true;
@@ -137,10 +129,8 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
     if (event.controller[1].connected && (event.controller[1].code == indie::Event::ControllerCode::X_BUTTON)
         && !_is_player2_playing) {
         std::unique_ptr<ecs::entity::Entity> player2 = std::make_unique<ecs::entity::Entity>();
-        player2->addComponent<ecs::component::Transform>(
-            static_cast<float>(600.0), static_cast<float>(300.0), static_cast<float>(0.0), static_cast<float>(0.0));
-        player2->addComponent<ecs::component::Drawable2D>(
-            "assets/menu/red.png", static_cast<float>(400.0), static_cast<float>(300.0), WHITE);
+        player2->addComponent<ecs::component::Transform>(600.0f, 300.0f, 0.0f, 0.0f);
+        player2->addComponent<ecs::component::Drawable2D>("assets/menu/red.png", 400.0f, 300.0f, WHITE);
         addEntity(std::move(player2));
         _nb_players++;
         _player2_pos = _entities.size() - 1;
@@ -156,10 +146,8 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
     if ((event.controller[1].code == indie::Event::ControllerCode::X_BUTTON) && !_is_player2_ready
         && _is_player2_playing) {
         std::unique_ptr<ecs::entity::Entity> ready = std::make_unique<ecs::entity::Entity>();
-        ready->addComponent<ecs::component::Transform>(
-            static_cast<float>(600.0), static_cast<float>(350.0), static_cast<float>(0.0), static_cast<float>(0.0));
-        ready->addComponent<ecs::component::Drawable2D>(
-            "assets/menu/ready.png", static_cast<float>(300.0), static_cast<float>(300.0), WHITE);
+        ready->addComponent<ecs::component::Transform>(600.0f, 350.0f, 0.0f, 0.0f);
+        ready->addComponent<ecs::component::Drawable2D>("assets/menu/ready.png", 300.0f, 300.0f, WHITE);
         addEntity(std::move(ready));
         _player2_ready_pos = _entities.size() - 1;
         _is_player2_ready = true;
@@ -184,10 +172,8 @@ void indie::menu::PreMenuScreen::handlePlayer3(indie::Event &event)
     if (event.controller[2].connected && (event.controller[2].code == indie::Event::ControllerCode::X_BUTTON)
         && !_is_player3_playing) {
         std::unique_ptr<ecs::entity::Entity> player3 = std::make_unique<ecs::entity::Entity>();
-        player3->addComponent<ecs::component::Transform>(
-            static_cast<float>(1000.0), static_cast<float>(300.0), static_cast<float>(0.0), static_cast<float>(0.0));
-        player3->addComponent<ecs::component::Drawable2D>(
-            "assets/menu/green.png", static_cast<float>(400.0), static_cast<float>(300.0), WHITE);
+        player3->addComponent<ecs::component::Transform>(1000.0f, 300.0f, 0.0f, 0.0f);
+        player3->addComponent<ecs::component::Drawable2D>("assets/menu/green.png", 400.0f, 300.0f, WHITE);
         addEntity(std::move(player3));
         _player3_pos = _entities.size() - 1;
         _nb_players++;
@@ -203,10 +189,8 @@ void indie::menu::PreMenuScreen::handlePlayer3(indie::Event &event)
     if ((event.controller[2].code == indie::Event::ControllerCode::X_BUTTON) && !_is_player3_ready
         && _is_player3_playing) {
         std::unique_ptr<ecs::entity::Entity> ready = std::make_unique<ecs::entity::Entity>();
-        ready->addComponent<ecs::component::Transform>(
-            static_cast<float>(1000.0), static_cast<float>(350.0), static_cast<float>(0.0), static_cast<float>(0.0));
-        ready->addComponent<ecs::component::Drawable2D>(
-            "assets/menu/ready.png", static_cast<float>(300.0), static_cast<float>(300.0), WHITE);
+        ready->addComponent<ecs::component::Transform>(1000.0f, 350.0f, 0.0f, 0.0f);
+        ready->addComponent<ecs::component::Drawable2D>("assets/menu/ready.png", 300.0f, 300.0f, WHITE);
         addEntity(std::move(ready));
         _player3_ready_pos = _entities.size() - 1;
         _is_player3_ready = true;
@@ -231,10 +215,8 @@ void indie::menu::PreMenuScreen::handlePlayer4(indie::Event &event)
     if (event.controller[3].connected && (event.controller[3].code == indie::Event::ControllerCode::X_BUTTON)
         && !_is_player4_playing) {
         std::unique_ptr<ecs::entity::Entity> player4 = std::make_unique<ecs::entity::Entity>();
-        player4->addComponent<ecs::component::Transform>(
-            static_cast<float>(1400.0), static_cast<float>(300.0), static_cast<float>(0.0), static_cast<float>(0.0));
-        player4->addComponent<ecs::component::Drawable2D>(
-            "assets/menu/yellow.png", static_cast<float>(400.0), static_cast<float>(300.0), WHITE);
+        player4->addComponent<ecs::component::Transform>(1400.0f, 300.0f, 0.0f, 0.0f);
+        player4->addComponent<ecs::component::Drawable2D>("assets/menu/yellow.png", 400.0f, 300.0f, WHITE);
         addEntity(std::move(player4));
         _player4_pos = _entities.size() - 1;
         _nb_players++;
@@ -250,10 +232,8 @@ void indie::menu::PreMenuScreen::handlePlayer4(indie::Event &event)
     if ((event.controller[3].code == indie::Event::ControllerCode::X_BUTTON) && !_is_player4_ready
         && _is_player4_playing) {
         std::unique_ptr<ecs::entity::Entity> ready = std::make_unique<ecs::entity::Entity>();
-        ready->addComponent<ecs::component::Transform>(
-            static_cast<float>(1400.0), static_cast<float>(350.0), static_cast<float>(0.0), static_cast<float>(0.0));
-        ready->addComponent<ecs::component::Drawable2D>(
-            "assets/menu/ready.png", static_cast<float>(300.0), static_cast<float>(300.0), WHITE);
+        ready->addComponent<ecs::component::Transform>(1400.0f, 350.0f, 0.0f, 0.0f);
+        ready->addComponent<ecs::component::Drawable2D>("assets/menu/ready.png", 300.0f, 300.0f, WHITE);
         addEntity(std::move(ready));
         _player4_ready_pos = _entities.size() - 1;
         _is_player4_ready = true;

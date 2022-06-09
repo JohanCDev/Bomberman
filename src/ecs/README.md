@@ -35,7 +35,7 @@ ecs::Text -> std::string text, float textSize, Color color
 * To use the addComponent method you have to specify the type of component you want to use and after give the differents parameters
 * The following exemple will add Player component without texture:
 ```
-entity->addComponent<ecs::Player>("", static_cast<float>(2.0), BLACK);
+entity->addComponent<   >("", static_cast<float>(2.0), BLACK);
 ```
 
 * If you want to add a texture you have to write the file path in the first parameter and use static_cast for every float.
