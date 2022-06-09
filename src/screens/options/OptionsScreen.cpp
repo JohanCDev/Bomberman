@@ -68,25 +68,25 @@ void indie::menu::OptionsScreen::draw()
 
 int indie::menu::OptionsScreen::handleEvent(indie::Event &event)
 {
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN) {
+    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN || event.key.down) {
         indie::ecs::component::Transform *transformCompo =
             _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(320.0f, checkCursorPosition(true), 0.0f, 0.0f);
     }
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP) {
+    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP || event.key.up) {
         ecs::component::Transform *transformCompo =
             _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(320.0f, checkCursorPosition(false), 0.0f, 0.0f);
     }
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == SET_FPS)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter) && _cursorPosition == SET_FPS)
         return 9;
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == SET_SOUND)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter) && _cursorPosition == SET_SOUND)
         return 8;
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == SET_MUSIC)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter) && _cursorPosition == SET_MUSIC)
         return 7;
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MENU)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter) && _cursorPosition == MENU)
         return 1;
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == EXIT)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter) && _cursorPosition == EXIT)
         return 10;
     return 0;
 }

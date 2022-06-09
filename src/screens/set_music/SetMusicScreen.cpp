@@ -80,12 +80,12 @@ void indie::menu::SetMusicScreen::draw()
 
 int indie::menu::SetMusicScreen::handleEvent(indie::Event &event)
 {
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN) {
+    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN  || event.key.down) {
         indie::ecs::component::Transform *transformCompo =
             _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(320.0f, checkCursorPosition(true), 0.0f, 0.0f);
     }
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP) {
+    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP || event.key.up) {
         ecs::component::Transform *transformCompo =
             _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(320.0f, checkCursorPosition(false), 0.0f, 0.0f);
@@ -96,7 +96,7 @@ int indie::menu::SetMusicScreen::handleEvent(indie::Event &event)
     // if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MUSIC_25) {
     //     indie::raylib::Sound::setVolume(0.25);
     // }
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == OPTIONS)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON  || event.key.enter) && _cursorPosition == OPTIONS)
         return 3;
     return 0;
 }

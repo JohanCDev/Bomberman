@@ -56,7 +56,7 @@ void indie::menu::GameScreen::draw()
 
 int indie::menu::GameScreen::handleEvent(indie::Event &event)
 {
-    if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON)
+    if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON || event.key.r_shift)
         return 5;
     return 0;
 }
