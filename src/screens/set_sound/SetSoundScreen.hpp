@@ -19,13 +19,11 @@ namespace indie
     {
         class SetSoundScreen : public IScreen {
             enum cursorPosition {
-                SOUND = 210,
-                SOUND_0 = 310,
+                SOUND_0 = 285,
                 SOUND_25 = 410,
-                SOUND_50 = 510,
-                SOUND_75 = 610,
-                SOUND_100 = 710,
-                OPTIONS = 810
+                SOUND_50 = 535,
+                SOUND_75 = 660,
+                SOUND_100 = 785,
             };
 
           public:

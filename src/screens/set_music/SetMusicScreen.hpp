@@ -19,13 +19,11 @@ namespace indie
     {
         class SetMusicScreen : public IScreen {
             enum cursorPosition {
-                MUSIC = 210,
-                MUSIC_0 = 310,
+                MUSIC_0 = 285,
                 MUSIC_25 = 410,
-                MUSIC_50 = 510,
-                MUSIC_75 = 610,
-                MUSIC_100 = 710,
-                OPTIONS = 810
+                MUSIC_50 = 535,
+                MUSIC_75 = 660,
+                MUSIC_100 = 785,
             };
 
           public:

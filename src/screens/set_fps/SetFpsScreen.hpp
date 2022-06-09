@@ -18,7 +18,7 @@ namespace indie
     namespace menu
     {
         class SetFpsScreen : public IScreen {
-            enum cursorPosition { FPS = 310, FPS_30 = 410, FPS_60 = 510, OPTIONS = 610 };
+            enum cursorPosition { FPS_30 = 285, FPS_60 = 430 };
 
           public:
             SetFpsScreen();
