@@ -72,18 +72,6 @@ void indie::Game::run()
     int64_t draw_aq = 0;
     const float initUpdateMs = static_cast<float>(_fps) * 1000;
     float updateMs = initUpdateMs;
-    std::unique_ptr<indie::ecs::entity::Entity> entity =
-        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOXES);
-    std::unique_ptr<indie::ecs::entity::Entity> entity2 =
-        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOXES);
-    std::unique_ptr<indie::ecs::entity::Entity> entity3 =
-        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOXES);
-    std::unique_ptr<indie::ecs::entity::Entity> entity4 =
-        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOXES);
-    std::unique_ptr<indie::ecs::entity::Entity> entity5 =
-        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOXES);
-    std::unique_ptr<indie::ecs::entity::Entity> entity6 =
-        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::PLAYER_1);
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystem = std::make_unique<indie::ecs::system::Draw2DSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> draw3DSystem = std::make_unique<indie::ecs::system::Draw3DSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> movementSystem =
@@ -92,43 +80,7 @@ void indie::Game::run()
     std::unique_ptr<indie::ecs::system::ISystem> collideSystem = std::make_unique<indie::ecs::system::Collide>();
     std::unique_ptr<indie::ecs::system::Explodable> explodeSystem = std::make_unique<indie::ecs::system::Explodable>();
 
-    entity->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(1.0), static_cast<float>(-2.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity->addComponent<indie::ecs::component::Drawable3D>("", 1.0f, 1.0f, 1.0f, WHITE);
-    entity->addComponent<indie::ecs::component::Collide>();
-
-    entity2->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(1.0), static_cast<float>(-1.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity2->addComponent<indie::ecs::component::Drawable3D>("", 1.0f, 1.0f, 1.0f, WHITE);
-    entity2->addComponent<indie::ecs::component::Collide>();
-
-    entity3->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(1.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity3->addComponent<indie::ecs::component::Drawable3D>("", 1.0f, 1.0f, 1.0f, WHITE);
-    entity3->addComponent<indie::ecs::component::Collide>();
-
-    entity4->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(1.0), static_cast<float>(1.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity4->addComponent<indie::ecs::component::Drawable3D>("", 1.0f, 1.0f, 1.0f, WHITE);
-    entity4->addComponent<indie::ecs::component::Collide>();
-
-    entity5->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(1.0), static_cast<float>(2.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entity5->addComponent<indie::ecs::component::Drawable3D>("", 1.0f, 1.0f, 1.0f, WHITE);
-    entity5->addComponent<indie::ecs::component::Collide>();
-
-    entity6->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(-1.0), static_cast<float>(0.0), static_cast<float>(0.02), static_cast<float>(0.0));
-    entity6->addComponent<indie::ecs::component::Drawable3D>(0.5f, WHITE);
-    entity6->addComponent<indie::ecs::component::Collide>();
-
-    // this->_game->initMap(map.getMap());
-    this->_game->addEntity(std::move(entity));
-    this->_game->addEntity(std::move(entity2));
-    this->_game->addEntity(std::move(entity3));
-    this->_game->addEntity(std::move(entity4));
-    this->_game->addEntity(std::move(entity5));
-    this->_game->addEntity(std::move(entity6));
+    this->_game->initMap(map.getMap());
     this->_game->addSystem(std::move(draw2DSystem));
     this->_game->addSystem(std::move(draw3DSystem));
     this->_game->addSystem(std::move(movementSystem));
@@ -155,7 +107,6 @@ void indie::Game::run()
         draw();
         _actualScreen = Screens::Game;
         draw_aq = 0;
-        
     }
     indie::raylib::Window::destroyWindow();
 }
