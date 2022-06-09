@@ -23,10 +23,11 @@ namespace indie
         enum class Screens { Game, Menu, Pause, ExitScreen, Count };
         Game(size_t baseFps = 60);
         ~Game();
-        void run();
-        void draw();
-        void update(float delta);
-        bool processEvents();
+        void init(void);
+        void run(void);
+        void draw(void);
+        void update(void);
+        bool processEvents(void);
 
         void setActualScreen(Screens newScreen);
 

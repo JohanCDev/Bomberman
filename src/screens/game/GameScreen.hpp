@@ -10,10 +10,12 @@
 
 #include <memory>
 #include <vector>
+
 #include "../../ecs/entity/Entity.hpp"
 #include "../../ecs/system/ISystem.hpp"
 #include "../IScreen.hpp"
 #include "events.hpp"
+#include "uiPlayerDisplay/UIPlayerDisplay.hpp"
 
 namespace indie
 {
@@ -24,7 +26,7 @@ namespace indie
             GameScreen();
             ~GameScreen() = default;
             void draw() override;
-            void update(float delta) override;
+            void update() override;
             void handleEvent(indie::Event &event) override;
             void handleMultipleController(indie::Event &event, int index, indie::ecs::entity::entityType type);
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
@@ -32,9 +34,11 @@ namespace indie
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
             indie::raylib::Camera3D getCamera() const;
             void initMap(std::vector<std::vector<char>> map);
+            void initEntity();
 
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
+            std::vector<std::unique_ptr<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>> _infoPlayers;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
             indie::raylib::Camera3D _camera;
         };
