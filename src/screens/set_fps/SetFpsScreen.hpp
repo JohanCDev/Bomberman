@@ -25,7 +25,7 @@ namespace indie
             ~SetFpsScreen() = default;
             void init() override;
             void draw() override;
-            void update(float delta) override;
+            void update() override;
             int handleEvent(indie::Event &event) override;
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;

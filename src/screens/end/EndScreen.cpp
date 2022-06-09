@@ -42,9 +42,8 @@ int indie::menu::EndScreen::handleEvent(indie::Event &event)
     return 0;
 }
 
-void indie::menu::EndScreen::update(float delta)
+void indie::menu::EndScreen::update()
 {
-    (void)delta;
 }
 
 void indie::menu::EndScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)

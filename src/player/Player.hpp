@@ -52,6 +52,8 @@ namespace indie
             short unsigned int getBombRadius() const;
             /// Get the bomb stock of the player.
             short unsigned int getBombStock() const;
+            /// Get the max bomb stock of the player.
+            short unsigned int getMaxBombStock() const;
             /// Get the number of bomb stock bonus of the player.
             short unsigned int getNbBombStockBonus() const;
             /// Get the number of bomb radius bonus that the player have.
@@ -81,6 +83,9 @@ namespace indie
             /// Set the bomb stock of the player.
             /// @param value new value.
             void setBombStock(short unsigned int value);
+            /// Set the max bomb stock of the player.
+            /// @param value new value.
+            void setMaxBombStock(short unsigned int value);
             /// Set the number of bomb stock bonus of the player.
             /// @param value new value.
             void setNbBombStockBonus(short unsigned int value);
@@ -106,6 +111,8 @@ namespace indie
             short unsigned int _controllerId;
             /// Bomb stock of the player
             short unsigned int _bombStock;
+            /// Max bomb stock of the player
+            short unsigned int _maxBombStock;
             /// Speed of the player
             short unsigned int _speed;
             /// Radius of a bomb launched by the player

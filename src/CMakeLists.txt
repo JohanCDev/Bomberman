@@ -63,6 +63,8 @@ set(SRC_RAY
     ${RAYLIBROOT}/draw/Draw.hpp
     ${RAYLIBROOT}/event/Event.cpp
     ${RAYLIBROOT}/event/Event.hpp
+    ${RAYLIBROOT}/music/Music.cpp
+    ${RAYLIBROOT}/music/Music.hpp
     ${RAYLIBROOT}/rectangle/Rectangle.cpp
     ${RAYLIBROOT}/rectangle/Rectangle.hpp
     ${RAYLIBROOT}/sound/Sound.cpp
@@ -96,6 +98,8 @@ set(SRC_SCREEN
     ${SCREENSROOT}set_music/SetMusicScreen.hpp
     ${SCREENSROOT}set_sound/SetSoundScreen.cpp
     ${SCREENSROOT}set_sound/SetSoundScreen.hpp
+    ${SCREENSROOT}game/uiPlayerDisplay/UIPlayerDisplay.cpp
+    ${SCREENSROOT}game/uiPlayerDisplay/UIPlayerDisplay.hpp
 )
 
 set(SRC_MAP

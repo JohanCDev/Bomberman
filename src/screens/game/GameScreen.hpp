@@ -10,15 +10,18 @@
 
 #include <memory>
 #include <vector>
+
 #include "../../ecs/entity/Entity.hpp"
 #include "../../ecs/system/ISystem.hpp"
 #include "../IScreen.hpp"
 #include "../ecs/system/Collide/Collide.hpp"
 #include "../ecs/system/Draw2D/Draw2D.hpp"
 #include "../ecs/system/Draw3D/Draw3D.hpp"
+#include "../ecs/system/Explodable/Explodable.hpp"
 #include "../ecs/system/Movement/Movement.hpp"
 #include "../ecs/system/Sound/Sound.hpp"
 #include "events.hpp"
+#include "uiPlayerDisplay/UIPlayerDisplay.hpp"
 
 namespace indie
 {
@@ -30,16 +33,19 @@ namespace indie
             ~GameScreen() = default;
             void init() override;
             void draw() override;
-            void update(float delta) override;
+            void update() override;
             int handleEvent(indie::Event &event) override;
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
+            void removeEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
             indie::raylib::Camera3D getCamera() const;
             void getPlayersPlaying(bool is_p1_playing, bool is_p2_playing, bool is_p3_playing, bool is_p4_playing);
             void initMap(std::vector<std::vector<char>> map);
+            void initEntity();
 
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
+            std::vector<std::unique_ptr<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>> _infoPlayers;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
             indie::raylib::Camera3D _camera;
 

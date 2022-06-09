@@ -23,6 +23,7 @@ namespace indie
             this->_isAlive = true;
             this->_bombRadius = 1;
             this->_bombStock = 4;
+            this->_maxBombStock = 4;
             this->_crossWalls = false;
             this->_nbBombRadiusBonus = 0;
             this->_nbBombStockBonus = 0;
@@ -52,6 +53,16 @@ namespace indie
         short unsigned int Player::getBombStock() const
         {
             return (this->_bombStock);
+        }
+
+        short unsigned int Player::getMaxBombStock() const
+        {
+            return (this->_maxBombStock);
+        }
+
+        short unsigned int Player::getSpeed() const
+        {
+            return (this->_speed);
         }
 
         short unsigned int Player::getControllerId() const
@@ -111,6 +122,11 @@ namespace indie
         void Player::setBombStock(short unsigned int value)
         {
             this->_bombStock = value;
+        }
+
+        void Player::setMaxBombStock(short unsigned int value)
+        {
+            this->_maxBombStock = value;
         }
 
         void Player::setSpeed(short unsigned int value)

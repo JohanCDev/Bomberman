@@ -113,9 +113,8 @@ int indie::menu::SetFpsScreen::handleEvent(indie::Event &event)
     return 0;
 }
 
-void indie::menu::SetFpsScreen::update(float delta)
+void indie::menu::SetFpsScreen::update()
 {
-    (void)delta;
 }
 
 void indie::menu::SetFpsScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)

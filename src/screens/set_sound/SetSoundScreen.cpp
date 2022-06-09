@@ -168,9 +168,8 @@ int indie::menu::SetSoundScreen::handleEvent(indie::Event &event)
     return 0;
 }
 
-void indie::menu::SetSoundScreen::update(float delta)
+void indie::menu::SetSoundScreen::update()
 {
-    (void)delta;
 }
 
 void indie::menu::SetSoundScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)

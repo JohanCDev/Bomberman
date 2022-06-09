@@ -10,6 +10,12 @@
 #include <chrono>
 #include <iostream>
 #include <memory>
+#include "../ecs/system/Collide/Collide.hpp"
+#include "../ecs/system/Draw2D/Draw2D.hpp"
+#include "../ecs/system/Draw3D/Draw3D.hpp"
+#include "../ecs/system/Explodable/Explodable.hpp"
+#include "../ecs/system/Movement/Movement.hpp"
+#include "../ecs/system/Sound/Sound.hpp"
 #include "../gameEvents/GameEvents.hpp"
 #include "../map/MapGenerator.hpp"
 #include "../raylib/Raylib.hpp"
@@ -57,13 +63,21 @@ bool indie::Game::processEvents()
 {
     GameEvents gameEvent;
 
-    return gameEvent.inputUpdate(_event);
+    bool ret = gameEvent.inputUpdate(_event);
+    int swap = handleEvent();
+    if (swap == 10)
+        return false;
+    handleScreensSwap(swap);
+    return (ret);
 }
 
-void indie::Game::update(float delta)
+void indie::Game::update()
 {
-    (void)delta;
-    return;
+    switch (_actualScreen) {
+        case Screens::Menu: _menu->update(); break;
+        case Screens::Game: _game->update(); break;
+        default: break;
+    }
 }
 
 void indie::Game::draw()
@@ -97,50 +111,25 @@ int indie::Game::handleEvent()
     return true;
 }
 
-void indie::Game::run()
+void indie::Game::init()
 {
-    int ret = 0;
     indie::map::MapGenerator map;
 
     init_scenes();
     map.createWall();
     this->_game->initMap(map.getMap());
+    this->_game->initEntity();
+}
 
-    int64_t newTime = 0;
-    int64_t currentTime =
-        std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
-            .count();
-    int64_t accumulator = 0;
-    int64_t draw_aq = 0;
-    const float initUpdateMs = static_cast<float>(_fps) * 1000;
-    float updateMs = initUpdateMs;
-
+void indie::Game::run()
+{
     while (!indie::raylib::Window::windowShouldClose()) {
-        newTime =
-            std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
-                .count();
-        accumulator += newTime - currentTime;
-        if (accumulator > 10 * initUpdateMs)
-            updateMs = accumulator;
-        currentTime = newTime;
         this->_game->getPlayersPlaying(
             true, _premenu->isPlayer2Playing(), _premenu->isPlayer3Playing(), _premenu->isPlayer4Playing());
         if (!processEvents())
             break;
-
-        // while (accumulator >= updateMs) {
-        //     update(updateMs / 1000.f);
-        //     accumulator -= updateMs;
-        // }
-        // updateMs = initUpdateMs;
-        // draw_aq += accumulator;
-        ret = handleEvent();
-        if (ret == 10)
-            break;
-        handleScreensSwap(ret);
+        update();
         draw();
-        // _actualScreen = Screens::Game;
-        // draw_aq = 0;
     }
     indie::raylib::Window::destroyWindow();
 }
@@ -175,6 +164,7 @@ void indie::Game::reinitGame()
     indie::map::MapGenerator map;
     map.createWall();
     this->_game->initMap(map.getMap());
+    this->_game->initEntity();
     delete _premenu;
     _premenu = new indie::menu::PreMenuScreen;
     _premenu->init();

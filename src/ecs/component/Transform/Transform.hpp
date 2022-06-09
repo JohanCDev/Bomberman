@@ -69,6 +69,8 @@ namespace indie
                  */
                 float getY() const;
 
+                float getZ() const;
+
                 /**
                  * @brief Set a new x position.
                  */
@@ -78,6 +80,8 @@ namespace indie
                  * @brief Set a new y position.
                  */
                 void setY(float posY);
+
+                void setZ(float posZ);
 
                 /**
                  * @brief Get the x speed.
@@ -93,9 +97,14 @@ namespace indie
                  */
                 float getSpeedY() const;
 
+                void setSpeedY(float speed);
+
+                void setSpeedX(float speed);
+
               private:
                 float _posX;
                 float _posY;
+                float _posZ;
                 float _speedX;
                 float _speedY;
             };

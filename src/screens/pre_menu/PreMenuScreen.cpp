@@ -60,9 +60,8 @@ int indie::menu::PreMenuScreen::handleEvent(indie::Event &event)
     return 0;
 }
 
-void indie::menu::PreMenuScreen::update(float delta)
+void indie::menu::PreMenuScreen::update()
 {
-    (void)delta;
 }
 
 void indie::menu::PreMenuScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)

@@ -168,9 +168,8 @@ int indie::menu::SetMusicScreen::handleEvent(indie::Event &event)
     return 0;
 }
 
-void indie::menu::SetMusicScreen::update(float delta)
+void indie::menu::SetMusicScreen::update()
 {
-    (void)delta;
 }
 
 void indie::menu::SetMusicScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)

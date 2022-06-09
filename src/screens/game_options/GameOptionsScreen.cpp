@@ -114,9 +114,8 @@ int indie::menu::GameOptionsScreen::handleEvent(indie::Event &event)
     return 0;
 }
 
-void indie::menu::GameOptionsScreen::update(float delta)
+void indie::menu::GameOptionsScreen::update()
 {
-    (void)delta;
 }
 
 void indie::menu::GameOptionsScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)

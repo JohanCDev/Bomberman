@@ -34,13 +34,14 @@ namespace indie
         enum class Screens { Game, Menu, PreMenu, GameOptions, End, SetFps, SetSound, SetMusic, Count };
         Game(size_t baseFps = 60);
         ~Game();
-        void init_scenes();
-        void run();
-        void draw();
-        int handleEvent();
-        void update(float delta);
-        bool processEvents();
+        void init(void);
+        void run(void);
+        void draw(void);
+        void update(void);
+        bool processEvents(void);
 
+        int handleEvent();
+        void init_scenes();
         void handleScreensSwap(int ret);
         void reinitGame();
         void setActualScreen(Screens newScreen);
