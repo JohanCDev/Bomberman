@@ -43,9 +43,8 @@ void indie::menu::GameScreen::handleEvent(indie::Event &event)
     (void)event;
 }
 
-void indie::menu::GameScreen::update(float delta)
+void indie::menu::GameScreen::update()
 {
-    (void)delta;
 }
 
 void indie::menu::GameScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
@@ -70,9 +69,9 @@ void indie::menu::GameScreen::initEntity()
     player::Player player3(YELLOWPLAYERCOLOR, 2, {0, 0});
     player::Player player4(GREENPLAYERCOLOR, 3, {0, 0});
     vec2f uiSize = vec2f({150.f, 200.f});
-    vec2f topLeftPos = vec2f({25.f, 25.f});
-    vec2f topRightPos = vec2f({1512.f - 225.f, 25.f});
-    vec2f bottomLeftPos = vec2f({25.f, 982.f - 175.f});
+    vec2f topLeftPos = vec2f({40.f, 40.f});
+    vec2f topRightPos = vec2f({1512.f - 225.f, 40.f});
+    vec2f bottomLeftPos = vec2f({40.f, 982.f - 175.f});
     vec2f bottomRightPos = vec2f({1512.f - 225.f, 982.f - 175.f});
 
     this->_infoPlayers.push_back(

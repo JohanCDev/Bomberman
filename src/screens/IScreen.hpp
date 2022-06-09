@@ -19,7 +19,7 @@ namespace indie
       public:
         virtual ~IScreen() = default;
         virtual void draw() = 0;
-        virtual void update(float delta) = 0;
+        virtual void update() = 0;
         virtual void handleEvent(indie::Event &event) = 0;
         virtual void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) = 0;
         virtual void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) = 0;

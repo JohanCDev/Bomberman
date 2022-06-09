@@ -26,7 +26,7 @@ namespace indie
             GameScreen();
             ~GameScreen() = default;
             void draw() override;
-            void update(float delta) override;
+            void update() override;
             void handleEvent(indie::Event &event) override;
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
