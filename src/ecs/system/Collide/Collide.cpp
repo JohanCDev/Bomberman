@@ -37,6 +37,14 @@ void indie::ecs::system::Collide::checkSphereCollision(auto collide, auto transf
         == true) {
         collide->setCollide(true);
         otherEntityCollide->setCollide(true);
+        if (otherEntityTransform->getSpeedX() > 0.0)
+            otherEntityTransform->setX(otherEntityTransform->getX() - 0.02);
+        if (otherEntityTransform->getSpeedX() < 0.0)
+            otherEntityTransform->setX(otherEntityTransform->getX() + 0.02);
+        if (otherEntityTransform->getSpeedY() > 0.0)
+            otherEntityTransform->setY(otherEntityTransform->getY() - 0.02);
+        if (otherEntityTransform->getSpeedY() < 0.0)
+            otherEntityTransform->setY(otherEntityTransform->getY() + 0.02);
     }
 }
 
@@ -88,6 +96,12 @@ void indie::ecs::system::Collide::update(std::vector<std::unique_ptr<indie::ecs:
                     }
                     if (otherEntityDrawable->getDrawType() == indie::ecs::component::drawableType::SPHERE
                         && drawableCompo->getDrawType() == indie::ecs::component::drawableType::CUBE) {
+                        checkSphereCollision(collide, transformCompo, drawableCompo,
+                            otherEntity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM),
+                            otherEntityCollide, otherEntityDrawable);
+                    }
+                    if (drawableCompo->getDrawType() == indie::ecs::component::drawableType::SPHERE
+                        && otherEntityDrawable->getDrawType() == indie::ecs::component::drawableType::CUBE) {
                         checkSphereCollision(collide, transformCompo, drawableCompo,
                             otherEntity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM),
                             otherEntityCollide, otherEntityDrawable);

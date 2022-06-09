@@ -30,7 +30,7 @@ namespace indie
         namespace entity
         {
 
-            enum entityType { PLAYER1, PLAYER2, PLAYER3, PLAYER4, WALL, BOXES, TEXT, BOMB, UNKNOWN };
+            enum entityType { PLAYER_1, PLAYER_2, PLAYER_3, PLAYER_4, WALL, BOXES, TEXT, BOMB, UNKNOWN };
 
             class Entity {
               public:

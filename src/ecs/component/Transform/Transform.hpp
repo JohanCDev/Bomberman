@@ -93,6 +93,10 @@ namespace indie
                  */
                 float getSpeedY() const;
 
+                void setSpeedY(float speed);
+
+                void setSpeedX(float speed);
+
               private:
                 float _posX;
                 float _posY;

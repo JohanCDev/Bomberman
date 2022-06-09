@@ -70,3 +70,13 @@ float indie::ecs::component::Transform::getSpeedY() const
 {
     return (this->_speedY);
 }
+
+void indie::ecs::component::Transform::setSpeedY(float speed)
+{
+    this->_speedY = speed;
+}
+
+void indie::ecs::component::Transform::setSpeedX(float speed)
+{
+    this->_speedX = speed;
+}
