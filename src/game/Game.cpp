@@ -128,6 +128,8 @@ void indie::Game::run()
         if (accumulator > 10 * initUpdateMs)
             updateMs = accumulator;
         currentTime = newTime;
+        this->_game->getPlayersPlaying(
+            true, _premenu->isPlayer2Playing(), _premenu->isPlayer3Playing(), _premenu->isPlayer4Playing());
         if (!processEvents())
             break;
 

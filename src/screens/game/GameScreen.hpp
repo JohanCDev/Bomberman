@@ -35,12 +35,18 @@ namespace indie
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
             indie::raylib::Camera3D getCamera() const;
+            void getPlayersPlaying(bool is_p1_playing, bool is_p2_playing, bool is_p3_playing, bool is_p4_playing);
             void initMap(std::vector<std::vector<char>> map);
 
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
             indie::raylib::Camera3D _camera;
+
+            bool _player1_blue;
+            bool _player2_red;
+            bool _player3_green;
+            bool _player4_yellow;
         };
     } // namespace menu
 } // namespace indie

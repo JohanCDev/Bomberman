@@ -9,7 +9,8 @@
 #include "../../raylib/Raylib.hpp"
 
 indie::menu::GameScreen::GameScreen()
-    : _camera({0.0, 10.0, 10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, 45.0, CAMERA_PERSPECTIVE)
+    : _camera({0.0, 10.0, 10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, 45.0, CAMERA_PERSPECTIVE), _player1_blue(false),
+      _player2_red(false), _player3_green(false), _player4_yellow(false)
 {
 }
 
@@ -78,6 +79,15 @@ void indie::menu::GameScreen::addSystem(std::unique_ptr<indie::ecs::system::ISys
 indie::raylib::Camera3D indie::menu::GameScreen::getCamera() const
 {
     return (this->_camera);
+}
+
+void indie::menu::GameScreen::getPlayersPlaying(
+    bool is_p1_playing, bool is_p2_playing, bool is_p3_playing, bool is_p4_playing)
+{
+    _player1_blue = is_p1_playing;
+    _player2_red = is_p2_playing;
+    _player3_green = is_p3_playing;
+    _player4_yellow = is_p4_playing;
 }
 
 void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
