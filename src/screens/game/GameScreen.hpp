@@ -29,6 +29,7 @@ namespace indie
             void update() override;
             void handleEvent(indie::Event &event) override;
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
+            void removeEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
             indie::raylib::Camera3D getCamera() const;
             void initMap(std::vector<std::vector<char>> map);

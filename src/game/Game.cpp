@@ -13,6 +13,7 @@
 #include "../ecs/system/Collide/Collide.hpp"
 #include "../ecs/system/Draw2D/Draw2D.hpp"
 #include "../ecs/system/Draw3D/Draw3D.hpp"
+#include "../ecs/system/Explodable/Explodable.hpp"
 #include "../ecs/system/Movement/Movement.hpp"
 #include "../ecs/system/Sound/Sound.hpp"
 #include "../gameEvents/GameEvents.hpp"
@@ -38,7 +39,9 @@ bool indie::Game::processEvents()
 {
     GameEvents gameEvent;
 
-    return gameEvent.inputUpdate(_event);
+    bool ret = gameEvent.inputUpdate(_event);
+    this->_game->handleEvent(_event);
+    return (ret);
 }
 
 void indie::Game::update()
@@ -70,6 +73,7 @@ void indie::Game::init()
     std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
     std::unique_ptr<indie::ecs::system::ISystem> collideSystem = std::make_unique<indie::ecs::system::Collide>();
     std::unique_ptr<indie::ecs::entity::Entity> entityX = std::make_unique<indie::ecs::entity::Entity>();
+    std::unique_ptr<indie::ecs::system::Explodable> explodeSystem = std::make_unique<indie::ecs::system::Explodable>();
 
     map.createWall();
     entityX->addComponent<indie::ecs::component::Transform>(
@@ -79,6 +83,7 @@ void indie::Game::init()
     this->_game->initMap(map.getMap());
     this->_game->initEntity();
     this->_game->addEntity(std::move(entityX));
+    this->_game->initMap(map.getMap());
     this->_game->addSystem(std::move(draw2DSystem));
     this->_game->addSystem(std::move(draw3DSystem));
     this->_game->addSystem(std::move(movementSystem));
