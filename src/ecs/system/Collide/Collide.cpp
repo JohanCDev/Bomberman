@@ -68,7 +68,6 @@ void indie::ecs::system::Collide::checkCubeCollision(auto drawable, auto collide
     indie::raylib::BoundingBox box2(min2, max2);
     if (indie::raylib::BoundingBox::checkCollisionBoxes(box1.getBoundingBox(), box2.getBoundingBox()) == true) {
         collide->setCollide(true);
-        otherEntityCollide->setCollide(true);
     }
 }
 
