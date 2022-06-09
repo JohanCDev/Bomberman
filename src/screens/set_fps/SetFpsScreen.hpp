@@ -18,7 +18,7 @@ namespace indie
     namespace menu
     {
         class SetFpsScreen : public IScreen {
-            enum cursorPositionOptions { FPS = 310, FPS_30 = 410, FPS_60 = 510, OPTIONS = 610 };
+            enum cursorPosition { FPS = 310, FPS_30 = 410, FPS_60 = 510, OPTIONS = 610 };
 
           public:
             SetFpsScreen();
@@ -30,6 +30,7 @@ namespace indie
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
 
+            void setPreviousScene(bool scene);
             int checkCursorPosition(bool direction);
 
           private:

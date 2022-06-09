@@ -14,34 +14,55 @@ indie::menu::GameOptionsScreen::GameOptionsScreen() : _cursorPosition(RESUME)
 
 void indie::menu::GameOptionsScreen::init()
 {
+    std::unique_ptr<ecs::entity::Entity> background = std::make_unique<ecs::entity::Entity>();
+    background->addComponent<ecs::component::Transform>(0.0f, 0.0f, 0.0f, 0.0f);
+    background->addComponent<ecs::component::Drawable2D>("assets/menu/bg.png", 1200.0f, 2000.0f, WHITE);
+    addEntity(std::move(background));
+
+    std::unique_ptr<ecs::entity::Entity> frame = std::make_unique<ecs::entity::Entity>();
+    frame->addComponent<ecs::component::Transform>(570.0f, 120.0f, 0.0f, 0.0f);
+    frame->addComponent<ecs::component::Drawable2D>("assets/menu/frame.png", 950.0f, 700.0f, WHITE);
+    addEntity(std::move(frame));
+
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
-    cursor->addComponent<ecs::component::Transform>(320.0f, 510.0f, 0.0f, 0.0f);
-    cursor->addComponent<ecs::component::Drawable2D>("", 40.0f, 40.0f, RED);
+    cursor->addComponent<ecs::component::Transform>(680.0f, 200.0f, 0.0f, 0.0f);
+    cursor->addComponent<ecs::component::Drawable2D>("assets/menu/hand.png", 80.0f, 80.0f, WHITE);
     addEntity(std::move(cursor));
 
-    std::unique_ptr<ecs::entity::Entity> new_game = std::make_unique<ecs::entity::Entity>();
-    new_game->addComponent<ecs::component::Transform>(400.0f, 500.0f, 0.0f, 0.0f);
-    new_game->addComponent<ecs::component::Drawable2D>("Resume", 50.0f, BLACK);
-    new_game->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
-    addEntity(std::move(new_game));
+    std::unique_ptr<ecs::entity::Entity> resume = std::make_unique<ecs::entity::Entity>();
+    resume->addComponent<ecs::component::Transform>(780.0f, 175.0f, 0.0f, 0.0f);
+    resume->addComponent<ecs::component::Drawable2D>("assets/menu/resume.png", 105.0f, 280.0f, WHITE);
+    addEntity(std::move(resume));
+
+    std::unique_ptr<ecs::entity::Entity> menu = std::make_unique<ecs::entity::Entity>();
+    menu->addComponent<ecs::component::Transform>(780.0f, 300.0f, 0.0f, 0.0f);
+    menu->addComponent<ecs::component::Drawable2D>("assets/menu/menu.png", 105.0f, 280.0f, WHITE);
+    addEntity(std::move(menu));
 
     std::unique_ptr<ecs::entity::Entity> save = std::make_unique<ecs::entity::Entity>();
-    save->addComponent<ecs::component::Transform>(400.0f, 600.0f, 0.0f, 0.0f);
-    save->addComponent<ecs::component::Drawable2D>("Save", 50.0f, BLACK);
-    save->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
+    save->addComponent<ecs::component::Transform>(780.0f, 425.0f, 0.0f, 0.0f);
+    save->addComponent<ecs::component::Drawable2D>("assets/menu/save.png", 105.0f, 280.0f, WHITE);
     addEntity(std::move(save));
 
-    std::unique_ptr<ecs::entity::Entity> load_game = std::make_unique<ecs::entity::Entity>();
-    load_game->addComponent<ecs::component::Transform>(400.0f, 700.0f, 0.0f, 0.0f);
-    load_game->addComponent<ecs::component::Drawable2D>("Menu", 50.0f, BLACK);
-    load_game->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
-    addEntity(std::move(load_game));
+    std::unique_ptr<ecs::entity::Entity> music = std::make_unique<ecs::entity::Entity>();
+    music->addComponent<ecs::component::Transform>(780.0f, 550.0f, 0.0f, 0.0f);
+    music->addComponent<ecs::component::Drawable2D>("assets/menu/music.png", 105.0f, 280.0f, WHITE);
+    addEntity(std::move(music));
 
-    std::unique_ptr<ecs::entity::Entity> options = std::make_unique<ecs::entity::Entity>();
-    options->addComponent<ecs::component::Transform>(400.0f, 800.0f, 0.0f, 0.0f);
-    options->addComponent<ecs::component::Drawable2D>("Exit", 50.0f, BLACK);
-    options->addComponent<ecs::component::Drawable2D>("", 70.0f, 270.0f, BLUE);
-    addEntity(std::move(options));
+    std::unique_ptr<ecs::entity::Entity> sound = std::make_unique<ecs::entity::Entity>();
+    sound->addComponent<ecs::component::Transform>(780.0f, 675.0f, 0.0f, 0.0f);
+    sound->addComponent<ecs::component::Drawable2D>("assets/menu/sound.png", 105.0f, 280.0f, WHITE);
+    addEntity(std::move(sound));
+
+    std::unique_ptr<ecs::entity::Entity> fps = std::make_unique<ecs::entity::Entity>();
+    fps->addComponent<ecs::component::Transform>(780.0f, 800.0f, 0.0f, 0.0f);
+    fps->addComponent<ecs::component::Drawable2D>("assets/menu/fps.png", 105.0f, 280.0f, WHITE);
+    addEntity(std::move(fps));
+
+    std::unique_ptr<ecs::entity::Entity> quit = std::make_unique<ecs::entity::Entity>();
+    quit->addComponent<ecs::component::Transform>(780.0f, 925.0f, 0.0f, 0.0f);
+    quit->addComponent<ecs::component::Drawable2D>("assets/menu/quit.png", 105.0f, 280.0f, WHITE);
+    addEntity(std::move(quit));
 
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemGameOptions =
         std::make_unique<indie::ecs::system::Draw2DSystem>();
@@ -64,18 +85,24 @@ int indie::menu::GameOptionsScreen::handleEvent(indie::Event &event)
 {
     if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN) {
         indie::ecs::component::Transform *transformCompo =
-            _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-        transformCompo->update(320.0f, checkCursorPosition(true), 0.0f, 0.0f);
+            _entities.at(2)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+        transformCompo->update(680.0f, checkCursorPosition(true), 0.0f, 0.0f);
     }
     if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP) {
         ecs::component::Transform *transformCompo =
-            _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-        transformCompo->update(320.0f, checkCursorPosition(false), 0.0f, 0.0f);
+            _entities.at(2)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+        transformCompo->update(680.0f, checkCursorPosition(false), 0.0f, 0.0f);
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == RESUME)
         return 2;
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MENU)
         return 1;
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MUSIC)
+        return 6;
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == SOUND)
+        return 7;
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == FPS)
+        return 8;
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == EXIT)
         return 10;
     return 0;
@@ -103,11 +130,23 @@ int indie::menu::GameOptionsScreen::checkCursorPosition(bool direction)
             _cursorPosition = SAVE;
             return SAVE;
         }
-        if (_cursorPosition == SAVE) {
-            _cursorPosition = MENU;
-            return MENU;
-        }
         if (_cursorPosition == MENU) {
+            _cursorPosition = SAVE;
+            return SAVE;
+        }
+        if (_cursorPosition == SAVE) {
+            _cursorPosition = MUSIC;
+            return MUSIC;
+        }
+        if (_cursorPosition == MUSIC) {
+            _cursorPosition = SOUND;
+            return SOUND;
+        }
+        if (_cursorPosition == SOUND) {
+            _cursorPosition = FPS;
+            return FPS;
+        }
+        if (_cursorPosition == FPS) {
             _cursorPosition = EXIT;
             return EXIT;
         }
@@ -117,17 +156,29 @@ int indie::menu::GameOptionsScreen::checkCursorPosition(bool direction)
         if (_cursorPosition == RESUME) {
             return RESUME;
         }
-        if (_cursorPosition == SAVE) {
+        if (_cursorPosition == MENU) {
             _cursorPosition = RESUME;
             return RESUME;
         }
-        if (_cursorPosition == MENU) {
+        if (_cursorPosition == SAVE) {
+            _cursorPosition = MENU;
+            return MENU;
+        }
+        if (_cursorPosition == MUSIC) {
             _cursorPosition = SAVE;
             return SAVE;
         }
+        if (_cursorPosition == SOUND) {
+            _cursorPosition = MUSIC;
+            return MUSIC;
+        }
+        if (_cursorPosition == FPS) {
+            _cursorPosition = SOUND;
+            return SOUND;
+        }
         if (_cursorPosition == EXIT) {
-            _cursorPosition = MENU;
-            return MENU;
+            _cursorPosition = FPS;
+            return FPS;
         }
     }
     return 0;

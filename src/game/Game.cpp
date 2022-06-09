@@ -21,7 +21,6 @@ indie::Game::Game(size_t baseFps)
     _actualScreen = Screens::Menu;
     _menu = new indie::menu::MenuScreen;
     _game = new indie::menu::GameScreen;
-    _options = new indie::menu::OptionsScreen;
     _premenu = new indie::menu::PreMenuScreen;
     _gameoptions = new indie::menu::GameOptionsScreen;
     _end = new indie::menu::EndScreen;
@@ -34,7 +33,6 @@ indie::Game::~Game()
 {
     delete _menu;
     delete _game;
-    delete _options;
     delete _premenu;
     delete _gameoptions;
     delete _end;
@@ -47,7 +45,6 @@ void indie::Game::init_scenes()
 {
     _menu->init();
     _game->init();
-    _options->init();
     _premenu->init();
     _gameoptions->init();
     _end->init();
@@ -74,7 +71,6 @@ void indie::Game::draw()
     switch (_actualScreen) {
         case Screens::Menu: _menu->draw(); break;
         case Screens::Game: _game->draw(); break;
-        case Screens::Options: _options->draw(); break;
         case Screens::PreMenu: _premenu->draw(); break;
         case Screens::GameOptions: _gameoptions->draw(); break;
         case Screens::End: _end->draw(); break;
@@ -90,7 +86,6 @@ int indie::Game::handleEvent()
     switch (_actualScreen) {
         case Screens::Menu: return (_menu->handleEvent(_event));
         case Screens::Game: return (_game->handleEvent(_event));
-        case Screens::Options: return (_options->handleEvent(_event));
         case Screens::PreMenu: return (_premenu->handleEvent(_event));
         case Screens::GameOptions: return (_gameoptions->handleEvent(_event));
         case Screens::End: return (_end->handleEvent(_event));
@@ -159,19 +154,17 @@ void indie::Game::handleScreensSwap(int ret)
     if (ret == 2)
         setActualScreen(Screens::Game);
     if (ret == 3)
-        setActualScreen(Screens::Options);
-    if (ret == 4)
         setActualScreen(Screens::PreMenu);
-    if (ret == 5)
+    if (ret == 4)
         setActualScreen(Screens::GameOptions);
-    if (ret == 6)
+    if (ret == 5)
         setActualScreen(Screens::End);
-    if (ret == 7)
-        setActualScreen(Screens::SetFps);
-    if (ret == 8)
-        setActualScreen(Screens::SetSound);
-    if (ret == 9)
+    if (ret == 6)
         setActualScreen(Screens::SetMusic);
+    if (ret == 7)
+        setActualScreen(Screens::SetSound);
+    if (ret == 8)
+        setActualScreen(Screens::SetFps);
 }
 
 void indie::Game::reinitGame()

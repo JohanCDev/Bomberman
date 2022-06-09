@@ -97,7 +97,7 @@ int indie::menu::SetMusicScreen::handleEvent(indie::Event &event)
     //     indie::raylib::Sound::setVolume(0.25);
     // }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == OPTIONS)
-        return 3;
+        return 4;
     return 0;
 }
 

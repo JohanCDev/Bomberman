@@ -21,7 +21,7 @@ void indie::menu::MenuScreen::init()
 
     std::unique_ptr<ecs::entity::Entity> frame = std::make_unique<ecs::entity::Entity>();
     frame->addComponent<ecs::component::Transform>(570.0f, 230.0f, 0.0f, 0.0f);
-    frame->addComponent<ecs::component::Drawable2D>("assets/menu/frame.png", 700.0f, 700.0f, WHITE);
+    frame->addComponent<ecs::component::Drawable2D>("assets/menu/frame.png", 600.0f, 700.0f, WHITE);
     addEntity(std::move(frame));
 
     std::unique_ptr<ecs::entity::Entity> left_character = std::make_unique<ecs::entity::Entity>();
@@ -49,13 +49,8 @@ void indie::menu::MenuScreen::init()
     load_game->addComponent<ecs::component::Drawable2D>("assets/menu/load.png", 105.0f, 280.0f, WHITE);
     addEntity(std::move(load_game));
 
-    std::unique_ptr<ecs::entity::Entity> options = std::make_unique<ecs::entity::Entity>();
-    options->addComponent<ecs::component::Transform>(780.0f, 600.0f, 0.0f, 0.0f);
-    options->addComponent<ecs::component::Drawable2D>("assets/menu/options.png", 105.0f, 280.0f, WHITE);
-    addEntity(std::move(options));
-
     std::unique_ptr<ecs::entity::Entity> quit = std::make_unique<ecs::entity::Entity>();
-    quit->addComponent<ecs::component::Transform>(780.0f, 725.0f, 0.0f, 0.0f);
+    quit->addComponent<ecs::component::Transform>(780.0f, 600.0f, 0.0f, 0.0f);
     quit->addComponent<ecs::component::Drawable2D>("assets/menu/quit.png", 105.0f, 280.0f, WHITE);
     addEntity(std::move(quit));
 
@@ -89,11 +84,33 @@ int indie::menu::MenuScreen::handleEvent(indie::Event &event)
         transformCompo->update(680.0f, checkCursorPosition(false), 0.0f, 0.0f);
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == NEW_GAME)
-        return 4;
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == OPTIONS)
         return 3;
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == EXIT)
         return 10;
+    if (_cursorPosition == NEW_GAME) {
+        if (_entities[8] != NULL)
+            _entities.erase(_entities.begin() + 8);
+        std::unique_ptr<ecs::entity::Entity> new_game = std::make_unique<ecs::entity::Entity>();
+        new_game->addComponent<ecs::component::Transform>(780.0f, 350.0f, 0.0f, 0.0f);
+        new_game->addComponent<ecs::component::Drawable2D>("assets/menu/new_game.png", 115.0f, 290.0f, WHITE);
+        addEntity(std::move(new_game));
+    }
+    if (_cursorPosition == LOAD_GAME) {
+        if (_entities[8] != NULL)
+            _entities.erase(_entities.begin() + 8);
+        std::unique_ptr<ecs::entity::Entity> load_game = std::make_unique<ecs::entity::Entity>();
+        load_game->addComponent<ecs::component::Transform>(780.0f, 475.0f, 0.0f, 0.0f);
+        load_game->addComponent<ecs::component::Drawable2D>("assets/menu/load.png", 115.0f, 290.0f, WHITE);
+        addEntity(std::move(load_game));
+    }
+    if (_cursorPosition == EXIT) {
+        if (_entities[8] != NULL)
+            _entities.erase(_entities.begin() + 8);
+        std::unique_ptr<ecs::entity::Entity> quit = std::make_unique<ecs::entity::Entity>();
+        quit->addComponent<ecs::component::Transform>(780.0f, 600.0f, 0.0f, 0.0f);
+        quit->addComponent<ecs::component::Drawable2D>("assets/menu/quit.png", 115.0f, 290.0f, WHITE);
+        addEntity(std::move(quit));
+    }
     return 0;
 }
 
@@ -115,10 +132,6 @@ int indie::menu::MenuScreen::checkCursorPosition(bool direction)
             return LOAD_GAME;
         }
         if (_cursorPosition == LOAD_GAME) {
-            _cursorPosition = OPTIONS;
-            return OPTIONS;
-        }
-        if (_cursorPosition == OPTIONS) {
             _cursorPosition = EXIT;
             return EXIT;
         }
@@ -131,13 +144,9 @@ int indie::menu::MenuScreen::checkCursorPosition(bool direction)
             _cursorPosition = NEW_GAME;
             return NEW_GAME;
         }
-        if (_cursorPosition == OPTIONS) {
+        if (_cursorPosition == EXIT) {
             _cursorPosition = LOAD_GAME;
             return LOAD_GAME;
-        }
-        if (_cursorPosition == EXIT) {
-            _cursorPosition = OPTIONS;
-            return OPTIONS;
         }
     }
     return 0;

@@ -18,7 +18,7 @@ namespace indie
     namespace menu
     {
         class SetSoundScreen : public IScreen {
-            enum cursorPositionOptions {
+            enum cursorPosition {
                 SOUND = 210,
                 SOUND_0 = 310,
                 SOUND_25 = 410,
