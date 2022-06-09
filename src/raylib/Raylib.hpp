@@ -11,7 +11,6 @@
 #include <raylib.h>
 #include <string>
 
-#include "../../include/MyRaylib.hpp"
 #include "boundingbox/BoundingBox.hpp"
 #include "camera3d/Camera3D.hpp"
 #include "circle/Circle.hpp"
@@ -19,6 +18,7 @@
 #include "cylinder/Cylinder.hpp"
 #include "draw/Draw.hpp"
 #include "event/Event.hpp"
+#include "music/Music.hpp"
 #include "rectangle/Rectangle.hpp"
 #include "sound/Sound.hpp"
 #include "sphere/Sphere.hpp"
@@ -26,7 +26,8 @@
 #include "triangle/Triangle.hpp"
 #include "window/Window.hpp"
 
-
-namespace raylib {}
+namespace raylib
+{
+}
 
 #endif /* !RAYLIB_HPP_ */

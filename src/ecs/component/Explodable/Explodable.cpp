@@ -11,16 +11,17 @@ indie::ecs::component::Explodable::Explodable()
 {
     this->_range = 0.0;
     this->_explosionTime = 2;
-    this->_dropped = false;
+    this->_dropped = true;
     this->_exploded = false;
 }
 
-indie::ecs::component::Explodable::Explodable(float range, int explosionTime)
+indie::ecs::component::Explodable::Explodable(float range, int explosionTime) : _seconds(explosionTime)
 {
     this->_range = range;
     this->_explosionTime = explosionTime;
-    this->_dropped = false;
+    this->_dropped = true;
     this->_exploded = false;
+    this->_tStart = std::chrono::system_clock::now();
 }
 
 indie::ecs::component::Explodable::~Explodable()
@@ -69,5 +70,15 @@ bool indie::ecs::component::Explodable::getDropped() const
 
 bool indie::ecs::component::Explodable::getExploded() const
 {
-    return (true);
+    return (this->_exploded);
+}
+
+std::chrono::time_point<std::chrono::system_clock> indie::ecs::component::Explodable::getTStart() const
+{
+    return (this->_tStart);
+}
+
+std::chrono::seconds indie::ecs::component::Explodable::getSeconds() const
+{
+    return (this->_seconds);
 }

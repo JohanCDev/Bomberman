@@ -6,11 +6,12 @@
 */
 
 #include <iostream>
-#include "RColor.hpp"
+#include "Colors.hpp"
 #include "ecs/component/IComponent.hpp"
 #include "ecs/entity/Entity.hpp"
 #include "game/Game.hpp"
 #include "map/MapGenerator.hpp"
+#include "player/Player.hpp"
 #include "raylib/Raylib.hpp"
 
 int main(void)
