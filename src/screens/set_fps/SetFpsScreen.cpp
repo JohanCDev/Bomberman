@@ -67,25 +67,28 @@ void indie::menu::SetFpsScreen::draw()
 
 int indie::menu::SetFpsScreen::handleEvent(indie::Event &event)
 {
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN) {
+    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN || event.key.down) {
         indie::ecs::component::Transform *transformCompo =
             _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(true)),
             static_cast<float>(0.0), static_cast<float>(0.0));
     }
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP) {
+    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP || event.key.up) {
         ecs::component::Transform *transformCompo =
             _entities.at(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(static_cast<float>(320.0), static_cast<float>(checkCursorPosition(false)),
             static_cast<float>(0.0), static_cast<float>(0.0));
     }
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == FPS_30) {
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
+        && _cursorPosition == FPS_30) {
         indie::raylib::Window::setTargetFPS(30);
     }
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == FPS_60) {
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
+        && _cursorPosition == FPS_60) {
         indie::raylib::Window::setTargetFPS(60);
     }
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == OPTIONS)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
+        && _cursorPosition == OPTIONS)
         return 4;
     return 0;
 }

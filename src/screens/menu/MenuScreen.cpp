@@ -73,19 +73,21 @@ void indie::menu::MenuScreen::draw()
 
 int indie::menu::MenuScreen::handleEvent(indie::Event &event)
 {
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN) {
+    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN || event.key.down) {
         ecs::component::Transform *transformCompo =
             _entities.at(4)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(680.0f, checkCursorPosition(true), 0.0f, 0.0f);
     }
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP) {
+    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP || event.key.up) {
         ecs::component::Transform *transformCompo =
             _entities.at(4)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(680.0f, checkCursorPosition(false), 0.0f, 0.0f);
     }
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == NEW_GAME)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
+        && _cursorPosition == NEW_GAME)
         return 3;
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == EXIT)
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
+        && _cursorPosition == EXIT)
         return 10;
     if (_cursorPosition == NEW_GAME) {
         if (_entities[8] != NULL)
