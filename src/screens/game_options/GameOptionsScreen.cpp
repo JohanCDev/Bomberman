@@ -111,6 +111,96 @@ int indie::menu::GameOptionsScreen::handleEvent(indie::Event &event)
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
         && _cursorPosition == EXIT)
         return 10;
+    if (_cursorPosition == RESUME) {
+        ecs::component::Drawable2D *drawableCompo1 =
+            _entities.at(3)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo1->setHeight(115.0f);
+        drawableCompo1->setWidth(290.0f);
+        ecs::component::Drawable2D *drawableCompo2 =
+            _entities.at(4)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo2->setHeight(105.0f);
+        drawableCompo2->setWidth(280.0f);
+    }
+    if (_cursorPosition == MENU) {
+        ecs::component::Drawable2D *drawableCompo1 =
+            _entities.at(3)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo1->setHeight(105.0f);
+        drawableCompo1->setWidth(280.0f);
+        ecs::component::Drawable2D *drawableCompo2 =
+            _entities.at(4)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo2->setHeight(115.0f);
+        drawableCompo2->setWidth(290.0f);
+        ecs::component::Drawable2D *drawableCompo3 =
+            _entities.at(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo3->setHeight(105.0f);
+        drawableCompo3->setWidth(280.0f);
+    }
+    if (_cursorPosition == SAVE) {
+        ecs::component::Drawable2D *drawableCompo1 =
+            _entities.at(4)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo1->setHeight(105.0f);
+        drawableCompo1->setWidth(280.0f);
+        ecs::component::Drawable2D *drawableCompo2 =
+            _entities.at(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo2->setHeight(115.0f);
+        drawableCompo2->setWidth(290.0f);
+        ecs::component::Drawable2D *drawableCompo3 =
+            _entities.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo3->setHeight(105.0f);
+        drawableCompo3->setWidth(280.0f);
+    }
+    if (_cursorPosition == MUSIC) {
+        ecs::component::Drawable2D *drawableCompo1 =
+            _entities.at(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo1->setHeight(105.0f);
+        drawableCompo1->setWidth(280.0f);
+        ecs::component::Drawable2D *drawableCompo2 =
+            _entities.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo2->setHeight(115.0f);
+        drawableCompo2->setWidth(290.0f);
+        ecs::component::Drawable2D *drawableCompo3 =
+            _entities.at(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo3->setHeight(105.0f);
+        drawableCompo3->setWidth(280.0f);
+    }
+    if (_cursorPosition == SOUND) {
+        ecs::component::Drawable2D *drawableCompo1 =
+            _entities.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo1->setHeight(105.0f);
+        drawableCompo1->setWidth(280.0f);
+        ecs::component::Drawable2D *drawableCompo2 =
+            _entities.at(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo2->setHeight(115.0f);
+        drawableCompo2->setWidth(290.0f);
+        ecs::component::Drawable2D *drawableCompo3 =
+            _entities.at(8)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo3->setHeight(105.0f);
+        drawableCompo3->setWidth(280.0f);
+    }
+    if (_cursorPosition == FPS) {
+        ecs::component::Drawable2D *drawableCompo1 =
+            _entities.at(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo1->setHeight(105.0f);
+        drawableCompo1->setWidth(280.0f);
+        ecs::component::Drawable2D *drawableCompo2 =
+            _entities.at(8)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo2->setHeight(115.0f);
+        drawableCompo2->setWidth(290.0f);
+        ecs::component::Drawable2D *drawableCompo3 =
+            _entities.at(9)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo3->setHeight(105.0f);
+        drawableCompo3->setWidth(280.0f);
+    }
+    if (_cursorPosition == EXIT) {
+        ecs::component::Drawable2D *drawableCompo2 =
+            _entities.at(8)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo2->setHeight(105.0f);
+        drawableCompo2->setWidth(280.0f);
+        ecs::component::Drawable2D *drawableCompo3 =
+            _entities.at(9)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo3->setHeight(115.0f);
+        drawableCompo3->setWidth(290.0f);
+    }
     return 0;
 }
 

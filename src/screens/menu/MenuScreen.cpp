@@ -90,28 +90,38 @@ int indie::menu::MenuScreen::handleEvent(indie::Event &event)
         && _cursorPosition == EXIT)
         return 10;
     if (_cursorPosition == NEW_GAME) {
-        if (_entities[8] != NULL)
-            _entities.erase(_entities.begin() + 8);
-        std::unique_ptr<ecs::entity::Entity> new_game = std::make_unique<ecs::entity::Entity>();
-        new_game->addComponent<ecs::component::Transform>(780.0f, 350.0f, 0.0f, 0.0f);
-        new_game->addComponent<ecs::component::Drawable2D>("assets/menu/new_game.png", 115.0f, 290.0f, WHITE);
-        addEntity(std::move(new_game));
+        ecs::component::Drawable2D *drawableCompo1 =
+            _entities.at(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo1->setHeight(115.0f);
+        drawableCompo1->setWidth(290.0f);
+        ecs::component::Drawable2D *drawableCompo2 =
+            _entities.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo2->setHeight(105.0f);
+        drawableCompo2->setWidth(280.0f);
     }
     if (_cursorPosition == LOAD_GAME) {
-        if (_entities[8] != NULL)
-            _entities.erase(_entities.begin() + 8);
-        std::unique_ptr<ecs::entity::Entity> load_game = std::make_unique<ecs::entity::Entity>();
-        load_game->addComponent<ecs::component::Transform>(780.0f, 475.0f, 0.0f, 0.0f);
-        load_game->addComponent<ecs::component::Drawable2D>("assets/menu/load.png", 115.0f, 290.0f, WHITE);
-        addEntity(std::move(load_game));
+        ecs::component::Drawable2D *drawableCompo1 =
+            _entities.at(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo1->setHeight(105.0f);
+        drawableCompo1->setWidth(280.0f);
+        ecs::component::Drawable2D *drawableCompo2 =
+            _entities.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo2->setHeight(115.0f);
+        drawableCompo2->setWidth(290.0f);
+        ecs::component::Drawable2D *drawableCompo3 =
+            _entities.at(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo3->setHeight(105.0f);
+        drawableCompo3->setWidth(280.0f);
     }
     if (_cursorPosition == EXIT) {
-        if (_entities[8] != NULL)
-            _entities.erase(_entities.begin() + 8);
-        std::unique_ptr<ecs::entity::Entity> quit = std::make_unique<ecs::entity::Entity>();
-        quit->addComponent<ecs::component::Transform>(780.0f, 600.0f, 0.0f, 0.0f);
-        quit->addComponent<ecs::component::Drawable2D>("assets/menu/quit.png", 115.0f, 290.0f, WHITE);
-        addEntity(std::move(quit));
+        ecs::component::Drawable2D *drawableCompo2 =
+            _entities.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo2->setHeight(105.0f);
+        drawableCompo2->setWidth(280.0f);
+        ecs::component::Drawable2D *drawableCompo3 =
+            _entities.at(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        drawableCompo3->setHeight(115.0f);
+        drawableCompo3->setWidth(290.0f);
     }
     return 0;
 }
