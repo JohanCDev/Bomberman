@@ -138,52 +138,95 @@ int indie::menu::GameOptionsScreen::handleEvent(indie::Event &event)
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
         && _cursorPosition == EXIT)
         return 10;
-    if (_cursorPosition == RESUME) {
-        setSize(3, 12.f, 20.f);
-        setSize(4, 10.f, 18.f);
-    }
-    if (_cursorPosition == MENU) {
-        setSize(3, 10.f, 18.f);
-        setSize(4, 12.f, 20.f);
-        setSize(5, 10.f, 18.f);
-    }
-    if (_cursorPosition == SAVE) {
-        setSize(4, 10.f, 18.f);
-        setSize(5, 12.f, 20.f);
-        setSize(6, 10.f, 18.f);
-    }
-    if (_cursorPosition == MUSIC) {
-        setSize(5, 10.f, 18.f);
-        setSize(6, 12.f, 20.f);
-        setSize(7, 10.f, 18.f);
-    }
-    if (_cursorPosition == SOUND) {
-        setSize(6, 10.f, 18.f);
-        setSize(7, 12.f, 20.f);
-        setSize(8, 10.f, 18.f);
-    }
-    if (_cursorPosition == FPS) {
-        setSize(7, 10.f, 18.f);
-        setSize(8, 12.f, 20.f);
-        setSize(9, 10.f, 18.f);
-    }
-    if (_cursorPosition == EXIT) {
-        setSize(8, 10.f, 18.f);
-        setSize(9, 12.f, 20.f);
-    }
     return 0;
-}
-
-void indie::menu::GameOptionsScreen::setSize(int where, float height, float width)
-{
-    ecs::component::Drawable2D *drawableCompo =
-        _entities.at(where)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-    drawableCompo->setHeight(tools::Tools::getPercentage(height, false));
-    drawableCompo->setWidth(tools::Tools::getPercentage(width, true));
 }
 
 void indie::menu::GameOptionsScreen::update()
 {
+    ecs::component::Drawable2D *bgDrawableCompo =
+        this->_entities[0]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Drawable2D *frameDrawableCompo =
+        this->_entities[1]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *frameTransCompo =
+        this->_entities[1]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *cursDrawableCompo =
+        this->_entities[2]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *cursTransCompo =
+        this->_entities[2]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *resumeDrawableCompo =
+        this->_entities[3]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *resumeTransCompo =
+        this->_entities[3]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *menuDrawableCompo =
+        this->_entities[4]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *menuTransCompo =
+        this->_entities[4]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *saveDrawableCompo =
+        this->_entities[5]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *saveTransCompo =
+        this->_entities[5]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *musicDrawableCompo =
+        this->_entities[6]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *musicTransCompo =
+        this->_entities[6]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *soundDrawableCompo =
+        this->_entities[7]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *soundTransCompo =
+        this->_entities[7]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *fpsDrawableCompo =
+        this->_entities[8]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *fpsTransCompo =
+        this->_entities[8]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *quitDrawableCompo =
+        this->_entities[9]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *quitTransCompo =
+        this->_entities[9]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+
+    bgDrawableCompo->setHeight(tools::Tools::getPercentage(100.f, false));
+    bgDrawableCompo->setWidth(tools::Tools::getPercentage(100.f, true));
+    frameTransCompo->setX(tools::Tools::getPercentage(20.f, true));
+    frameTransCompo->setY(tools::Tools::getPercentage(2.5f, false));
+    frameDrawableCompo->setHeight(tools::Tools::getPercentage(95.f, false));
+    frameDrawableCompo->setWidth(tools::Tools::getPercentage(60.f, true));
+    cursTransCompo->setX(tools::Tools::getPercentage(33.f, true));
+    cursTransCompo->setY(this->_positionsCursor[this->_cursorPosition]);
+    cursDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
+    cursDrawableCompo->setWidth(tools::Tools::getPercentage(6.f, true));
+    resumeTransCompo->setX(tools::Tools::getPercentage(40.f, true));
+    resumeTransCompo->setY(tools::Tools::getPercentage(6.f, false));
+    resumeDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
+    resumeDrawableCompo->setWidth(tools::Tools::getPercentage(18.f, true));
+    menuTransCompo->setX(tools::Tools::getPercentage(40.f, true));
+    menuTransCompo->setY(tools::Tools::getPercentage(18.5f, false));
+    menuDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
+    menuDrawableCompo->setWidth(tools::Tools::getPercentage(18.f, true));
+    saveTransCompo->setX(tools::Tools::getPercentage(40.f, true));
+    saveTransCompo->setY(tools::Tools::getPercentage(31.f, false));
+    saveDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
+    saveDrawableCompo->setWidth(tools::Tools::getPercentage(18.f, true));
+    musicTransCompo->setX(tools::Tools::getPercentage(40.f, true));
+    musicTransCompo->setY(tools::Tools::getPercentage(43.5f, false));
+    musicDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
+    musicDrawableCompo->setWidth(tools::Tools::getPercentage(18.f, true));
+    soundTransCompo->setX(tools::Tools::getPercentage(40.f, true));
+    soundTransCompo->setY(tools::Tools::getPercentage(56.f, false));
+    soundDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
+    soundDrawableCompo->setWidth(tools::Tools::getPercentage(18.f, true));
+    fpsTransCompo->setX(tools::Tools::getPercentage(40.f, true));
+    fpsTransCompo->setY(tools::Tools::getPercentage(68.5f, false));
+    fpsDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
+    fpsDrawableCompo->setWidth(tools::Tools::getPercentage(18.f, true));
+    quitTransCompo->setX(tools::Tools::getPercentage(40.f, true));
+    quitTransCompo->setY(tools::Tools::getPercentage(81.f, false));
+    quitDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
+    quitDrawableCompo->setWidth(tools::Tools::getPercentage(18.f, true));
+    this->_positionsCursor[RESUME] = tools::Tools::getPercentage(9.f, false);
+    this->_positionsCursor[MENU] = tools::Tools::getPercentage(21.f, false);
+    this->_positionsCursor[SAVE] = tools::Tools::getPercentage(33.5f, false);
+    this->_positionsCursor[MUSIC] = tools::Tools::getPercentage(46.f, false);
+    this->_positionsCursor[SOUND] = tools::Tools::getPercentage(58.5f, false);
+    this->_positionsCursor[FPS] = tools::Tools::getPercentage(71.f, false);
+    this->_positionsCursor[EXIT] = tools::Tools::getPercentage(83.5f, false);
 }
 
 void indie::menu::GameOptionsScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)

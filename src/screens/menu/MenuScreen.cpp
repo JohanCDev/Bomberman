@@ -109,32 +109,75 @@ int indie::menu::MenuScreen::handleEvent(indie::Event &event)
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
         && _cursorPosition == EXIT)
         return 10;
-    if (_cursorPosition == NEW_GAME) {
-        setSize(5, 13.f, 21.f);
-        setSize(6, 11.f, 19.f);
-    }
-    if (_cursorPosition == LOAD_GAME) {
-        setSize(5, 11.f, 19.f);
-        setSize(6, 13.f, 21.f);
-        setSize(7, 11.f, 19.f);
-    }
-    if (_cursorPosition == EXIT) {
-        setSize(6, 11.f, 19.f);
-        setSize(7, 13.f, 21.f);
-    }
     return 0;
-}
-
-void indie::menu::MenuScreen::setSize(int where, float height, float width)
-{
-    ecs::component::Drawable2D *drawableCompo =
-        _entities.at(where)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-    drawableCompo->setHeight(tools::Tools::getPercentage(height, false));
-    drawableCompo->setWidth(tools::Tools::getPercentage(width, true));
 }
 
 void indie::menu::MenuScreen::update()
 {
+    ecs::component::Drawable2D *bgDrawableCompo =
+        this->_entities[0]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Drawable2D *frameDrawableCompo =
+        this->_entities[1]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *frameTransCompo =
+        this->_entities[1]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *leftDrawableCompo =
+        this->_entities[2]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *leftTransCompo =
+        this->_entities[2]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *rightDrawableCompo =
+        this->_entities[3]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *rightTransCompo =
+        this->_entities[3]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *cursDrawableCompo =
+        this->_entities[4]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *cursTransCompo =
+        this->_entities[4]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *newDrawableCompo =
+        this->_entities[5]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *newTransCompo =
+        this->_entities[5]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *loadDrawableCompo =
+        this->_entities[6]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *loadTransCompo =
+        this->_entities[6]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    ecs::component::Drawable2D *quitDrawableCompo =
+        this->_entities[7]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *quitTransCompo =
+        this->_entities[7]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+
+    bgDrawableCompo->setHeight(tools::Tools::getPercentage(100.f, false));
+    bgDrawableCompo->setWidth(tools::Tools::getPercentage(100.f, true));
+    frameTransCompo->setX(tools::Tools::getPercentage(20.f, true));
+    frameTransCompo->setY(tools::Tools::getPercentage(10.f, false));
+    frameDrawableCompo->setHeight(tools::Tools::getPercentage(80.f, false));
+    frameDrawableCompo->setWidth(tools::Tools::getPercentage(60.f, true));
+    leftTransCompo->setX(tools::Tools::getPercentage(5.f, true));
+    leftTransCompo->setY(tools::Tools::getPercentage(20.f, false));
+    leftDrawableCompo->setHeight(tools::Tools::getPercentage(60.f, false));
+    leftDrawableCompo->setWidth(tools::Tools::getPercentage(30.f, true));
+    rightTransCompo->setX(tools::Tools::getPercentage(65.f, true));
+    rightTransCompo->setY(tools::Tools::getPercentage(20.f, false));
+    rightDrawableCompo->setHeight(tools::Tools::getPercentage(60.f, false));
+    rightDrawableCompo->setWidth(tools::Tools::getPercentage(30.f, true));
+    cursTransCompo->setX(tools::Tools::getPercentage(33.f, true));
+    cursTransCompo->setY(this->_positionsCursor[this->_cursorPosition]);
+    cursDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
+    cursDrawableCompo->setWidth(tools::Tools::getPercentage(6.f, true));
+    newTransCompo->setX(tools::Tools::getPercentage(40.f, true));
+    newTransCompo->setY(tools::Tools::getPercentage(25.f, false));
+    newDrawableCompo->setHeight(tools::Tools::getPercentage(11.f, false));
+    newDrawableCompo->setWidth(tools::Tools::getPercentage(19.f, true));
+    loadTransCompo->setX(tools::Tools::getPercentage(40.f, true));
+    loadTransCompo->setY(tools::Tools::getPercentage(45.f, false));
+    loadDrawableCompo->setHeight(tools::Tools::getPercentage(11.f, false));
+    loadDrawableCompo->setWidth(tools::Tools::getPercentage(19.f, true));
+    quitTransCompo->setX(tools::Tools::getPercentage(40.f, true));
+    quitTransCompo->setY(tools::Tools::getPercentage(65.f, false));
+    quitDrawableCompo->setHeight(tools::Tools::getPercentage(11.f, false));
+    quitDrawableCompo->setWidth(tools::Tools::getPercentage(19.f, true));
+    this->_positionsCursor[NEW_GAME] = tools::Tools::getPercentage(27.f, false);
+    this->_positionsCursor[LOAD_GAME] = tools::Tools::getPercentage(47.f, false);
+    this->_positionsCursor[EXIT] = tools::Tools::getPercentage(67.f, false);
 }
 
 void indie::menu::MenuScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
@@ -147,24 +190,24 @@ int indie::menu::MenuScreen::checkCursorPosition(bool direction)
     if (direction) {
         if (_cursorPosition == NEW_GAME) {
             _cursorPosition = LOAD_GAME;
-            return this->_positionsCursor[LOAD_GAME];
+            return this->_positionsCursor[_cursorPosition];
         }
         if (_cursorPosition == LOAD_GAME) {
             _cursorPosition = EXIT;
-            return this->_positionsCursor[EXIT];
+            return this->_positionsCursor[_cursorPosition];
         }
         if (_cursorPosition == EXIT)
-            return this->_positionsCursor[EXIT];
+            return this->_positionsCursor[_cursorPosition];
     } else if (!direction) {
         if (_cursorPosition == NEW_GAME)
-            return this->_positionsCursor[NEW_GAME];
+            return this->_positionsCursor[_cursorPosition];
         if (_cursorPosition == LOAD_GAME) {
             _cursorPosition = NEW_GAME;
-            return this->_positionsCursor[NEW_GAME];
+            return this->_positionsCursor[_cursorPosition];
         }
         if (_cursorPosition == EXIT) {
             _cursorPosition = LOAD_GAME;
-            return this->_positionsCursor[LOAD_GAME];
+            return this->_positionsCursor[_cursorPosition];
         }
     }
     return 0;

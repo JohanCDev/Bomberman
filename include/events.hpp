@@ -62,20 +62,6 @@ namespace indie
             Key code;
         };
 
-        /// Enumeration of the different types of events.
-        enum class Type {
-            /// The window requested to be closed (no data).
-            Closed,
-            /// The window was resized (data in Event.size).
-            Resized,
-            /// A key was pressed (data in Event.key).
-            KeyPressed,
-            /// A key was released (data in Event.key).
-            KeyReleased,
-            /// Keep last -- the total number of event types.
-            Count
-        };
-
         /// Controller button input
         enum ControllerCode {
             /// Nothing is happening
@@ -143,13 +129,9 @@ namespace indie
         };
 
         // Member data
-
-        /// Type of the event.
-        Type type;
-
         union {
-            /// Size event parameters (Event::Resized).
-            SizeEvent size;
+            /// Is the window resized?
+            bool resized;
             /// Key event parameters (Event::KeyPressed, Event::KeyReleased).
             KeyEvent key;
             /// Controller events

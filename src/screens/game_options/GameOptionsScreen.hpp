@@ -39,14 +39,13 @@ namespace indie
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
 
-            void setSize(int where, float height, float width);
             bool getIsGameOptionsCalling() const;
             int checkCursorPosition(bool direction);
 
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
-            std::map<cursorPosition, float> _positionsCursor;
+            std::map<int, float> _positionsCursor;
             int _cursorPosition;
 
             bool _isGameOptionsCalling;

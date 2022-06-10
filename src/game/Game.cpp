@@ -82,6 +82,12 @@ void indie::Game::update()
     switch (_actualScreen) {
         case Screens::Menu: _menu->update(); break;
         case Screens::Game: _game->update(); break;
+        case Screens::PreMenu: _premenu->update(); break;
+        case Screens::GameOptions: _gameoptions->update(); break;
+        case Screens::End: _end->update(); break;
+        case Screens::SetFps: _setFps->update(); break;
+        case Screens::SetSound: _setSound->update(); break;
+        case Screens::SetMusic: _setMusic->update(); break;
         default: break;
     }
 }
