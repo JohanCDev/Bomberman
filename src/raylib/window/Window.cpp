@@ -41,7 +41,6 @@ void indie::raylib::Window::setTargetFPS(int fps)
     ::SetTargetFPS(fps);
 }
 
-
 void indie::raylib::Window::destroyWindow()
 {
     ::CloseWindow();
