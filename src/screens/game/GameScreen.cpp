@@ -245,40 +245,48 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 addEntity(std::move(entityA));
             }
             if (map[i][j] == '1') {
-                std::unique_ptr<indie::ecs::entity::Entity> entityP1 =
-                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_1);
-                entityP1->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
-                    static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                entityP1->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), BLUE);
-                entityP1->addComponent<indie::ecs::component::Collide>();
-                addEntity(std::move(entityP1));
+                if (_player1_blue == true) {
+                    std::unique_ptr<indie::ecs::entity::Entity> entityP1 =
+                        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_1);
+                    entityP1->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
+                        static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
+                    entityP1->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), BLUE);
+                    entityP1->addComponent<indie::ecs::component::Collide>();
+                    addEntity(std::move(entityP1));
+                }
             }
             if (map[i][j] == '2') {
-                std::unique_ptr<indie::ecs::entity::Entity> entityP2 =
-                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_2);
-                entityP2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
-                    static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                entityP2->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), RED);
-                entityP2->addComponent<indie::ecs::component::Collide>();
-                addEntity(std::move(entityP2));
+                if (_player2_red == true) {
+                    std::unique_ptr<indie::ecs::entity::Entity> entityP2 =
+                        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_2);
+                    entityP2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
+                        static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
+                    entityP2->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), RED);
+                    entityP2->addComponent<indie::ecs::component::Collide>();
+                    addEntity(std::move(entityP2));
+                }
             }
             if (map[i][j] == '3') {
-                std::unique_ptr<indie::ecs::entity::Entity> entityP3 =
-                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_3);
-                entityP3->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
-                    static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                entityP3->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), YELLOW);
-                entityP3->addComponent<indie::ecs::component::Collide>();
-                addEntity(std::move(entityP3));
+                if (_player3_green == true) {
+                    std::unique_ptr<indie::ecs::entity::Entity> entityP3 =
+                        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_3);
+                    entityP3->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
+                        static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
+                    entityP3->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), GREEN);
+                    entityP3->addComponent<indie::ecs::component::Collide>();
+                    addEntity(std::move(entityP3));
+                }
             }
             if (map[i][j] == '4') {
-                std::unique_ptr<indie::ecs::entity::Entity> entityP4 =
-                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_4);
-                entityP4->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
-                    static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                entityP4->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), GREEN);
-                entityP4->addComponent<indie::ecs::component::Collide>();
-                addEntity(std::move(entityP4));
+                if (_player4_yellow == true) {
+                    std::unique_ptr<indie::ecs::entity::Entity> entityP4 =
+                        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_4);
+                    entityP4->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
+                        static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
+                    entityP4->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), YELLOW);
+                    entityP4->addComponent<indie::ecs::component::Collide>();
+                    addEntity(std::move(entityP4));
+                }
             }
             if (map[i][j] == 'B') {
                 std::unique_ptr<indie::ecs::entity::Entity> entityB = std::make_unique<indie::ecs::entity::Entity>();
