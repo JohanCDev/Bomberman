@@ -11,16 +11,27 @@
 #include <cstddef>
 #include <map>
 #include <memory>
+#include "../ecs/system/Collide/Collide.hpp"
+#include "../ecs/system/Draw2D/Draw2D.hpp"
+#include "../ecs/system/Draw3D/Draw3D.hpp"
+#include "../ecs/system/Movement/Movement.hpp"
+#include "../ecs/system/Sound/Sound.hpp"
 #include "../screens/IScreen.hpp"
+#include "../screens/end/EndScreen.hpp"
 #include "../screens/game/GameScreen.hpp"
 #include "../screens/menu/MenuScreen.hpp"
 #include "events.hpp"
+#include "../screens/game_options/GameOptionsScreen.hpp"
+#include "../screens/pre_menu/PreMenuScreen.hpp"
+#include "../screens/set_fps/SetFpsScreen.hpp"
+#include "../screens/set_music/SetMusicScreen.hpp"
+#include "../screens/set_sound/SetSoundScreen.hpp"
 
 namespace indie
 {
     class Game {
       public:
-        enum class Screens { Game, Menu, Pause, ExitScreen, Count };
+        enum class Screens { Game, Menu, PreMenu, GameOptions, End, SetFps, SetSound, SetMusic, Count };
         Game(size_t baseFps = 60);
         ~Game();
         void init(void);
@@ -29,6 +40,10 @@ namespace indie
         void update(void);
         bool processEvents(void);
 
+        int handleEvent();
+        void init_scenes();
+        void handleScreensSwap(int ret);
+        void reinitGame();
         void setActualScreen(Screens newScreen);
 
       protected:
@@ -37,6 +52,12 @@ namespace indie
         size_t _fps;
         indie::menu::MenuScreen *_menu;
         indie::menu::GameScreen *_game;
+        indie::menu::PreMenuScreen *_premenu;
+        indie::menu::GameOptionsScreen *_gameoptions;
+        indie::menu::EndScreen *_end;
+        indie::menu::SetFpsScreen *_setFps;
+        indie::menu::SetSoundScreen *_setSound;
+        indie::menu::SetMusicScreen *_setMusic;
         indie::Event _event;
     };
 } // namespace indie

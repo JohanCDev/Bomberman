@@ -8,6 +8,7 @@ set(SCREENSROOT ${SRCROOT}screens/)
 set(GAMEROOT ${SRCROOT}game/)
 set(EVENTSROOT ${SRCROOT}gameEvents/)
 set(PLAYERROOT ${SRCROOT}player/)
+set(TOOLSROOT ${SRCROOT}tools/)
 
 set(SRC_ECS
     ${ECSROOT}component/IComponent.hpp
@@ -86,6 +87,18 @@ set(SRC_SCREEN
     ${SCREENSROOT}menu/MenuScreen.hpp
     ${SCREENSROOT}game/GameScreen.cpp
     ${SCREENSROOT}game/GameScreen.hpp
+    ${SCREENSROOT}pre_menu/PreMenuScreen.cpp
+    ${SCREENSROOT}pre_menu/PreMenuScreen.hpp
+    ${SCREENSROOT}game_options/GameOptionsScreen.hpp
+    ${SCREENSROOT}game_options/GameOptionsScreen.cpp
+    ${SCREENSROOT}end/EndScreen.cpp
+    ${SCREENSROOT}end/EndScreen.hpp
+    ${SCREENSROOT}set_fps/SetFpsScreen.cpp
+    ${SCREENSROOT}set_fps/SetFpsScreen.hpp
+    ${SCREENSROOT}set_music/SetMusicScreen.cpp
+    ${SCREENSROOT}set_music/SetMusicScreen.hpp
+    ${SCREENSROOT}set_sound/SetSoundScreen.cpp
+    ${SCREENSROOT}set_sound/SetSoundScreen.hpp
     ${SCREENSROOT}game/uiPlayerDisplay/UIPlayerDisplay.cpp
     ${SCREENSROOT}game/uiPlayerDisplay/UIPlayerDisplay.hpp
 )
@@ -110,9 +123,15 @@ set(SRC_PLAYER
     ${PLAYERROOT}Player.hpp
 )
 
+set(SRC_TOOLS
+    ${TOOLSROOT}Tools.cpp
+    ${TOOLSROOT}Tools.hpp
+)
+
 
 set(SRC
     ${SRCROOT}main.cpp
+    ${SRC_TOOLS}
     ${SRC_ECS}
     ${SRC_RAY}
     ${SRC_SCREEN}
