@@ -8,7 +8,9 @@
 #ifndef SETMUSICSCREEN_HPP_
 #define SETMUSICSCREEN_HPP_
 
+#include <map>
 #include <vector>
+
 #include "../../ecs/entity/Entity.hpp"
 #include "../IScreen.hpp"
 #include "../ecs/system/Draw2D/Draw2D.hpp"
@@ -19,11 +21,11 @@ namespace indie
     {
         class SetMusicScreen : public IScreen {
             enum cursorPosition {
-                MUSIC_0 = 285,
-                MUSIC_25 = 410,
-                MUSIC_50 = 535,
-                MUSIC_75 = 660,
-                MUSIC_100 = 785,
+                MUSIC_0 = 0,
+                MUSIC_25 = 1,
+                MUSIC_50 = 2,
+                MUSIC_75 = 3,
+                MUSIC_100 = 4,
             };
 
           public:
@@ -41,6 +43,8 @@ namespace indie
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
+            std::map<cursorPosition, float> _positionsCursor;
+
             int _cursorPosition;
         };
     } // namespace menu

@@ -37,7 +37,7 @@ void indie::menu::SetFpsScreen::init()
 
     std::unique_ptr<ecs::entity::Entity> quit = std::make_unique<ecs::entity::Entity>();
     quit->addComponent<ecs::component::Transform>(
-        tools::Tools::getPercentage(45.f, true), tools::Tools::getPercentage(80.f, false), 0.0f, 0.0f);
+        tools::Tools::getPercentage(43.5f, true), tools::Tools::getPercentage(80.f, false), 0.0f, 0.0f);
     quit->addComponent<ecs::component::Drawable2D>("Press O to quit !", tools::Tools::getPercentage(4.f, false), WHITE);
     addEntity(std::move(quit));
 
