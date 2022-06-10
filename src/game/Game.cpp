@@ -73,6 +73,8 @@ bool indie::Game::processEvents()
 
 void indie::Game::update()
 {
+    this->_game->getPlayersPlaying(
+        true, _premenu->isPlayer2Playing(), _premenu->isPlayer3Playing(), _premenu->isPlayer4Playing());
     switch (_actualScreen) {
         case Screens::Menu: _menu->update(); break;
         case Screens::Game: _game->update(); break;
@@ -124,8 +126,6 @@ void indie::Game::init()
 void indie::Game::run()
 {
     while (!indie::raylib::Window::windowShouldClose()) {
-        this->_game->getPlayersPlaying(
-            true, _premenu->isPlayer2Playing(), _premenu->isPlayer3Playing(), _premenu->isPlayer4Playing());
         if (!processEvents())
             break;
         update();
