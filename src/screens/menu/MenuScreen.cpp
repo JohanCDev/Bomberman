@@ -144,6 +144,7 @@ int indie::menu::MenuScreen::handleEvent(indie::Event &event)
         drawableCompo3->setWidth(tools::Tools::getPercentage(21.f, true));
         return 0;
     }
+    return 0;
 }
 
 void indie::menu::MenuScreen::update()
