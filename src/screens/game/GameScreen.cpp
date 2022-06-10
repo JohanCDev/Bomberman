@@ -74,6 +74,14 @@ void indie::menu::GameScreen::draw()
 
 void indie::menu::GameScreen::update()
 {
+    if (!_player1_blue)
+        this->_infoPlayers[0]->getPlayer().setIsAlive(false);
+    if (!_player2_red)
+        this->_infoPlayers[1]->getPlayer().setIsAlive(false);
+    if (!_player3_green)
+        this->_infoPlayers[2]->getPlayer().setIsAlive(false);
+    if (!_player4_yellow)
+        this->_infoPlayers[3]->getPlayer().setIsAlive(false);
 }
 
 void indie::menu::GameScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
@@ -288,7 +296,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), RED);
                 entityB->addComponent<indie::ecs::component::Collectable>();
                 addEntity(std::move(entityB));
-                std::unique_ptr<indie::ecs::entity::Entity> entityB2 = std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
+                std::unique_ptr<indie::ecs::entity::Entity> entityB2 =
+                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
                 entityB2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityB2->addComponent<indie::ecs::component::Collide>();
@@ -296,7 +305,6 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 entityB2->addComponent<indie::ecs::component::Drawable3D>(
                     "src/boite.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
                 addEntity(std::move(entityB2));
-                
             }
             if (map[i][j] == 'T') {
                 std::unique_ptr<indie::ecs::entity::Entity> entityT = std::make_unique<indie::ecs::entity::Entity>();
@@ -306,7 +314,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), MAGENTA);
                 entityT->addComponent<indie::ecs::component::Collectable>();
                 addEntity(std::move(entityT));
-                std::unique_ptr<indie::ecs::entity::Entity> entityT2 = std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
+                std::unique_ptr<indie::ecs::entity::Entity> entityT2 =
+                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
                 entityT2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityT2->addComponent<indie::ecs::component::Collide>();
@@ -323,7 +332,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), YELLOW);
                 entityS->addComponent<indie::ecs::component::Collectable>();
                 addEntity(std::move(entityS));
-                std::unique_ptr<indie::ecs::entity::Entity> entityS2 = std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
+                std::unique_ptr<indie::ecs::entity::Entity> entityS2 =
+                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
                 entityS2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityS2->addComponent<indie::ecs::component::Collide>();
