@@ -8,7 +8,9 @@
 #ifndef GAME_OPTIONS_SCREEN_HPP_
 #define GAME_OPTIONS_SCREEN_HPP_
 
+#include <map>
 #include <vector>
+
 #include "../../ecs/entity/Entity.hpp"
 #include "../IScreen.hpp"
 #include "../ecs/system/Draw2D/Draw2D.hpp"
@@ -20,13 +22,13 @@ namespace indie
         class GameOptionsScreen : public IScreen {
           public:
             enum cursorPosition {
-                RESUME = 200,
-                MENU = 325,
-                SAVE = 450,
-                MUSIC = 575,
-                SOUND = 700,
-                FPS = 825,
-                EXIT = 950
+                RESUME = 0,
+                MENU = 1,
+                SAVE = 2,
+                MUSIC = 3,
+                SOUND = 4,
+                FPS = 5,
+                EXIT = 6,
             };
             GameOptionsScreen();
             ~GameOptionsScreen() = default;
@@ -43,6 +45,7 @@ namespace indie
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
+            std::map<cursorPosition, float> _positionsCursor;
             int _cursorPosition;
 
             bool _isGameOptionsCalling;

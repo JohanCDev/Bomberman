@@ -8,6 +8,7 @@ set(SCREENSROOT ${SRCROOT}screens/)
 set(GAMEROOT ${SRCROOT}game/)
 set(EVENTSROOT ${SRCROOT}gameEvents/)
 set(PLAYERROOT ${SRCROOT}player/)
+set(TOOLSROOT ${SRCROOT}tools/)
 
 set(SRC_ECS
     ${ECSROOT}component/IComponent.hpp
@@ -122,9 +123,15 @@ set(SRC_PLAYER
     ${PLAYERROOT}Player.hpp
 )
 
+set(SRC_TOOLS
+    ${TOOLSROOT}Tools.cpp
+    ${TOOLSROOT}Tools.hpp
+)
+
 
 set(SRC
     ${SRCROOT}main.cpp
+    ${SRC_TOOLS}
     ${SRC_ECS}
     ${SRC_RAY}
     ${SRC_SCREEN}
