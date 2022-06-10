@@ -110,12 +110,12 @@ void indie::menu::GameOptionsScreen::draw()
 
 int indie::menu::GameOptionsScreen::handleEvent(indie::Event &event)
 {
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN || event.key.down) {
+    if (event.controller[0].code == indie::Event::ControllerCode::DOWN_BUTTON || event.key.down) {
         indie::ecs::component::Transform *transformCompo =
             _entities.at(2)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(tools::Tools::getPercentage(33.f, true), checkCursorPosition(true), 0.0f, 0.0f);
     }
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP || event.key.up) {
+    if (event.controller[0].code == indie::Event::ControllerCode::UP_BUTTON || event.key.up) {
         ecs::component::Transform *transformCompo =
             _entities.at(2)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(tools::Tools::getPercentage(33.f, true), checkCursorPosition(false), 0.0f, 0.0f);
@@ -139,96 +139,47 @@ int indie::menu::GameOptionsScreen::handleEvent(indie::Event &event)
         && _cursorPosition == EXIT)
         return 10;
     if (_cursorPosition == RESUME) {
-        ecs::component::Drawable2D *drawableCompo1 =
-            _entities.at(3)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo1->setHeight(tools::Tools::getPercentage(12.f, false));
-        drawableCompo1->setWidth(tools::Tools::getPercentage(20.f, true));
-        ecs::component::Drawable2D *drawableCompo2 =
-            _entities.at(4)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo2->setHeight(tools::Tools::getPercentage(10.f, false));
-        drawableCompo2->setWidth(tools::Tools::getPercentage(18.f, true));
+        setSize(3, 12.f, 20.f);
+        setSize(4, 10.f, 18.f);
     }
     if (_cursorPosition == MENU) {
-        ecs::component::Drawable2D *drawableCompo1 =
-            _entities.at(3)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo1->setHeight(tools::Tools::getPercentage(10.f, false));
-        drawableCompo1->setWidth(tools::Tools::getPercentage(18.f, true));
-        ecs::component::Drawable2D *drawableCompo2 =
-            _entities.at(4)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo2->setHeight(tools::Tools::getPercentage(12.f, false));
-        drawableCompo2->setWidth(tools::Tools::getPercentage(20.f, true));
-        ecs::component::Drawable2D *drawableCompo3 =
-            _entities.at(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo3->setHeight(tools::Tools::getPercentage(10.f, false));
-        drawableCompo3->setWidth(tools::Tools::getPercentage(18.f, true));
+        setSize(3, 10.f, 18.f);
+        setSize(4, 12.f, 20.f);
+        setSize(5, 10.f, 18.f);
     }
     if (_cursorPosition == SAVE) {
-        ecs::component::Drawable2D *drawableCompo1 =
-            _entities.at(4)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo1->setHeight(tools::Tools::getPercentage(10.f, false));
-        drawableCompo1->setWidth(tools::Tools::getPercentage(18.f, true));
-        ecs::component::Drawable2D *drawableCompo2 =
-            _entities.at(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo2->setHeight(tools::Tools::getPercentage(12.f, false));
-        drawableCompo2->setWidth(tools::Tools::getPercentage(20.f, true));
-        ecs::component::Drawable2D *drawableCompo3 =
-            _entities.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo3->setHeight(tools::Tools::getPercentage(10.f, false));
-        drawableCompo3->setWidth(tools::Tools::getPercentage(18.f, true));
+        setSize(4, 10.f, 18.f);
+        setSize(5, 12.f, 20.f);
+        setSize(6, 10.f, 18.f);
     }
     if (_cursorPosition == MUSIC) {
-        ecs::component::Drawable2D *drawableCompo1 =
-            _entities.at(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo1->setHeight(tools::Tools::getPercentage(10.f, false));
-        drawableCompo1->setWidth(tools::Tools::getPercentage(18.f, true));
-        ecs::component::Drawable2D *drawableCompo2 =
-            _entities.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo2->setHeight(tools::Tools::getPercentage(12.f, false));
-        drawableCompo2->setWidth(tools::Tools::getPercentage(20.f, true));
-        ecs::component::Drawable2D *drawableCompo3 =
-            _entities.at(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo3->setHeight(tools::Tools::getPercentage(10.f, false));
-        drawableCompo3->setWidth(tools::Tools::getPercentage(18.f, true));
+        setSize(5, 10.f, 18.f);
+        setSize(6, 12.f, 20.f);
+        setSize(7, 10.f, 18.f);
     }
     if (_cursorPosition == SOUND) {
-        ecs::component::Drawable2D *drawableCompo1 =
-            _entities.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo1->setHeight(tools::Tools::getPercentage(10.f, false));
-        drawableCompo1->setWidth(tools::Tools::getPercentage(18.f, true));
-        ecs::component::Drawable2D *drawableCompo2 =
-            _entities.at(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo2->setHeight(tools::Tools::getPercentage(12.f, false));
-        drawableCompo2->setWidth(tools::Tools::getPercentage(20.f, true));
-        ecs::component::Drawable2D *drawableCompo3 =
-            _entities.at(8)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo3->setHeight(tools::Tools::getPercentage(10.f, false));
-        drawableCompo3->setWidth(tools::Tools::getPercentage(18.f, true));
+        setSize(6, 10.f, 18.f);
+        setSize(7, 12.f, 20.f);
+        setSize(8, 10.f, 18.f);
     }
     if (_cursorPosition == FPS) {
-        ecs::component::Drawable2D *drawableCompo1 =
-            _entities.at(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo1->setHeight(tools::Tools::getPercentage(10.f, false));
-        drawableCompo1->setWidth(tools::Tools::getPercentage(18.f, true));
-        ecs::component::Drawable2D *drawableCompo2 =
-            _entities.at(8)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo2->setHeight(tools::Tools::getPercentage(12.f, false));
-        drawableCompo2->setWidth(tools::Tools::getPercentage(20.f, true));
-        ecs::component::Drawable2D *drawableCompo3 =
-            _entities.at(9)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo3->setHeight(tools::Tools::getPercentage(10.f, false));
-        drawableCompo3->setWidth(tools::Tools::getPercentage(18.f, true));
+        setSize(7, 10.f, 18.f);
+        setSize(8, 12.f, 20.f);
+        setSize(9, 10.f, 18.f);
     }
     if (_cursorPosition == EXIT) {
-        ecs::component::Drawable2D *drawableCompo2 =
-            _entities.at(8)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo2->setHeight(tools::Tools::getPercentage(10.f, false));
-        drawableCompo2->setWidth(tools::Tools::getPercentage(18.f, true));
-        ecs::component::Drawable2D *drawableCompo3 =
-            _entities.at(9)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo3->setHeight(tools::Tools::getPercentage(12.f, false));
-        drawableCompo3->setWidth(tools::Tools::getPercentage(20.f, true));
+        setSize(8, 10.f, 18.f);
+        setSize(9, 12.f, 20.f);
     }
     return 0;
+}
+
+void indie::menu::GameOptionsScreen::setSize(int where, float height, float width)
+{
+    ecs::component::Drawable2D *drawableCompo =
+        _entities.at(where)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+    drawableCompo->setHeight(tools::Tools::getPercentage(height, false));
+    drawableCompo->setWidth(tools::Tools::getPercentage(width, true));
 }
 
 void indie::menu::GameOptionsScreen::update()
@@ -249,8 +200,8 @@ int indie::menu::GameOptionsScreen::checkCursorPosition(bool direction)
 {
     if (direction) {
         if (_cursorPosition == RESUME) {
-            _cursorPosition = SAVE;
-            return this->_positionsCursor[SAVE];
+            _cursorPosition = MENU;
+            return this->_positionsCursor[MENU];
         }
         if (_cursorPosition == MENU) {
             _cursorPosition = SAVE;

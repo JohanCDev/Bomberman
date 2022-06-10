@@ -34,6 +34,7 @@ namespace indie
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
 
+            void setSize(int where, float height, float width);
             int checkCursorPosition(bool direction);
 
           private:
