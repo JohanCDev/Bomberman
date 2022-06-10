@@ -73,6 +73,12 @@ bool indie::Game::processEvents()
 
 void indie::Game::update()
 {
+    if (_premenu->getIsGameReady()) {
+        this->_game->getPlayersPlaying(
+            true, _premenu->isPlayer2Playing(), _premenu->isPlayer3Playing(), _premenu->isPlayer4Playing());
+        this->_game->initEntity();
+        _premenu->setIsGameReady(false);
+    }
     switch (_actualScreen) {
         case Screens::Menu: _menu->update(); break;
         case Screens::Game: _game->update(); break;
@@ -118,14 +124,11 @@ void indie::Game::init()
     init_scenes();
     map.createWall();
     this->_game->initMap(map.getMap());
-    this->_game->initEntity();
 }
 
 void indie::Game::run()
 {
     while (!indie::raylib::Window::windowShouldClose()) {
-        this->_game->getPlayersPlaying(
-            true, _premenu->isPlayer2Playing(), _premenu->isPlayer3Playing(), _premenu->isPlayer4Playing());
         if (!processEvents())
             break;
         update();
@@ -164,7 +167,6 @@ void indie::Game::reinitGame()
     indie::map::MapGenerator map;
     map.createWall();
     this->_game->initMap(map.getMap());
-    this->_game->initEntity();
     delete _premenu;
     _premenu = new indie::menu::PreMenuScreen;
     _premenu->init();
