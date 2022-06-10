@@ -12,6 +12,7 @@
 #include "UIPlayerDisplay.hpp"
 #include "../../../ecs/component/IComponent.hpp"
 #include "../../../player/Player.hpp"
+#include "../../../tools/Tools.hpp"
 #include "Colors.hpp"
 #include "Vec2.hpp"
 
@@ -41,7 +42,8 @@ namespace indie
                 {
                     std::unique_ptr<indie::ecs::entity::Entity> entity = std::make_unique<indie::ecs::entity::Entity>();
 
-                    entity->addComponent<ecs::component::Drawable2D>(str, 20.f, BLACK);
+                    entity->addComponent<ecs::component::Drawable2D>(
+                        str, tools::Tools::getPercentage(2.f, false), BLACK);
                     entity->addComponent<indie::ecs::component::Transform>(
                         position.x, position.y, static_cast<float>(0.0), static_cast<float>(0.0));
                     this->_mainEntity.push_back(std::move(entity));
@@ -51,10 +53,12 @@ namespace indie
                 {
                     std::unique_ptr<indie::ecs::entity::Entity> sprite = std::make_unique<indie::ecs::entity::Entity>();
 
-                    sprite->addComponent<ecs::component::Drawable2D>(
-                        this->getPlayerSpriteFilepath(), static_cast<float>(70.0), static_cast<float>(70.0), WHITE);
-                    sprite->addComponent<indie::ecs::component::Transform>(this->_position.x - 35.f,
-                        this->_position.y - 35.f, static_cast<float>(0.0), static_cast<float>(0.0));
+                    sprite->addComponent<ecs::component::Drawable2D>(this->getPlayerSpriteFilepath(),
+                        tools::Tools::getPercentage(8.f, false), tools::Tools::getPercentage(8.f, false), WHITE);
+                    sprite->addComponent<indie::ecs::component::Transform>(
+                        this->_position.x - tools::Tools::getPercentage(4.f, false),
+                        this->_position.y - tools::Tools::getPercentage(4.f, false), static_cast<float>(0.0),
+                        static_cast<float>(0.0));
                     this->_mainEntity.push_back(std::move(sprite));
                 }
 
@@ -63,7 +67,7 @@ namespace indie
                     return (this->_mainEntity.back()
                                 ->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)
                                 ->getY()
-                        + 25.f);
+                        + tools::Tools::getPercentage(3.f, false));
                 }
 
                 indie::player::Player UIPlayerDisplay::getPlayer() const
@@ -100,7 +104,7 @@ namespace indie
                         + std::to_string(this->_player->getMaxBombStock()));
                     std::string crossWallInfo(this->_player->getCrossWalls() ? "Yes" : "No");
                     std::string crossWallsStr("Cross walls: " + crossWallInfo);
-                    std::string bombsRadiusStr("Bomb Radius: " + std::to_string(this->_player->getBombRadius()));
+                    std::string bombsRadiusStr("Bomb Range: " + std::to_string(this->_player->getBombRadius()));
                     std::string filepath = this->getPlayerSpriteFilepath();
                     std::cout << filepath << std::endl;
 
@@ -109,11 +113,17 @@ namespace indie
                     container->addComponent<ecs::component::Transform>(this->_position.x, this->_position.y, 0.f, 0.f);
                     this->_mainEntity.push_back(std::move(container));
                     createImage();
-                    createSingleTextEntity(playerStr, {this->_position.x + 5, this->_position.y + 5});
-                    createSingleTextEntity(speedStr, {this->_position.x + 10, this->getNextYPos()});
-                    createSingleTextEntity(bombsStr, {this->_position.x + 10, this->getNextYPos()});
-                    createSingleTextEntity(crossWallsStr, {this->_position.x + 10, this->getNextYPos()});
-                    createSingleTextEntity(bombsRadiusStr, {this->_position.x + 10, this->getNextYPos()});
+                    createSingleTextEntity(playerStr,
+                        {this->_position.x + tools::Tools::getPercentage(0.5f, false),
+                            this->_position.y + tools::Tools::getPercentage(0.5f, false)});
+                    createSingleTextEntity(
+                        speedStr, {this->_position.x + tools::Tools::getPercentage(1.f, false), this->getNextYPos()});
+                    createSingleTextEntity(
+                        bombsStr, {this->_position.x + tools::Tools::getPercentage(1.f, false), this->getNextYPos()});
+                    createSingleTextEntity(crossWallsStr,
+                        {this->_position.x + tools::Tools::getPercentage(1.f, false), this->getNextYPos()});
+                    createSingleTextEntity(bombsRadiusStr,
+                        {this->_position.x + tools::Tools::getPercentage(1.f, false), this->getNextYPos()});
                 }
 
                 void UIPlayerDisplay::draw()

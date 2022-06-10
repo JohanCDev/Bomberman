@@ -8,6 +8,7 @@
 #include "GameScreen.hpp"
 #include "../../player/Player.hpp"
 #include "../../raylib/Raylib.hpp"
+#include "../../tools/Tools.hpp"
 #include "Colors.hpp"
 #include "uiPlayerDisplay/UIPlayerDisplay.hpp"
 
@@ -116,13 +117,13 @@ void indie::menu::GameScreen::initEntity()
 {
     player::Player player1(BLUEPLAYERCOLOR, 0, {0, 0});
     player::Player player2(REDPLAYERCOLOR, 1, {0, 0});
-    player::Player player3(YELLOWPLAYERCOLOR, 2, {0, 0});
-    player::Player player4(GREENPLAYERCOLOR, 3, {0, 0});
-    vec2f uiSize = vec2f({150.f, 200.f});
-    vec2f topLeftPos = vec2f({40.f, 40.f});
-    vec2f topRightPos = vec2f({1512.f - 225.f, 40.f});
-    vec2f bottomLeftPos = vec2f({40.f, 982.f - 175.f});
-    vec2f bottomRightPos = vec2f({1512.f - 225.f, 982.f - 175.f});
+    player::Player player3(GREENPLAYERCOLOR, 2, {0, 0});
+    player::Player player4(YELLOWPLAYERCOLOR, 3, {0, 0});
+    vec2f uiSize = vec2f({tools::Tools::getPercentage(15.f, false), tools::Tools::getPercentage(15.f, true)});
+    vec2f topLeftPos = vec2f({tools::Tools::getPercentage(3.f, true), tools::Tools::getPercentage(11.f, false)});
+    vec2f topRightPos = vec2f({tools::Tools::getPercentage(84.f, true), tools::Tools::getPercentage(11.f, false)});
+    vec2f bottomLeftPos = vec2f({tools::Tools::getPercentage(3.f, true), tools::Tools::getPercentage(82.f, false)});
+    vec2f bottomRightPos = vec2f({tools::Tools::getPercentage(84.f, true), tools::Tools::getPercentage(82.f, false)});
 
     this->_infoPlayers.push_back(
         std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player1, topLeftPos, uiSize));
@@ -288,7 +289,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), RED);
                 entityB->addComponent<indie::ecs::component::Collectable>();
                 addEntity(std::move(entityB));
-                std::unique_ptr<indie::ecs::entity::Entity> entityB2 = std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
+                std::unique_ptr<indie::ecs::entity::Entity> entityB2 =
+                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
                 entityB2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityB2->addComponent<indie::ecs::component::Collide>();
@@ -296,7 +298,6 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 entityB2->addComponent<indie::ecs::component::Drawable3D>(
                     "src/boite.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
                 addEntity(std::move(entityB2));
-                
             }
             if (map[i][j] == 'T') {
                 std::unique_ptr<indie::ecs::entity::Entity> entityT = std::make_unique<indie::ecs::entity::Entity>();
@@ -306,7 +307,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), MAGENTA);
                 entityT->addComponent<indie::ecs::component::Collectable>();
                 addEntity(std::move(entityT));
-                std::unique_ptr<indie::ecs::entity::Entity> entityT2 = std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
+                std::unique_ptr<indie::ecs::entity::Entity> entityT2 =
+                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
                 entityT2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityT2->addComponent<indie::ecs::component::Collide>();
@@ -323,7 +325,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), YELLOW);
                 entityS->addComponent<indie::ecs::component::Collectable>();
                 addEntity(std::move(entityS));
-                std::unique_ptr<indie::ecs::entity::Entity> entityS2 = std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
+                std::unique_ptr<indie::ecs::entity::Entity> entityS2 =
+                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
                 entityS2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityS2->addComponent<indie::ecs::component::Collide>();
