@@ -34,7 +34,6 @@ void indie::menu::GameScreen::init()
     entityX->addComponent<indie::ecs::component::Drawable3D>(
         "", static_cast<float>(10.5), static_cast<float>(0.05), static_cast<float>(10), LIGHTGRAY);
     entityX->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM)->setZ(-0.25);
-    this->initEntity();
     this->addEntity(std::move(entityX));
     this->addSystem(std::move(draw2DSystem));
     this->addSystem(std::move(draw3DSystem));
@@ -59,9 +58,10 @@ void indie::menu::GameScreen::draw()
             system->update(this->_entities);
         }
     }
-    for (auto &uiDisplay : this->_infoPlayers) {
-        if (uiDisplay->getPlayer().getIsAlive())
+    for (auto &uiDisplay : _infoPlayers) {
+        if (uiDisplay->getPlayer().getIsAlive()) {
             uiDisplay->draw();
+        }
     }
     indie::raylib::Window::endDrawing();
     for (auto &entity : _entities) {
@@ -74,14 +74,6 @@ void indie::menu::GameScreen::draw()
 
 void indie::menu::GameScreen::update()
 {
-    if (!_player1_blue)
-        this->_infoPlayers[0]->getPlayer().setIsAlive(false);
-    if (!_player2_red)
-        this->_infoPlayers[1]->getPlayer().setIsAlive(false);
-    if (!_player3_green)
-        this->_infoPlayers[2]->getPlayer().setIsAlive(false);
-    if (!_player4_yellow)
-        this->_infoPlayers[3]->getPlayer().setIsAlive(false);
 }
 
 void indie::menu::GameScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
@@ -122,24 +114,31 @@ void indie::menu::GameScreen::getPlayersPlaying(
 
 void indie::menu::GameScreen::initEntity()
 {
-    player::Player player1(BLUEPLAYERCOLOR, 0, {0, 0});
-    player::Player player2(REDPLAYERCOLOR, 1, {0, 0});
-    player::Player player3(YELLOWPLAYERCOLOR, 2, {0, 0});
-    player::Player player4(GREENPLAYERCOLOR, 3, {0, 0});
     vec2f uiSize = vec2f({150.f, 200.f});
-    vec2f topLeftPos = vec2f({40.f, 40.f});
-    vec2f topRightPos = vec2f({1512.f - 225.f, 40.f});
-    vec2f bottomLeftPos = vec2f({40.f, 982.f - 175.f});
-    vec2f bottomRightPos = vec2f({1512.f - 225.f, 982.f - 175.f});
-
-    this->_infoPlayers.push_back(
-        std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player1, topLeftPos, uiSize));
-    this->_infoPlayers.push_back(
-        std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player2, topRightPos, uiSize));
-    this->_infoPlayers.push_back(
-        std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player3, bottomLeftPos, uiSize));
-    this->_infoPlayers.push_back(
-        std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player4, bottomRightPos, uiSize));
+    if (_player1_blue) {
+        player::Player player1(BLUEPLAYERCOLOR, 0, {0, 0});
+        vec2f topLeftPos = vec2f({40.f, 40.f});
+        this->_infoPlayers.push_back(
+            std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player1, topLeftPos, uiSize));
+    }
+    if (_player2_red) {
+        player::Player player2(REDPLAYERCOLOR, 1, {0, 0});
+        vec2f topRightPos = vec2f({1512.f - 225.f, 40.f});
+        this->_infoPlayers.push_back(
+            std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player2, topRightPos, uiSize));
+    }
+    if (_player3_green) {
+        player::Player player3(YELLOWPLAYERCOLOR, 2, {0, 0});
+        vec2f bottomLeftPos = vec2f({40.f, 982.f - 175.f});
+        this->_infoPlayers.push_back(
+            std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player3, bottomLeftPos, uiSize));
+    }
+    if (_player4_yellow) {
+        player::Player player4(GREENPLAYERCOLOR, 3, {0, 0});
+        vec2f bottomRightPos = vec2f({1512.f - 225.f, 982.f - 175.f});
+        this->_infoPlayers.push_back(
+            std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player4, bottomRightPos, uiSize));
+    }
     for (auto &uiDisplay : this->_infoPlayers) {
         uiDisplay->create();
     }
