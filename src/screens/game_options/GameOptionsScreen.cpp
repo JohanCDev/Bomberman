@@ -121,11 +121,11 @@ int indie::menu::GameOptionsScreen::handleEvent(indie::Event &event)
         transformCompo->update(tools::Tools::getPercentage(33.f, true), checkCursorPosition(false), 0.0f, 0.0f);
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
-        && _cursorPosition == RESUME)
-        return 2;
-    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
         && _cursorPosition == MENU)
         return 1;
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
+        && _cursorPosition == RESUME)
+        return 2;
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
         && _cursorPosition == MUSIC)
         return 6;

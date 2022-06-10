@@ -163,9 +163,6 @@ void indie::Game::reinitGame()
     delete _game;
     _game = new indie::menu::GameScreen;
     _game->init();
-    // indie::map::MapGenerator map;
-    // map.createWall();
-    // this->_game->initMap(map.getMap());
     delete _premenu;
     _premenu = new indie::menu::PreMenuScreen;
     _premenu->init();
