@@ -31,7 +31,7 @@ namespace indie
 {
     class Game {
       public:
-        enum class Screens { Game, Menu, PreMenu, GameOptions, End, SetFps, SetSound, SetMusic, Count };
+        enum class Screens { Menu = 1, Game, PreMenu, GameOptions, End, SetMusic, SetSound, SetFps, Count };
         Game(size_t baseFps = 60);
         ~Game();
         void init(void);
