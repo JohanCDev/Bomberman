@@ -12,7 +12,7 @@
 #include "uiPlayerDisplay/UIPlayerDisplay.hpp"
 
 indie::menu::GameScreen::GameScreen()
-    : _camera({0.0, 10.0, 10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, 45.0, CAMERA_PERSPECTIVE)
+    : _camera({0.0, 10.0, 7.0}, {0.0, -1.5, 0.0}, {0.0, 1.0, 0.0}, 50.0, CAMERA_PERSPECTIVE)
 {
 }
 
@@ -100,13 +100,13 @@ void indie::menu::GameScreen::initEntity()
     }
 }
 
-void indie::menu::GameScreen::handleEvent(indie::Event &event)
+void indie::menu::GameScreen::handleMultipleController(indie::Event &event, int index, indie::ecs::entity::entityType type)
 {
     indie::ecs::component::Transform *transformCompo = nullptr;
 
-    if (event.controller[0].leftJoystick == indie::Event::DOWN) {
+    if (event.controller[index].leftJoystick == indie::Event::DOWN) {
         for (auto &entity : this->_entities) {
-            if (entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_1) {
+            if (entity->getEntityType() == type) {
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 transform->setSpeedY(0.02);
@@ -115,9 +115,9 @@ void indie::menu::GameScreen::handleEvent(indie::Event &event)
         }
     }
 
-    if (event.controller[0].leftJoystick == indie::Event::UP) {
+    if (event.controller[index].leftJoystick == indie::Event::UP) {
         for (auto &entity : this->_entities) {
-            if (entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_1) {
+            if (entity->getEntityType() == type) {
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 transform->setSpeedX(0);
@@ -126,9 +126,9 @@ void indie::menu::GameScreen::handleEvent(indie::Event &event)
         }
     }
 
-    if (event.controller[0].leftJoystick == indie::Event::LEFT) {
+    if (event.controller[index].leftJoystick == indie::Event::LEFT) {
         for (auto &entity : this->_entities) {
-            if (entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_1) {
+            if (entity->getEntityType() == type) {
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 transform->setSpeedX(-0.02);
@@ -137,9 +137,9 @@ void indie::menu::GameScreen::handleEvent(indie::Event &event)
         }
     }
 
-    if (event.controller[0].leftJoystick == indie::Event::RIGHT) {
+    if (event.controller[index].leftJoystick == indie::Event::RIGHT) {
         for (auto &entity : this->_entities) {
-            if (entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_1) {
+            if (entity->getEntityType() == type) {
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 transform->setSpeedX(0.02);
@@ -148,7 +148,7 @@ void indie::menu::GameScreen::handleEvent(indie::Event &event)
         }
     }
 
-    if (event.controller[0].code == indie::Event::X_BUTTON) {
+    if (event.controller[index].code == indie::Event::X_BUTTON) {
         for (auto &entity : _entities) {
             if (entity->getEntityType() == indie::ecs::entity::PLAYER_1) {
                 transformCompo =
@@ -165,6 +165,14 @@ void indie::menu::GameScreen::handleEvent(indie::Event &event)
             addEntity(std::move(entity));
         }
     }
+}
+
+void indie::menu::GameScreen::handleEvent(indie::Event &event)
+{
+    handleMultipleController(event, 0, indie::ecs::entity::entityType::PLAYER_1);
+    handleMultipleController(event, 1, indie::ecs::entity::entityType::PLAYER_2);
+    handleMultipleController(event, 2, indie::ecs::entity::entityType::PLAYER_3);
+    handleMultipleController(event, 3, indie::ecs::entity::entityType::PLAYER_4);
 }
 
 void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
@@ -230,6 +238,30 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 entityP4->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), GREEN);
                 entityP4->addComponent<indie::ecs::component::Collide>();
                 addEntity(std::move(entityP4));
+            }
+            if (map[i][j] == 'B') {
+                std::unique_ptr<indie::ecs::entity::Entity> entityB = std::make_unique<indie::ecs::entity::Entity>();
+                entityB->addComponent<indie::ecs::component::Transform>(
+                    static_cast<float>(posX), static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
+                entityB->addComponent<indie::ecs::component::Drawable3D>(
+                    "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), RED);
+                addEntity(std::move(entityB));
+            }
+            if (map[i][j] == 'T') {
+                std::unique_ptr<indie::ecs::entity::Entity> entityT = std::make_unique<indie::ecs::entity::Entity>();
+                entityT->addComponent<indie::ecs::component::Transform>(
+                    static_cast<float>(posX), static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
+                entityT->addComponent<indie::ecs::component::Drawable3D>(
+                    "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), MAGENTA);
+                addEntity(std::move(entityT));
+            }
+            if (map[i][j] == 'S') {
+                std::unique_ptr<indie::ecs::entity::Entity> entityS = std::make_unique<indie::ecs::entity::Entity>();
+                entityS->addComponent<indie::ecs::component::Transform>(
+                    static_cast<float>(posX), static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
+                entityS->addComponent<indie::ecs::component::Drawable3D>(
+                    "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), YELLOW);
+                addEntity(std::move(entityS));
             }
             posX += 0.5;
         }
