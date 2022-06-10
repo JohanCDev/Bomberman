@@ -27,12 +27,36 @@ indie::Game::Game(size_t baseFps)
     _actualScreen = Screens::Menu;
     _menu = new indie::menu::MenuScreen;
     _game = new indie::menu::GameScreen;
+    _premenu = new indie::menu::PreMenuScreen;
+    _gameoptions = new indie::menu::GameOptionsScreen;
+    _end = new indie::menu::EndScreen;
+    _setFps = new indie::menu::SetFpsScreen;
+    _setSound = new indie::menu::SetSoundScreen;
+    _setMusic = new indie::menu::SetMusicScreen;
 }
 
 indie::Game::~Game()
 {
     delete _menu;
     delete _game;
+    delete _premenu;
+    delete _gameoptions;
+    delete _end;
+    delete _setFps;
+    delete _setSound;
+    delete _setMusic;
+}
+
+void indie::Game::init_scenes()
+{
+    _menu->init();
+    _game->init();
+    _premenu->init();
+    _gameoptions->init();
+    _end->init();
+    _setFps->init();
+    _setSound->init();
+    _setMusic->init();
 }
 
 bool indie::Game::processEvents()
@@ -40,7 +64,10 @@ bool indie::Game::processEvents()
     GameEvents gameEvent;
 
     bool ret = gameEvent.inputUpdate(_event);
-    this->_game->handleEvent(_event);
+    int swap = handleEvent();
+    if (swap == 10)
+        return false;
+    handleScreensSwap(swap);
     return (ret);
 }
 
@@ -58,50 +85,89 @@ void indie::Game::draw()
     switch (_actualScreen) {
         case Screens::Menu: _menu->draw(); break;
         case Screens::Game: _game->draw(); break;
+        case Screens::PreMenu: _premenu->draw(); break;
+        case Screens::GameOptions: _gameoptions->draw(); break;
+        case Screens::End: _end->draw(); break;
+        case Screens::SetFps: _setFps->draw(); break;
+        case Screens::SetSound: _setSound->draw(); break;
+        case Screens::SetMusic: _setMusic->draw(); break;
         default: break;
     }
+}
+
+int indie::Game::handleEvent()
+{
+    switch (_actualScreen) {
+        case Screens::Menu: return (_menu->handleEvent(_event));
+        case Screens::Game: return (_game->handleEvent(_event));
+        case Screens::PreMenu: return (_premenu->handleEvent(_event));
+        case Screens::GameOptions: return (_gameoptions->handleEvent(_event));
+        case Screens::End: return (_end->handleEvent(_event));
+        case Screens::SetFps: return (_setFps->handleEvent(_event));
+        case Screens::SetSound: return (_setSound->handleEvent(_event));
+        case Screens::SetMusic: return (_setMusic->handleEvent(_event));
+        default: break;
+    }
+    return true;
 }
 
 void indie::Game::init()
 {
     indie::map::MapGenerator map;
-    std::unique_ptr<indie::ecs::entity::Entity> entity = std::make_unique<indie::ecs::entity::Entity>();
-    std::unique_ptr<indie::ecs::system::ISystem> draw2DSystem = std::make_unique<indie::ecs::system::Draw2DSystem>();
-    std::unique_ptr<indie::ecs::system::ISystem> draw3DSystem = std::make_unique<indie::ecs::system::Draw3DSystem>();
-    std::unique_ptr<indie::ecs::system::ISystem> movementSystem =
-        std::make_unique<indie::ecs::system::MovementSystem>();
-    std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
-    std::unique_ptr<indie::ecs::system::ISystem> collideSystem = std::make_unique<indie::ecs::system::Collide>();
-    std::unique_ptr<indie::ecs::entity::Entity> entityX = std::make_unique<indie::ecs::entity::Entity>();
-    std::unique_ptr<indie::ecs::system::Explodable> explodeSystem = std::make_unique<indie::ecs::system::Explodable>();
 
+    init_scenes();
     map.createWall();
-    entityX->addComponent<indie::ecs::component::Transform>(
-        static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entityX->addComponent<indie::ecs::component::Drawable3D>(
-        "", static_cast<float>(10.5), static_cast<float>(0.05), static_cast<float>(10), LIGHTGRAY);
-    entityX->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM)->setZ(-0.25);
-    this->_game->initEntity();
-    this->_game->addEntity(std::move(entityX));
     this->_game->initMap(map.getMap());
-    this->_game->addSystem(std::move(draw2DSystem));
-    this->_game->addSystem(std::move(draw3DSystem));
-    this->_game->addSystem(std::move(movementSystem));
-    this->_game->addSystem(std::move(soundSystem));
-    this->_game->addSystem(std::move(collideSystem));
-    this->_game->addSystem(std::move(explodeSystem));
-    _actualScreen = Screens::Game;
+    this->_game->initEntity();
 }
 
 void indie::Game::run()
 {
     while (!indie::raylib::Window::windowShouldClose()) {
+        this->_game->getPlayersPlaying(
+            true, _premenu->isPlayer2Playing(), _premenu->isPlayer3Playing(), _premenu->isPlayer4Playing());
         if (!processEvents())
             break;
         update();
         draw();
     }
     indie::raylib::Window::destroyWindow();
+}
+
+void indie::Game::handleScreensSwap(int ret)
+{
+    if (ret == 1) {
+        reinitGame();
+        setActualScreen(Screens::Menu);
+    }
+    if (ret == 2)
+        setActualScreen(Screens::Game);
+    if (ret == 3)
+        setActualScreen(Screens::PreMenu);
+    if (ret == 4)
+        setActualScreen(Screens::GameOptions);
+    if (ret == 5)
+        setActualScreen(Screens::End);
+    if (ret == 6)
+        setActualScreen(Screens::SetMusic);
+    if (ret == 7)
+        setActualScreen(Screens::SetSound);
+    if (ret == 8)
+        setActualScreen(Screens::SetFps);
+}
+
+void indie::Game::reinitGame()
+{
+    delete _game;
+    _game = new indie::menu::GameScreen;
+    _game->init();
+    indie::map::MapGenerator map;
+    map.createWall();
+    this->_game->initMap(map.getMap());
+    this->_game->initEntity();
+    delete _premenu;
+    _premenu = new indie::menu::PreMenuScreen;
+    _premenu->init();
 }
 
 void indie::Game::setActualScreen(Screens newScreen)
