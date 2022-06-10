@@ -74,13 +74,13 @@ void indie::menu::GameScreen::draw()
 
 void indie::menu::GameScreen::update()
 {
-    if (_player1_blue == true)
+    if (_player1_blue == false)
         this->_infoPlayers[0]->getPlayer().setIsAlive(false);
-    if (_player2_red == true)
+    if (_player2_red == false)
         this->_infoPlayers[1]->getPlayer().setIsAlive(false);
-    if (_player3_green == true)
+    if (_player3_green == false)
         this->_infoPlayers[2]->getPlayer().setIsAlive(false);
-    if (_player4_yellow == true)
+    if (_player4_yellow == false)
         this->_infoPlayers[3]->getPlayer().setIsAlive(false);
 }
 
