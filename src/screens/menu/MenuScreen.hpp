@@ -39,7 +39,7 @@ namespace indie
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
-            std::map<cursorPosition, float> _positionsCursor;
+            std::map<int, float> _positionsCursor;
             int _cursorPosition;
         };
     } // namespace menu

@@ -170,6 +170,7 @@ namespace indie
 
     bool GameEvents::inputUpdate(indie::Event &event)
     {
+        event.resized = indie::raylib::Window::isWindowResized();
         this->getCharKeys(event);
         this->getSystemKeys(event);
         this->getControllerEvents(event, 0);

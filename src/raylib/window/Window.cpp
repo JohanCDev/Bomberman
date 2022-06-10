@@ -80,3 +80,8 @@ void indie::raylib::Window::toggleFullScreen()
 {
     ::ToggleFullscreen();
 }
+
+bool indie::raylib::Window::isWindowResized()
+{
+    return ::IsWindowResized();
+}
