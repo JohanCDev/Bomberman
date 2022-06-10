@@ -63,6 +63,8 @@ int indie::menu::PreMenuScreen::handleEvent(indie::Event &event)
     if ((event.controller[0].code == indie::Event::ControllerCode::T_BUTTON || event.key.r_shift) && _nb_players >= 2
         && check_if_players_are_ready())
         return 2;
+    if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON)
+        return 2;
     return 0;
 }
 

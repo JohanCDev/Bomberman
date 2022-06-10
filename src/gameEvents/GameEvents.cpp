@@ -135,6 +135,18 @@ namespace indie
             else if (indie::raylib::Event::isGamepadButtonPressed(
                          controllerId, indie::Event::ControllerCode::OPTION_BUTTON))
                 event.controller[controllerId].code = indie::Event::ControllerCode::OPTION_BUTTON;
+            else if (indie::raylib::Event::isGamepadButtonPressed(
+                         controllerId, indie::Event::ControllerCode::UP_BUTTON))
+                event.controller[controllerId].code = indie::Event::ControllerCode::UP_BUTTON;
+            else if (indie::raylib::Event::isGamepadButtonPressed(
+                         controllerId, indie::Event::ControllerCode::DOWN_BUTTON))
+                event.controller[controllerId].code = indie::Event::ControllerCode::DOWN_BUTTON;
+            else if (indie::raylib::Event::isGamepadButtonPressed(
+                         controllerId, indie::Event::ControllerCode::LEFT_BUTTON))
+                event.controller[controllerId].code = indie::Event::ControllerCode::LEFT_BUTTON;
+            else if (indie::raylib::Event::isGamepadButtonPressed(
+                         controllerId, indie::Event::ControllerCode::RIGHT_BUTTON))
+                event.controller[controllerId].code = indie::Event::ControllerCode::RIGHT_BUTTON;
             else
                 event.controller[controllerId].code = indie::Event::ControllerCode::CONTROLLER_NONE;
 

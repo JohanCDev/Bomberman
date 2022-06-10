@@ -93,12 +93,12 @@ void indie::menu::MenuScreen::draw()
 
 int indie::menu::MenuScreen::handleEvent(indie::Event &event)
 {
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN || event.key.down) {
+    if (event.controller[0].code == indie::Event::ControllerCode::DOWN_BUTTON || event.key.down) {
         ecs::component::Transform *transformCompo =
             _entities.at(4)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(tools::Tools::getPercentage(33.f, true), checkCursorPosition(true), 0.0f, 0.0f);
     }
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP || event.key.up) {
+    if (event.controller[0].code == indie::Event::ControllerCode::UP_BUTTON || event.key.up) {
         ecs::component::Transform *transformCompo =
             _entities.at(4)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(tools::Tools::getPercentage(33.f, true), checkCursorPosition(false), 0.0f, 0.0f);

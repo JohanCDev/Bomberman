@@ -110,12 +110,12 @@ void indie::menu::GameOptionsScreen::draw()
 
 int indie::menu::GameOptionsScreen::handleEvent(indie::Event &event)
 {
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN || event.key.down) {
+    if (event.controller[0].code == indie::Event::ControllerCode::DOWN_BUTTON || event.key.down) {
         indie::ecs::component::Transform *transformCompo =
             _entities.at(2)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(tools::Tools::getPercentage(33.f, true), checkCursorPosition(true), 0.0f, 0.0f);
     }
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP || event.key.up) {
+    if (event.controller[0].code == indie::Event::ControllerCode::UP_BUTTON || event.key.up) {
         ecs::component::Transform *transformCompo =
             _entities.at(2)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(tools::Tools::getPercentage(33.f, true), checkCursorPosition(false), 0.0f, 0.0f);
@@ -243,8 +243,8 @@ int indie::menu::GameOptionsScreen::checkCursorPosition(bool direction)
 {
     if (direction) {
         if (_cursorPosition == RESUME) {
-            _cursorPosition = SAVE;
-            return this->_positionsCursor[SAVE];
+            _cursorPosition = MENU;
+            return this->_positionsCursor[MENU];
         }
         if (_cursorPosition == MENU) {
             _cursorPosition = SAVE;
