@@ -7,6 +7,7 @@
 
 #include "PreMenuScreen.hpp"
 #include "../../raylib/Raylib.hpp"
+#include "../../tools/Tools.hpp"
 
 indie::menu::PreMenuScreen::PreMenuScreen()
     : _nb_players(1), _is_player2_playing(false), _is_player3_playing(false), _is_player4_playing(false),
@@ -18,17 +19,22 @@ void indie::menu::PreMenuScreen::init()
 {
     std::unique_ptr<ecs::entity::Entity> background = std::make_unique<ecs::entity::Entity>();
     background->addComponent<ecs::component::Transform>(0.0f, 0.0f, 0.0f, 0.0f);
-    background->addComponent<ecs::component::Drawable2D>("assets/menu/bg.png", 1200.0f, 2000.0f, WHITE);
+    background->addComponent<ecs::component::Drawable2D>("assets/menu/bg.png",
+        tools::Tools::getPercentage(100.f, false), tools::Tools::getPercentage(100.f, true), WHITE);
     addEntity(std::move(background));
 
     std::unique_ptr<ecs::entity::Entity> launch_game = std::make_unique<ecs::entity::Entity>();
-    launch_game->addComponent<ecs::component::Transform>(600.0f, 850.0f, 0.0f, 0.0f);
-    launch_game->addComponent<ecs::component::Drawable2D>("Press Triangle to start the game", 40.0f, BLACK);
+    launch_game->addComponent<ecs::component::Transform>(
+        tools::Tools::getPercentage(32.f, true), tools::Tools::getPercentage(90.f, false), 0.0f, 0.0f);
+    launch_game->addComponent<ecs::component::Drawable2D>(
+        "Press Triangle to start the game", tools::Tools::getPercentage(4.f, false), BLACK);
     addEntity(std::move(launch_game));
 
     std::unique_ptr<ecs::entity::Entity> player1 = std::make_unique<ecs::entity::Entity>();
-    player1->addComponent<ecs::component::Transform>(200.0f, 300.0f, 0.0f, 0.0f);
-    player1->addComponent<ecs::component::Drawable2D>("assets/menu/blue.png", 400.0f, 300.0f, WHITE);
+    player1->addComponent<ecs::component::Transform>(
+        tools::Tools::getPercentage(7.f, true), tools::Tools::getPercentage(37.5f, false), 0.0f, 0.0f);
+    player1->addComponent<ecs::component::Drawable2D>("assets/menu/blue.png", tools::Tools::getPercentage(25.f, false),
+        tools::Tools::getPercentage(20.f, true), WHITE);
     addEntity(std::move(player1));
 
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemPreMenu =
@@ -111,8 +117,10 @@ void indie::menu::PreMenuScreen::handlePlayer1(indie::Event &event)
 {
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && !_is_player1_ready) {
         std::unique_ptr<ecs::entity::Entity> ready = std::make_unique<ecs::entity::Entity>();
-        ready->addComponent<ecs::component::Transform>(200.0f, 350.0f, 0.0f, 0.0f);
-        ready->addComponent<ecs::component::Drawable2D>("assets/menu/ready.png", 300.0f, 300.0f, WHITE);
+        ready->addComponent<ecs::component::Transform>(
+            tools::Tools::getPercentage(12.f, true), tools::Tools::getPercentage(40.5f, false), 0.0f, 0.0f);
+        ready->addComponent<ecs::component::Drawable2D>("assets/menu/ready.png",
+            tools::Tools::getPercentage(15.f, true), tools::Tools::getPercentage(17.f, false), WHITE);
         addEntity(std::move(ready));
         _player1_ready_pos = _entities.size() - 1;
         _is_player1_ready = true;
@@ -128,8 +136,10 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
     if (event.controller[1].connected && (event.controller[1].code == indie::Event::ControllerCode::X_BUTTON)
         && !_is_player2_playing) {
         std::unique_ptr<ecs::entity::Entity> player2 = std::make_unique<ecs::entity::Entity>();
-        player2->addComponent<ecs::component::Transform>(600.0f, 300.0f, 0.0f, 0.0f);
-        player2->addComponent<ecs::component::Drawable2D>("assets/menu/red.png", 400.0f, 300.0f, WHITE);
+        player2->addComponent<ecs::component::Transform>(
+            tools::Tools::getPercentage(29.f, true), tools::Tools::getPercentage(37.5f, false), 0.0f, 0.0f);
+        player2->addComponent<ecs::component::Drawable2D>("assets/menu/red.png",
+            tools::Tools::getPercentage(25.f, false), tools::Tools::getPercentage(20.f, true), WHITE);
         addEntity(std::move(player2));
         _nb_players++;
         _player2_pos = _entities.size() - 1;
@@ -145,8 +155,10 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
     if ((event.controller[1].code == indie::Event::ControllerCode::X_BUTTON) && !_is_player2_ready
         && _is_player2_playing) {
         std::unique_ptr<ecs::entity::Entity> ready = std::make_unique<ecs::entity::Entity>();
-        ready->addComponent<ecs::component::Transform>(600.0f, 350.0f, 0.0f, 0.0f);
-        ready->addComponent<ecs::component::Drawable2D>("assets/menu/ready.png", 300.0f, 300.0f, WHITE);
+        ready->addComponent<ecs::component::Transform>(
+            tools::Tools::getPercentage(34.f, true), tools::Tools::getPercentage(40.5f, false), 0.0f, 0.0f);
+        ready->addComponent<ecs::component::Drawable2D>("assets/menu/ready.png",
+            tools::Tools::getPercentage(15.f, true), tools::Tools::getPercentage(17.f, false), WHITE);
         addEntity(std::move(ready));
         _player2_ready_pos = _entities.size() - 1;
         _is_player2_ready = true;
@@ -171,8 +183,10 @@ void indie::menu::PreMenuScreen::handlePlayer3(indie::Event &event)
     if (event.controller[2].connected && (event.controller[2].code == indie::Event::ControllerCode::X_BUTTON)
         && !_is_player3_playing) {
         std::unique_ptr<ecs::entity::Entity> player3 = std::make_unique<ecs::entity::Entity>();
-        player3->addComponent<ecs::component::Transform>(1000.0f, 300.0f, 0.0f, 0.0f);
-        player3->addComponent<ecs::component::Drawable2D>("assets/menu/green.png", 400.0f, 300.0f, WHITE);
+        player3->addComponent<ecs::component::Transform>(
+            tools::Tools::getPercentage(52.f, true), tools::Tools::getPercentage(37.5f, false), 0.0f, 0.0f);
+        player3->addComponent<ecs::component::Drawable2D>("assets/menu/green.png",
+            tools::Tools::getPercentage(25.f, false), tools::Tools::getPercentage(20.f, true), WHITE);
         addEntity(std::move(player3));
         _player3_pos = _entities.size() - 1;
         _nb_players++;
@@ -188,8 +202,10 @@ void indie::menu::PreMenuScreen::handlePlayer3(indie::Event &event)
     if ((event.controller[2].code == indie::Event::ControllerCode::X_BUTTON) && !_is_player3_ready
         && _is_player3_playing) {
         std::unique_ptr<ecs::entity::Entity> ready = std::make_unique<ecs::entity::Entity>();
-        ready->addComponent<ecs::component::Transform>(1000.0f, 350.0f, 0.0f, 0.0f);
-        ready->addComponent<ecs::component::Drawable2D>("assets/menu/ready.png", 300.0f, 300.0f, WHITE);
+        ready->addComponent<ecs::component::Transform>(
+            tools::Tools::getPercentage(57.f, true), tools::Tools::getPercentage(40.5f, false), 0.0f, 0.0f);
+        ready->addComponent<ecs::component::Drawable2D>("assets/menu/ready.png",
+            tools::Tools::getPercentage(15.f, false), tools::Tools::getPercentage(17.f, true), WHITE);
         addEntity(std::move(ready));
         _player3_ready_pos = _entities.size() - 1;
         _is_player3_ready = true;
@@ -214,8 +230,10 @@ void indie::menu::PreMenuScreen::handlePlayer4(indie::Event &event)
     if (event.controller[3].connected && (event.controller[3].code == indie::Event::ControllerCode::X_BUTTON)
         && !_is_player4_playing) {
         std::unique_ptr<ecs::entity::Entity> player4 = std::make_unique<ecs::entity::Entity>();
-        player4->addComponent<ecs::component::Transform>(1400.0f, 300.0f, 0.0f, 0.0f);
-        player4->addComponent<ecs::component::Drawable2D>("assets/menu/yellow.png", 400.0f, 300.0f, WHITE);
+        player4->addComponent<ecs::component::Transform>(
+            tools::Tools::getPercentage(74.f, true), tools::Tools::getPercentage(37.5f, false), 0.0f, 0.0f);
+        player4->addComponent<ecs::component::Drawable2D>("assets/menu/yellow.png",
+            tools::Tools::getPercentage(25.f, false), tools::Tools::getPercentage(20.f, true), WHITE);
         addEntity(std::move(player4));
         _player4_pos = _entities.size() - 1;
         _nb_players++;
@@ -231,8 +249,10 @@ void indie::menu::PreMenuScreen::handlePlayer4(indie::Event &event)
     if ((event.controller[3].code == indie::Event::ControllerCode::X_BUTTON) && !_is_player4_ready
         && _is_player4_playing) {
         std::unique_ptr<ecs::entity::Entity> ready = std::make_unique<ecs::entity::Entity>();
-        ready->addComponent<ecs::component::Transform>(1400.0f, 350.0f, 0.0f, 0.0f);
-        ready->addComponent<ecs::component::Drawable2D>("assets/menu/ready.png", 300.0f, 300.0f, WHITE);
+        ready->addComponent<ecs::component::Transform>(
+            tools::Tools::getPercentage(79.f, true), tools::Tools::getPercentage(40.5f, false), 0.0f, 0.0f);
+        ready->addComponent<ecs::component::Drawable2D>("assets/menu/ready.png",
+            tools::Tools::getPercentage(15.f, true), tools::Tools::getPercentage(17.f, false), WHITE);
         addEntity(std::move(ready));
         _player4_ready_pos = _entities.size() - 1;
         _is_player4_ready = true;
