@@ -70,16 +70,16 @@ void indie::map::MapGenerator::placeBonusBoxes()
 
 void indie::map::MapGenerator::placePlayers()
 {
-    _map[1][1] = PLAYER1;
+    _map[1][1] = PLAYER3;
     _map[1][2] = EMPTY;
     _map[2][1] = EMPTY;
-    _map[1][19] = PLAYER2;
+    _map[1][19] = PLAYER4;
     _map[1][18] = EMPTY;
     _map[2][19] = EMPTY;
-    _map[19][1] = PLAYER3;
+    _map[19][1] = PLAYER1;
     _map[19][2] = EMPTY;
     _map[18][1] = EMPTY;
-    _map[19][19] = PLAYER4;
+    _map[19][19] = PLAYER2;
     _map[18][19] = EMPTY;
     _map[19][18] = EMPTY;
 }

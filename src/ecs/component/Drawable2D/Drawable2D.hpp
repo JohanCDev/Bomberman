@@ -88,25 +88,25 @@ namespace indie
                  */
                 float getWidth();
 
-                /**
-                 * @brief Get the font size.
-                 */
-                float getFontSize();
-
                 void setRadius(float radius);
 
                 void setHeight(float height);
 
                 void setWidth(float width);
 
-                void setFontSize(float fontSize);
+                /**
+                 * @brief Get the font size.
+                 */
+                float getFontSize();
 
-                void setText(std::string text);
+                void setFontSize(float fontSize);
 
                 /**
                  * @brief Get the text value.
                  */
                 std::string getText();
+
+                void setText(std::string text);
 
                 std::string getTexturePath() const;
                 void setTexturePath(std::string texturePath);

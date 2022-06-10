@@ -80,7 +80,7 @@ void indie::Game::init()
         static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
     entityX->addComponent<indie::ecs::component::Drawable3D>(
         "", static_cast<float>(10.5), static_cast<float>(0.05), static_cast<float>(10), LIGHTGRAY);
-    this->_game->initMap(map.getMap());
+    entityX->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM)->setZ(-0.25);
     this->_game->initEntity();
     this->_game->addEntity(std::move(entityX));
     this->_game->initMap(map.getMap());
@@ -89,6 +89,7 @@ void indie::Game::init()
     this->_game->addSystem(std::move(movementSystem));
     this->_game->addSystem(std::move(soundSystem));
     this->_game->addSystem(std::move(collideSystem));
+    this->_game->addSystem(std::move(explodeSystem));
     _actualScreen = Screens::Game;
 }
 
