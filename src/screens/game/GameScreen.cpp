@@ -245,7 +245,17 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     static_cast<float>(posX), static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityB->addComponent<indie::ecs::component::Drawable3D>(
                     "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), RED);
+                entityB->addComponent<indie::ecs::component::Collectable>();
                 addEntity(std::move(entityB));
+                std::unique_ptr<indie::ecs::entity::Entity> entityB2 = std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
+                entityB2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
+                    static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
+                entityB2->addComponent<indie::ecs::component::Collide>();
+                entityB2->addComponent<indie::ecs::component::Destroyable>();
+                entityB2->addComponent<indie::ecs::component::Drawable3D>(
+                    "src/boite.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
+                addEntity(std::move(entityB2));
+                
             }
             if (map[i][j] == 'T') {
                 std::unique_ptr<indie::ecs::entity::Entity> entityT = std::make_unique<indie::ecs::entity::Entity>();
@@ -253,7 +263,16 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     static_cast<float>(posX), static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityT->addComponent<indie::ecs::component::Drawable3D>(
                     "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), MAGENTA);
+                entityT->addComponent<indie::ecs::component::Collectable>();
                 addEntity(std::move(entityT));
+                std::unique_ptr<indie::ecs::entity::Entity> entityT2 = std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
+                entityT2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
+                    static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
+                entityT2->addComponent<indie::ecs::component::Collide>();
+                entityT2->addComponent<indie::ecs::component::Destroyable>();
+                entityT2->addComponent<indie::ecs::component::Drawable3D>(
+                    "src/boite.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
+                addEntity(std::move(entityT2));
             }
             if (map[i][j] == 'S') {
                 std::unique_ptr<indie::ecs::entity::Entity> entityS = std::make_unique<indie::ecs::entity::Entity>();
@@ -261,7 +280,16 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     static_cast<float>(posX), static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityS->addComponent<indie::ecs::component::Drawable3D>(
                     "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), YELLOW);
+                entityS->addComponent<indie::ecs::component::Collectable>();
                 addEntity(std::move(entityS));
+                std::unique_ptr<indie::ecs::entity::Entity> entityS2 = std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
+                entityS2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
+                    static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
+                entityS2->addComponent<indie::ecs::component::Collide>();
+                entityS2->addComponent<indie::ecs::component::Destroyable>();
+                entityS2->addComponent<indie::ecs::component::Drawable3D>(
+                    "src/boite.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
+                addEntity(std::move(entityS2));
             }
             posX += 0.5;
         }
