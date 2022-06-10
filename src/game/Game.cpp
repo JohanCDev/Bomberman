@@ -76,6 +76,9 @@ void indie::Game::update()
     if (_premenu->getIsGameReady()) {
         this->_game->getPlayersPlaying(
             true, _premenu->isPlayer2Playing(), _premenu->isPlayer3Playing(), _premenu->isPlayer4Playing());
+        indie::map::MapGenerator map;
+        map.createWall();
+        this->_game->initMap(map.getMap());
         this->_game->initEntity();
         _premenu->setIsGameReady(false);
     }
@@ -119,11 +122,7 @@ int indie::Game::handleEvent()
 
 void indie::Game::init()
 {
-    indie::map::MapGenerator map;
-
     init_scenes();
-    map.createWall();
-    this->_game->initMap(map.getMap());
 }
 
 void indie::Game::run()
@@ -164,9 +163,9 @@ void indie::Game::reinitGame()
     delete _game;
     _game = new indie::menu::GameScreen;
     _game->init();
-    indie::map::MapGenerator map;
-    map.createWall();
-    this->_game->initMap(map.getMap());
+    // indie::map::MapGenerator map;
+    // map.createWall();
+    // this->_game->initMap(map.getMap());
     delete _premenu;
     _premenu = new indie::menu::PreMenuScreen;
     _premenu->init();
