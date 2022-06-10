@@ -32,6 +32,8 @@ namespace indie
             bool isPlayer2Playing() const;
             bool isPlayer3Playing() const;
             bool isPlayer4Playing() const;
+            bool getIsGameReady() const;
+            void setIsGameReady(bool is_game_ready);
 
             bool check_if_players_are_ready();
             void handlePlayer1(indie::Event &event);
@@ -61,6 +63,8 @@ namespace indie
             int _player2_ready_pos;
             int _player3_ready_pos;
             int _player4_ready_pos;
+
+            bool _game_is_ready;
         };
     } // namespace menu
 } // namespace indie

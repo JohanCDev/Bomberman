@@ -11,7 +11,8 @@
 
 indie::menu::PreMenuScreen::PreMenuScreen()
     : _nb_players(1), _is_player2_playing(false), _is_player3_playing(false), _is_player4_playing(false),
-      _is_player1_ready(false), _is_player2_ready(false), _is_player3_ready(false), _is_player4_ready(false)
+      _is_player1_ready(false), _is_player2_ready(false), _is_player3_ready(false), _is_player4_ready(false),
+      _game_is_ready(false)
 {
 }
 
@@ -61,10 +62,14 @@ int indie::menu::PreMenuScreen::handleEvent(indie::Event &event)
     handlePlayer3(event);
     handlePlayer4(event);
     if ((event.controller[0].code == indie::Event::ControllerCode::T_BUTTON || event.key.r_shift) && _nb_players >= 2
-        && check_if_players_are_ready())
+        && check_if_players_are_ready()) {
+        _game_is_ready = true;
         return 2;
-    if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON)
+    }
+    if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON) {
+        _game_is_ready = true;
         return 2;
+    }
     return 0;
 }
 
@@ -100,6 +105,16 @@ bool indie::menu::PreMenuScreen::isPlayer3Playing() const
 bool indie::menu::PreMenuScreen::isPlayer4Playing() const
 {
     return _is_player4_playing;
+}
+
+bool indie::menu::PreMenuScreen::getIsGameReady() const
+{
+    return _game_is_ready;
+}
+
+void indie::menu::PreMenuScreen::setIsGameReady(bool is_game_ready)
+{
+    _game_is_ready = is_game_ready;
 }
 
 bool indie::menu::PreMenuScreen::check_if_players_are_ready()
