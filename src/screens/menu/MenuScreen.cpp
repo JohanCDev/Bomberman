@@ -93,12 +93,12 @@ void indie::menu::MenuScreen::draw()
 
 int indie::menu::MenuScreen::handleEvent(indie::Event &event)
 {
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::DOWN || event.key.down) {
+    if (event.controller[0].code == indie::Event::ControllerCode::DOWN_BUTTON || event.key.down) {
         ecs::component::Transform *transformCompo =
             _entities.at(4)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(tools::Tools::getPercentage(33.f, true), checkCursorPosition(true), 0.0f, 0.0f);
     }
-    if (event.controller[0].leftJoystick == indie::Event::JoystickDirection::UP || event.key.up) {
+    if (event.controller[0].code == indie::Event::ControllerCode::UP_BUTTON || event.key.up) {
         ecs::component::Transform *transformCompo =
             _entities.at(4)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         transformCompo->update(tools::Tools::getPercentage(33.f, true), checkCursorPosition(false), 0.0f, 0.0f);
@@ -110,41 +110,27 @@ int indie::menu::MenuScreen::handleEvent(indie::Event &event)
         && _cursorPosition == EXIT)
         return 10;
     if (_cursorPosition == NEW_GAME) {
-        ecs::component::Drawable2D *drawableCompo1 =
-            _entities.at(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo1->setHeight(tools::Tools::getPercentage(13.f, false));
-        drawableCompo1->setWidth(tools::Tools::getPercentage(21.f, true));
-        ecs::component::Drawable2D *drawableCompo2 =
-            _entities.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo2->setHeight(tools::Tools::getPercentage(11.f, false));
-        drawableCompo2->setWidth(tools::Tools::getPercentage(19.f, true));
+        setSize(5, 13.f, 21.f);
+        setSize(6, 11.f, 19.f);
     }
     if (_cursorPosition == LOAD_GAME) {
-        ecs::component::Drawable2D *drawableCompo1 =
-            _entities.at(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo1->setHeight(tools::Tools::getPercentage(11.f, false));
-        drawableCompo1->setWidth(tools::Tools::getPercentage(19.f, true));
-        ecs::component::Drawable2D *drawableCompo2 =
-            _entities.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo2->setHeight(tools::Tools::getPercentage(13.f, false));
-        drawableCompo2->setWidth(tools::Tools::getPercentage(21.f, true));
-        ecs::component::Drawable2D *drawableCompo3 =
-            _entities.at(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo3->setHeight(tools::Tools::getPercentage(11.f, false));
-        drawableCompo3->setWidth(tools::Tools::getPercentage(19.f, true));
+        setSize(5, 11.f, 19.f);
+        setSize(6, 13.f, 21.f);
+        setSize(7, 11.f, 19.f);
     }
     if (_cursorPosition == EXIT) {
-        ecs::component::Drawable2D *drawableCompo2 =
-            _entities.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo2->setHeight(tools::Tools::getPercentage(11.f, false));
-        drawableCompo2->setWidth(tools::Tools::getPercentage(19.f, true));
-        ecs::component::Drawable2D *drawableCompo3 =
-            _entities.at(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        drawableCompo3->setHeight(tools::Tools::getPercentage(13.f, false));
-        drawableCompo3->setWidth(tools::Tools::getPercentage(21.f, true));
-        return 0;
+        setSize(6, 11.f, 19.f);
+        setSize(7, 13.f, 21.f);
     }
     return 0;
+}
+
+void indie::menu::MenuScreen::setSize(int where, float height, float width)
+{
+    ecs::component::Drawable2D *drawableCompo =
+        _entities.at(where)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+    drawableCompo->setHeight(tools::Tools::getPercentage(height, false));
+    drawableCompo->setWidth(tools::Tools::getPercentage(width, true));
 }
 
 void indie::menu::MenuScreen::update()
