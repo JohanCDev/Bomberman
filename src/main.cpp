@@ -18,7 +18,7 @@ int main(void)
 {
     try {
         indie::Game Game(60);
-        indie::raylib::Window::getInstance(1920, 1080, "Indie Studio", true, 60);
+        indie::raylib::Window::getInstance(1512, 982, "Indie Studio", true, 60);
 
         Game.init();
         Game.run();

@@ -115,28 +115,29 @@ void indie::menu::GameScreen::getPlayersPlaying(
 
 void indie::menu::GameScreen::initEntity()
 {
-    vec2f uiSize = vec2f({150.f, 200.f});
+    vec2f uiSize = vec2f({tools::Tools::getPercentage(15.f, false), tools::Tools::getPercentage(15.f, true)});
     if (_player1_blue) {
         player::Player player1(BLUEPLAYERCOLOR, 0, {0, 0});
-        vec2f topLeftPos = vec2f({40.f, 40.f});
+        vec2f topLeftPos = vec2f({tools::Tools::getPercentage(3.f, true), tools::Tools::getPercentage(11.f, false)});
         this->_infoPlayers.push_back(
             std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player1, topLeftPos, uiSize));
     }
     if (_player2_red) {
         player::Player player2(REDPLAYERCOLOR, 1, {0, 0});
-        vec2f topRightPos = vec2f({1512.f - 225.f, 40.f});
+        vec2f topRightPos = vec2f({tools::Tools::getPercentage(84.f, true), tools::Tools::getPercentage(11.f, false)});
         this->_infoPlayers.push_back(
             std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player2, topRightPos, uiSize));
     }
     if (_player3_green) {
         player::Player player3(YELLOWPLAYERCOLOR, 2, {0, 0});
-        vec2f bottomLeftPos = vec2f({40.f, 982.f - 175.f});
+        vec2f bottomLeftPos = vec2f({tools::Tools::getPercentage(3.f, true), tools::Tools::getPercentage(82.f, false)});
         this->_infoPlayers.push_back(
             std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player3, bottomLeftPos, uiSize));
     }
     if (_player4_yellow) {
         player::Player player4(GREENPLAYERCOLOR, 3, {0, 0});
-        vec2f bottomRightPos = vec2f({1512.f - 225.f, 982.f - 175.f});
+        vec2f bottomRightPos =
+            vec2f({tools::Tools::getPercentage(84.f, true), tools::Tools::getPercentage(82.f, false)});
         this->_infoPlayers.push_back(
             std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player4, bottomRightPos, uiSize));
     }
