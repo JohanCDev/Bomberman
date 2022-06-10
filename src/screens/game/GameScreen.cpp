@@ -274,7 +274,7 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_3);
                 entityP3->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                entityP3->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), YELLOW);
+                entityP3->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), GREEN);
                 entityP3->addComponent<indie::ecs::component::Collide>();
                 addEntity(std::move(entityP3));
             }
@@ -283,7 +283,7 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_4);
                 entityP4->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                entityP4->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), GREEN);
+                entityP4->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), YELLOW);
                 entityP4->addComponent<indie::ecs::component::Collide>();
                 addEntity(std::move(entityP4));
             }
