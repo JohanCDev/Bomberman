@@ -84,7 +84,6 @@ void indie::Game::init()
     this->_game->initEntity();
     this->_game->addEntity(std::move(entityX));
     this->_game->initMap(map.getMap());
-    this->_game->initEntity();
     this->_game->addSystem(std::move(draw2DSystem));
     this->_game->addSystem(std::move(draw3DSystem));
     this->_game->addSystem(std::move(movementSystem));
