@@ -8,7 +8,9 @@
 #ifndef SETFPSSCREEN_HPP_
 #define SETFPSSCREEN_HPP_
 
+#include <map>
 #include <vector>
+
 #include "../../ecs/entity/Entity.hpp"
 #include "../IScreen.hpp"
 #include "../ecs/system/Draw2D/Draw2D.hpp"
@@ -18,7 +20,7 @@ namespace indie
     namespace menu
     {
         class SetFpsScreen : public IScreen {
-            enum cursorPosition { FPS_30 = 285, FPS_60 = 430 };
+            enum cursorPosition { FPS_30 = 0, FPS_60 = 1 };
 
           public:
             SetFpsScreen();
@@ -36,6 +38,7 @@ namespace indie
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
+            std::map<cursorPosition, float> _positionsCursor;
             int _cursorPosition;
         };
     } // namespace menu
