@@ -198,6 +198,7 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 entityA->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityA->addComponent<indie::ecs::component::Collide>();
+                entityA->addComponent<indie::ecs::component::Destroyable>();
                 entityA->addComponent<indie::ecs::component::Drawable3D>(
                     "src/boite.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
                 addEntity(std::move(entityA));

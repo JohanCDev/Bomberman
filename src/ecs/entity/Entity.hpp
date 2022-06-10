@@ -15,6 +15,7 @@
 #include "../component/Alive/Alive.hpp"
 #include "../component/Collectable/Collectable.hpp"
 #include "../component/Collide/Collide.hpp"
+#include "../component/Destroyable/Destroyable.hpp"
 #include "../component/Drawable2D/Drawable2D.hpp"
 #include "../component/Drawable3D/Drawable3D.hpp"
 #include "../component/Explodable/Explodable.hpp"
