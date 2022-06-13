@@ -61,7 +61,7 @@ namespace indie
 
             void update() override;
             /**
-             * @brief 
+             * @brief Handle event for the Game Screen
              * 
              * @param event the event to be handled
              * @return int The scene number
@@ -76,19 +76,19 @@ namespace indie
              */
             void handleMultipleController(indie::Event &event, int index, indie::ecs::entity::entityType type);
             /**
-             * @brief 
+             * @brief Add entity for the Game Screen
              * 
              * @param entity the entity to add for the Game Screen
              */
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
             /**
-             * @brief 
+             * @brief Remove entity from the Game Screen
              * 
              * @param entity the entity to remove from the Game Screen
              */
             void removeEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
             /**
-             * @brief 
+             * @brief Add a system for the Game Screen
              * 
              * @param system the system to add for the Game Screen
              */

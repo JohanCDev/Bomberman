@@ -64,20 +64,20 @@ namespace indie
              */
             void update() override;
             /**
-             * @brief 
+             * @brief Handle events for the Game Option Screen
              * 
              * @param event the event to be handled
              * @return int The scene number
              */
             int handleEvent(indie::Event &event) override;
             /**
-             * @brief 
+             * @brief Add Entity for the Game Option Screen
              * 
              * @param entity the entity to add for the Game Option Screen
              */
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
             /**
-             * @brief 
+             * @brief Add system for the Game Option Screen
              * 
              * @param entity the entity to remove from the Game Option Screen
              */
@@ -89,7 +89,7 @@ namespace indie
              */
             bool getIsGameOptionsCalling() const;
             /**
-             * @brief 
+             * @brief Check where the cursor is
              * 
              * @param direction True is UP and False is DOWN
              * @return int The index for the button
