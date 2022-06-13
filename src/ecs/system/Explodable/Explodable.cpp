@@ -27,26 +27,26 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
                 entity->getComponent<indie::ecs::component::Drawable3D>(indie::ecs::component::compoType::DRAWABLE3D);
             auto transformCompo =
                 entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
-            if ((transformCompo->getX() < bombTransformCompo->getX()
-                    && transformCompo->getX() > bombTransformCompo->getX() - explodableCompo->getRange())
+            if ((transformCompo->getX() <= bombTransformCompo->getX()
+                    && transformCompo->getX() >= bombTransformCompo->getX() - explodableCompo->getRange())
                 && (transformCompo->getY() >= bombTransformCompo->getY() - 0.25
                     && transformCompo->getY() <= bombTransformCompo->getY() + 0.25)) {
                 compoToRemove.push_back(count);
             }
-            if ((transformCompo->getX() > bombTransformCompo->getX()
-                    && transformCompo->getX() < bombTransformCompo->getX() + explodableCompo->getRange())
+            if ((transformCompo->getX() >= bombTransformCompo->getX()
+                    && transformCompo->getX() <= bombTransformCompo->getX() + explodableCompo->getRange())
                 && (transformCompo->getY() >= bombTransformCompo->getY() - 0.25
                     && transformCompo->getY() <= bombTransformCompo->getY() + 0.25)) {
                 compoToRemove.push_back(count);
             }
-            if ((transformCompo->getY() > bombTransformCompo->getY()
-                    && transformCompo->getY() < bombTransformCompo->getY() + explodableCompo->getRange())
+            if ((transformCompo->getY() >= bombTransformCompo->getY()
+                    && transformCompo->getY() <= bombTransformCompo->getY() + explodableCompo->getRange())
                 && (transformCompo->getX() >= bombTransformCompo->getX() - 0.25
                     && transformCompo->getX() <= bombTransformCompo->getX() + 0.25)) {
                 compoToRemove.push_back(count);
             }
-            if ((transformCompo->getY() < bombTransformCompo->getY()
-                    && transformCompo->getY() > bombTransformCompo->getY() - explodableCompo->getRange())
+            if ((transformCompo->getY() <= bombTransformCompo->getY()
+                    && transformCompo->getY() >= bombTransformCompo->getY() - explodableCompo->getRange())
                 && (transformCompo->getX() >= bombTransformCompo->getX() - 0.25
                     && transformCompo->getX() <= bombTransformCompo->getX() + 0.25)) {
                 compoToRemove.push_back(count);
@@ -86,12 +86,14 @@ void indie::ecs::system::Explodable::update(std::vector<std::unique_ptr<indie::e
     }
     size_t i = 0;
     for (auto &index : compoToRemove) {
-        if (i != 0) {
-            entities.erase(entities.begin() + index - i);
+        if (entities.at(index - i)->getEntityType() == indie::ecs::entity::PLAYER_1) {
+            entities.at(index - i)
+                ->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)
+                ->setAlive(false);
         } else {
-            entities.erase(entities.begin() + index);
+            entities.erase(entities.begin() + index - i);
+            i++;
         }
-        i++;
     }
 }
 

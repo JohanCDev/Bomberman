@@ -71,12 +71,18 @@ void indie::menu::GameScreen::draw()
             entity->getComponent<indie::ecs::component::Collide>(indie::ecs::component::compoType::COLLIDE)
                 ->setCollide(false);
         }
-        if (entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_1
-            || entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_2
-            || entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_3
-            || entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_4) {
+        indie::ecs::entity::entityType type = entity->getEntityType();
+        if (type == indie::ecs::entity::entityType::PLAYER_1 || type == indie::ecs::entity::entityType::PLAYER_2
+            || type == indie::ecs::entity::entityType::PLAYER_3 || type == indie::ecs::entity::entityType::PLAYER_4) {
             entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM)->setSpeedX(0.0f);
             entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM)->setSpeedY(0.0f);
+            if (entity->hasCompoType(indie::ecs::component::ALIVE)) {
+                bool alive =
+                    entity->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)->getAlive();
+                if (alive == false) {
+                    this->_players->at(0).setIsAlive(false);
+                }
+            }
         }
     }
 }
@@ -270,6 +276,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityP1->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), BLUE);
                 entityP1->addComponent<indie::ecs::component::Collide>();
+                entityP1->addComponent<indie::ecs::component::Destroyable>();
+                entityP1->addComponent<indie::ecs::component::Alive>(true);
                 addEntity(std::move(entityP1));
             }
             if (_player2_red) {
@@ -280,6 +288,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                         static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                     entityP2->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), RED);
                     entityP2->addComponent<indie::ecs::component::Collide>();
+                    entityP2->addComponent<indie::ecs::component::Destroyable>();
+                    entityP2->addComponent<indie::ecs::component::Alive>(true);
                     addEntity(std::move(entityP2));
                 }
             }
@@ -291,6 +301,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                         static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                     entityP3->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), GREEN);
                     entityP3->addComponent<indie::ecs::component::Collide>();
+                    entityP3->addComponent<indie::ecs::component::Destroyable>();
+                    entityP3->addComponent<indie::ecs::component::Alive>(true);
                     addEntity(std::move(entityP3));
                 }
             }
@@ -302,6 +314,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                         static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                     entityP4->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), YELLOW);
                     entityP4->addComponent<indie::ecs::component::Collide>();
+                    entityP4->addComponent<indie::ecs::component::Destroyable>();
+                    entityP4->addComponent<indie::ecs::component::Alive>(true);
                     addEntity(std::move(entityP4));
                 }
             }
