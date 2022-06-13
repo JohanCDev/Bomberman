@@ -15,7 +15,7 @@
 #include <vector>
 
 indie::menu::GameScreen::GameScreen(std::vector<player::Player> *players)
-    : _camera({0.0, 10.0, 7.0}, {0.0, -1.5, 0.0}, {0.0, 1.0, 0.0}, 50.0, CAMERA_PERSPECTIVE), _player1_blue(false),
+    : _camera({0.0, 14.0, 7.0}, {0.0, -1.5, 0.0}, {0.0, 1.0, 0.0}, 40.0, CAMERA_PERSPECTIVE), _player1_blue(false),
       _player2_red(false), _player3_green(false), _player4_yellow(false)
 {
     _players = players;
@@ -211,7 +211,8 @@ void indie::menu::GameScreen::handleMultipleController(
         if (transformCompo != nullptr) {
             std::unique_ptr<indie::ecs::entity::Entity> entity =
                 std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOMB);
-            entity->addComponent<indie::ecs::component::Explodable>(static_cast<float>((this->_players->at(index).getBombRadius()) / 2.0f) + 0.25f, 2);
+            entity->addComponent<indie::ecs::component::Explodable>(
+                static_cast<float>((this->_players->at(index).getBombRadius()) / 2.0f) + 0.25f, 2);
             entity->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.25), RED);
             entity->addComponent<indie::ecs::component::Transform>(static_cast<float>(transformCompo->getX()),
                 static_cast<float>(transformCompo->getY()), static_cast<float>(0.0), static_cast<float>(0.0));
