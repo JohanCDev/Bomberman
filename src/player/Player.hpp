@@ -42,6 +42,8 @@ namespace indie
 
             /// Get if the player is alive or not.
             bool getIsAlive() const;
+            /// Get if the player is playing or not.
+            bool getIsPlaying() const;
             /// Get if the player can cross walls or not.
             bool getCrossWalls() const;
             /// Get the controllerId linked to the player.
@@ -68,6 +70,9 @@ namespace indie
             /// Set if the player is alive or not.
             /// @param isAlive new value.
             void setIsAlive(bool isAlive);
+            /// Set if the player is playing or not.
+            /// @param isPlaying new value.
+            void setIsPlaying(bool isPlaying);
             /// Set if the player can cross walls or not.
             /// @param crossWalls new value.
             void setCrossWalls(bool crossWalls);
@@ -77,6 +82,9 @@ namespace indie
             /// Set the speed of the player.
             /// @param value new value.
             void setSpeed(short unsigned int value);
+            /// Set the speed of the player.
+            /// @param value new value.
+            void changeSpeed(short int difference);
             /// Set the bomb radius of the player.
             /// @param value new value.
             void setBombRadius(short unsigned int value);
@@ -105,6 +113,8 @@ namespace indie
           private:
             /// @brief Is the player alive ?
             bool _isAlive;
+            /// @brief Is the player playing ?
+            bool _isPlaying;
             /// Can the player cross walls ?
             bool _crossWalls;
             /// Id of the controller linked to the player
