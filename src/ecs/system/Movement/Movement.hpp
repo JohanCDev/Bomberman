@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Movement
-** File description:
-** Movement
-*/
+/**
+ * @file Movement.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Movement system header file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef MOVEMENT_HPP_
 #define MOVEMENT_HPP_

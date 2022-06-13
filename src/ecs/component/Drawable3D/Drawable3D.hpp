@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Drawable3D
-** File description:
-** Drawable3D
-*/
+/**
+ * @file Drawable3D.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Drawable3D component header file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef DRAWABLE3D_HPP_
 #define DRAWABLE3D_HPP_

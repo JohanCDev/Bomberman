@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Draw2D
-** File description:
-** Draw2D
-*/
+/**
+ * @file Draw2D.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Draw2D system header file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef DRAW2D_HPP_
 #define DRAW2D_HPP_

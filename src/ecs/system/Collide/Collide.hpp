@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Collide
-** File description:
-** Collide
-*/
+/**
+ * @file Collide.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Collide system header file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef COLLIDE_HPP_
 #define COLLIDE_HPP_

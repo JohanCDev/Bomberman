@@ -1,7 +1,7 @@
 /**
  * @file Alive.hpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
- * @brief
+ * @brief Alive component header file
  * @version 0.1
  * @date 2022-06-01
  *

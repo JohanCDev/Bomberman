@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Untitled (Workspace)
-** File description:
-** System
-*/
+/**
+ * @file ISystem.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Interface for all systems classes
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef SYSTEM_HPP_
 #define SYSTEM_HPP_
