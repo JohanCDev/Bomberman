@@ -18,17 +18,16 @@
 #include <string.h>
 #include <vector>
 
-#define WALL          '#'
-#define EMPTY         ' '
-#define BOX           '.'
-#define SPEED_BOX     'S'
-#define BOMB_BOX      'B'
-#define WALL_PASS_BOX 'T'
-#define BOMB_RADIUS   'R'
-#define PLAYER1       '1'
-#define PLAYER2       '2'
-#define PLAYER3       '3'
-#define PLAYER4       '4'
+#define WALL        '#'
+#define EMPTY       ' '
+#define BOX         '.'
+#define SPEED_BOX   'S'
+#define BOMB_BOX    'B'
+#define BOMB_RADIUS 'R'
+#define PLAYER1     '1'
+#define PLAYER2     '2'
+#define PLAYER3     '3'
+#define PLAYER4     '4'
 
 namespace indie
 {
