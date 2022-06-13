@@ -86,12 +86,14 @@ void indie::ecs::system::Explodable::update(std::vector<std::unique_ptr<indie::e
     }
     size_t i = 0;
     for (auto &index : compoToRemove) {
-        if (i != 0) {
-            entities.erase(entities.begin() + index - i);
+        if (entities.at(index - i)->getEntityType() == indie::ecs::entity::PLAYER_1) {
+            entities.at(index - i)
+                ->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)
+                ->setAlive(false);
         } else {
-            entities.erase(entities.begin() + index);
+            entities.erase(entities.begin() + index - i);
+            i++;
         }
-        i++;
     }
 }
 
