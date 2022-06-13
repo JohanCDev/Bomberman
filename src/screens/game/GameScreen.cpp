@@ -71,6 +71,13 @@ void indie::menu::GameScreen::draw()
             entity->getComponent<indie::ecs::component::Collide>(indie::ecs::component::compoType::COLLIDE)
                 ->setCollide(false);
         }
+        /*if (entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_1
+            || entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_2
+            || entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_3
+            || entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_4) {
+            entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM)->setSpeedX(0.0f);
+            entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM)->setSpeedY(0.0f);
+        }*/
     }
 }
 
@@ -298,7 +305,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 }
             }
             if (map[i][j] == 'B') {
-                std::unique_ptr<indie::ecs::entity::Entity> entityB = std::make_unique<indie::ecs::entity::Entity>();
+                std::unique_ptr<indie::ecs::entity::Entity> entityB =
+                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
                 entityB->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityB->addComponent<indie::ecs::component::Drawable3D>(
@@ -316,7 +324,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 addEntity(std::move(entityB2));
             }
             if (map[i][j] == 'T') {
-                std::unique_ptr<indie::ecs::entity::Entity> entityT = std::make_unique<indie::ecs::entity::Entity>();
+                std::unique_ptr<indie::ecs::entity::Entity> entityT =
+                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
                 entityT->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityT->addComponent<indie::ecs::component::Drawable3D>(
@@ -334,7 +343,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 addEntity(std::move(entityT2));
             }
             if (map[i][j] == 'S') {
-                std::unique_ptr<indie::ecs::entity::Entity> entityS = std::make_unique<indie::ecs::entity::Entity>();
+                std::unique_ptr<indie::ecs::entity::Entity> entityS =
+                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
                 entityS->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityS->addComponent<indie::ecs::component::Drawable3D>(
@@ -352,7 +362,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 addEntity(std::move(entityS2));
             }
             if (map[i][j] == 'R') {
-                std::unique_ptr<indie::ecs::entity::Entity> entityR = std::make_unique<indie::ecs::entity::Entity>();
+                std::unique_ptr<indie::ecs::entity::Entity> entityR =
+                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
                 entityR->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityR->addComponent<indie::ecs::component::Drawable3D>(
