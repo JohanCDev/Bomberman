@@ -229,12 +229,13 @@ void indie::menu::GameScreen::handleMultipleController(
 
 int indie::menu::GameScreen::handleEvent(indie::Event &event)
 {
-    handleMultipleController(event, 0, indie::ecs::entity::entityType::PLAYER_1);
-    if (this->_players->at(1).getIsPlaying())
+    if (this->_players->at(0).getIsPlaying() && this->_players->at(0).getIsAlive())
+        handleMultipleController(event, 0, indie::ecs::entity::entityType::PLAYER_1);
+    if (this->_players->at(1).getIsPlaying() && this->_players->at(1).getIsAlive())
         handleMultipleController(event, 1, indie::ecs::entity::entityType::PLAYER_2);
-    if (this->_players->at(2).getIsPlaying())
+    if (this->_players->at(2).getIsPlaying() && this->_players->at(2).getIsAlive())
         handleMultipleController(event, 2, indie::ecs::entity::entityType::PLAYER_3);
-    if (this->_players->at(3).getIsPlaying())
+    if (this->_players->at(3).getIsPlaying() && this->_players->at(3).getIsAlive())
         handleMultipleController(event, 3, indie::ecs::entity::entityType::PLAYER_4);
     if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON || event.key.r_shift)
         return 4;
