@@ -11,11 +11,14 @@
 #include <cstddef>
 #include <map>
 #include <memory>
+#include <vector>
+
 #include "../ecs/system/Collide/Collide.hpp"
 #include "../ecs/system/Draw2D/Draw2D.hpp"
 #include "../ecs/system/Draw3D/Draw3D.hpp"
 #include "../ecs/system/Movement/Movement.hpp"
 #include "../ecs/system/Sound/Sound.hpp"
+#include "../player/Player.hpp"
 #include "../screens/IScreen.hpp"
 #include "../screens/end/EndScreen.hpp"
 #include "../screens/game/GameScreen.hpp"
@@ -50,6 +53,7 @@ namespace indie
       private:
         Screens _actualScreen;
         size_t _fps;
+        std::vector<player::Player> _players;
         indie::menu::MenuScreen *_menu;
         indie::menu::GameScreen *_game;
         indie::menu::PreMenuScreen *_premenu;

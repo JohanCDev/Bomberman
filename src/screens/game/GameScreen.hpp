@@ -29,7 +29,7 @@ namespace indie
     {
         class GameScreen : public IScreen {
           public:
-            GameScreen();
+            GameScreen(std::vector<player::Player> *players);
             ~GameScreen() = default;
             void init() override;
             void draw() override;
@@ -45,6 +45,7 @@ namespace indie
             void initEntity();
 
           private:
+            std::vector<player::Player> *_players;
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>> _infoPlayers;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;

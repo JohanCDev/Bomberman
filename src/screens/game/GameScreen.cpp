@@ -12,10 +12,13 @@
 #include "Colors.hpp"
 #include "uiPlayerDisplay/UIPlayerDisplay.hpp"
 
-indie::menu::GameScreen::GameScreen()
+#include <vector>
+
+indie::menu::GameScreen::GameScreen(std::vector<player::Player> *players)
     : _camera({0.0, 10.0, 7.0}, {0.0, -1.5, 0.0}, {0.0, 1.0, 0.0}, 50.0, CAMERA_PERSPECTIVE), _player1_blue(false),
       _player2_red(false), _player3_green(false), _player4_yellow(false)
 {
+    _players = players;
 }
 
 void indie::menu::GameScreen::init()
@@ -59,11 +62,9 @@ void indie::menu::GameScreen::draw()
             system->update(this->_entities);
         }
     }
-    for (auto &uiDisplay : _infoPlayers) {
-        if (uiDisplay->getPlayer().getIsAlive()) {
+    for (auto &uiDisplay : _infoPlayers)
+        if (uiDisplay->getPlayer().getIsAlive())
             uiDisplay->draw();
-        }
-    }
     indie::raylib::Window::endDrawing();
     for (auto &entity : _entities) {
         if (entity->hasCompoType(indie::ecs::component::COLLIDE) == true) {
@@ -75,6 +76,8 @@ void indie::menu::GameScreen::draw()
 
 void indie::menu::GameScreen::update()
 {
+    for (auto &uiDisplay : _infoPlayers)
+        uiDisplay->update();
 }
 
 void indie::menu::GameScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
@@ -116,30 +119,26 @@ void indie::menu::GameScreen::getPlayersPlaying(
 void indie::menu::GameScreen::initEntity()
 {
     vec2f uiSize = vec2f({tools::Tools::getPercentage(15.f, false), tools::Tools::getPercentage(15.f, true)});
+    vec2f topLeftPos = vec2f({tools::Tools::getPercentage(3.f, true), tools::Tools::getPercentage(11.f, false)});
+    vec2f topRightPos = vec2f({tools::Tools::getPercentage(84.f, true), tools::Tools::getPercentage(11.f, false)});
+    vec2f bottomLeftPos = vec2f({tools::Tools::getPercentage(3.f, true), tools::Tools::getPercentage(82.f, false)});
+    vec2f bottomRightPos = vec2f({tools::Tools::getPercentage(84.f, true), tools::Tools::getPercentage(82.f, false)});
+
     if (_player1_blue) {
-        player::Player player1(BLUEPLAYERCOLOR, 0, {0, 0});
-        vec2f topLeftPos = vec2f({tools::Tools::getPercentage(3.f, true), tools::Tools::getPercentage(11.f, false)});
-        this->_infoPlayers.push_back(
-            std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player1, topLeftPos, uiSize));
+        this->_infoPlayers.push_back(std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(
+            &_players->at(0), topLeftPos, uiSize));
     }
     if (_player2_red) {
-        player::Player player2(REDPLAYERCOLOR, 1, {0, 0});
-        vec2f topRightPos = vec2f({tools::Tools::getPercentage(84.f, true), tools::Tools::getPercentage(11.f, false)});
-        this->_infoPlayers.push_back(
-            std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player2, topRightPos, uiSize));
+        this->_infoPlayers.push_back(std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(
+            &_players->at(1), topRightPos, uiSize));
     }
     if (_player3_green) {
-        player::Player player3(YELLOWPLAYERCOLOR, 2, {0, 0});
-        vec2f bottomLeftPos = vec2f({tools::Tools::getPercentage(3.f, true), tools::Tools::getPercentage(82.f, false)});
-        this->_infoPlayers.push_back(
-            std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player3, bottomLeftPos, uiSize));
+        this->_infoPlayers.push_back(std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(
+            &_players->at(2), bottomLeftPos, uiSize));
     }
     if (_player4_yellow) {
-        player::Player player4(GREENPLAYERCOLOR, 3, {0, 0});
-        vec2f bottomRightPos =
-            vec2f({tools::Tools::getPercentage(84.f, true), tools::Tools::getPercentage(82.f, false)});
-        this->_infoPlayers.push_back(
-            std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(player4, bottomRightPos, uiSize));
+        this->_infoPlayers.push_back(std::make_unique<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>(
+            &_players->at(3), bottomRightPos, uiSize));
     }
     for (auto &uiDisplay : this->_infoPlayers) {
         uiDisplay->create();
@@ -217,11 +216,11 @@ void indie::menu::GameScreen::handleMultipleController(
 int indie::menu::GameScreen::handleEvent(indie::Event &event)
 {
     handleMultipleController(event, 0, indie::ecs::entity::entityType::PLAYER_1);
-    if (_player2_red)
+    if (this->_players->at(1).getIsPlaying())
         handleMultipleController(event, 1, indie::ecs::entity::entityType::PLAYER_2);
-    if (_player3_green)
+    if (this->_players->at(2).getIsPlaying())
         handleMultipleController(event, 2, indie::ecs::entity::entityType::PLAYER_3);
-    if (_player4_yellow)
+    if (this->_players->at(3).getIsPlaying())
         handleMultipleController(event, 3, indie::ecs::entity::entityType::PLAYER_4);
     if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON || event.key.r_shift)
         return 4;

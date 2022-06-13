@@ -31,7 +31,7 @@ namespace indie
             {
                 class UIPlayerDisplay {
                   public:
-                    UIPlayerDisplay(indie::player::Player &player, vec2f pos, vec2f size);
+                    UIPlayerDisplay(indie::player::Player *player, vec2f pos, vec2f size);
                     ~UIPlayerDisplay() = default;
                     void createSingleTextEntity(std::string &str, vec2f position);
                     void createImage();
@@ -39,10 +39,11 @@ namespace indie
                     float getNextYPos() const;
                     indie::player::Player getPlayer() const;
                     void create();
+                    void update();
                     void draw();
 
                   private:
-                    std::unique_ptr<indie::player::Player> _player;
+                    indie::player::Player *_player;
                     vec2f _position;
                     vec2f _size;
                     std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _mainEntity;

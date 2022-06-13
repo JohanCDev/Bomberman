@@ -18,16 +18,22 @@
 #include "../ecs/system/Sound/Sound.hpp"
 #include "../gameEvents/GameEvents.hpp"
 #include "../map/MapGenerator.hpp"
+#include "../player/Player.hpp"
 #include "../raylib/Raylib.hpp"
 #include "../screens/IScreen.hpp"
+#include "Colors.hpp"
 
 indie::Game::Game(size_t baseFps)
 {
     _fps = baseFps;
+    _players.push_back(player::Player(BLUEPLAYERCOLOR, 0, {0, 0}));
+    _players.push_back(player::Player(REDPLAYERCOLOR, 1, {0, 0}));
+    _players.push_back(player::Player(GREENPLAYERCOLOR, 2, {0, 0}));
+    _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3, {0, 0}));
     _actualScreen = Screens::Menu;
     _menu = new indie::menu::MenuScreen;
-    _game = new indie::menu::GameScreen;
-    _premenu = new indie::menu::PreMenuScreen;
+    _game = new indie::menu::GameScreen(&_players);
+    _premenu = new indie::menu::PreMenuScreen(&_players);
     _gameoptions = new indie::menu::GameOptionsScreen;
     _end = new indie::menu::EndScreen;
     _setFps = new indie::menu::SetFpsScreen;
@@ -74,8 +80,8 @@ bool indie::Game::processEvents()
 void indie::Game::update()
 {
     if (_premenu->getIsGameReady()) {
-        this->_game->getPlayersPlaying(
-            true, _premenu->isPlayer2Playing(), _premenu->isPlayer3Playing(), _premenu->isPlayer4Playing());
+        this->_game->getPlayersPlaying(this->_players.at(0).getIsPlaying(), this->_players.at(1).getIsPlaying(),
+            this->_players.at(2).getIsPlaying(), this->_players.at(3).getIsPlaying());
         indie::map::MapGenerator map;
         map.createWall();
         this->_game->initMap(map.getMap());
@@ -166,11 +172,16 @@ void indie::Game::handleScreensSwap(int ret)
 
 void indie::Game::reinitGame()
 {
+    _players.clear();
+    _players.push_back(player::Player(BLUEPLAYERCOLOR, 0, {0, 0}));
+    _players.push_back(player::Player(REDPLAYERCOLOR, 1, {0, 0}));
+    _players.push_back(player::Player(GREENPLAYERCOLOR, 2, {0, 0}));
+    _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3, {0, 0}));
     delete _game;
-    _game = new indie::menu::GameScreen;
+    _game = new indie::menu::GameScreen(&_players);
     _game->init();
     delete _premenu;
-    _premenu = new indie::menu::PreMenuScreen;
+    _premenu = new indie::menu::PreMenuScreen(&_players);
     _premenu->init();
 }
 
