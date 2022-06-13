@@ -71,13 +71,13 @@ void indie::menu::GameScreen::draw()
             entity->getComponent<indie::ecs::component::Collide>(indie::ecs::component::compoType::COLLIDE)
                 ->setCollide(false);
         }
-        /*if (entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_1
+        if (entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_1
             || entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_2
             || entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_3
             || entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_4) {
             entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM)->setSpeedX(0.0f);
             entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM)->setSpeedY(0.0f);
-        }*/
+        }
     }
 }
 
