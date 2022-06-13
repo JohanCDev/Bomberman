@@ -64,6 +64,8 @@ set(SRC_RAY
     ${RAYLIBROOT}/draw/Draw.hpp
     ${RAYLIBROOT}/event/Event.cpp
     ${RAYLIBROOT}/event/Event.hpp
+    ${RAYLIBROOT}/model/Model.cpp
+    ${RAYLIBROOT}/model/Model.hpp
     ${RAYLIBROOT}/music/Music.cpp
     ${RAYLIBROOT}/music/Music.hpp
     ${RAYLIBROOT}/rectangle/Rectangle.cpp
