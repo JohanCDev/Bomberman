@@ -26,92 +26,118 @@ namespace indie
         /// representable using this format (such as the Enter key).
         using Key = char;
 
-        /// Represents a mouse button.
-        enum class MouseButton {
-            /// The left mouse button.
-            Left,
-            /// The right mouse button.
-            Right,
-            /// The middle (wheel) mouse button.
-            Middle,
-
-            /// Keep last -- the total number of mouse buttons.
-            Count
-        };
-
         /// Size events parameters (Event::Type::Resized).
         struct SizeEvent {
             /// Old size, in units.
             vec2u oldSize;
             /// New size, in units.
-            vec2u newSize;
+            vec2i newSize;
         };
 
         /// @brief Keyboard event parameters (Event::Type::KeyPressed, Event::Type::KeyReleased).
         struct KeyEvent {
-            /// Is the Alt key pressed?
-            bool alt;
-            /// Is the Control key pressed?
-            bool control;
-            /// Is the Shift key pressed?
-            bool shift;
-            /// Is the System key pressed?
-            bool system;
+            /// Is the Left Alt key pressed?
+            bool l_alt;
+            /// Is the Right Alt key pressed?
+            bool r_alt;
+            /// Is the Left Control key pressed?
+            bool l_control;
+            /// Is the Right Control key pressed?
+            bool r_control;
+            /// Is the Left Shift key pressed?
+            bool l_shift;
+            /// Is the Right Shift key pressed?
+            bool r_shift;
+            /// Is the up key pressed?
+            bool up;
+            /// Is the down key pressed?
+            bool down;
+            /// Is the left key pressed?
+            bool left;
+            /// Is the right key pressed?
+            bool right;
+            // Is the enter key pressed?
+            bool enter;
             /// Code of the key that has been pressed.
             Key code;
         };
 
-        /// Mouse move event parameters (Event::Type::MouseMoved)
-        struct MouseMoveEvent {
-            /// Position of the mouse pointer, relative to the left of the owner window.
-            vec2i pos;
+        /// Controller button input
+        enum ControllerCode {
+            /// Nothing is happening
+            CONTROLLER_NONE,
+            /// Up arrow
+            UP_BUTTON,
+            /// Right arrow
+            RIGHT_BUTTON,
+            /// Down arrow
+            DOWN_BUTTON,
+            /// Left arrow
+            LEFT_BUTTON,
+            /// Triangle key
+            T_BUTTON,
+            /// Circle button
+            O_BUTTON,
+            /// Cross button
+            X_BUTTON,
+            /// Square button
+            S_BUTTON,
+            /// L1
+            L1_BUTTON,
+            /// L2
+            L2_BUTTON,
+            /// R1
+            R1_BUTTON,
+            /// R2
+            R2_BUTTON,
+            /// Share button
+            SHARE_BUTTON,
+            /// Touchpad button
+            TOUCHPAD_BUTTON,
+            /// Option button
+            OPTION_BUTTON,
+            /// L3
+            L3_BUTTON,
+            /// R3
+            R3_BUTTON
         };
 
-        /// Mouse buttons events parameters (Event::Type::MouseButtonPressed, Event::Type::MouseButtonReleased).
-        struct MouseButtonEvent {
-            /// Code of the button that has been pressed.
-            MouseButton button;
-            /// Position of the mouse pointer, relative to the left of the owner window.
-            vec2i pos;
+        /// Right joystick events
+        enum JoystickDirection {
+            /// Nothing is happening
+            JOYSTICK_NONE,
+            /// Joystick going up
+            UP,
+            /// Joystick going right
+            RIGHT,
+            /// Joystick going down
+            DOWN,
+            /// Joystick going left
+            LEFT
         };
 
-        /// Enumeration of the different types of events.
-        enum class Type {
-            /// The window requested to be closed (no data).
-            Closed,
-            /// The window was resized (data in Event.size).
-            Resized,
-            /// A key was pressed (data in Event.key).
-            KeyPressed,
-            /// A key was released (data in Event.key).
-            KeyReleased,
-            /// A mouse button was pressed (data in Event.mouseButton).
-            MouseButtonPressed,
-            /// A mouse button was released (data in Event.mouseButton).
-            MouseButtonReleased,
-            /// The mouse cursor moved (data in Event.mouseMove).
-            MouseMoved,
-
-            /// Keep last -- the total number of event types.
-            Count
+        /// Event happening on the controller
+        struct ControllerEvent {
+            /// Controller button input
+            int code;
+            /// Left joystick events
+            JoystickDirection leftJoystick;
+            /// Right joystick events
+            JoystickDirection rightJoystick;
+            /// Is controller connected?
+            bool connected;
         };
 
         // Member data
-
-        /// Type of the event.
-        Type type;
-
         union {
-            /// Size event parameters (Event::Resized).
-            SizeEvent size;
+            /// Is the window resized?
+            bool resized;
             /// Key event parameters (Event::KeyPressed, Event::KeyReleased).
             KeyEvent key;
-            /// Mouse move event parameters (Event::MouseMoved).
-            MouseMoveEvent mouseMove;
-            /// Mouse button event parameters (Event::MouseButtonPressed, Event::MouseButtonReleased).
-            MouseButtonEvent mouseButton;
+            /// Controller events
+            ControllerEvent controller[4];
         };
     };
-} // namespace arcade
+} // namespace indie
 
 #endif // !defined(ARCADE_EVENT_HPP_)
