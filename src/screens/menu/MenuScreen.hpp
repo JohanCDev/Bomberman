@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** MenuScreen
-*/
+/**
+ * @file MenuScreen.hpp
+ * @author Victor (victor.harri-chal@epitech.eu)
+ * @brief The screen for the menu
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef MENUSCREEN_HPP_
 #define MENUSCREEN_HPP_

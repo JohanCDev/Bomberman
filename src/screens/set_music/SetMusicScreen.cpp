@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2021
-** Bomberman
-** File description:
-** SetMusicScreen.cpp
-*/
+/**
+ * @file SetMusicScreen.cpp
+ * @author Victor (victor.harri-chal@epitech.eu)
+ * @brief The screen to change the volume of the music
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #include "SetMusicScreen.hpp"
 #include "../../raylib/Raylib.hpp"

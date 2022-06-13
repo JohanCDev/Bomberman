@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2021
-** Bomberman
-** File description:
-** SetMusicScreen.hpp
-*/
+/**
+ * @file SetMusicScreen.hpp
+ * @author Victor (victor.harri-chal@epitech.eu)
+ * @brief The screen to change the volume of the music
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef SETMUSICSCREEN_HPP_
 #define SETMUSICSCREEN_HPP_

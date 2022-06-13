@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2021
-** Bomberman
-** File description:
-** SetSoundScreen.cpp
-*/
+/**
+ * @file SetSoundScreen.cpp
+ * @author Victor (victor.harri-chal@epitech.eu)
+ * @brief The screen to change the volume of the sounds of the game
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #include "SetSoundScreen.hpp"
 #include "../../raylib/Raylib.hpp"

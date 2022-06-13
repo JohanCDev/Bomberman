@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2021
-** Bomberman
-** File description:
-** SetFpsScreen.hpp
-*/
+/**
+ * @file SetFpsScreen.hpp
+ * @author Victor (victor.harri-chal@epitech.eu)
+ * @brief The screen to change FPS of the game
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef SETFPSSCREEN_HPP_
 #define SETFPSSCREEN_HPP_
