@@ -1,13 +1,19 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** Triangle
-*/
+/**
+ * @file Triangle.cpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Triangle encapsulation source file
+ * @version 0.1
+ * @date 2022-05-26
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Triangle.hpp"
 
-indie::raylib::Triangle::Triangle(::Vector2 v1, ::Vector2 v2, ::Vector2 v3, ::Color color) : _v1(v1), _v2(v2), _v3(v3) {}
+indie::raylib::Triangle::Triangle(::Vector2 v1, ::Vector2 v2, ::Vector2 v3, ::Color color) : _v1(v1), _v2(v2), _v3(v3)
+{
+}
 
 ::Vector2 indie::raylib::Triangle::getVec1() const
 {
@@ -39,11 +45,13 @@ void indie::raylib::Triangle::setVec3(::Vector2 v3)
     _v3 = v3;
 }
 
-::Color indie::raylib::Triangle::getColor() const {
+::Color indie::raylib::Triangle::getColor() const
+{
     return _color;
 }
 
-void indie::raylib::Triangle::setColor(::Color color) {
+void indie::raylib::Triangle::setColor(::Color color)
+{
     _color = color;
 }
 

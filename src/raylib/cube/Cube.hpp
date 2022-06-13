@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** Cube
-*/
+/**
+ * @file Cube.hpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Cube encapsulation header file
+ * @version 0.1
+ * @date 2022-05-26
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef CUBE_HPP_
 #define CUBE_HPP_
@@ -14,6 +18,7 @@ namespace indie
 {
     namespace raylib
     {
+        /// Cube class encapsulation
         class Cube {
           public:
             Cube(float x, float y, float z, float width, float height, float length);

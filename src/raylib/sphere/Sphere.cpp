@@ -1,13 +1,20 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** Sphere
-*/
+/**
+ * @file Sphere.cpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Sphere encapsulation source file
+ * @version 0.1
+ * @date 2022-05-26
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Sphere.hpp"
 
-indie::raylib::Sphere::Sphere(::Vector3 centerPos, float radius, ::Color color) : _centerPosition(centerPos), _radius(radius), _color(color) {}
+indie::raylib::Sphere::Sphere(::Vector3 centerPos, float radius, ::Color color)
+    : _centerPosition(centerPos), _radius(radius), _color(color)
+{
+}
 
 ::Vector3 indie::raylib::Sphere::getCenterPosition() const
 {
@@ -59,13 +66,13 @@ void indie::raylib::Sphere::drawWires(::Vector3 centerPosition, float radius, in
     ::DrawSphereWires(centerPosition, radius, rings, slices, color);
 }
 
-bool indie::raylib::Sphere::checkCollisionSpheres(const ::Vector3& sphere2, float radius2)
+bool indie::raylib::Sphere::checkCollisionSpheres(const ::Vector3 &sphere2, float radius2)
 {
     return ::CheckCollisionSpheres(_centerPosition, _radius, sphere2, radius2);
 }
 
-bool indie::raylib::Sphere::checkCollisionSpheres(const ::Vector3 &centerPosition, float radius, const ::Vector3 &sphere2, float radius2)
+bool indie::raylib::Sphere::checkCollisionSpheres(
+    const ::Vector3 &centerPosition, float radius, const ::Vector3 &sphere2, float radius2)
 {
     return ::CheckCollisionSpheres(centerPosition, radius, sphere2, radius2);
 }
-

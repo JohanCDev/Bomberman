@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** BoundingBox
-*/
+/**
+ * @file BoundingBox.cpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Bounding Box encapsulation source file
+ * @version 0.1
+ * @date 2022-05-26
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "BoundingBox.hpp"
 
