@@ -49,20 +49,20 @@ namespace indie
              */
             void update() override;
             /**
-             * @brief 
+             * @brief Handle event for End Screen
              * 
              * @param event the event to be handled
-             * @return int 1 if "Enter" or "X" is pressed
+             * @return int The scene number
              */
             int handleEvent(indie::Event &event) override;
             /**
-             * @brief 
+             * @brief Add entity for the End Screen
              * 
              * @param entity the entity to add for the end screen
              */
             void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) override;
             /**
-             * @brief 
+             * @brief Add system for the End Screen
              * 
              * @param system the system to add for the end screen
              */

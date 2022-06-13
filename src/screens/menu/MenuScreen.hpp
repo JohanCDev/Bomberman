@@ -61,8 +61,8 @@ namespace indie
             /**
              * @brief Handle event for the Menu Screen
              * 
-             * @param event 
-             * @return int 
+             * @param event Event to be handled
+             * @return int The Scene Number
              */
             int handleEvent(indie::Event &event) override;
             /**
