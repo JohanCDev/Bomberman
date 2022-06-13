@@ -165,6 +165,7 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
         _nb_players++;
         _player2_pos = _entities.size() - 1;
         _is_player2_playing = true;
+        event.controller[1].code = indie::Event::ControllerCode::CONTROLLER_NONE;
     }
     if (event.controller[1].connected && (event.controller[1].code == indie::Event::ControllerCode::O_BUTTON)
         && _is_player2_playing && !_is_player2_ready) {
