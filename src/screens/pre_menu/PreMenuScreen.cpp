@@ -6,14 +6,17 @@
 */
 
 #include "PreMenuScreen.hpp"
+#include "../../player/Player.hpp"
 #include "../../raylib/Raylib.hpp"
 #include "../../tools/Tools.hpp"
 
-indie::menu::PreMenuScreen::PreMenuScreen()
+indie::menu::PreMenuScreen::PreMenuScreen(std::vector<player::Player> *players)
     : _nb_players(1), _is_player2_playing(false), _is_player3_playing(false), _is_player4_playing(false),
       _is_player1_ready(false), _is_player2_ready(false), _is_player3_ready(false), _is_player4_ready(false),
       _game_is_ready(false)
 {
+    _players = players;
+    _players->at(0).setIsPlaying(true);
 }
 
 void indie::menu::PreMenuScreen::init()
@@ -146,6 +149,7 @@ void indie::menu::PreMenuScreen::handlePlayer1(indie::Event &event)
         _entities.erase(_entities.begin() + _player1_ready_pos);
         _is_player1_ready = false;
     }
+    _players->at(0).setIsPlaying(_is_player1_ready);
 }
 
 void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
@@ -161,7 +165,6 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
         _nb_players++;
         _player2_pos = _entities.size() - 1;
         _is_player2_playing = true;
-        event.controller[1].code = indie::Event::ControllerCode::CONTROLLER_NONE;
     }
     if (event.controller[1].connected && (event.controller[1].code == indie::Event::ControllerCode::O_BUTTON)
         && _is_player2_playing && !_is_player2_ready) {
@@ -193,6 +196,7 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
             _is_player2_ready = false;
         }
     }
+    _players->at(1).setIsPlaying(_is_player2_ready);
 }
 
 void indie::menu::PreMenuScreen::handlePlayer3(indie::Event &event)
@@ -240,6 +244,7 @@ void indie::menu::PreMenuScreen::handlePlayer3(indie::Event &event)
             _is_player3_ready = false;
         }
     }
+    _players->at(2).setIsPlaying(_is_player3_ready);
 }
 
 void indie::menu::PreMenuScreen::handlePlayer4(indie::Event &event)
@@ -287,4 +292,5 @@ void indie::menu::PreMenuScreen::handlePlayer4(indie::Event &event)
             _is_player4_ready = false;
         }
     }
+    _players->at(3).setIsPlaying(_is_player4_ready);
 }

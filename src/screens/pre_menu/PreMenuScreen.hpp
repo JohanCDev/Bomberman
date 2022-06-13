@@ -12,6 +12,7 @@
 #include "../../ecs/entity/Entity.hpp"
 #include "../IScreen.hpp"
 #include "../ecs/system/Draw2D/Draw2D.hpp"
+#include "../player/Player.hpp"
 
 namespace indie
 {
@@ -19,7 +20,7 @@ namespace indie
     {
         class PreMenuScreen : public IScreen {
           public:
-            PreMenuScreen();
+            PreMenuScreen(std::vector<player::Player> *players);
             ~PreMenuScreen() = default;
             void init() override;
             void draw() override;
@@ -44,6 +45,7 @@ namespace indie
           private:
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
+            std::vector<player::Player> *_players;
             int _nb_players;
 
             bool _is_player2_playing;

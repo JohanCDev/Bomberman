@@ -40,6 +40,11 @@ namespace indie
             return (this->_isAlive);
         }
 
+        bool Player::getIsPlaying() const
+        {
+            return (this->_isPlaying);
+        }
+
         bool Player::getCrossWalls() const
         {
             return (this->_crossWalls);
@@ -104,6 +109,11 @@ namespace indie
             this->_isAlive = isAlive;
         }
 
+        void Player::setIsPlaying(bool isPlaying)
+        {
+            this->_isPlaying = isPlaying;
+        }
+
         void Player::setControllerId(short unsigned int controllerId)
         {
             this->_controllerId = controllerId;
@@ -132,6 +142,11 @@ namespace indie
         void Player::setSpeed(short unsigned int value)
         {
             this->_speed = value;
+        }
+
+        void Player::changeSpeed(short int difference)
+        {
+            this->_speed += difference;
         }
 
         void Player::setNbBombRadiusBonus(short unsigned int value)

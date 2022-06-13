@@ -27,12 +27,12 @@ namespace indie
         {
             namespace uiPlayerDisplay
             {
-                UIPlayerDisplay::UIPlayerDisplay(indie::player::Player &player, vec2f pos, vec2f size)
+                UIPlayerDisplay::UIPlayerDisplay(indie::player::Player *player, vec2f pos, vec2f size)
                 {
                     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystem =
                         std::make_unique<indie::ecs::system::Draw2DSystem>();
 
-                    this->_player = std::make_unique<indie::player::Player>(player);
+                    this->_player = player;
                     this->_systems.push_back(std::move(draw2DSystem));
                     this->_position = pos;
                     this->_size = size;
@@ -72,7 +72,7 @@ namespace indie
 
                 indie::player::Player UIPlayerDisplay::getPlayer() const
                 {
-                    return *this->_player.get();
+                    return *this->_player;
                 }
 
                 static bool compareColor(Color a, Color b)
@@ -105,8 +105,6 @@ namespace indie
                     std::string crossWallInfo(this->_player->getCrossWalls() ? "Yes" : "No");
                     std::string crossWallsStr("Cross walls: " + crossWallInfo);
                     std::string bombsRadiusStr("Bomb Range: " + std::to_string(this->_player->getBombRadius()));
-                    std::string filepath = this->getPlayerSpriteFilepath();
-                    std::cout << filepath << std::endl;
 
                     container->addComponent<ecs::component::Drawable2D>(
                         "", this->_size.x, this->_size.y, this->_player->getColor());
@@ -124,6 +122,29 @@ namespace indie
                         {this->_position.x + tools::Tools::getPercentage(1.f, false), this->getNextYPos()});
                     createSingleTextEntity(bombsRadiusStr,
                         {this->_position.x + tools::Tools::getPercentage(1.f, false), this->getNextYPos()});
+                }
+
+                void UIPlayerDisplay::update()
+                {
+                    ecs::component::Drawable2D *speedText =
+                        this->_mainEntity.at(3)->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+                    ecs::component::Drawable2D *stockText =
+                        this->_mainEntity.at(4)->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+                    ecs::component::Drawable2D *crossText =
+                        this->_mainEntity.at(5)->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+                    ecs::component::Drawable2D *radiusText =
+                        this->_mainEntity.at(6)->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+                    std::string speedStr("Speed: " + std::to_string(this->_player->getSpeed()));
+                    std::string bombsStr("Bomb stock: " + std::to_string(this->_player->getBombStock()) + " / "
+                        + std::to_string(this->_player->getMaxBombStock()));
+                    std::string crossWallInfo(this->_player->getCrossWalls() ? "Yes" : "No");
+                    std::string crossWallsStr("Cross walls: " + crossWallInfo);
+                    std::string bombsRadiusStr("Bomb Range: " + std::to_string(this->_player->getBombRadius()));
+
+                    speedText->setText(speedStr);
+                    stockText->setText(bombsStr);
+                    crossText->setText(crossWallsStr);
+                    radiusText->setText(bombsRadiusStr);
                 }
 
                 void UIPlayerDisplay::draw()
