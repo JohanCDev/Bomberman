@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** Camera3D
-*/
+/**
+ * @file Camera3D.cpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Camera3d encapsulation source file
+ * @version 0.1
+ * @date 2022-05-24
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Camera3D.hpp"
 

@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Raylib
-** File description:
-** Raylib
-*/
+/**
+ * @file Raylib.hpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Include all Raylib encapsulation headers
+ * @version 0.1
+ * @date 2022-05-26
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef RAYLIB_HPP_
 #define RAYLIB_HPP_
@@ -25,9 +29,5 @@
 #include "texture2d/Texture2D.hpp"
 #include "triangle/Triangle.hpp"
 #include "window/Window.hpp"
-
-namespace raylib
-{
-}
 
 #endif /* !RAYLIB_HPP_ */

@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Window
-** File description:
-** Window
-*/
+/**
+ * @file Window.hpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Window encapsulation header file
+ * @version 0.1
+ * @date 2022-05-26
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef Window_HPP_
 #define Window_HPP_
@@ -14,6 +18,7 @@ namespace indie
 {
     namespace raylib
     {
+        /// Window class encapsulation
         class Window {
           public:
             /**
