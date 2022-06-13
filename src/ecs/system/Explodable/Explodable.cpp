@@ -19,45 +19,44 @@ indie::ecs::system::Explodable::~Explodable()
 {
 }
 
-void indie::ecs::system::Explodable::destroyBoxes(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities,
+void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemove,
+    std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities,
     indie::ecs::component::Explodable *explodableCompo, indie::ecs::component::Transform *bombTransformCompo)
 {
-    Vector3 min = {0, 0, 0};
-    Vector3 max = {0, 0, 0};
-    Vector3 min2 = {0, 0, 0};
-    Vector3 max2 = {0, 0, 0};
     int count = 0;
-    std::vector<int> compoToRemove;
 
     for (auto &entity : entities) {
-        if (entity->hasCompoType(indie::ecs::component::compoType::DESTROYABLE)
-            && entity->hasCompoType(indie::ecs::component::compoType::ALIVE) == true) {
+        if (entity->hasCompoType(indie::ecs::component::compoType::DESTROYABLE) == true) {
             auto drawableCompo =
                 entity->getComponent<indie::ecs::component::Drawable3D>(indie::ecs::component::compoType::DRAWABLE3D);
             auto transformCompo =
                 entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
-            min.x = transformCompo->getX() - drawableCompo->getWidth() / static_cast<float>(2.0);
-            min.y = transformCompo->getY() - drawableCompo->getHeight() / static_cast<float>(2.0);
-            min.z = -(drawableCompo->getLength() / static_cast<float>(2.0));
-            max.x = transformCompo->getX() + drawableCompo->getWidth() / static_cast<float>(2.0);
-            max.y = transformCompo->getY() + drawableCompo->getHeight() / static_cast<float>(2.0);
-            max.z = (drawableCompo->getLength() / static_cast<float>(2.0));
-            indie::raylib::BoundingBox box1(min, max);
-            min2.x = bombTransformCompo->getX() - explodableCompo->getRange() / static_cast<float>(2.0);
-            min2.y = bombTransformCompo->getY() - explodableCompo->getRange() / static_cast<float>(2.0);
-            min2.z = static_cast<float>(-0.5) / static_cast<float>(2.0);
-            max2.x = bombTransformCompo->getX() - explodableCompo->getRange() / static_cast<float>(2.0);
-            max2.y = bombTransformCompo->getY() - explodableCompo->getRange() / static_cast<float>(2.0);
-            max2.z = static_cast<float>(0.5) / static_cast<float>(2.0);
-            indie::raylib::BoundingBox box2(min2, max2);
-            if (indie::raylib::BoundingBox::checkCollisionBoxes(box1.getBoundingBox(), box2.getBoundingBox()) == true) {
+            if ((transformCompo->getX() <= bombTransformCompo->getX()
+                    && transformCompo->getX() >= bombTransformCompo->getX() - explodableCompo->getRange())
+                && (transformCompo->getY() >= bombTransformCompo->getY() - 0.25
+                    && transformCompo->getY() <= bombTransformCompo->getY() + 0.25)) {
+                compoToRemove.push_back(count);
+            }
+            if ((transformCompo->getX() >= bombTransformCompo->getX()
+                    && transformCompo->getX() <= bombTransformCompo->getX() + explodableCompo->getRange())
+                && (transformCompo->getY() >= bombTransformCompo->getY() - 0.25
+                    && transformCompo->getY() <= bombTransformCompo->getY() + 0.25)) {
+                compoToRemove.push_back(count);
+            }
+            if ((transformCompo->getY() >= bombTransformCompo->getY()
+                    && transformCompo->getY() <= bombTransformCompo->getY() + explodableCompo->getRange())
+                && (transformCompo->getX() >= bombTransformCompo->getX() - 0.25
+                    && transformCompo->getX() <= bombTransformCompo->getX() + 0.25)) {
+                compoToRemove.push_back(count);
+            }
+            if ((transformCompo->getY() <= bombTransformCompo->getY()
+                    && transformCompo->getY() >= bombTransformCompo->getY() - explodableCompo->getRange())
+                && (transformCompo->getX() >= bombTransformCompo->getX() - 0.25
+                    && transformCompo->getX() <= bombTransformCompo->getX() + 0.25)) {
                 compoToRemove.push_back(count);
             }
         }
         count++;
-    }
-    for (auto &index : compoToRemove) {
-        entities.erase(entities.begin() + index);
     }
 }
 
@@ -74,23 +73,33 @@ void indie::ecs::system::Explodable::update(std::vector<std::unique_ptr<indie::e
                 if (explodableCompo->getExploded() == true) {
                     explodableCompo->setExploded(false);
                     explodableCompo->setDropped(false);
-                    destroyBoxes(entities, explodableCompo,
+                    destroyBoxes(compoToRemove, entities, explodableCompo,
                         entity->getComponent<ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM));
+                    compoToRemove.push_back(count);
                 } else {
                     auto t_now = std::chrono::system_clock::now();
                     std::chrono::seconds elapsed =
                         std::chrono::duration_cast<std::chrono::seconds>(t_now - explodableCompo->getTStart());
                     if (explodableCompo->getSeconds() <= elapsed) {
                         explodableCompo->setExploded(true);
-                        compoToRemove.push_back(count);
                     }
                 }
             }
         }
         count++;
     }
+    size_t i = 0;
     for (auto &index : compoToRemove) {
-        entities.erase(entities.begin() + index);
+        auto type = entities.at(index - i)->getEntityType();
+        if (type == indie::ecs::entity::PLAYER_1 || type == indie::ecs::entity::PLAYER_2
+            || type == indie::ecs::entity::PLAYER_3 || type == indie::ecs::entity::PLAYER_4) {
+            entities.at(index - i)
+                ->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)
+                ->setAlive(false);
+        } else {
+            entities.erase(entities.begin() + index - i);
+            i++;
+        }
     }
 }
 
