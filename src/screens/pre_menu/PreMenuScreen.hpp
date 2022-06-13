@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2021
-** Bomberman
-** File description:
-** PreMenuScreen.cpp
-*/
+/**
+ * @file PreMenuScreen.hpp
+ * @author Victor (victor.harri-chal@epitech.eu)
+ * @brief The screen for the pre-menu
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef PRE_MENU_SCREEN_HPP_
 #define PRE_MENU_SCREEN_HPP_

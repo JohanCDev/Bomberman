@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** IScreen
-*/
+/**
+ * @file SetSoundScreen.cpp
+ * @author Victor (victor.harri-chal@epitech.eu)
+ * @brief The Screen Inteface to manipulate all the screens
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef ISCREEN_HPP_
 #define ISCREEN_HPP_
