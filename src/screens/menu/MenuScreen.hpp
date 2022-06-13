@@ -29,7 +29,7 @@ namespace indie
         class MenuScreen : public IScreen {
           public:
             /**
-             * @brief Enum for the cursor position
+             * @brief Cursor enum for the option choice (New game, Load game or exit game)
              * 
              */
             enum cursorPosition { NEW_GAME = 0, LOAD_GAME = 1, EXIT = 2 };
@@ -110,7 +110,7 @@ namespace indie
              */
             std::map<int, float> _positionsCursor;
             /**
-             * @brief Is game option called
+             * @brief Index of the cursor position
              * 
              */
             int _cursorPosition;
