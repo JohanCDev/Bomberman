@@ -57,6 +57,11 @@ namespace indie {
                 bool checkCollisionBoxSphere(::Vector3 center, float radius);
                 static bool checkCollisionBoxSphere(::BoundingBox box, ::Vector3 center, float radius);
 
+                /**
+                * @brief Compute model bounding box limits (considers all meshes)
+                */
+                static ::BoundingBox getModelBox(::Model model);
+
             private:
                 ::BoundingBox _boundingBox;
                 ::Color _color;
