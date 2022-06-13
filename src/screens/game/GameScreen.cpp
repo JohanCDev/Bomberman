@@ -80,7 +80,7 @@ void indie::menu::GameScreen::draw()
                 bool alive =
                     entity->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)->getAlive();
                 if (alive == false) {
-                    this->_players->at(0).setIsAlive(false);
+                    this->_players->at(type).setIsAlive(false);
                 }
             }
         }
