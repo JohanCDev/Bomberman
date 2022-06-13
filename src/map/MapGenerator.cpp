@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** B-YEP-400-NAN-4-1-indiestudio-titouan.deschanels
-** File description:
-** main
-*/
+/**
+ * @file MapGenerator.cpp
+ * @author Victor & Henri (victor.harri-chal@epitech.eu & henri.chauvet@epitech.eu)
+ * @brief The generator for the map of the game
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #include "MapGenerator.hpp"
 

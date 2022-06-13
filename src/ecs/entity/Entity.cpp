@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Entity
-** File description:
-** Entity
-*/
+/**
+ * @file Entity.cpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Entity source file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Entity.hpp"
 

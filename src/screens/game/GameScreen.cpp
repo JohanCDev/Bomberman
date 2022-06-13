@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** GameScreen
-*/
+/**
+ * @file GameScreen.cpp
+ * @author Victor & Henri(victor.harri-chal@epitech.eu & henri.chauvet@epitech.eu)
+ * @brief The screen for the game
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #include "GameScreen.hpp"
 #include "../../player/Player.hpp"

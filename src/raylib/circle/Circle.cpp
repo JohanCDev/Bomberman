@@ -1,13 +1,20 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** Circle
-*/
+/**
+ * @file Circle.cpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Circle encapsulation source file
+ * @version 0.1
+ * @date 2022-05-26
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Circle.hpp"
 
-indie::raylib::Circle::Circle(::Vector2 center, float radius, ::Color color) : _center(center), _radius(radius), _color(color) {}
+indie::raylib::Circle::Circle(::Vector2 center, float radius, ::Color color)
+    : _center(center), _radius(radius), _color(color)
+{
+}
 
 ::Vector2 indie::raylib::Circle::getCenter() const
 {
@@ -29,23 +36,28 @@ void indie::raylib::Circle::setRadius(float radius)
     _radius = radius;
 }
 
-::Color indie::raylib::Circle::getColor() const {
+::Color indie::raylib::Circle::getColor() const
+{
     return _color;
 }
 
-void indie::raylib::Circle::setColor(::Color color) {
+void indie::raylib::Circle::setColor(::Color color)
+{
     _color = color;
 }
 
-void indie::raylib::Circle::draw(float x, float y, float radius, ::Color color) {
+void indie::raylib::Circle::draw(float x, float y, float radius, ::Color color)
+{
     ::DrawCircle(x, y, radius, color);
 }
 
-void indie::raylib::Circle::draw(::Vector2 center, float radius, ::Color color) {
+void indie::raylib::Circle::draw(::Vector2 center, float radius, ::Color color)
+{
     ::DrawCircleV(center, radius, color);
 }
 
-void indie::raylib::Circle::draw() {
+void indie::raylib::Circle::draw()
+{
     ::DrawCircleV(_center, _radius, _color);
 }
 

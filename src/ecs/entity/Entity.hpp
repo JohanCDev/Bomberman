@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Untitled (Workspace)
-** File description:
-** Entity
-*/
+/**
+ * @file Entity.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Entity header file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
@@ -32,7 +36,7 @@ namespace indie
         {
 
             enum entityType { PLAYER_1, PLAYER_2, PLAYER_3, PLAYER_4, WALL, BOXES, TEXT, BOMB, UNKNOWN };
-
+            /// @brief Entity class
             class Entity {
               public:
                 /**

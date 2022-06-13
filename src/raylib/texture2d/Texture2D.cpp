@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** Texture2D
-*/
+/**
+ * @file Texture2D.cpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Texture2D encapsulation source file
+ * @version 0.1
+ * @date 2022-05-26
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Texture2D.hpp"
 
@@ -66,7 +70,6 @@ void indie::raylib::Texture2D::setFormat(int format)
     _texture.format;
 }
 
-
 void indie::raylib::Texture2D::draw(int posX, int posY, ::Color tint)
 {
     ::DrawTexture(_texture, posX, posY, tint);
@@ -92,7 +95,8 @@ void indie::raylib::Texture2D::drawEx(::Vector2 position, float rotation, float 
     ::DrawTextureEx(_texture, position, rotation, scale, tint);
 }
 
-void indie::raylib::Texture2D::drawEx(::Texture2D texture, ::Vector2 position, float rotation, float scale, ::Color tint)
+void indie::raylib::Texture2D::drawEx(
+    ::Texture2D texture, ::Vector2 position, float rotation, float scale, ::Color tint)
 {
     ::DrawTextureEx(texture, position, rotation, scale, tint);
 }
@@ -112,47 +116,56 @@ void indie::raylib::Texture2D::drawQuad(::Vector2 tiling, ::Vector2 offset, ::Re
     ::DrawTextureQuad(_texture, tiling, offset, quad, tint);
 }
 
-void indie::raylib::Texture2D::drawQuad(::Texture2D texture, ::Vector2 tiling, ::Vector2 offset, ::Rectangle quad, ::Color tint)
+void indie::raylib::Texture2D::drawQuad(
+    ::Texture2D texture, ::Vector2 tiling, ::Vector2 offset, ::Rectangle quad, ::Color tint)
 {
     ::DrawTextureQuad(texture, tiling, offset, quad, tint);
 }
 
-void indie::raylib::Texture2D::drawTiled(::Rectangle source, ::Rectangle dest, ::Vector2 origin, float rotation, float scale, ::Color tint)
+void indie::raylib::Texture2D::drawTiled(
+    ::Rectangle source, ::Rectangle dest, ::Vector2 origin, float rotation, float scale, ::Color tint)
 {
     ::DrawTextureTiled(_texture, source, dest, origin, rotation, scale, tint);
 }
 
-void indie::raylib::Texture2D::drawTiled(::Texture2D texture, ::Rectangle source, ::Rectangle dest, ::Vector2 origin, float rotation, float scale, ::Color tint)
+void indie::raylib::Texture2D::drawTiled(::Texture2D texture, ::Rectangle source, ::Rectangle dest, ::Vector2 origin,
+    float rotation, float scale, ::Color tint)
 {
     ::DrawTextureTiled(texture, source, dest, origin, rotation, scale, tint);
 }
 
-void indie::raylib::Texture2D::drawPro(::Rectangle source, ::Rectangle dest, ::Vector2 origin, float rotation, ::Color tint)
+void indie::raylib::Texture2D::drawPro(
+    ::Rectangle source, ::Rectangle dest, ::Vector2 origin, float rotation, ::Color tint)
 {
     ::DrawTexturePro(_texture, source, dest, origin, rotation, tint);
 }
 
-void indie::raylib::Texture2D::drawPro(::Texture2D texture, ::Rectangle source, ::Rectangle dest, ::Vector2 origin, float rotation, ::Color tint)
+void indie::raylib::Texture2D::drawPro(
+    ::Texture2D texture, ::Rectangle source, ::Rectangle dest, ::Vector2 origin, float rotation, ::Color tint)
 {
     ::DrawTexturePro(texture, source, dest, origin, rotation, tint);
 }
 
-void indie::raylib::Texture2D::drawNPatch(::NPatchInfo nPatchInfo, ::Rectangle dest, ::Vector2 origin, float rotation, ::Color tint)
+void indie::raylib::Texture2D::drawNPatch(
+    ::NPatchInfo nPatchInfo, ::Rectangle dest, ::Vector2 origin, float rotation, ::Color tint)
 {
     ::DrawTextureNPatch(_texture, nPatchInfo, dest, origin, rotation, tint);
 }
 
-void indie::raylib::Texture2D::drawNPatch(::Texture2D texture, ::NPatchInfo nPatchInfo, ::Rectangle dest, ::Vector2 origin, float rotation, ::Color tint)
+void indie::raylib::Texture2D::drawNPatch(
+    ::Texture2D texture, ::NPatchInfo nPatchInfo, ::Rectangle dest, ::Vector2 origin, float rotation, ::Color tint)
 {
     ::DrawTextureNPatch(texture, nPatchInfo, dest, origin, rotation, tint);
 }
 
-void indie::raylib::Texture2D::drawPoly(::Vector2 center, Vector2 *points, ::Vector2 *texcoords, int pointsCount, ::Color tint)
+void indie::raylib::Texture2D::drawPoly(
+    ::Vector2 center, Vector2 *points, ::Vector2 *texcoords, int pointsCount, ::Color tint)
 {
     ::DrawTexturePoly(_texture, center, points, texcoords, pointsCount, tint);
 }
 
-void indie::raylib::Texture2D::drawPoly(::Texture2D texture, ::Vector2 center, Vector2 *points, ::Vector2 *texcoords, int pointsCount, ::Color tint)
+void indie::raylib::Texture2D::drawPoly(
+    ::Texture2D texture, ::Vector2 center, Vector2 *points, ::Vector2 *texcoords, int pointsCount, ::Color tint)
 {
     ::DrawTexturePoly(texture, center, points, texcoords, pointsCount, tint);
 }

@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Explodable
-** File description:
-** Explodable
-*/
+/**
+ * @file Explodable.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Explodable component header file
+ * @version 0.1
+ * @date 2022-06-02
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #pragma once
 
@@ -16,6 +20,7 @@ namespace indie
     {
         namespace component
         {
+            /// @brief Explodable component
             class Explodable : public IComponent {
               public:
                 Explodable();

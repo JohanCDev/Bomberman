@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Drawable2D
-** File description:
-** Drawable2D
-*/
+/**
+ * @file Drawable2D.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Drawable2D component header file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef DRAWABLE2D_HPP_
 #define DRAWABLE2D_HPP_
@@ -16,6 +20,7 @@ namespace indie
     {
         namespace component
         {
+            /// @brief Drawable2D component
             class Drawable2D : public IComponent {
               public:
                 /**
