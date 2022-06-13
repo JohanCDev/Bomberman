@@ -63,3 +63,16 @@ void indie::ecs::component::Inventory::setWallPass(bool bonus)
 {
     this->_wallPass = bonus;
 }
+
+void indie::ecs::component::Inventory::setBonus(indie::ecs::component::bonusType type)
+{
+    if (type == indie::ecs::component::bonusType::BOMBUP) {
+        this->_bombUp = true;
+    } else if (type == indie::ecs::component::bonusType::FIREUP) {
+        this->_fireUp = true;
+    } else if (type == indie::ecs::component::bonusType::SPEEDUP) {
+        this->_speedUp = true;
+    } else if (type == indie::ecs::component::bonusType::WALLPASS) {
+        this->_wallPass = true;
+    }
+}

@@ -83,6 +83,13 @@ namespace indie
                  */
                 void setWallPass(bool bonus);
 
+                /**
+                 * @brief Set the bonus status
+                 *
+                 * @param type of the bonus
+                 */
+                void setBonus(indie::ecs::component::bonusType type);
+
               private:
                 bool _bombUp;
                 bool _fireUp;
