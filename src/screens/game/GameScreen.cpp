@@ -71,12 +71,18 @@ void indie::menu::GameScreen::draw()
             entity->getComponent<indie::ecs::component::Collide>(indie::ecs::component::compoType::COLLIDE)
                 ->setCollide(false);
         }
-        if (entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_1
-            || entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_2
-            || entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_3
-            || entity->getEntityType() == indie::ecs::entity::entityType::PLAYER_4) {
+        indie::ecs::entity::entityType type = entity->getEntityType();
+        if (type == indie::ecs::entity::entityType::PLAYER_1 || type == indie::ecs::entity::entityType::PLAYER_2
+            || type == indie::ecs::entity::entityType::PLAYER_3 || type == indie::ecs::entity::entityType::PLAYER_4) {
             entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM)->setSpeedX(0.0f);
             entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM)->setSpeedY(0.0f);
+            if (entity->hasCompoType(indie::ecs::component::ALIVE)) {
+                bool alive =
+                    entity->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)->getAlive();
+                if (alive == false) {
+                    this->_players->at(0).setIsAlive(false);
+                }
+            }
         }
     }
 }

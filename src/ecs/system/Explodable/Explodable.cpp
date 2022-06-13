@@ -27,26 +27,26 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
                 entity->getComponent<indie::ecs::component::Drawable3D>(indie::ecs::component::compoType::DRAWABLE3D);
             auto transformCompo =
                 entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
-            if ((transformCompo->getX() < bombTransformCompo->getX()
-                    && transformCompo->getX() > bombTransformCompo->getX() - explodableCompo->getRange())
+            if ((transformCompo->getX() <= bombTransformCompo->getX()
+                    && transformCompo->getX() >= bombTransformCompo->getX() - explodableCompo->getRange())
                 && (transformCompo->getY() >= bombTransformCompo->getY() - 0.25
                     && transformCompo->getY() <= bombTransformCompo->getY() + 0.25)) {
                 compoToRemove.push_back(count);
             }
-            if ((transformCompo->getX() > bombTransformCompo->getX()
-                    && transformCompo->getX() < bombTransformCompo->getX() + explodableCompo->getRange())
+            if ((transformCompo->getX() >= bombTransformCompo->getX()
+                    && transformCompo->getX() <= bombTransformCompo->getX() + explodableCompo->getRange())
                 && (transformCompo->getY() >= bombTransformCompo->getY() - 0.25
                     && transformCompo->getY() <= bombTransformCompo->getY() + 0.25)) {
                 compoToRemove.push_back(count);
             }
-            if ((transformCompo->getY() > bombTransformCompo->getY()
-                    && transformCompo->getY() < bombTransformCompo->getY() + explodableCompo->getRange())
+            if ((transformCompo->getY() >= bombTransformCompo->getY()
+                    && transformCompo->getY() <= bombTransformCompo->getY() + explodableCompo->getRange())
                 && (transformCompo->getX() >= bombTransformCompo->getX() - 0.25
                     && transformCompo->getX() <= bombTransformCompo->getX() + 0.25)) {
                 compoToRemove.push_back(count);
             }
-            if ((transformCompo->getY() < bombTransformCompo->getY()
-                    && transformCompo->getY() > bombTransformCompo->getY() - explodableCompo->getRange())
+            if ((transformCompo->getY() <= bombTransformCompo->getY()
+                    && transformCompo->getY() >= bombTransformCompo->getY() - explodableCompo->getRange())
                 && (transformCompo->getX() >= bombTransformCompo->getX() - 0.25
                     && transformCompo->getX() <= bombTransformCompo->getX() + 0.25)) {
                 compoToRemove.push_back(count);
