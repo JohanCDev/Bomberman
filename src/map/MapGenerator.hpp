@@ -24,6 +24,7 @@
 #define SPEED_BOX     'S'
 #define BOMB_BOX      'B'
 #define WALL_PASS_BOX 'T'
+#define BOMB_RADIUS   'R'
 #define PLAYER1       '1'
 #define PLAYER2       '2'
 #define PLAYER3       '3'
@@ -33,7 +34,6 @@ namespace indie
 {
     namespace map
     {
-
         /**
          * @brief Map generator class implementation
          */
