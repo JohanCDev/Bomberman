@@ -13,7 +13,6 @@
 #define GAME_OPTIONS_SCREEN_HPP_
 
 #include <map>
-#include <unistd.h>
 #include <vector>
 #include "../../ecs/entity/Entity.hpp"
 #include "../IScreen.hpp"
