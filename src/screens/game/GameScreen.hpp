@@ -55,7 +55,7 @@ namespace indie
              */
             void draw() override;
             /**
-             * @brief Upadte the Game Screen
+             * @brief Update the Game Screen
              * 
              */
 
