@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Transform
-** File description:
-** Transform
-*/
+/**
+ * @file Transform.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Transform component header file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef TRANSFORM_HPP_
 #define TRANSFORM_HPP_
@@ -16,6 +20,7 @@ namespace indie
     {
         namespace component
         {
+            /// @brief Transform component
             class Transform : public IComponent {
               public:
                 /**

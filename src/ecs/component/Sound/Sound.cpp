@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Sound
-** File description:
-** Sound
-*/
+/**
+ * @file Sound.cpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Sound component source file
+ * @version 0.1
+ * @date 2022-06-02
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Sound.hpp"
 

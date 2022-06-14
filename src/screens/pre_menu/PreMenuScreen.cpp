@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2021
-** Bomberman
-** File description:
-** PreMenuScreen.hpp
-*/
+/**
+ * @file PreMenuScreen.cpp
+ * @author Victor (victor.harri-chal@epitech.eu)
+ * @brief The screen for the pre-menu
+ * @version 0.1
+ * @date 2022-06-13
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "PreMenuScreen.hpp"
 #include "../../player/Player.hpp"
@@ -37,8 +41,8 @@ void indie::menu::PreMenuScreen::init()
     std::unique_ptr<ecs::entity::Entity> player1 = std::make_unique<ecs::entity::Entity>();
     player1->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(7.f, true), tools::Tools::getPercentage(37.5f, false), 0.0f, 0.0f);
-    player1->addComponent<ecs::component::Drawable2D>("assets/menu/blue.png", tools::Tools::getPercentage(25.f, false),
-        tools::Tools::getPercentage(20.f, true), WHITE);
+    player1->addComponent<ecs::component::Drawable2D>(
+        "assets/blue.png", tools::Tools::getPercentage(25.f, false), tools::Tools::getPercentage(20.f, true), WHITE);
     addEntity(std::move(player1));
 
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemPreMenu =
@@ -159,12 +163,13 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
         std::unique_ptr<ecs::entity::Entity> player2 = std::make_unique<ecs::entity::Entity>();
         player2->addComponent<ecs::component::Transform>(
             tools::Tools::getPercentage(29.f, true), tools::Tools::getPercentage(37.5f, false), 0.0f, 0.0f);
-        player2->addComponent<ecs::component::Drawable2D>("assets/menu/red.png",
-            tools::Tools::getPercentage(25.f, false), tools::Tools::getPercentage(20.f, true), WHITE);
+        player2->addComponent<ecs::component::Drawable2D>(
+            "assets/red.png", tools::Tools::getPercentage(25.f, false), tools::Tools::getPercentage(20.f, true), WHITE);
         addEntity(std::move(player2));
         _nb_players++;
         _player2_pos = _entities.size() - 1;
         _is_player2_playing = true;
+        event.controller[1].code = indie::Event::ControllerCode::CONTROLLER_NONE;
     }
     if (event.controller[1].connected && (event.controller[1].code == indie::Event::ControllerCode::O_BUTTON)
         && _is_player2_playing && !_is_player2_ready) {
@@ -206,8 +211,8 @@ void indie::menu::PreMenuScreen::handlePlayer3(indie::Event &event)
         std::unique_ptr<ecs::entity::Entity> player3 = std::make_unique<ecs::entity::Entity>();
         player3->addComponent<ecs::component::Transform>(
             tools::Tools::getPercentage(52.f, true), tools::Tools::getPercentage(37.5f, false), 0.0f, 0.0f);
-        player3->addComponent<ecs::component::Drawable2D>("assets/menu/green.png",
-            tools::Tools::getPercentage(25.f, false), tools::Tools::getPercentage(20.f, true), WHITE);
+        player3->addComponent<ecs::component::Drawable2D>("assets/green.png", tools::Tools::getPercentage(25.f, false),
+            tools::Tools::getPercentage(20.f, true), WHITE);
         addEntity(std::move(player3));
         _player3_pos = _entities.size() - 1;
         _nb_players++;
@@ -254,8 +259,8 @@ void indie::menu::PreMenuScreen::handlePlayer4(indie::Event &event)
         std::unique_ptr<ecs::entity::Entity> player4 = std::make_unique<ecs::entity::Entity>();
         player4->addComponent<ecs::component::Transform>(
             tools::Tools::getPercentage(74.f, true), tools::Tools::getPercentage(37.5f, false), 0.0f, 0.0f);
-        player4->addComponent<ecs::component::Drawable2D>("assets/menu/yellow.png",
-            tools::Tools::getPercentage(25.f, false), tools::Tools::getPercentage(20.f, true), WHITE);
+        player4->addComponent<ecs::component::Drawable2D>("assets/yellow.png", tools::Tools::getPercentage(25.f, false),
+            tools::Tools::getPercentage(20.f, true), WHITE);
         addEntity(std::move(player4));
         _player4_pos = _entities.size() - 1;
         _nb_players++;

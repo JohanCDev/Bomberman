@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Explodable
-** File description:
-** Explodable
-*/
+/**
+ * @file Explodable.cpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Explodable system source file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Explodable.hpp"
 
@@ -86,7 +90,9 @@ void indie::ecs::system::Explodable::update(std::vector<std::unique_ptr<indie::e
     }
     size_t i = 0;
     for (auto &index : compoToRemove) {
-        if (entities.at(index - i)->getEntityType() == indie::ecs::entity::PLAYER_1) {
+        auto type = entities.at(index - i)->getEntityType();
+        if (type == indie::ecs::entity::PLAYER_1 || type == indie::ecs::entity::PLAYER_2
+            || type == indie::ecs::entity::PLAYER_3 || type == indie::ecs::entity::PLAYER_4) {
             entities.at(index - i)
                 ->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)
                 ->setAlive(false);

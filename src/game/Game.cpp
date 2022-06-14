@@ -57,7 +57,7 @@ void indie::Game::init()
 {
     initScenes();
     initMusic();
-    // initSounds();
+    initSounds();
     _musics[MENU_SOUND].play();
 }
 

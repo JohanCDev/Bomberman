@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Collide
-** File description:
-** Collide
-*/
+/**
+ * @file Collide.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Collide component header file
+ * @version 0.1
+ * @date 2022-06-02
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #pragma once
 
@@ -15,9 +19,16 @@ namespace indie
     {
         namespace component
         {
+            /// @brief Collide component
             class Collide : public IComponent {
               public:
+                /**
+                 * @brief Create new collide component.
+                 */
                 Collide();
+                /**
+                 * @brief Destructor.
+                 */
                 ~Collide();
 
                 /**

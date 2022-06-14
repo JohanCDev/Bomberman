@@ -1,87 +1,94 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** Triangle
-*/
+/**
+ * @file Triangle.hpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Triangle encapsulation header file
+ * @version 0.1
+ * @date 2022-05-26
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef TRIANGLE_HPP_
 #define TRIANGLE_HPP_
 
 #include "../Raylib.hpp"
 
-namespace indie {
-    namespace raylib {
+namespace indie
+{
+    namespace raylib
+    {
+        /// Triangle class encapsulation
         class Triangle {
-            public:
-                Triangle(::Vector2 v1, ::Vector2 v2, ::Vector2 v3, ::Color color = BLACK);
-                ~Triangle() = default;
+          public:
+            Triangle(::Vector2 v1, ::Vector2 v2, ::Vector2 v3, ::Color color = BLACK);
+            ~Triangle() = default;
 
-                /**
-                * @brief Get triangle v1
-                */
-                ::Vector2 getVec1() const;
+            /**
+             * @brief Get triangle v1
+             */
+            ::Vector2 getVec1() const;
 
-                /**
-                * @brief Set triangle v1
-                */
-                void setVec1(::Vector2 v1);
+            /**
+             * @brief Set triangle v1
+             */
+            void setVec1(::Vector2 v1);
 
-                /**
-                * @brief Get triangle v2
-                */
-                ::Vector2 getVec2() const;
+            /**
+             * @brief Get triangle v2
+             */
+            ::Vector2 getVec2() const;
 
-                /**
-                * @brief Set triangle v2
-                */
-                void setVec2(::Vector2 v2);
+            /**
+             * @brief Set triangle v2
+             */
+            void setVec2(::Vector2 v2);
 
-                /**
-                * @brief Get triangle v3
-                */
-                ::Vector2 getVec3() const;
+            /**
+             * @brief Get triangle v3
+             */
+            ::Vector2 getVec3() const;
 
-                /**
-                * @brief Set triangle v3
-                */
-                void setVec3(::Vector2 v3);
+            /**
+             * @brief Set triangle v3
+             */
+            void setVec3(::Vector2 v3);
 
-                /**
-                * @brief Get triangle color
-                */
-                ::Color getColor() const;
+            /**
+             * @brief Get triangle color
+             */
+            ::Color getColor() const;
 
-                /**
-                * @brief Set triangle color
-                */
-                void setColor(::Color color);
+            /**
+             * @brief Set triangle color
+             */
+            void setColor(::Color color);
 
-                /**
-                * @brief Draw a color-filled triangle (vertex in counter-clockwise order!)
-                */
-                void draw();
-                static void draw(::Vector2 v1, ::Vector2 v2, ::Vector2 v3, ::Color color);
+            /**
+             * @brief Draw a color-filled triangle (vertex in counter-clockwise order!)
+             */
+            void draw();
+            static void draw(::Vector2 v1, ::Vector2 v2, ::Vector2 v3, ::Color color);
 
-                /**
-                * @brief Draw triangle outline (vertex in counter-clockwise order!)
-                */
-                void drawLines();
-                static void drawLines(::Vector2 v1, ::Vector2 v2, ::Vector2 v3, ::Color color);
+            /**
+             * @brief Draw triangle outline (vertex in counter-clockwise order!)
+             */
+            void drawLines();
+            static void drawLines(::Vector2 v1, ::Vector2 v2, ::Vector2 v3, ::Color color);
 
-                /**
-                * @brief Draw a color-filled triangle (vertex in counter-clockwise order!)
-                */
-                void draw3D(::Vector3 v1, ::Vector3 v2, ::Vector3 v3);
-                static void draw3D(::Vector3 v1, ::Vector3 v2, ::Vector3 v3, ::Color color);
+            /**
+             * @brief Draw a color-filled triangle (vertex in counter-clockwise order!)
+             */
+            void draw3D(::Vector3 v1, ::Vector3 v2, ::Vector3 v3);
+            static void draw3D(::Vector3 v1, ::Vector3 v2, ::Vector3 v3, ::Color color);
 
-            private:
-                ::Vector2 _v1;
-                ::Vector2 _v2;
-                ::Vector2 _v3;
-                ::Color _color;
+          private:
+            ::Vector2 _v1;
+            ::Vector2 _v2;
+            ::Vector2 _v3;
+            ::Color _color;
         };
-    }
-}
+    } // namespace raylib
+} // namespace indie
 
 #endif /* !TRIANGLE_HPP_ */

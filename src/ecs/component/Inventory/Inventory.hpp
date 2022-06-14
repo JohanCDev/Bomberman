@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Inventory
-** File description:
-** Inventory
-*/
+/**
+ * @file Inventory.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Inventory component header file
+ * @version 0.1
+ * @date 2022-06-02
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef INVENTORY_HPP_
 #define INVENTORY_HPP_
@@ -16,6 +20,7 @@ namespace indie
     {
         namespace component
         {
+            /// @brief Inventory component
             class Inventory : public IComponent {
               public:
                 /**
@@ -82,6 +87,13 @@ namespace indie
                  * @brief Set wall pass bonus status.
                  */
                 void setWallPass(bool bonus);
+
+                /**
+                 * @brief Set the bonus status
+                 *
+                 * @param type of the bonus
+                 */
+                void setBonus(indie::ecs::component::bonusType type);
 
               private:
                 bool _bombUp;

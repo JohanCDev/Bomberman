@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2020
-** Bomberman
-** File description:
-** GameOptionsScreen.cpp
-*/
+/**
+ * @file SetSoundScreen.cpp
+ * @author Victor (victor.harri-chal@epitech.eu)
+ * @brief The screen for the options of the game
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #include "GameOptionsScreen.hpp"
 #include "../../raylib/Raylib.hpp"

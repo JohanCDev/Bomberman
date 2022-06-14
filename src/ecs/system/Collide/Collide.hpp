@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Collide
-** File description:
-** Collide
-*/
+/**
+ * @file Collide.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Collide system header file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef COLLIDE_HPP_
 #define COLLIDE_HPP_
@@ -16,6 +20,7 @@ namespace indie
     {
         namespace system
         {
+            /// @brief Collide system
             class Collide : public ISystem {
               public:
                 Collide();
@@ -32,10 +37,9 @@ namespace indie
                     auto otherEntityCollide, auto otherEntityDrawable,
                     indie::ecs::component::Transform *otherTransform);
 
-                void checkSphereCollision(auto collide, auto transform, auto drawable,
-                    indie::ecs::component::Transform *otherEntityTransform,
-                    indie::ecs::component::Collide *otherEntityCollide,
-                    indie::ecs::component::Drawable3D *otherEntityDrawable);
+                void checkSphereCollision(std::unique_ptr<indie::ecs::entity::Entity> &entity,
+                    std::unique_ptr<indie::ecs::entity::Entity> &otherEntity, std::vector<int> &compoToRemove,
+                    int &count);
 
                 /**
                  * @brief Get the type of system.

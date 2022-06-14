@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Sound
-** File description:
-** Sound
-*/
+/**
+ * @file Sound.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Sound component header file
+ * @version 0.1
+ * @date 2022-06-02
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #pragma once
 
@@ -15,6 +19,7 @@ namespace indie
     {
         namespace component
         {
+            /// @brief Sound component
             class Sound : public IComponent {
               public:
                 Sound(std::string soundPath, bool play);

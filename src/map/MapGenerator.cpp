@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** B-YEP-400-NAN-4-1-indiestudio-titouan.deschanels
-** File description:
-** main
-*/
+/**
+ * @file MapGenerator.cpp
+ * @author Victor & Henri (victor.harri-chal@epitech.eu & henri.chauvet@epitech.eu)
+ * @brief The generator for the map of the game
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #include "MapGenerator.hpp"
 
@@ -55,15 +59,13 @@ void indie::map::MapGenerator::placeBonusBoxes()
             if (count == 2)
                 j++;
             else if (_map[i][j] == BOX) {
-                int rd = generateRandomNumber(40);
+                int rd = generateRandomNumber(35);
                 if (rd == 1 || rd == 11 || rd == 21) {
                     _map[i][j] = SPEED_BOX;
                 } else if (rd == 2 || rd == 22 || rd == 32) {
                     _map[i][j] = BOMB_BOX;
                 } else if (rd == 3 || rd == 23 || rd == 33) {
                     _map[i][j] = BOMB_RADIUS;
-                } else if (rd == 4) {
-                    _map[i][j] = WALL_PASS_BOX;
                 }
             }
         }
@@ -90,8 +92,7 @@ int indie::map::MapGenerator::countBonusOnLine(int i)
 {
     int count = 0;
     for (int k = 0; k < 21; k++) {
-        if (_map[i][k] == SPEED_BOX || _map[i][k] == BOMB_BOX || _map[i][k] == WALL_PASS_BOX
-            || _map[i][k] == BOMB_RADIUS)
+        if (_map[i][k] == SPEED_BOX || _map[i][k] == BOMB_BOX || _map[i][k] == BOMB_RADIUS)
             count++;
     }
     return count;
