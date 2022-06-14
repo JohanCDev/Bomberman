@@ -7,6 +7,11 @@
 
 #include "Music.hpp"
 
+indie::raylib::Music::Music()
+{
+    ::InitAudioDevice();
+}
+
 indie::raylib::Music::Music(const std::string& fileName)
 {
     _music = loadStream(fileName.c_str());

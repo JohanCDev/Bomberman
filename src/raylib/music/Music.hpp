@@ -14,20 +14,22 @@ namespace indie {
     namespace raylib {
         class Music {
             public:
+                Music();
                 Music(const std::string& fileName);
                 ~Music() = default;
 
                 /**
                 * @brief Load music stream from file
                 */
-                static ::Music loadStream(const std::string& fileName);
+                ::Music loadStream(const std::string& fileName);
+                // static ::Music loadStream(const std::string& fileName);
 
                 /**
                 * @brief Load music stream from data
                 */
                 static ::Music loadStreamFromMemory(const std::string& fileType, unsigned char *data, int dataSize);
-                /**
 
+                /**
                 * @brief Unload music stream
                 */
                 static void unloadStream(::Music music);

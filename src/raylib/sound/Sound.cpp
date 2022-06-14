@@ -11,6 +11,36 @@ indie::raylib::Sound::Sound(const std::string& fileName) {
     _sound = ::LoadSound(fileName.c_str());
 }
 
+::Sound indie::raylib::Sound::getSound() const
+{
+    return _sound;
+}
+
+void indie::raylib::Sound::initAudioDevice()
+{
+    ::InitAudioDevice();
+}
+
+::Sound indie::raylib::Sound::load(const char *fileName)
+{
+    return ::LoadSound(fileName);
+}
+
+void indie::raylib::Sound::update(::Sound sound, const void *data, int samplesCount)
+{
+    ::UpdateSound(sound, data, samplesCount);
+}
+
+void indie::raylib::Sound::unload(::Sound sound)
+{
+    ::UnloadSound(sound);
+}
+
+void indie::raylib::Sound::unload()
+{
+    ::UnloadSound(_sound);
+}
+
 void indie::raylib::Sound::play(::Sound sound) {
     ::PlaySound(sound);
 }

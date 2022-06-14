@@ -35,6 +35,7 @@ namespace indie
     class Game {
       public:
         enum class Screens { Menu = 1, Game, PreMenu, GameOptions, End, SetMusic, SetSound, SetFps, Count };
+        enum Sounds { MENU_SOUND, PREGAME_SOUND, GAME_SOUND};
         Game(size_t baseFps = 60);
         ~Game();
         void init(void);
@@ -44,7 +45,10 @@ namespace indie
         bool processEvents(void);
 
         int handleEvent();
-        void init_scenes();
+        void initScenes();
+        void initSounds();
+        void destroy();
+        void destroySounds();
         void handleScreensSwap(int ret);
         void reinitGame();
         void setActualScreen(Screens newScreen);
@@ -63,6 +67,7 @@ namespace indie
         indie::menu::SetSoundScreen *_setSound;
         indie::menu::SetMusicScreen *_setMusic;
         indie::Event _event;
+        std::map <int, indie::raylib::Sound> _sounds;
     };
 } // namespace indie
 

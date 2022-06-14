@@ -53,7 +53,22 @@ indie::Game::~Game()
     delete _setMusic;
 }
 
-void indie::Game::init_scenes()
+void indie::Game::init()
+{
+    initScenes();
+    initSounds();
+    _sounds[MENU_SOUND].play();
+}
+
+void indie::Game::initSounds()
+{
+    indie::raylib::Sound menuSound("assets/sound/sound.wav");
+
+    menuSound.setVolume(1.0f);
+    _sounds.insert({MENU_SOUND, menuSound});
+}
+
+void indie::Game::initScenes()
 {
     _menu->init();
     _game->init();
@@ -132,11 +147,6 @@ int indie::Game::handleEvent()
     return true;
 }
 
-void indie::Game::init()
-{
-    init_scenes();
-}
-
 void indie::Game::run()
 {
     while (!indie::raylib::Window::windowShouldClose()) {
@@ -145,7 +155,24 @@ void indie::Game::run()
         update();
         draw();
     }
+    destroy();
+}
+
+void indie::Game::destroy()
+{
+    destroySounds();
     indie::raylib::Window::destroyWindow();
+}
+
+void indie::Game::destroySounds()
+{
+    std::map<int, indie::raylib::Sound>::iterator iter = _sounds.begin();
+
+    while (iter != _sounds.end()) {
+        iter->second.stop();
+        iter->second.unload();
+        ++iter;
+    }
 }
 
 void indie::Game::handleScreensSwap(int ret)

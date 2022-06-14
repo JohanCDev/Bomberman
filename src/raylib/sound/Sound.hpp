@@ -14,8 +14,35 @@ namespace indie {
     namespace raylib {
         class Sound {
             public:
+                Sound() = default;
                 Sound(const std::string& fileName);
                 ~Sound() = default;
+
+                /**
+                * @brief Init audio device
+                */
+                ::Sound getSound() const;
+
+                /**
+                * @brief Init audio device
+                */
+                void initAudioDevice(void);
+
+                /**
+                * @brief Load sound from file
+                */
+                ::Sound load(const char *fileName);
+
+                /**
+                * @brief Update sound buffer with new data
+                */
+                void update(::Sound sound, const void *data, int samplesCount);
+
+                /**
+                * @brief Unload sound
+                */
+                static void unload(::Sound sound);
+                void unload();
 
                 /**
                 * @brief Play a sound
