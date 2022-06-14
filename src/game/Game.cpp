@@ -31,8 +31,9 @@ indie::Game::Game(size_t baseFps)
     _players.push_back(player::Player(GREENPLAYERCOLOR, 2, {0, 0}));
     _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3, {0, 0}));
     _actualScreen = Screens::Menu;
+    initSounds();
     _menu = new indie::menu::MenuScreen;
-    _game = new indie::menu::GameScreen(&_players);
+    _game = new indie::menu::GameScreen(&_players, &_sound_entities, &_sound_systems);
     _premenu = new indie::menu::PreMenuScreen(&_players);
     _gameoptions = new indie::menu::GameOptionsScreen;
     _end = new indie::menu::EndScreen;
@@ -57,7 +58,7 @@ void indie::Game::init()
 {
     initScenes();
     initMusic();
-    initSounds();
+    // initSounds();
     _musics[MENU_SOUND].play();
 }
 
@@ -202,32 +203,22 @@ void indie::Game::destroy()
 void indie::Game::destroyEntities()
 {
     std::vector<std::unique_ptr<indie::ecs::entity::Entity>>::iterator _it_sound_entities = _sound_entities.begin();
-    // std::vector<std::unique_ptr<indie::ecs::entity::Entity>>::iterator _it_music_entities = _music_entities.begin();
 
     while (_it_sound_entities != _sound_entities.end()) {
         _it_sound_entities->reset();
         ++_it_sound_entities;
     }
-    // while (_it_music_entities != _sound_entities.end()) {
-    //     _it_music_entities->reset();
-    //     ++_it_music_entities;
-    // }
 }
 
 void indie::Game::destroySystems()
 
 {
     std::vector<std::unique_ptr<indie::ecs::system::ISystem>>::iterator _it_sound_systems = _sound_systems.begin();
-    // std::vector<std::unique_ptr<indie::ecs::system::ISystem>>::iterator _it_music_systems = _music_systems.begin();
 
     while (_it_sound_systems != _sound_systems.end()) {
         _it_sound_systems->reset();
         ++_it_sound_systems;
     }
-    // while (_it_music_systems != _music_systems.end()) {
-    //     _it_music_systems->reset();
-    //     ++_it_music_systems;
-    // }
 }
 
 void indie::Game::setSoundEvent(int entitiesIndex)
@@ -237,8 +228,8 @@ void indie::Game::setSoundEvent(int entitiesIndex)
         system->update(this->_sound_entities);
     }
     _sound_entities.at(entitiesIndex)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(false);
-
 }
+
 void indie::Game::handleScreensSwap(int ret)
 {
     if (ret == 1) {
@@ -283,7 +274,7 @@ void indie::Game::reinitGame()
     _players.push_back(player::Player(GREENPLAYERCOLOR, 2, {0, 0}));
     _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3, {0, 0}));
     delete _game;
-    _game = new indie::menu::GameScreen(&_players);
+    _game = new indie::menu::GameScreen(&_players, &_sound_entities, &_sound_systems);
     _game->init();
     delete _premenu;
     _premenu = new indie::menu::PreMenuScreen(&_players);
