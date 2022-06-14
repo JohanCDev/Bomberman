@@ -85,6 +85,10 @@ void indie::menu::GameScreen::draw()
                 } else if (inventory->getSpeedUp() == true) {
                     this->_players->at(type).setSpeed(this->_players->at(type).getSpeed() + 2);
                     inventory->setSpeedUp(false);
+                } else if (inventory->getBombUp() == true) {
+                    this->_players->at(type).setBombStock(this->_players->at(type).getBombStock() + 1);
+                    this->_players->at(type).setMaxBombStock(this->_players->at(type).getMaxBombStock() + 1);
+                    inventory->setBombUp(false);
                 }
             }
             if (entity->hasCompoType(indie::ecs::component::ALIVE)) {
