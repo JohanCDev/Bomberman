@@ -35,7 +35,6 @@ namespace indie
     class Game {
       public:
         enum class Screens { Menu = 1, Game, PreMenu, GameOptions, End, SetMusic, SetSound, SetFps, Count };
-        enum Sounds { MENU_SOUND, PREGAME_SOUND, GAME_SOUND};
         Game(size_t baseFps = 60);
         ~Game();
         void init(void);
@@ -72,7 +71,6 @@ namespace indie
         indie::menu::SetSoundScreen *_setSound;
         indie::menu::SetMusicScreen *_setMusic;
         indie::Event _event;
-        std::map <int, indie::raylib::Sound> _sounds;
         std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
         std::vector<std::unique_ptr<indie::ecs::entity::Entity>>::iterator _it_entities;
         std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;

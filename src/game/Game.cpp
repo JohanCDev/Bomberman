@@ -57,13 +57,12 @@ void indie::Game::init()
 {
     initScenes();
     initSounds();
-    _sounds[MENU_SOUND].play();
 }
 
 void indie::Game::initSounds()
 {
     std::unique_ptr<ecs::entity::Entity> menuSound = std::make_unique<ecs::entity::Entity>();
-    menuSound->addComponent<ecs::component::Sound>("assets/sound/sound.wav", true);
+    menuSound->addComponent<ecs::component::Sound>("assets/sound/menuSound.ogg", true);
     addEntity(std::move(menuSound));
 
     std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
