@@ -35,6 +35,7 @@ namespace indie
     class Game {
       public:
         enum class Screens { Menu = 1, Game, PreMenu, GameOptions, End, SetMusic, SetSound, SetFps, Count };
+        enum Sounds { BOMB_S = 0, GAME_READY_S = 1, SELECT_S = 2, MENU_SOUND_S = 3};
         Game(size_t baseFps = 60);
         ~Game();
         void init(void);
@@ -52,7 +53,7 @@ namespace indie
         void handleScreensSwap(int ret);
         void reinitGame();
         void setActualScreen(Screens newScreen);
-
+        void setSoundEvent(int entititesIndex);
 
         void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
         void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system);

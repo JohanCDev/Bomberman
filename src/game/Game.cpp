@@ -61,9 +61,21 @@ void indie::Game::init()
 
 void indie::Game::initSounds()
 {
-    std::unique_ptr<ecs::entity::Entity> menuSound = std::make_unique<ecs::entity::Entity>();
-    menuSound->addComponent<ecs::component::Sound>("assets/sound/menuSound.ogg", true);
-    addEntity(std::move(menuSound));
+    std::unique_ptr<ecs::entity::Entity> bombSound = std::make_unique<ecs::entity::Entity>();
+    bombSound->addComponent<ecs::component::Sound>("assets/sound/bomb.ogg", false);
+    addEntity(std::move(bombSound));
+
+    std::unique_ptr<ecs::entity::Entity> gameReadySound = std::make_unique<ecs::entity::Entity>();
+    gameReadySound->addComponent<ecs::component::Sound>("assets/sound/game_ready.ogg", false);
+    addEntity(std::move(gameReadySound));
+
+    std::unique_ptr<ecs::entity::Entity> selectSound = std::make_unique<ecs::entity::Entity>();
+    selectSound->addComponent<ecs::component::Sound>("assets/sound/select.ogg", false);
+    addEntity(std::move(selectSound));
+
+    // std::unique_ptr<ecs::entity::Entity> menuSound = std::make_unique<ecs::entity::Entity>();
+    // menuSound->addComponent<ecs::component::Sound>("assets/sound/menuSound.ogg", true);
+    // addEntity(std::move(menuSound));
 
     std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
     addSystem(std::move(soundSystem));
@@ -103,6 +115,9 @@ bool indie::Game::processEvents()
     int swap = handleEvent();
     if (swap == 10)
         return false;
+    if (swap == 123) {
+        setSoundEvent(BOMB_S);
+    }
     handleScreensSwap(swap);
     return (ret);
 }
@@ -200,26 +215,49 @@ void indie::Game::destroySystems()
     }
 }
 
+void indie::Game::setSoundEvent(int entitiesIndex)
+{
+    _entities.at(entitiesIndex)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(true);
+    for (auto &system : this->_systems) {
+        system->update(this->_entities);
+    }
+    _entities.at(entitiesIndex)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(false);
+
+}
 void indie::Game::handleScreensSwap(int ret)
 {
     if (ret == 1) {
+        setSoundEvent(SELECT_S);
         reinitGame();
         setActualScreen(Screens::Menu);
     }
-    if (ret == 2)
+    if (ret == 2) {
+        setSoundEvent(GAME_READY_S);
         setActualScreen(Screens::Game);
-    if (ret == 3)
+    }
+    if (ret == 3) {
+        setSoundEvent(SELECT_S);
         setActualScreen(Screens::PreMenu);
-    if (ret == 4)
+    }
+    if (ret == 4) {
         setActualScreen(Screens::GameOptions);
-    if (ret == 5)
+    }
+    if (ret == 5) {
+        setSoundEvent(SELECT_S);
         setActualScreen(Screens::End);
-    if (ret == 6)
+    }
+    if (ret == 6) {
+        setSoundEvent(SELECT_S);
         setActualScreen(Screens::SetMusic);
-    if (ret == 7)
+    }
+    if (ret == 7) {
+        setSoundEvent(SELECT_S);
         setActualScreen(Screens::SetSound);
-    if (ret == 8)
+    }
+    if (ret == 8) {
+        setSoundEvent(SELECT_S);
         setActualScreen(Screens::SetFps);
+    }
 }
 
 void indie::Game::reinitGame()
