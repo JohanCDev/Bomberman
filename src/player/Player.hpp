@@ -20,7 +20,7 @@ namespace indie
 {
     namespace player
     {
-        /// Player class
+        /// @brief Player class
         class Player {
           public:
             /// @brief Construct a new Player object
