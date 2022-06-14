@@ -12,9 +12,21 @@
 
 namespace indie {
     namespace raylib {
+        /**
+         * @brief Class for the 3D Models with RayLib
+         * 
+         */
         class Model {
             public:
+                /**
+                 * @brief Construct a new Model object
+                 * 
+                 */
                 Model() = default;
+                /**
+                 * @brief Destroy the Model object
+                 * 
+                 */
                 ~Model() = default;
 
                 // Model loading/unloading functions

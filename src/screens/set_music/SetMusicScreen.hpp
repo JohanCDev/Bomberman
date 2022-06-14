@@ -23,6 +23,10 @@ namespace indie
 {
     namespace menu
     {
+        /**
+         * @brief Class for the Set Music Screen
+         * 
+         */
         class SetMusicScreen : public IScreen {
           /**
            * @brief Cursor enum for music choice

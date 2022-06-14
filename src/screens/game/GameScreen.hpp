@@ -31,6 +31,10 @@ namespace indie
 {
     namespace menu
     {
+        /**
+         * @brief Class for the Game Screen
+         * 
+         */
         class GameScreen : public IScreen {
           public:
             /**
