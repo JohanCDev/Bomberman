@@ -82,6 +82,9 @@ void indie::menu::GameScreen::draw()
                 if (inventory->getFireUp() == true) {
                     this->_players->at(type).setBombRadius(this->_players->at(type).getBombRadius() + 1);
                     inventory->setFireUp(false);
+                } else if (inventory->getSpeedUp() == true) {
+                    this->_players->at(type).setSpeed(this->_players->at(type).getSpeed() + 2);
+                    inventory->setSpeedUp(false);
                 }
             }
             if (entity->hasCompoType(indie::ecs::component::ALIVE)) {
@@ -176,7 +179,8 @@ void indie::menu::GameScreen::handleMultipleController(
             if (entity->getEntityType() == type) {
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
-                transform->setSpeedY(0.02);
+                float speed = static_cast<float>(this->_players->at(index).getSpeed());
+                transform->setSpeedY(speed / 500.0f);
                 transform->setSpeedX(0);
             }
         }
@@ -187,8 +191,9 @@ void indie::menu::GameScreen::handleMultipleController(
             if (entity->getEntityType() == type) {
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
+                float speed = static_cast<float>(this->_players->at(index).getSpeed());
                 transform->setSpeedX(0);
-                transform->setSpeedY(-0.02);
+                transform->setSpeedY((speed / 500.0f) * -1.0f);
             }
         }
     }
@@ -198,7 +203,8 @@ void indie::menu::GameScreen::handleMultipleController(
             if (entity->getEntityType() == type) {
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
-                transform->setSpeedX(-0.02);
+                float speed = static_cast<float>(this->_players->at(index).getSpeed());
+                transform->setSpeedX((speed / 500.0f) * -1.0f);
                 transform->setSpeedY(0);
             }
         }
@@ -209,7 +215,8 @@ void indie::menu::GameScreen::handleMultipleController(
             if (entity->getEntityType() == type) {
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
-                transform->setSpeedX(0.02);
+                float speed = static_cast<float>(this->_players->at(index).getSpeed());
+                transform->setSpeedX(speed / 500.0f);
                 transform->setSpeedY(0);
             }
         }

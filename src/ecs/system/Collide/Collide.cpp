@@ -52,13 +52,13 @@ void indie::ecs::system::Collide::checkSphereCollision(std::unique_ptr<indie::ec
             collide->setCollide(true);
             otherEntityCollide->setCollide(true);
             if (otherEntityTransform->getSpeedX() > 0.0)
-                otherEntityTransform->setX(otherEntityTransform->getX() - 0.02);
+                otherEntityTransform->setX(otherEntityTransform->getX() - otherEntityTransform->getSpeedX());
             if (otherEntityTransform->getSpeedX() < 0.0)
-                otherEntityTransform->setX(otherEntityTransform->getX() + 0.02);
+                otherEntityTransform->setX(otherEntityTransform->getX() - otherEntityTransform->getSpeedX());
             if (otherEntityTransform->getSpeedY() > 0.0)
-                otherEntityTransform->setY(otherEntityTransform->getY() - 0.02);
+                otherEntityTransform->setY(otherEntityTransform->getY() - otherEntityTransform->getSpeedY());
             if (otherEntityTransform->getSpeedY() < 0.0)
-                otherEntityTransform->setY(otherEntityTransform->getY() + 0.02);
+                otherEntityTransform->setY(otherEntityTransform->getY() - otherEntityTransform->getSpeedY());
         }
     }
 }
