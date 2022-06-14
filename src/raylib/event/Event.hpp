@@ -18,30 +18,51 @@ namespace indie
 {
     namespace raylib
     {
-        /// Event class encapsulation
+        /// @brief Event class encapsulation
         class Event {
           public:
-            Event() = default;
-            ~Event() = default;
-
             /**
-             * @brief Check if a key has been pressed once
+             * @brief Construct a new Event object
+             * 
+             */
+            Event() = default;
+            /**
+             * @brief Destroy the Event object
+             * 
+             */
+            ~Event() = default;
+            /**
+             * @brief Check if a key is pressed
+             * 
+             * @param key The pressed key
+             * @return true The key is pressed
+             * @return false The key isn't pressed
              */
             static bool isKeyPressed(KeyboardKey key);
-
             // Input-related functions: gamepads
             /**
              * @brief Check if a gamepad is available
+             * 
+             * @param gamepad The gamepad
+             * @return true The gamepad is available
+             * @return false The gamepad isn't available
              */
             static bool isGamepadAvailable(int gamepad);
-
             /**
              * @brief Check if a specific button on a specific gamepad is pressed
+             * 
+             * @param gamepadId Gamepad ID
+             * @param buttonId Button ID
+             * @return true Button is pressed
+             * @return false Button isn't pressed
              */
             static bool isGamepadButtonPressed(int gamepadId, int buttonId);
-
             /**
              * @brief Get axis movement value for a gamepad axis
+             * 
+             * @param gamepad The gamepad
+             * @param axis The gamepad axis
+             * @return float The axis movement value
              */
             static float getGamepadAxisMovement(int gamepad, int axis);
         };
