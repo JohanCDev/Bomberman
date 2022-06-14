@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Drawable2D
-** File description:
-** Drawable2D
-*/
+/**
+ * @file Drawable2D.cpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Drawable2D component source file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Drawable2D.hpp"
 #include "../IComponent.hpp"

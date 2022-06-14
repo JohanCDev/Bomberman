@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** Events.hpp
-*/
+/**
+ * @file GameEvents.hpp
+ * @author Nathan Le Bigot (nathan.le-bigot@epitech.eu)
+ * @brief 
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef GAMEEVENTS_HPP_
 #define GAMEEVENTS_HPP_

@@ -1,23 +1,27 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** Music
-*/
+/**
+ * @file Music.cpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Music encapsulation source file
+ * @version 0.1
+ * @date 2022-05-26
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Music.hpp"
 
-indie::raylib::Music::Music(const std::string& fileName)
+indie::raylib::Music::Music(const std::string &fileName)
 {
     _music = loadStream(fileName.c_str());
 }
 
-::Music indie::raylib::Music::loadStream(const std::string& fileName)
+::Music indie::raylib::Music::loadStream(const std::string &fileName)
 {
     return ::LoadMusicStream(fileName.c_str());
 }
 
-::Music indie::raylib::Music::loadStreamFromMemory(const std::string& fileType, unsigned char *data, int dataSize)
+::Music indie::raylib::Music::loadStreamFromMemory(const std::string &fileType, unsigned char *data, int dataSize)
 {
     return ::LoadMusicStreamFromMemory(fileType.c_str(), data, dataSize);
 }

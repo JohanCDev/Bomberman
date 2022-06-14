@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** B-YEP-400-NAN-4-1-indiestudio-titouan.deschanels
-** File description:
-** mapGenerator
-*/
+/**
+ * @file MapGenerator.hpp
+ * @author Victor & Henri (victor.harri-chal@epitech.eu & henri.chauvet@epitech.eu)
+ * @brief The generator for the map of the game
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef MAPGENERATOR_HPP_
 #define MAPGENERATOR_HPP_
@@ -18,17 +22,16 @@
 #include <string.h>
 #include <vector>
 
-#define WALL          '#'
-#define EMPTY         ' '
-#define BOX           '.'
-#define SPEED_BOX     'S'
-#define BOMB_BOX      'B'
-#define WALL_PASS_BOX 'T'
-#define BOMB_RADIUS   'R'
-#define PLAYER1       '1'
-#define PLAYER2       '2'
-#define PLAYER3       '3'
-#define PLAYER4       '4'
+#define WALL        '#'
+#define EMPTY       ' '
+#define BOX         '.'
+#define SPEED_BOX   'S'
+#define BOMB_BOX    'B'
+#define BOMB_RADIUS 'R'
+#define PLAYER1     '1'
+#define PLAYER2     '2'
+#define PLAYER3     '3'
+#define PLAYER4     '4'
 
 namespace indie
 {

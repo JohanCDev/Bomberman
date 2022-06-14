@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Collectable
-** File description:
-** Collectable
-*/
+/**
+ * @file Collectable.hpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Collectable component header file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef COLLECTABLE_HPP_
 #define COLLECTABLE_HPP_
@@ -16,6 +20,7 @@ namespace indie
     {
         namespace component
         {
+            /// @brief Collectable component
             class Collectable : public IComponent {
               public:
                 /**
@@ -48,6 +53,9 @@ namespace indie
                 indie::ecs::component::compoType getType() const;
 
               private:
+                /**
+                 * @brief Type of the bonus.
+                 */
                 indie::ecs::component::bonusType _type;
             };
         } // namespace component

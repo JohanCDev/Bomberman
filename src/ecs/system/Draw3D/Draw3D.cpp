@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Draw3D
-** File description:
-** Draw3D
-*/
+/**
+ * @file Draw3D.cpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Draw3D system source file
+ * @version 0.1
+ * @date 2022-06-01
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Draw3D.hpp"
 

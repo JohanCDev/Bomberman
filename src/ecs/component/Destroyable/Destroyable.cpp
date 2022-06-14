@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Destroyable
-** File description:
-** Destroyable
-*/
+/**
+ * @file Destroyable.cpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Destroyable component source file
+ * @version 0.1
+ * @date 2022-06-03
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Destroyable.hpp"
 

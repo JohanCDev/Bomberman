@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Explodable
-** File description:
-** Explodable
-*/
+/**
+ * @file Explodable.cpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief Explodable component source file
+ * @version 0.1
+ * @date 2022-06-02
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Explodable.hpp"
 

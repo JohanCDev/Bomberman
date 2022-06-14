@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** GameScreen
-*/
+/**
+ * @file GameScreen.cpp
+ * @author Victor & Henri(victor.harri-chal@epitech.eu & henri.chauvet@epitech.eu)
+ * @brief The screen for the game
+ * @version 0.1
+ * @date 2022-06-13
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "GameScreen.hpp"
 #include "../../player/Player.hpp"
@@ -214,7 +218,7 @@ void indie::menu::GameScreen::handleMultipleController(
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
             }
         }
-        if (transformCompo != nullptr) {
+        if (transformCompo != nullptr && this->_players->at(index).getBombStock() > 0) {
             std::unique_ptr<indie::ecs::entity::Entity> entity =
                 std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOMB);
             entity->addComponent<indie::ecs::component::Explodable>(
@@ -223,18 +227,20 @@ void indie::menu::GameScreen::handleMultipleController(
             entity->addComponent<indie::ecs::component::Transform>(static_cast<float>(transformCompo->getX()),
                 static_cast<float>(transformCompo->getY()), static_cast<float>(0.0), static_cast<float>(0.0));
             addEntity(std::move(entity));
+            this->_players->at(index).setBombStock(this->_players->at(index).getBombStock() - 1);
         }
     }
 }
 
 int indie::menu::GameScreen::handleEvent(indie::Event &event)
 {
-    handleMultipleController(event, 0, indie::ecs::entity::entityType::PLAYER_1);
-    if (this->_players->at(1).getIsPlaying())
+    if (this->_players->at(0).getIsPlaying() && this->_players->at(0).getIsAlive())
+        handleMultipleController(event, 0, indie::ecs::entity::entityType::PLAYER_1);
+    if (this->_players->at(1).getIsPlaying() && this->_players->at(1).getIsAlive())
         handleMultipleController(event, 1, indie::ecs::entity::entityType::PLAYER_2);
-    if (this->_players->at(2).getIsPlaying())
+    if (this->_players->at(2).getIsPlaying() && this->_players->at(2).getIsAlive())
         handleMultipleController(event, 2, indie::ecs::entity::entityType::PLAYER_3);
-    if (this->_players->at(3).getIsPlaying())
+    if (this->_players->at(3).getIsPlaying() && this->_players->at(3).getIsAlive())
         handleMultipleController(event, 3, indie::ecs::entity::entityType::PLAYER_4);
     if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON || event.key.r_shift)
         return 4;
@@ -338,25 +344,6 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     "src/boite.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
                 addEntity(std::move(entityB2));
             }
-            if (map[i][j] == 'T') {
-                std::unique_ptr<indie::ecs::entity::Entity> entityT =
-                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
-                entityT->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
-                    static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                entityT->addComponent<indie::ecs::component::Drawable3D>(
-                    "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), MAGENTA);
-                entityT->addComponent<indie::ecs::component::Collectable>();
-                addEntity(std::move(entityT));
-                std::unique_ptr<indie::ecs::entity::Entity> entityT2 =
-                    std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
-                entityT2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
-                    static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                entityT2->addComponent<indie::ecs::component::Collide>();
-                entityT2->addComponent<indie::ecs::component::Destroyable>();
-                entityT2->addComponent<indie::ecs::component::Drawable3D>(
-                    "src/boite.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
-                addEntity(std::move(entityT2));
-            }
             if (map[i][j] == 'S') {
                 std::unique_ptr<indie::ecs::entity::Entity> entityS =
                     std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
@@ -382,7 +369,7 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 entityR->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityR->addComponent<indie::ecs::component::Drawable3D>(
-                    "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), BLACK);
+                    "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), MAGENTA);
                 entityR->addComponent<indie::ecs::component::Collectable>();
                 addEntity(std::move(entityR));
                 std::unique_ptr<indie::ecs::entity::Entity> entityR2 =
