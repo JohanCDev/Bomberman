@@ -1,0 +1,113 @@
+name: Build
+
+on:
+  push:
+    branches-ignore:
+      - master
+    paths:
+      - "**/CMakeLists.txt"
+      - "**/*.hpp"
+      - "**/*.cpp"
+      - ".github/workflows/*.yml"
+  pull_request:
+    branches:
+      - master
+    paths:
+      - "**/CMakeLists.txt"
+      - "**/*.hpp"
+      - "**/*.cpp"
+      - ".github/workflows/*.yml"
+
+jobs:
+
+  build-on-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Raylib on Ubuntu (prerequisites)
+        run: |
+          sudo apt install -y \
+            build-essential \
+            git \
+            cmake \
+            libasound2-dev \
+            mesa-common-dev \
+            libx11-dev \
+            libxrandr-dev \
+            libxi-dev \
+            xorg-dev \
+            libgl1-mesa-dev \
+            libglu1-mesa-dev
+
+      - name: Install Raylib on Ubuntu
+        run: |
+          git clone https://github.com/raysan5/raylib.git ~/raylib
+          cd ~/raylib
+          mkdir build && cd build
+          cmake -DBUILD_SHARED_LIBS=ON ..
+          make
+          sudo make install
+
+      - name: Install Emscripten on Ubuntu (prerequisites)
+        run: |
+          sudo apt install -y \
+            git \
+            python3 \
+            cmake
+
+      - name: Install Emscripten on Ubuntu
+        run: |
+          git clone https://github.com/emscripten-core/emsdk.git ~/emsdk
+          cd ~/emsdk
+          ./emsdk install latest
+          ./emsdk activate latest
+
+      - name: Build Bomberman on Ubuntu (desktop)
+        run: |
+          mkdir build
+          cd build && cmake ..
+          cmake --build .
+
+      - name: Check Ubuntu build (desktop)
+        run: test -f bomberman
+
+      - name: Build Bomberman on Ubuntu (web)
+        run: |
+          source ~/emsdk/emsdk_env.sh
+          rm -fr build
+          emcmake cmake -S . -B build -DPLATFORM=Web
+          cd build && make
+
+      - name: Check Ubuntu build (web)
+        run: test -f bomberman.js
+
+  build-on-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install RayLib on Windows
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git $HOME/vcpkg
+          cd $HOME/vcpkg
+          bootstrap-vcpkg.bat
+          vcpkg integrate install
+          vcpkg install raylib
+
+      #- name: Install Emscripten on Windows
+      #  run: |
+      #    git clone https://github.com/emscripten-core/emsdk.git $HOME/emsdk
+      #    cd $HOME/emsdk
+      #    ./emsdk install latest
+      #    ./emsdk activate latest
+      #    emsdk_env.bat
+
+      - name: Build Bomberman on Windows (desktop)
+        run: |
+          mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Debug
+          cmake --build .
+
+      - name: Check Windows build (desktop)
+        run: Test-Path bomberman
