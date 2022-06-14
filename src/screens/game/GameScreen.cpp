@@ -4,9 +4,9 @@
  * @brief The screen for the game
  * @version 0.1
  * @date 2022-06-13
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include "GameScreen.hpp"
@@ -218,7 +218,7 @@ void indie::menu::GameScreen::handleMultipleController(
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
             }
         }
-        if (transformCompo != nullptr) {
+        if (transformCompo != nullptr && this->_players->at(index).getBombStock() > 0) {
             std::unique_ptr<indie::ecs::entity::Entity> entity =
                 std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOMB);
             entity->addComponent<indie::ecs::component::Explodable>(
@@ -227,6 +227,7 @@ void indie::menu::GameScreen::handleMultipleController(
             entity->addComponent<indie::ecs::component::Transform>(static_cast<float>(transformCompo->getX()),
                 static_cast<float>(transformCompo->getY()), static_cast<float>(0.0), static_cast<float>(0.0));
             addEntity(std::move(entity));
+            this->_players->at(index).setBombStock(this->_players->at(index).getBombStock() - 1);
         }
     }
 }
