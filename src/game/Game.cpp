@@ -62,10 +62,30 @@ void indie::Game::init()
 
 void indie::Game::initSounds()
 {
-    indie::raylib::Sound menuSound("assets/sound/sound.wav");
+    std::unique_ptr<ecs::entity::Entity> menuSound = std::make_unique<ecs::entity::Entity>();
+    menuSound->addComponent<ecs::component::Sound>("assets/sound/sound.wav", true);
+    addEntity(std::move(menuSound));
 
-    menuSound.setVolume(1.0f);
-    _sounds.insert({MENU_SOUND, menuSound});
+    std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
+    addSystem(std::move(soundSystem));
+
+    for (auto &system : this->_systems) {
+        system->update(this->_entities);
+    }
+    // indie::raylib::Sound menuSound("assets/sound/sound.wav");
+
+    // menuSound.setVolume(1.0f);
+    // _sounds.insert({MENU_SOUND, menuSound});
+}
+
+void indie::Game::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
+{
+    this->_entities.push_back(std::move(entity));
+}
+
+void indie::Game::addSystem(std::unique_ptr<indie::ecs::system::ISystem> system)
+{
+    this->_systems.push_back(std::move(system));
 }
 
 void indie::Game::initScenes()

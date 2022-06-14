@@ -53,6 +53,10 @@ namespace indie
         void reinitGame();
         void setActualScreen(Screens newScreen);
 
+
+        void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
+        void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system);
+
       protected:
       private:
         Screens _actualScreen;
@@ -68,6 +72,9 @@ namespace indie
         indie::menu::SetMusicScreen *_setMusic;
         indie::Event _event;
         std::map <int, indie::raylib::Sound> _sounds;
+        std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
+        std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
+
     };
 } // namespace indie
 
