@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** Circle
-*/
+/**
+ * @file Circle.hpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Circle encapsulation header file
+ * @version 0.1
+ * @date 2022-05-26
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef CIRCLE_HPP_
 #define CIRCLE_HPP_
@@ -14,6 +18,7 @@ namespace indie
 {
     namespace raylib
     {
+        /// Circle class encapsulation
         class Circle {
           public:
             Circle(::Vector2 center, float radius, ::Color color = BLACK);
@@ -49,12 +54,12 @@ namespace indie
              */
             void setColor(::Color color);
 
-                /**
-                * @brief Draw a color-filled circle (Vector version)
-                */
-                static void draw(float x, float y, float radius, ::Color color);
-                static void draw(::Vector2 center, float radius, ::Color color);
-                void draw();
+            /**
+             * @brief Draw a color-filled circle (Vector version)
+             */
+            static void draw(float x, float y, float radius, ::Color color);
+            static void draw(::Vector2 center, float radius, ::Color color);
+            void draw();
 
             /**
              * @brief Draw a piece of a circle

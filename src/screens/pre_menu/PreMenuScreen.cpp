@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2021
-** Bomberman
-** File description:
-** PreMenuScreen.hpp
-*/
+/**
+ * @file PreMenuScreen.cpp
+ * @author Victor (victor.harri-chal@epitech.eu)
+ * @brief The screen for the pre-menu
+ * @version 0.1
+ * @date 2022-06-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #include "PreMenuScreen.hpp"
 #include "../../player/Player.hpp"
@@ -165,6 +169,7 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
         _nb_players++;
         _player2_pos = _entities.size() - 1;
         _is_player2_playing = true;
+        event.controller[1].code = indie::Event::ControllerCode::CONTROLLER_NONE;
     }
     if (event.controller[1].connected && (event.controller[1].code == indie::Event::ControllerCode::O_BUTTON)
         && _is_player2_playing && !_is_player2_ready) {

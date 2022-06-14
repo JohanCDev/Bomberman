@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** Bomberman
-** File description:
-** Event
-*/
+/**
+ * @file Event.cpp
+ * @author Simon Le Fourn (simon.le-fourn@epitech.eu)
+ * @brief Event encapsulation source file
+ * @version 0.1
+ * @date 2022-05-26
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "Event.hpp"
 
