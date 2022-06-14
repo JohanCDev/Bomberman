@@ -72,10 +72,6 @@ void indie::Game::initSounds()
     for (auto &system : this->_systems) {
         system->update(this->_entities);
     }
-    // indie::raylib::Sound menuSound("assets/sound/sound.wav");
-
-    // menuSound.setVolume(1.0f);
-    // _sounds.insert({MENU_SOUND, menuSound});
 }
 
 void indie::Game::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
@@ -180,18 +176,28 @@ void indie::Game::run()
 
 void indie::Game::destroy()
 {
-    destroySounds();
+    destroyEntities();
+    destroySystems();
     indie::raylib::Window::destroyWindow();
 }
 
-void indie::Game::destroySounds()
+void indie::Game::destroyEntities()
 {
-    std::map<int, indie::raylib::Sound>::iterator iter = _sounds.begin();
+    _it_entities = _entities.begin();
 
-    while (iter != _sounds.end()) {
-        iter->second.stop();
-        iter->second.unload();
-        ++iter;
+    while (_it_entities != _entities.end()) {
+        _it_entities->reset();
+        ++_it_entities;
+    }
+}
+
+void indie::Game::destroySystems()
+{
+    _it_systems = _systems.begin();
+
+    while (_it_systems != _systems.end()) {
+        _it_systems->reset();
+        ++_it_systems;
     }
 }
 

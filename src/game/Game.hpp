@@ -48,7 +48,8 @@ namespace indie
         void initScenes();
         void initSounds();
         void destroy();
-        void destroySounds();
+        void destroyEntities();
+        void destroySystems();
         void handleScreensSwap(int ret);
         void reinitGame();
         void setActualScreen(Screens newScreen);
@@ -73,7 +74,9 @@ namespace indie
         indie::Event _event;
         std::map <int, indie::raylib::Sound> _sounds;
         std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
+        std::vector<std::unique_ptr<indie::ecs::entity::Entity>>::iterator _it_entities;
         std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
+        std::vector<std::unique_ptr<indie::ecs::system::ISystem>>::iterator _it_systems;
 
     };
 } // namespace indie
