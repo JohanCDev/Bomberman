@@ -4,9 +4,9 @@
  * @brief The screen for the game
  * @version 0.1
  * @date 2022-06-13
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include "GameScreen.hpp"
@@ -27,15 +27,14 @@ indie::menu::GameScreen::GameScreen(std::vector<player::Player> *players)
 
 void indie::menu::GameScreen::init()
 {
-    std::unique_ptr<indie::ecs::entity::Entity> entity = std::make_unique<indie::ecs::entity::Entity>();
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystem = std::make_unique<indie::ecs::system::Draw2DSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> draw3DSystem = std::make_unique<indie::ecs::system::Draw3DSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> movementSystem =
         std::make_unique<indie::ecs::system::MovementSystem>();
     std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
     std::unique_ptr<indie::ecs::system::ISystem> collideSystem = std::make_unique<indie::ecs::system::Collide>();
-    std::unique_ptr<indie::ecs::entity::Entity> entityX = std::make_unique<indie::ecs::entity::Entity>();
     std::unique_ptr<indie::ecs::system::Explodable> explodeSystem = std::make_unique<indie::ecs::system::Explodable>();
+    std::unique_ptr<indie::ecs::entity::Entity> entityX = std::make_unique<indie::ecs::entity::Entity>();
 
     entityX->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
@@ -385,5 +384,198 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
         }
         posY -= 0.5;
         posX = -5;
+    }
+}
+
+bool indie::menu::GameScreen::compareColor(Color a, Color b)
+{
+    return (a.a == b.a && a.b == b.b && a.g == b.g && a.r == b.r);
+}
+
+void indie::menu::GameScreen::saveMapEntities()
+{
+    remove("SaveFile.txt");
+    std::fstream file;
+    file.open("SaveFile.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+    bool mapEnd = false;
+
+    for (int i = 1; !mapEnd; i++) {
+        if (_entities.at(i)->getEntityType() == indie::ecs::entity::entityType::WALL) {
+            file << "# ";
+            ecs::component::Transform *transformCompo =
+                _entities.at(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            file << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
+            if (transformCompo->getX() == 5 && transformCompo->getY() == -5)
+                mapEnd = true;
+        }
+        if (_entities.at(i)->getEntityType() == indie::ecs::entity::entityType::BOXES) {
+            file << ". ";
+            ecs::component::Transform *transformCompo =
+                _entities.at(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            file << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
+        }
+        if (_entities.at(i)->getEntityType() == indie::ecs::entity::entityType::PLAYER_1) {
+            file << "1 ";
+            ecs::component::Transform *transformCompo =
+                _entities.at(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            file << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
+        }
+        if (_entities.at(i)->getEntityType() == indie::ecs::entity::entityType::PLAYER_2) {
+            file << "2 ";
+            ecs::component::Transform *transformCompo =
+                _entities.at(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            file << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
+        }
+        if (_entities.at(i)->getEntityType() == indie::ecs::entity::entityType::PLAYER_3) {
+            file << "3 ";
+            ecs::component::Transform *transformCompo =
+                _entities.at(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            file << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
+        }
+        if (_entities.at(i)->getEntityType() == indie::ecs::entity::entityType::PLAYER_4) {
+            file << "4 ";
+            ecs::component::Transform *transformCompo =
+                _entities.at(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            file << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
+        }
+        if (_entities.at(i)->getEntityType() == indie::ecs::entity::entityType::UNKNOWN) {
+            ecs::component::Transform *transformCompo =
+                _entities.at(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            ecs::component::Drawable3D *drawable3dCompo =
+                _entities.at(i)->getComponent<ecs::component::Drawable3D>(ecs::component::compoType::DRAWABLE3D);
+            if (compareColor(drawable3dCompo->getColor(), RED))
+                file << "B " << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
+            if (compareColor(drawable3dCompo->getColor(), YELLOW))
+                file << "S " << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
+            if (compareColor(drawable3dCompo->getColor(), MAGENTA))
+                file << "R " << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
+        }
+    }
+    file.close();
+}
+
+bool indie::menu::GameScreen::loadSavedMap()
+{
+    std::ifstream file;
+    file.open("SaveFile.txt");
+    std::string line;
+    if (file.is_open()) {
+        while (file) {
+            std::getline(file, line);
+            if (line.size() == 0)
+                break;
+            std::stringstream buffer(line);
+            std::vector<std::string> args;
+            std::string arg;
+            while (std::getline(buffer, arg, ' '))
+                args.push_back(arg);
+            initRightEntity(args);
+        }
+    } else
+        return false;
+    file.close();
+    return true;
+}
+
+void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
+{
+    if (args[0] == "#") {
+        std::unique_ptr<indie::ecs::entity::Entity> entityX =
+            std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::WALL);
+        entityX->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
+            static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
+        entityX->addComponent<indie::ecs::component::Drawable3D>(
+            "src/wall.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
+        entityX->addComponent<indie::ecs::component::Collide>();
+        addEntity(std::move(entityX));
+    }
+    if (args[0] == ".") {
+        std::unique_ptr<indie::ecs::entity::Entity> entityA =
+            std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOXES);
+        entityA->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
+            static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
+        entityA->addComponent<indie::ecs::component::Collide>();
+        entityA->addComponent<indie::ecs::component::Destroyable>();
+        entityA->addComponent<indie::ecs::component::Drawable3D>(
+            "src/boite.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
+        addEntity(std::move(entityA));
+    }
+    if (args[0] == "1") {
+        std::unique_ptr<indie::ecs::entity::Entity> entityP1 =
+            std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::PLAYER_1);
+        entityP1->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
+            static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
+        entityP1->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), BLUE);
+        entityP1->addComponent<indie::ecs::component::Collide>();
+        entityP1->addComponent<indie::ecs::component::Destroyable>();
+        entityP1->addComponent<indie::ecs::component::Alive>(true);
+        addEntity(std::move(entityP1));
+        _player1_blue = true;
+    }
+    if (args[0] == "2") {
+        std::unique_ptr<indie::ecs::entity::Entity> entityP2 =
+            std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_2);
+        entityP2->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
+            static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
+        entityP2->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), RED);
+        entityP2->addComponent<indie::ecs::component::Collide>();
+        entityP2->addComponent<indie::ecs::component::Destroyable>();
+        entityP2->addComponent<indie::ecs::component::Alive>(true);
+        addEntity(std::move(entityP2));
+        _player2_red = true;
+    }
+    if (args[0] == "3") {
+        std::unique_ptr<indie::ecs::entity::Entity> entityP3 =
+            std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_3);
+        entityP3->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
+            static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
+        entityP3->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), GREEN);
+        entityP3->addComponent<indie::ecs::component::Collide>();
+        entityP3->addComponent<indie::ecs::component::Destroyable>();
+        entityP3->addComponent<indie::ecs::component::Alive>(true);
+        addEntity(std::move(entityP3));
+        _player3_green = true;
+    }
+    if (args[0] == "4") {
+        std::unique_ptr<indie::ecs::entity::Entity> entityP4 =
+            std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_4);
+        entityP4->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
+            static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
+        entityP4->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), YELLOW);
+        entityP4->addComponent<indie::ecs::component::Collide>();
+        entityP4->addComponent<indie::ecs::component::Destroyable>();
+        entityP4->addComponent<indie::ecs::component::Alive>(true);
+        addEntity(std::move(entityP4));
+        _player4_yellow = true;
+    }
+    if (args[0] == "B") {
+        std::unique_ptr<indie::ecs::entity::Entity> entityB =
+            std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
+        entityB->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
+            static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
+        entityB->addComponent<indie::ecs::component::Drawable3D>(
+            "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), RED);
+        entityB->addComponent<indie::ecs::component::Collectable>();
+        addEntity(std::move(entityB));
+    }
+    if (args[0] == "S") {
+        std::unique_ptr<indie::ecs::entity::Entity> entityS =
+            std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
+        entityS->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
+            static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
+        entityS->addComponent<indie::ecs::component::Drawable3D>(
+            "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), YELLOW);
+        entityS->addComponent<indie::ecs::component::Collectable>();
+        addEntity(std::move(entityS));
+    }
+    if (args[0] == "R") {
+        std::unique_ptr<indie::ecs::entity::Entity> entityR =
+            std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
+        entityR->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
+            static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
+        entityR->addComponent<indie::ecs::component::Drawable3D>(
+            "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), MAGENTA);
+        entityR->addComponent<indie::ecs::component::Collectable>();
+        addEntity(std::move(entityR));
     }
 }

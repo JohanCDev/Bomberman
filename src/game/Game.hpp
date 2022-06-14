@@ -62,6 +62,10 @@ namespace indie
         void reinitGame();
         /// @brief Set the actual screen
         void setActualScreen(Screens newScreen);
+        /// @brief Save the current game
+        void saveGame();
+        /// @brief Load the last saved game
+        void loadGame();
 
       protected:
       private:
