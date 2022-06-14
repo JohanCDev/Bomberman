@@ -35,7 +35,8 @@ namespace indie
     class Game {
       public:
         enum class Screens { Menu = 1, Game, PreMenu, GameOptions, End, SetMusic, SetSound, SetFps, Count };
-        enum Sounds { BOMB_S = 0, GAME_READY_S = 1, SELECT_S = 2, MENU_SOUND_S = 3};
+        enum Sounds { BOMB_S = 0, GAME_READY_S = 1, SELECT_S = 2};
+        enum Musics { MENU_SOUND };
         Game(size_t baseFps = 60);
         ~Game();
         void init(void);
@@ -47,6 +48,7 @@ namespace indie
         int handleEvent();
         void initScenes();
         void initSounds();
+        void initMusic();
         void destroy();
         void destroyEntities();
         void destroySystems();
@@ -55,8 +57,11 @@ namespace indie
         void setActualScreen(Screens newScreen);
         void setSoundEvent(int entititesIndex);
 
-        void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
-        void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system);
+        void addSoundEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
+        void addSoundSystem(std::unique_ptr<indie::ecs::system::ISystem> system);
+
+        // void addMusicEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
+        // void addMusicSystem(std::unique_ptr<indie::ecs::system::ISystem> system);
 
       protected:
       private:
@@ -72,10 +77,12 @@ namespace indie
         indie::menu::SetSoundScreen *_setSound;
         indie::menu::SetMusicScreen *_setMusic;
         indie::Event _event;
-        std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
-        std::vector<std::unique_ptr<indie::ecs::entity::Entity>>::iterator _it_entities;
-        std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
-        std::vector<std::unique_ptr<indie::ecs::system::ISystem>>::iterator _it_systems;
+        std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _sound_entities;
+        std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _sound_systems;
+
+        std::map <int, indie::raylib::Sound> _musics;
+        // std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _music_entities;
+        // std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _music_systems;
 
     };
 } // namespace indie

@@ -56,44 +56,67 @@ indie::Game::~Game()
 void indie::Game::init()
 {
     initScenes();
-    initSounds();
+    initMusic();
+    // initSounds();
+    _musics[MENU_SOUND].play();
+}
+
+void indie::Game::initMusic()
+{
+    indie::raylib::Sound menuSound("assets/music/music.ogg");
+    menuSound.setVolume(1.0f);
+    _musics.insert({MENU_SOUND, menuSound});
+
+    // std::unique_ptr<ecs::entity::Entity> music = std::make_unique<ecs::entity::Entity>();
+    // music->addComponent<ecs::component::Sound>("assets/music/music.ogg", true);
+    // addMusicEntity(std::move(music));
+
+    // std::unique_ptr<indie::ecs::system::ISystem> MusicSystem = std::make_unique<indie::ecs::system::Sound>();
+    // addMusicSystem(std::move(MusicSystem));
+
+    // for (auto &system : this->_music_systems) {
+    //     system->update(this->_music_entities);
+    // }
+
 }
 
 void indie::Game::initSounds()
 {
     std::unique_ptr<ecs::entity::Entity> bombSound = std::make_unique<ecs::entity::Entity>();
     bombSound->addComponent<ecs::component::Sound>("assets/sound/bomb.ogg", false);
-    addEntity(std::move(bombSound));
+    addSoundEntity(std::move(bombSound));
 
     std::unique_ptr<ecs::entity::Entity> gameReadySound = std::make_unique<ecs::entity::Entity>();
     gameReadySound->addComponent<ecs::component::Sound>("assets/sound/game_ready.ogg", false);
-    addEntity(std::move(gameReadySound));
+    addSoundEntity(std::move(gameReadySound));
 
     std::unique_ptr<ecs::entity::Entity> selectSound = std::make_unique<ecs::entity::Entity>();
     selectSound->addComponent<ecs::component::Sound>("assets/sound/select.ogg", false);
-    addEntity(std::move(selectSound));
-
-    // std::unique_ptr<ecs::entity::Entity> menuSound = std::make_unique<ecs::entity::Entity>();
-    // menuSound->addComponent<ecs::component::Sound>("assets/sound/menuSound.ogg", true);
-    // addEntity(std::move(menuSound));
+    addSoundEntity(std::move(selectSound));
 
     std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
-    addSystem(std::move(soundSystem));
-
-    for (auto &system : this->_systems) {
-        system->update(this->_entities);
-    }
+    addSoundSystem(std::move(soundSystem));
 }
 
-void indie::Game::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
+void indie::Game::addSoundEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
 {
-    this->_entities.push_back(std::move(entity));
+    this->_sound_entities.push_back(std::move(entity));
 }
 
-void indie::Game::addSystem(std::unique_ptr<indie::ecs::system::ISystem> system)
+void indie::Game::addSoundSystem(std::unique_ptr<indie::ecs::system::ISystem> system)
 {
-    this->_systems.push_back(std::move(system));
+    this->_sound_systems.push_back(std::move(system));
 }
+
+// void indie::Game::addMusicEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
+// {
+//     this->_music_entities.push_back(std::move(entity));
+// }
+
+// void indie::Game::addMusicSystem(std::unique_ptr<indie::ecs::system::ISystem> system)
+// {
+//     this->_music_systems.push_back(std::move(system));
+// }
 
 void indie::Game::initScenes()
 {
@@ -180,6 +203,9 @@ int indie::Game::handleEvent()
 void indie::Game::run()
 {
     while (!indie::raylib::Window::windowShouldClose()) {
+        if (!_musics[MENU_SOUND].isPlaying()) {
+            _musics[MENU_SOUND].play();
+        }
         if (!processEvents())
             break;
         update();
@@ -197,31 +223,42 @@ void indie::Game::destroy()
 
 void indie::Game::destroyEntities()
 {
-    _it_entities = _entities.begin();
+    std::vector<std::unique_ptr<indie::ecs::entity::Entity>>::iterator _it_sound_entities = _sound_entities.begin();
+    // std::vector<std::unique_ptr<indie::ecs::entity::Entity>>::iterator _it_music_entities = _music_entities.begin();
 
-    while (_it_entities != _entities.end()) {
-        _it_entities->reset();
-        ++_it_entities;
+    while (_it_sound_entities != _sound_entities.end()) {
+        _it_sound_entities->reset();
+        ++_it_sound_entities;
     }
+    // while (_it_music_entities != _sound_entities.end()) {
+    //     _it_music_entities->reset();
+    //     ++_it_music_entities;
+    // }
 }
 
 void indie::Game::destroySystems()
-{
-    _it_systems = _systems.begin();
 
-    while (_it_systems != _systems.end()) {
-        _it_systems->reset();
-        ++_it_systems;
+{
+    std::vector<std::unique_ptr<indie::ecs::system::ISystem>>::iterator _it_sound_systems = _sound_systems.begin();
+    // std::vector<std::unique_ptr<indie::ecs::system::ISystem>>::iterator _it_music_systems = _music_systems.begin();
+
+    while (_it_sound_systems != _sound_systems.end()) {
+        _it_sound_systems->reset();
+        ++_it_sound_systems;
     }
+    // while (_it_music_systems != _music_systems.end()) {
+    //     _it_music_systems->reset();
+    //     ++_it_music_systems;
+    // }
 }
 
 void indie::Game::setSoundEvent(int entitiesIndex)
 {
-    _entities.at(entitiesIndex)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(true);
-    for (auto &system : this->_systems) {
-        system->update(this->_entities);
+    _sound_entities.at(entitiesIndex)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(true);
+    for (auto &system : this->_sound_systems) {
+        system->update(this->_sound_entities);
     }
-    _entities.at(entitiesIndex)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(false);
+    _sound_entities.at(entitiesIndex)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(false);
 
 }
 void indie::Game::handleScreensSwap(int ret)

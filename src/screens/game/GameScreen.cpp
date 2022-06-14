@@ -173,7 +173,6 @@ void indie::menu::GameScreen::handleMultipleController(
             }
         }
     }
-
     if (event.controller[index].leftJoystick == indie::Event::UP) {
         for (auto &entity : this->_entities) {
             if (entity->getEntityType() == type) {
@@ -184,7 +183,6 @@ void indie::menu::GameScreen::handleMultipleController(
             }
         }
     }
-
     if (event.controller[index].leftJoystick == indie::Event::LEFT) {
         for (auto &entity : this->_entities) {
             if (entity->getEntityType() == type) {
@@ -195,7 +193,6 @@ void indie::menu::GameScreen::handleMultipleController(
             }
         }
     }
-
     if (event.controller[index].leftJoystick == indie::Event::RIGHT) {
         for (auto &entity : this->_entities) {
             if (entity->getEntityType() == type) {
@@ -206,7 +203,6 @@ void indie::menu::GameScreen::handleMultipleController(
             }
         }
     }
-
     if (event.controller[index].code == indie::Event::X_BUTTON) {
         for (auto &entity : _entities) {
             if (entity->getEntityType() == type) {
