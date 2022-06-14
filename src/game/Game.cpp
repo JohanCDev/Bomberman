@@ -66,18 +66,6 @@ void indie::Game::initMusic()
     indie::raylib::Sound menuSound("assets/music/music.ogg");
     menuSound.setVolume(1.0f);
     _musics.insert({MENU_SOUND, menuSound});
-
-    // std::unique_ptr<ecs::entity::Entity> music = std::make_unique<ecs::entity::Entity>();
-    // music->addComponent<ecs::component::Sound>("assets/music/music.ogg", true);
-    // addMusicEntity(std::move(music));
-
-    // std::unique_ptr<indie::ecs::system::ISystem> MusicSystem = std::make_unique<indie::ecs::system::Sound>();
-    // addMusicSystem(std::move(MusicSystem));
-
-    // for (auto &system : this->_music_systems) {
-    //     system->update(this->_music_entities);
-    // }
-
 }
 
 void indie::Game::initSounds()
@@ -107,16 +95,6 @@ void indie::Game::addSoundSystem(std::unique_ptr<indie::ecs::system::ISystem> sy
 {
     this->_sound_systems.push_back(std::move(system));
 }
-
-// void indie::Game::addMusicEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
-// {
-//     this->_music_entities.push_back(std::move(entity));
-// }
-
-// void indie::Game::addMusicSystem(std::unique_ptr<indie::ecs::system::ISystem> system)
-// {
-//     this->_music_systems.push_back(std::move(system));
-// }
 
 void indie::Game::initScenes()
 {
