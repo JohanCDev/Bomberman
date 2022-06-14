@@ -371,7 +371,7 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
             if (map[i][j] == 'S') {
                 std::unique_ptr<indie::ecs::entity::Entity> entityS =
                     std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
-                entityS->addComponent<indie::ecs::c)omponent::Transform>(static_cast<float>(posX),
+                entityS->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityS->addComponent<indie::ecs::component::Drawable3D>(
                     "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), YELLOW);
