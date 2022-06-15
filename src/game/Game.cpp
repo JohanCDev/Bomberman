@@ -121,9 +121,6 @@ bool indie::Game::processEvents()
     int swap = handleEvent();
     if (swap == 10)
         return false;
-    if (swap == 123) {
-        setSoundEvent(BOMB_S);
-    }
     handleScreensSwap(swap);
     return (ret);
 }
