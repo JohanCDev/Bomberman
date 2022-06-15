@@ -306,7 +306,6 @@ void indie::Game::saveGame()
 
 void indie::Game::loadGame()
 {
-    this->_players.clear();
     if (!_game->loadSavedMap()) {
         std::cout << "No game to load" << std::endl;
         return;

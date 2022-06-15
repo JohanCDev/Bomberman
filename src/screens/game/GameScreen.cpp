@@ -508,12 +508,6 @@ void indie::menu::GameScreen::saveMapEntities()
                 file << "R " << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
         }
     }
-    for (int i = 0; i < 4; i++) {
-        file << "P" << i << " " << i << " " << this->_players->at(i).getIsAlive() << " "
-             << this->_players->at(i).getIsPlaying() << " " << this->_players->at(i).getBombRadius() << " "
-             << this->_players->at(i).getBombStock() << " " << this->_players->at(i).getMaxBombStock() << " "
-             << this->_players->at(i).getSpeed() << std::endl;
-    }
     file.close();
 }
 
@@ -521,6 +515,7 @@ bool indie::menu::GameScreen::loadSavedMap()
 {
     std::ifstream file;
     file.open("SaveFile.txt");
+    this->_players->clear();
     std::string line;
     if (file.is_open()) {
         while (file) {
