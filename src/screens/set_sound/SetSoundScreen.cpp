@@ -4,17 +4,18 @@
  * @brief The screen to change the volume of the sounds of the game
  * @version 0.1
  * @date 2022-06-13
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include "SetSoundScreen.hpp"
 #include "../../raylib/Raylib.hpp"
 #include "../../tools/Tools.hpp"
 
-indie::menu::SetSoundScreen::SetSoundScreen() : _cursorPosition(SOUND_0)
+indie::menu::SetSoundScreen::SetSoundScreen(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *sounds) : _cursorPosition(SOUND_0)
 {
+    _sounds = sounds;
 }
 
 void indie::menu::SetSoundScreen::init()
@@ -158,7 +159,7 @@ int indie::menu::SetSoundScreen::handleEvent(indie::Event &event)
         transformCompo->update(tools::Tools::getPercentage(38.f, true), checkCursorPosition(false), 0.0f, 0.0f);
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == SOUND_0) {
-        // indie::raylib::Sound::setVolume(0.0);
+        setSounds(0.0f);
         if (_entities.size() == 15)
             _entities.erase(_entities.begin() + 14);
         std::unique_ptr<ecs::entity::Entity> valid0 = std::make_unique<ecs::entity::Entity>();
@@ -169,7 +170,7 @@ int indie::menu::SetSoundScreen::handleEvent(indie::Event &event)
         addEntity(std::move(valid0));
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == SOUND_25) {
-        // indie::raylib::Sound::setVolume(0.25);
+        setSounds(0.25f);
         if (_entities.size() == 15)
             _entities.erase(_entities.begin() + 14);
         std::unique_ptr<ecs::entity::Entity> valid25 = std::make_unique<ecs::entity::Entity>();
@@ -180,7 +181,7 @@ int indie::menu::SetSoundScreen::handleEvent(indie::Event &event)
         addEntity(std::move(valid25));
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == SOUND_50) {
-        // indie::raylib::Sound::setVolume(0.50);
+        setSounds(0.5f);
         if (_entities.size() == 15)
             _entities.erase(_entities.begin() + 14);
         std::unique_ptr<ecs::entity::Entity> valid50 = std::make_unique<ecs::entity::Entity>();
@@ -191,7 +192,7 @@ int indie::menu::SetSoundScreen::handleEvent(indie::Event &event)
         addEntity(std::move(valid50));
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == SOUND_75) {
-        // indie::raylib::Sound::setVolume(0.75);
+        setSounds(0.75f);
         if (_entities.size() == 15)
             _entities.erase(_entities.begin() + 14);
         std::unique_ptr<ecs::entity::Entity> valid75 = std::make_unique<ecs::entity::Entity>();
@@ -202,7 +203,7 @@ int indie::menu::SetSoundScreen::handleEvent(indie::Event &event)
         addEntity(std::move(valid75));
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == SOUND_100) {
-        // indie::raylib::Sound::setVolume(0.100);
+        setSounds(1.0f);
         if (_entities.size() == 15)
             _entities.erase(_entities.begin() + 14);
         std::unique_ptr<ecs::entity::Entity> valid100 = std::make_unique<ecs::entity::Entity>();
@@ -215,6 +216,16 @@ int indie::menu::SetSoundScreen::handleEvent(indie::Event &event)
     if (event.controller[0].code == indie::Event::ControllerCode::O_BUTTON)
         return 4;
     return 0;
+}
+
+void indie::menu::SetSoundScreen::setSounds(float volume)
+{
+    std::vector<std::unique_ptr<indie::ecs::entity::Entity>>::iterator _it_sounds = _sounds->begin();
+
+    while (_it_sounds != _sounds->end()) {
+        _it_sounds->get()->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setVolume(volume);
+        ++_it_sounds;
+    }
 }
 
 void indie::menu::SetSoundScreen::update()

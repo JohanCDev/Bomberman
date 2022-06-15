@@ -83,7 +83,6 @@ namespace indie
                 /**
                 * @brief Set volume for a sound (1.0 is max level)
                 */
-                // static void setVolume(::Sound sound, float volume);
                 void setVolume(float volume);
 
                 /**

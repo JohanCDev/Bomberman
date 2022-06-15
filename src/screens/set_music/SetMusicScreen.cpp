@@ -146,6 +146,7 @@ void indie::menu::SetMusicScreen::init()
 
     float volume = _musics->begin()->second.getVolume();
 
+    // std::cout << "Volume: " << volume << std::endl;
     if (volume == 0.0f) {
         this->_cursorPosition = MUSIC_0;
     }
@@ -162,7 +163,7 @@ void indie::menu::SetMusicScreen::init()
        this-> _cursorPosition = MUSIC_100;
     }
 
-    // this->_cursorPosition = MUSIC_50;
+    this->_cursorPosition = MUSIC_100;
 
     this->_positionsCursor[MUSIC_0] = tools::Tools::getPercentage(13.f, false);
     this->_positionsCursor[MUSIC_25] = tools::Tools::getPercentage(28.f, false);
