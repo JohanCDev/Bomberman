@@ -14,28 +14,34 @@
 
 #include <raylib.h>
 
-#define BLUECOLOR      \
-    CLITERAL(Color)    \
-    {                  \
-        0, 0, 255, 255 \
+#define BLUECOLOR        \
+    CLITERAL(Color)      \
+    {                    \
+        0, 121, 241, 255 \
     }
 
-#define GREENCOLOR     \
-    CLITERAL(Color)    \
-    {                  \
-        0, 255, 0, 255 \
+#define GREENCOLOR      \
+    CLITERAL(Color)     \
+    {                   \
+        0, 228, 48, 255 \
     }
 
-#define REDCOLOR       \
-    CLITERAL(Color)    \
-    {                  \
-        255, 0, 0, 255 \
+#define MAGENTACOLOR     \
+    CLITERAL(Color)      \
+    {                    \
+        255, 0, 255, 255 \
     }
 
 #define YELLOWCOLOR      \
     CLITERAL(Color)      \
     {                    \
-        255, 255, 0, 255 \
+        253, 249, 0, 255 \
+    }
+
+#define REDCOLOR         \
+    CLITERAL(Color)      \
+    {                    \
+        230, 41, 55, 255 \
     }
 
 #define GREENPLAYERCOLOR  \

@@ -70,6 +70,10 @@ namespace indie
         /// @brief Set the actual screen
         void setActualScreen(Screens newScreen);
         void setSoundEvent(int entititesIndex);
+        /// @brief Save the current game
+        void saveGame();
+        /// @brief Load the last saved game
+        void loadGame();
 
         void addSoundEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
         void addSoundSystem(std::unique_ptr<indie::ecs::system::ISystem> system);

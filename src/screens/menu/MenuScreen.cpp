@@ -4,9 +4,9 @@
  * @brief The screen for the menu
  * @version 0.1
  * @date 2022-06-13
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include "MenuScreen.hpp"
@@ -110,6 +110,9 @@ int indie::menu::MenuScreen::handleEvent(indie::Event &event)
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
         && _cursorPosition == NEW_GAME)
         return 3;
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
+        && _cursorPosition == LOAD_GAME)
+        return 12;
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
         && _cursorPosition == EXIT)
         return 10;

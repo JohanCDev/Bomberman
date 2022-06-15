@@ -8,6 +8,7 @@
 #include "Game.hpp"
 #include <algorithm>
 #include <chrono>
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include "../ecs/system/Collide/Collide.hpp"
@@ -267,6 +268,10 @@ void indie::Game::handleScreensSwap(int ret)
         setSoundEvent(SELECT_S);
         setActualScreen(Screens::SetFps);
     }
+    if (ret == 11)
+        saveGame();
+    if (ret == 12)
+        loadGame();
 }
 
 void indie::Game::reinitGame()
@@ -287,4 +292,20 @@ void indie::Game::reinitGame()
 void indie::Game::setActualScreen(Screens newScreen)
 {
     _actualScreen = newScreen;
+}
+
+void indie::Game::saveGame()
+{
+    _game->saveMapEntities();
+    setActualScreen(Screens::GameOptions);
+}
+
+void indie::Game::loadGame()
+{
+    if (!_game->loadSavedMap()) {
+        std::cout << "No game to load" << std::endl;
+        return;
+    }
+    _game->initEntity();
+    setActualScreen(Screens::Game);
 }

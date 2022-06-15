@@ -22,9 +22,8 @@ namespace indie
             this->_pos = pos;
             this->_isAlive = true;
             this->_bombRadius = 1;
-            this->_bombStock = 4;
-            this->_maxBombStock = 4;
-            this->_crossWalls = false;
+            this->_bombStock = 2;
+            this->_maxBombStock = 2;
             this->_nbBombRadiusBonus = 0;
             this->_nbBombStockBonus = 0;
             this->_nbSpeedBonus = 0;
@@ -43,11 +42,6 @@ namespace indie
         bool Player::getIsPlaying() const
         {
             return (this->_isPlaying);
-        }
-
-        bool Player::getCrossWalls() const
-        {
-            return (this->_crossWalls);
         }
 
         short unsigned int Player::getBombRadius() const
@@ -117,11 +111,6 @@ namespace indie
         void Player::setControllerId(short unsigned int controllerId)
         {
             this->_controllerId = controllerId;
-        }
-
-        void Player::setCrossWalls(bool crossWalls)
-        {
-            this->_crossWalls = crossWalls;
         }
 
         void Player::setBombRadius(short unsigned int value)
