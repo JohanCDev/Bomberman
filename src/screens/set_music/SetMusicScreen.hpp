@@ -90,6 +90,10 @@ namespace indie
             int checkCursorPosition(bool direction);
 
           private:
+            /**
+             * @brief Pointer of map of Sound from the Game
+             *
+             */
             std::map <int, indie::raylib::Sound> *_musics;
             /**
              * @brief Vector of entities for the Music Screen

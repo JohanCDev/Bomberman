@@ -56,7 +56,15 @@ namespace indie
              * @brief Draw the Sound Screen
              *
              */
+            /**
+             * @brief Draw the Sound Screen
+             *
+             */
             void draw() override;
+            /**
+             * @brief Set sounds
+             *
+             */
             void setSounds(float volume);
             /**
              * @brief Update the Sound Screen
@@ -91,6 +99,10 @@ namespace indie
             int checkCursorPosition(bool direction);
 
           private:
+            /**
+             * @brief Pointer to vector of entitites from the Game
+             *
+             */
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *_sounds;
             /**
              * @brief Vector of entities for the Sound Screen
