@@ -23,7 +23,6 @@
 #include "draw/Draw.hpp"
 #include "event/Event.hpp"
 #include "model/Model.hpp"
-#include "music/Music.hpp"
 #include "rectangle/Rectangle.hpp"
 #include "sound/Sound.hpp"
 #include "sphere/Sphere.hpp"

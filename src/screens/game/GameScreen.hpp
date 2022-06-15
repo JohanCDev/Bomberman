@@ -40,7 +40,7 @@ namespace indie
              *
              * @param players Vector of players in the game
              */
-            GameScreen(std::vector<player::Player> *players);
+            GameScreen(std::vector<player::Player> *players, std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *_soundEntities, std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *soundSystems);
             /**
              * @brief Destroy the Game Screen object
              *
@@ -154,6 +154,8 @@ namespace indie
              *
              */
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
+            std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *_soundEntities;
+            std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *_soundSystems;
             /**
              * @brief Vector of infoPlayers of the Game Screen
              *

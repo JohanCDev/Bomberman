@@ -116,6 +116,8 @@ int indie::menu::MenuScreen::handleEvent(indie::Event &event)
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
         && _cursorPosition == EXIT)
         return 10;
+    if (event.controller[0].code == indie::Event::ControllerCode::O_BUTTON)
+        return 123;
     return 0;
 }
 

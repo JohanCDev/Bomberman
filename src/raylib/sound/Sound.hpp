@@ -20,15 +20,42 @@ namespace indie
     {
         /// Sound class encapsulation
         class Sound {
-          public:
-            Sound(const std::string &fileName);
-            ~Sound() = default;
+            public:
+                Sound() = default;
+                Sound(const std::string& fileName);
+                ~Sound() = default;
 
-            /**
-             * @brief Play a sound
-             */
-            static void play(::Sound sound);
-            void play();
+                /**
+                * @brief Init audio device
+                */
+                ::Sound getSound() const;
+
+                /**
+                * @brief Init audio device
+                */
+                static void initAudioDevice(void);
+
+                /**
+                * @brief Load sound from file
+                */
+                ::Sound load(const char *fileName);
+
+                /**
+                * @brief Update sound buffer with new data
+                */
+                void update(::Sound sound, const void *data, int samplesCount);
+
+                /**
+                * @brief Unload sound
+                */
+                static void unload(::Sound sound);
+                void unload();
+
+                /**
+                * @brief Play a sound
+                */
+                static void play(::Sound sound);
+                void play();
 
             /**
              * @brief Stop playing a sound
