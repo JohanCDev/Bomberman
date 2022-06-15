@@ -40,7 +40,7 @@ indie::Game::Game(size_t baseFps)
     _end = new indie::menu::EndScreen;
     _setFps = new indie::menu::SetFpsScreen;
     _setSound = new indie::menu::SetSoundScreen;
-    _setMusic = new indie::menu::SetMusicScreen;
+    _setMusic = new indie::menu::SetMusicScreen(&_musics);
 }
 
 indie::Game::~Game()

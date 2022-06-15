@@ -57,44 +57,50 @@ namespace indie
                 static void play(::Sound sound);
                 void play();
 
-            /**
-             * @brief Stop playing a sound
-             */
-            static void stop(::Sound sound);
-            void stop();
+                /**
+                * @brief Stop playing a sound
+                */
+                static void stop(::Sound sound);
+                void stop();
 
-            /**
-             * @brief Pause a sound
-             */
-            static void pause(::Sound sound);
-            void pause();
+                /**
+                * @brief Pause a sound
+                */
+                static void pause(::Sound sound);
+                void pause();
 
-            /**
-             * @brief Resume a paused sound
-             */
-            static void resume(::Sound sound);
-            void resume();
+                /**
+                * @brief Resume a paused sound
+                */
+                static void resume(::Sound sound);
+                void resume();
 
-            /**
-             * @brief Set volume for a sound (1.0 is max level)
-             */
-            static void setVolume(::Sound sound, float volume);
-            void setVolume(float volume);
+                /**
+                * @brief Set volume for a sound (1.0 is max level)
+                */
+                float getVolume() const;
 
-            /**
-             * @brief Set pitch for a sound (1.0 is base level)
-             */
-            static void setPitch(::Sound sound, float pitch);
-            void setPitch(float pitch);
+                /**
+                * @brief Set volume for a sound (1.0 is max level)
+                */
+                // static void setVolume(::Sound sound, float volume);
+                void setVolume(float volume);
 
-            /**
-             * @brief Check if a sound is currently playing
-             */
-            static bool isPlaying(::Sound sound);
-            bool isPlaying() const;
+                /**
+                * @brief Set pitch for a sound (1.0 is base level)
+                */
+                static void setPitch(::Sound sound, float pitch);
+                void setPitch(float pitch);
+
+                /**
+                * @brief Check if a sound is currently playing
+                */
+                static bool isPlaying(::Sound sound);
+                bool isPlaying() const;
 
           private:
             ::Sound _sound;
+            float _volume;
         };
     } // namespace raylib
 } // namespace indie
