@@ -22,7 +22,7 @@ namespace indie
             /// @brief Sound component
             class Sound : public IComponent {
               public:
-                Sound(std::string soundPath, bool play);
+                Sound(std::string soundPath, bool play, float volume = 1.0f);
                 ~Sound();
 
                 /**
@@ -35,14 +35,17 @@ namespace indie
                 std::string getSoundPath() const;
                 indie::raylib::Sound getSound() const;
                 bool getPlay() const;
+                float getVolume() const;
 
                 void setSoundPath(std::string soundPath);
                 void setSound(std::string soundPath);
                 void setPlay(bool play);
+                void setVolume(float volume);
 
               private:
                 std::string _soundPath;
                 bool _play;
+                float _volume;
             };
         } // namespace component
     }     // namespace ecs
