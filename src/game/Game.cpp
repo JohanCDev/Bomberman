@@ -27,10 +27,10 @@
 indie::Game::Game(size_t baseFps)
 {
     _fps = baseFps;
-    _players.push_back(player::Player(BLUEPLAYERCOLOR, 0, {0, 0}));
-    _players.push_back(player::Player(REDPLAYERCOLOR, 1, {0, 0}));
-    _players.push_back(player::Player(GREENPLAYERCOLOR, 2, {0, 0}));
-    _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3, {0, 0}));
+    _players.push_back(player::Player(BLUEPLAYERCOLOR, 0));
+    _players.push_back(player::Player(REDPLAYERCOLOR, 1));
+    _players.push_back(player::Player(GREENPLAYERCOLOR, 2));
+    _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3));
     _actualScreen = Screens::Menu;
     initSounds();
     _menu = new indie::menu::MenuScreen;
@@ -227,11 +227,15 @@ void indie::Game::destroySystems()
 
 void indie::Game::setSoundEvent(int entitiesIndex)
 {
-    _sound_entities.at(entitiesIndex)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(true);
+    _sound_entities.at(entitiesIndex)
+        ->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)
+        ->setPlay(true);
     for (auto &system : this->_sound_systems) {
         system->update(this->_sound_entities);
     }
-    _sound_entities.at(entitiesIndex)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(false);
+    _sound_entities.at(entitiesIndex)
+        ->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)
+        ->setPlay(false);
 }
 
 void indie::Game::handleScreensSwap(int ret)
@@ -277,10 +281,10 @@ void indie::Game::handleScreensSwap(int ret)
 void indie::Game::reinitGame()
 {
     _players.clear();
-    _players.push_back(player::Player(BLUEPLAYERCOLOR, 0, {0, 0}));
-    _players.push_back(player::Player(REDPLAYERCOLOR, 1, {0, 0}));
-    _players.push_back(player::Player(GREENPLAYERCOLOR, 2, {0, 0}));
-    _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3, {0, 0}));
+    _players.push_back(player::Player(BLUEPLAYERCOLOR, 0));
+    _players.push_back(player::Player(REDPLAYERCOLOR, 1));
+    _players.push_back(player::Player(GREENPLAYERCOLOR, 2));
+    _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3));
     delete _game;
     _game = new indie::menu::GameScreen(&_players, &_sound_entities, &_sound_systems);
     _game->init();
@@ -302,6 +306,7 @@ void indie::Game::saveGame()
 
 void indie::Game::loadGame()
 {
+    this->_players.clear();
     if (!_game->loadSavedMap()) {
         std::cout << "No game to load" << std::endl;
         return;
