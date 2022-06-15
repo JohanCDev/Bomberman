@@ -98,3 +98,13 @@ std::chrono::seconds indie::ecs::component::Explodable::getSeconds() const
 {
     return (this->_seconds);
 }
+
+int indie::ecs::component::Explodable::getPlayer() const
+{
+    return (this->_player);
+}
+
+void indie::ecs::component::Explodable::setPlayer(int player)
+{
+    this->_player = player;
+}

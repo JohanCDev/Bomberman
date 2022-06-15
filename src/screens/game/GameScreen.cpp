@@ -82,10 +82,11 @@ void indie::menu::GameScreen::draw()
                 ->setCollide(false);
         }
         if (entity->hasCompoType(indie::ecs::component::EXPLODABLE)) {
-            bool explode = entity->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE)
-                               ->getExploded();
-            if (explode == true) {
-                this->_players->at(0).setBombStock(this->_players->at(0).getBombStock() + 1);
+            auto explodeCompo =
+                entity->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE);
+            if (explodeCompo->getExploded() == true) {
+                this->_players->at(explodeCompo->getPlayer())
+                    .setBombStock(this->_players->at(explodeCompo->getPlayer()).getBombStock() + 1);
                 entityToRemove.push_back(index);
             }
         }
@@ -258,6 +259,8 @@ void indie::menu::GameScreen::handleMultipleController(
                 std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOMB);
             entity->addComponent<indie::ecs::component::Explodable>(
                 static_cast<float>((this->_players->at(index).getBombRadius()) / 2.0f) + 0.25f, 2);
+            entity->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE)
+                ->setPlayer(index);
             entity->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.25), RED);
             entity->addComponent<indie::ecs::component::Transform>(static_cast<float>(transformCompo->getX()),
                 static_cast<float>(transformCompo->getY()), static_cast<float>(0.0), static_cast<float>(0.0));
