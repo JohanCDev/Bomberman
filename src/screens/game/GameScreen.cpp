@@ -19,14 +19,15 @@
 
 #include <vector>
 
-indie::menu::GameScreen::GameScreen(std::vector<player::Player> *players, std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *soundEntities, std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *soundSystems)
+indie::menu::GameScreen::GameScreen(std::vector<player::Player> *players,
+    std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *soundEntities,
+    std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *soundSystems)
     : _camera({0.0, 14.0, 7.0}, {0.0, -1.5, 0.0}, {0.0, 1.0, 0.0}, 40.0, CAMERA_PERSPECTIVE), _player1_blue(false),
       _player2_red(false), _player3_green(false), _player4_yellow(false)
 {
     _players = players;
     _soundEntities = soundEntities;
     _soundSystems = soundSystems;
-
 }
 
 void indie::menu::GameScreen::init()
@@ -247,27 +248,35 @@ void indie::menu::GameScreen::handleMultipleController(
             addEntity(std::move(entity));
             // If a bomb is dropped, set the tictac sound.
             if (_entities.back()->hasCompoType(indie::ecs::component::EXPLODABLE) == true) {
-                auto bomb = _entities.back()->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE);
+                auto bomb = _entities.back()->getComponent<indie::ecs::component::Explodable>(
+                    indie::ecs::component::EXPLODABLE);
                 if (bomb->getDropped() == true) {
-                    _soundEntities->at(3)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(true);
+                    _soundEntities->at(3)
+                        ->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)
+                        ->setPlay(true);
                     for (auto &system : *this->_soundSystems) {
                         system->update(*this->_soundEntities);
                     }
-                    _soundEntities->at(3)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(false);
+                    _soundEntities->at(3)
+                        ->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)
+                        ->setPlay(false);
                 }
             }
             this->_players->at(index).setBombStock(this->_players->at(index).getBombStock() - 1);
-            }
+        }
     }
     // If a bomb is exploded, set the tictac sound.
     if (_entities.back()->hasCompoType(indie::ecs::component::EXPLODABLE) == true) {
-        auto bomb = _entities.back()->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE);
+        auto bomb =
+            _entities.back()->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE);
         if (bomb->getExploded() == true) {
             _soundEntities->at(0)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(true);
             for (auto &system : *this->_soundSystems) {
                 system->update(*this->_soundEntities);
             }
-            _soundEntities->at(0)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(false);
+            _soundEntities->at(0)
+                ->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)
+                ->setPlay(false);
         }
     }
 }
@@ -416,7 +425,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
                 entityR->addComponent<indie::ecs::component::Drawable3D>(
                     "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), MAGENTA);
-                entityR->addComponent<indie::ecs::component::Collectable>();
+                entityR->addComponent<indie::ecs::component::Collectable>(indie::ecs::component::bonusType::FIREUP);
+                entityR->addComponent<indie::ecs::component::Collide>();
                 addEntity(std::move(entityR));
                 std::unique_ptr<indie::ecs::entity::Entity> entityR2 =
                     std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::BOXES);
