@@ -19,14 +19,15 @@
 
 #include <vector>
 
-indie::menu::GameScreen::GameScreen(std::vector<player::Player> *players, std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *soundEntities, std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *soundSystems)
+indie::menu::GameScreen::GameScreen(std::vector<player::Player> *players,
+    std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *soundEntities,
+    std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *soundSystems)
     : _camera({0.0, 14.0, 7.0}, {0.0, -1.5, 0.0}, {0.0, 1.0, 0.0}, 40.0, CAMERA_PERSPECTIVE), _player1_blue(false),
       _player2_red(false), _player3_green(false), _player4_yellow(false)
 {
     _players = players;
     _soundEntities = soundEntities;
     _soundSystems = soundSystems;
-
 }
 
 void indie::menu::GameScreen::init()
@@ -247,27 +248,35 @@ void indie::menu::GameScreen::handleMultipleController(
             addEntity(std::move(entity));
             // If a bomb is dropped, set the tictac sound.
             if (_entities.back()->hasCompoType(indie::ecs::component::EXPLODABLE) == true) {
-                auto bomb = _entities.back()->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE);
+                auto bomb = _entities.back()->getComponent<indie::ecs::component::Explodable>(
+                    indie::ecs::component::EXPLODABLE);
                 if (bomb->getDropped() == true) {
-                    _soundEntities->at(3)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(true);
+                    _soundEntities->at(3)
+                        ->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)
+                        ->setPlay(true);
                     for (auto &system : *this->_soundSystems) {
                         system->update(*this->_soundEntities);
                     }
-                    _soundEntities->at(3)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(false);
+                    _soundEntities->at(3)
+                        ->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)
+                        ->setPlay(false);
                 }
             }
             this->_players->at(index).setBombStock(this->_players->at(index).getBombStock() - 1);
-            }
+        }
     }
     // If a bomb is exploded, set the tictac sound.
     if (_entities.back()->hasCompoType(indie::ecs::component::EXPLODABLE) == true) {
-        auto bomb = _entities.back()->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE);
+        auto bomb =
+            _entities.back()->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE);
         if (bomb->getExploded() == true) {
             _soundEntities->at(0)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(true);
             for (auto &system : *this->_soundSystems) {
                 system->update(*this->_soundEntities);
             }
-            _soundEntities->at(0)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(false);
+            _soundEntities->at(0)
+                ->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)
+                ->setPlay(false);
         }
     }
 }
@@ -499,6 +508,12 @@ void indie::menu::GameScreen::saveMapEntities()
                 file << "R " << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
         }
     }
+    for (int i = 0; i < 4; i++) {
+        file << "P" << i << " " << i << " " << this->_players->at(i).getIsAlive() << " "
+             << this->_players->at(i).getIsPlaying() << " " << this->_players->at(i).getBombRadius() << " "
+             << this->_players->at(i).getBombStock() << " " << this->_players->at(i).getMaxBombStock() << " "
+             << this->_players->at(i).getSpeed() << std::endl;
+    }
     file.close();
 }
 
@@ -625,5 +640,19 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
             "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), MAGENTA);
         entityR->addComponent<indie::ecs::component::Collectable>();
         addEntity(std::move(entityR));
+    }
+    if (args[0][0] == 'P') {
+        Color color;
+
+        switch (args[0][1]) {
+            case '0': color = BLUEPLAYERCOLOR; break;
+            case '1': color = REDPLAYERCOLOR; break;
+            case '2': color = GREENPLAYERCOLOR; break;
+            case '3': color = YELLOWPLAYERCOLOR; break;
+            default: BLUEPLAYERCOLOR; break;
+        }
+        std::cout << "\n\n\n\nColor " << args[0][1] << std::endl;
+        _players->push_back(player::Player(color, std::stoi(args[1]), std::stoi(args[2]), std::stoi(args[3]),
+            std::stoi(args[4]), std::stoi(args[5]), std::stoi(args[6]), std::stoi(args[7])));
     }
 }
