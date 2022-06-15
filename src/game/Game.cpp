@@ -58,7 +58,6 @@ void indie::Game::init()
 {
     initScenes();
     initMusic();
-    // initSounds();
     _musics[MENU_SOUND].play();
 }
 
@@ -82,6 +81,10 @@ void indie::Game::initSounds()
     std::unique_ptr<ecs::entity::Entity> selectSound = std::make_unique<ecs::entity::Entity>();
     selectSound->addComponent<ecs::component::Sound>("assets/sound/select.ogg", false);
     addSoundEntity(std::move(selectSound));
+
+    std::unique_ptr<ecs::entity::Entity> ticTacSound = std::make_unique<ecs::entity::Entity>();
+    ticTacSound->addComponent<ecs::component::Sound>("assets/sound/tictac.ogg", false);
+    addSoundEntity(std::move(ticTacSound));
 
     std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
     addSoundSystem(std::move(soundSystem));

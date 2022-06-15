@@ -73,10 +73,6 @@ namespace indie
 
         void addSoundEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
         void addSoundSystem(std::unique_ptr<indie::ecs::system::ISystem> system);
-
-        // void addMusicEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
-        // void addMusicSystem(std::unique_ptr<indie::ecs::system::ISystem> system);
-
       protected:
       private:
         /// @brief Actual screen
@@ -105,10 +101,7 @@ namespace indie
         indie::Event _event;
         std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _sound_entities;
         std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _sound_systems;
-
         std::map <int, indie::raylib::Sound> _musics;
-        // std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _music_entities;
-        // std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _music_systems;
 
     };
 } // namespace indie

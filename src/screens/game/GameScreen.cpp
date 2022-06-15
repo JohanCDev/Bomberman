@@ -246,23 +246,29 @@ void indie::menu::GameScreen::handleMultipleController(
             entity->addComponent<indie::ecs::component::Transform>(static_cast<float>(transformCompo->getX()),
                 static_cast<float>(transformCompo->getY()), static_cast<float>(0.0), static_cast<float>(0.0));
             addEntity(std::move(entity));
+            // If a bomb is dropped, set the tictac sound.
+            if (_entities.back()->hasCompoType(indie::ecs::component::EXPLODABLE) == true) {
+                auto bomb = _entities.back()->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE);
+                if (bomb->getDropped() == true) {
+                    _soundEntities->at(3)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(true);
+                    for (auto &system : *this->_soundSystems) {
+                        system->update(*this->_soundEntities);
+                    }
+                    _soundEntities->at(3)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(false);
+                }
+            }
             this->_players->at(index).setBombStock(this->_players->at(index).getBombStock() - 1);
             }
     }
+    // If a bomb is exploded, set the tictac sound.
     if (_entities.back()->hasCompoType(indie::ecs::component::EXPLODABLE) == true) {
-        std::cout << "hasCompoType" << std::endl;
         auto bomb = _entities.back()->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE);
-        if (bomb->getDropped() == true) {
-            std::cout << "Dropped" << std::endl;
-        }
         if (bomb->getExploded() == true) {
             _soundEntities->at(0)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(true);
             for (auto &system : *this->_soundSystems) {
                 system->update(*this->_soundEntities);
             }
             _soundEntities->at(0)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(false);
-
-            std::cout << "Exploded" << std::endl;
         }
     }
 }

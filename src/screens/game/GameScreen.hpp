@@ -46,13 +46,9 @@ namespace indie
 
           private:
             std::vector<player::Player> *_players;
-            // std::unique_ptr<indie::ecs::entity::Entity> *_bombSound;
-
+            std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *_soundEntities;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *_soundSystems;
-
-
-            std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
             std::vector<std::unique_ptr<indie::screens::game::uiPlayerDisplay::UIPlayerDisplay>> _infoPlayers;
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _systems;
             indie::raylib::Camera3D _camera;
