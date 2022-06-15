@@ -35,7 +35,7 @@ void indie::menu::SetSoundScreen::init()
 
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
     cursor->addComponent<ecs::component::Transform>(
-        tools::Tools::getPercentage(38.f, true), tools::Tools::getPercentage(43.f, false), 0.0f, 0.0f);
+        tools::Tools::getPercentage(38.f, true), tools::Tools::getPercentage(73.f, false), 0.0f, 0.0f);
     cursor->addComponent<ecs::component::Drawable2D>(
         "assets/menu/hand.png", tools::Tools::getPercentage(6.f, false), tools::Tools::getPercentage(6.f, true), WHITE);
     addEntity(std::move(cursor));
@@ -116,17 +116,17 @@ void indie::menu::SetSoundScreen::init()
         tools::Tools::getPercentage(10.f, false), tools::Tools::getPercentage(10.f, false), WHITE);
     addEntity(std::move(not_valid100));
 
-    std::unique_ptr<ecs::entity::Entity> valid50 = std::make_unique<ecs::entity::Entity>();
-    valid50->addComponent<ecs::component::Transform>(
-        tools::Tools::getPercentage(44.f, true), tools::Tools::getPercentage(41.f, false), 0.0f, 0.0f);
-    valid50->addComponent<ecs::component::Drawable2D>("assets/menu/valid.png", tools::Tools::getPercentage(10.f, false),
+    std::unique_ptr<ecs::entity::Entity> valid100 = std::make_unique<ecs::entity::Entity>();
+    valid100->addComponent<ecs::component::Transform>(
+        tools::Tools::getPercentage(44.f, true), tools::Tools::getPercentage(71.f, false), 0.0f, 0.0f);
+    valid100->addComponent<ecs::component::Drawable2D>("assets/menu/valid.png", tools::Tools::getPercentage(10.f, false),
         tools::Tools::getPercentage(10.f, false), WHITE);
-    addEntity(std::move(valid50));
+    addEntity(std::move(valid100));
 
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemOption =
         std::make_unique<indie::ecs::system::Draw2DSystem>();
     addSystem(std::move(draw2DSystemOption));
-    this->_cursorPosition = SOUND_50;
+    this->_cursorPosition = SOUND_100;
     this->_positionsCursor[SOUND_0] = tools::Tools::getPercentage(13.f, false);
     this->_positionsCursor[SOUND_25] = tools::Tools::getPercentage(28.f, false);
     this->_positionsCursor[SOUND_50] = tools::Tools::getPercentage(43.f, false);

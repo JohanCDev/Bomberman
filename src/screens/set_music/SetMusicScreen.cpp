@@ -16,23 +16,6 @@
 indie::menu::SetMusicScreen::SetMusicScreen(std::map <int, indie::raylib::Sound> *musics) : _cursorPosition(MUSIC_100)
 {
     _musics = musics;
-    // float volume = _musics->begin()->second.getVolume();
-
-    // if (volume == 0.0f) {
-    //     _cursorPosition = MUSIC_0;
-    // }
-    // if (volume == 0.25f) {
-    //     _cursorPosition = MUSIC_25;
-    // }
-    // if (volume == 0.5f) {
-    //     _cursorPosition = MUSIC_50;
-    // }
-    // if (volume == 0.75f) {
-    //     _cursorPosition = MUSIC_75;
-    // }
-    // if (volume == 1.0f) {
-    //     _cursorPosition = MUSIC_100;
-    // }
 }
 
 void indie::menu::SetMusicScreen::init()
@@ -52,7 +35,7 @@ void indie::menu::SetMusicScreen::init()
 
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
     cursor->addComponent<ecs::component::Transform>(
-        tools::Tools::getPercentage(38.f, true), tools::Tools::getPercentage(43.f, false), 0.0f, 0.0f);
+        tools::Tools::getPercentage(38.f, true), tools::Tools::getPercentage(73.f, false), 0.0f, 0.0f);
     cursor->addComponent<ecs::component::Drawable2D>(
         "assets/menu/hand.png", tools::Tools::getPercentage(6.f, false), tools::Tools::getPercentage(6.f, true), WHITE);
     addEntity(std::move(cursor));
@@ -133,36 +116,16 @@ void indie::menu::SetMusicScreen::init()
         tools::Tools::getPercentage(10.f, false), tools::Tools::getPercentage(10.f, false), WHITE);
     addEntity(std::move(not_valid100));
 
-    std::unique_ptr<ecs::entity::Entity> valid50 = std::make_unique<ecs::entity::Entity>();
-    valid50->addComponent<ecs::component::Transform>(
-        tools::Tools::getPercentage(44.f, true), tools::Tools::getPercentage(41.f, false), 0.0f, 0.0f);
-    valid50->addComponent<ecs::component::Drawable2D>("assets/menu/valid.png", tools::Tools::getPercentage(10.f, false),
+    std::unique_ptr<ecs::entity::Entity> valid100 = std::make_unique<ecs::entity::Entity>();
+    valid100->addComponent<ecs::component::Transform>(
+        tools::Tools::getPercentage(44.f, true), tools::Tools::getPercentage(71.f, false), 0.0f, 0.0f);
+    valid100->addComponent<ecs::component::Drawable2D>("assets/menu/valid.png", tools::Tools::getPercentage(10.f, false),
         tools::Tools::getPercentage(10.f, false), WHITE);
-    addEntity(std::move(valid50));
+    addEntity(std::move(valid100));
 
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemOption =
         std::make_unique<indie::ecs::system::Draw2DSystem>();
     addSystem(std::move(draw2DSystemOption));
-
-    float volume = _musics->begin()->second.getVolume();
-
-    // std::cout << "Volume: " << volume << std::endl;
-    if (volume == 0.0f) {
-        this->_cursorPosition = MUSIC_0;
-    }
-    if (volume == 0.25f) {
-        this->_cursorPosition = MUSIC_25;
-    }
-    if (volume == 0.5f) {
-        this->_cursorPosition = MUSIC_50;
-    }
-    if (volume == 0.75f) {
-        this->_cursorPosition = MUSIC_75;
-    }
-    if (volume == 1.0f) {
-       this-> _cursorPosition = MUSIC_100;
-    }
-
     this->_cursorPosition = MUSIC_100;
 
     this->_positionsCursor[MUSIC_0] = tools::Tools::getPercentage(13.f, false);
