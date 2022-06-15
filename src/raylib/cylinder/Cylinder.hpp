@@ -41,7 +41,7 @@ namespace indie
             /**
              * @brief Get cylinder position
              * 
-             * @return ::Vector3 Cylinder position
+             * @return Vector3 Cylinder position
              */
             ::Vector3 getPosition() const;
             /**
@@ -71,9 +71,9 @@ namespace indie
             /**
              * @brief Set cylinder bottom radius
              * 
-             * @param radiusBottom Cylinder bottom radius
+             * @param radiusBottom 
              */
-            void setRadiusBottom(float radiusBottom)
+            void setRadiusBottom(float radiusBottom);
             /**
              * @brief Get cylinder height
              * 
@@ -101,7 +101,7 @@ namespace indie
             /**
              * @brief Get cylinder color
              * 
-             * @return ::Color Cylinder color
+             * @return Color Cylinder color
              */
             ::Color getColor() const;
             /**

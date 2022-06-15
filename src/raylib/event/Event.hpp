@@ -35,6 +35,7 @@ namespace indie
              * @brief Check if a key is pressed
              * 
              * @param key The pressed key
+             * 
              * @return true The key is pressed
              * @return false The key isn't pressed
              */
@@ -44,6 +45,7 @@ namespace indie
              * @brief Check if a gamepad is available
              * 
              * @param gamepad The gamepad
+             * 
              * @return true The gamepad is available
              * @return false The gamepad isn't available
              */
@@ -53,6 +55,7 @@ namespace indie
              * 
              * @param gamepadId Gamepad ID
              * @param buttonId Button ID
+             * 
              * @return true Button is pressed
              * @return false Button isn't pressed
              */
@@ -62,6 +65,7 @@ namespace indie
              * 
              * @param gamepad The gamepad
              * @param axis The gamepad axis
+             * 
              * @return float The axis movement value
              */
             static float getGamepadAxisMovement(int gamepad, int axis);

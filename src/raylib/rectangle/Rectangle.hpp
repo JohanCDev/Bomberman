@@ -48,7 +48,7 @@ namespace indie
             /**
              * @brief Get rectangle size
              * 
-             * @return ::Vector2 Rectangle size
+             * @return Vector2 Rectangle size
              */
             ::Vector2 getSize() const;
             /**
@@ -61,7 +61,7 @@ namespace indie
             /**
              * @brief Get rectangle posX and posY
              * 
-             * @return ::Vector2 Rectangle position
+             * @return Vector2 Rectangle position
              */
             ::Vector2 getPosition() const;
             /**
@@ -74,7 +74,7 @@ namespace indie
             /**
              * @brief Get rectangle color
              * 
-             * @return ::Color Rectangle color
+             * @return Color Rectangle color
              */
             ::Color getColor() const;
             /**
@@ -107,13 +107,15 @@ namespace indie
              * @brief Get collision rectangle for two rectangles collision
              * 
              * @param rec2 Rectangle object
-             * @return ::Rectangle The rectangle who's in collision with the first one
+             * 
+             * @return Rectangle The rectangle who's in collision with the first one
              */
             ::Rectangle getCollision(::Rectangle rec2) const;
             /**
              * @brief Check collision between two rectangles
              * 
              * @param rec2 Rectangle object
+             * 
              * @return true There is a collision
              * @return false There isn't a collision
              */

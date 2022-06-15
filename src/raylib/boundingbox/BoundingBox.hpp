@@ -37,24 +37,30 @@ namespace indie
 
             /**
              * @brief Get boundingBox
+             * 
+             * @return BoundingBox The BoundingBox object
              */
             ::BoundingBox getBoundingBox() const;
 
             /**
              * @brief Set boundingBox
+             * 
+             * @param min Min value
+             * @param max Max value
              */
             void setBoundingBox(::Vector3 min, ::Vector3 max);
-
             /**
              * @brief Get box color
+             * 
+             * @return Color BoundingBox color
              */
             ::Color getColor() const;
-
             /**
              * @brief Set box color
+             * 
+             * @param color BoundingBox color
              */
             void setColor(::Color color);
-
             /**
              * @brief Draw bounding box (wires)
              */
@@ -83,13 +89,20 @@ namespace indie
             /**
              * @brief Check collision on the box
              * 
-             * @param box2 The box to check
+             * @param box2 BoundingBox object
+             * 
              * @return true There is a collision with the box
              * @return false There isn't a collision with the box
              */
             bool checkCollisionBoxes(::BoundingBox box2);
             /**
              * @brief Check collision between this box and another bounding box
+             * 
+             * @param box1 BoundingBox object
+             * @param box2 BoundingBox object
+             * 
+             * @return true There is a collision with the box
+             * @return false There isn't a collision with the box
              */
             static bool checkCollisionBoxes(::BoundingBox box1, ::BoundingBox box2);
 
@@ -98,17 +111,29 @@ namespace indie
              * 
              * @param center The center of the sphere
              * @param radius The radius of the sphere
+             * 
              * @return true There is a collision with the box
              * @return false There isn't a collision with the box
              */
             bool checkCollisionBoxSphere(::Vector3 center, float radius);
             /**
              * @brief Check collision between box and sphere
+             * 
+             * @param box BoundingBox object
+             * @param center The center of the sphere
+             * @param radius The radius of the sphere
+             * 
+             * @return true There is a collision with the box
+             * @return false There isn't a collision with the box
              */
             static bool checkCollisionBoxSphere(::BoundingBox box, ::Vector3 center, float radius);
 
             /**
             * @brief Compute model bounding box limits (considers all meshes)
+            * 
+            * @param model Model object
+            * 
+            * @return BoundingBox BoundingBox object
             */
             static ::BoundingBox getModelBox(::Model model);
 

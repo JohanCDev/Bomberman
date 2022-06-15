@@ -53,7 +53,7 @@ namespace indie
             /**
              * @brief Get cube position
              * 
-             * @return ::Vector3 Cube position
+             * @return Vector3 Cube position
              */
             ::Vector3 getPosition() const;
 
@@ -68,7 +68,7 @@ namespace indie
             /**
              * @brief Get cube size
              * 
-             * @return ::Vector3 Cube size
+             * @return Vector3 Cube size
              */
             ::Vector3 getSize() const;
 
@@ -83,7 +83,7 @@ namespace indie
             /**
              * @brief Get Cube color
              * 
-             * @return ::Color Cube color
+             * @return Color Cube color
              */
             ::Color getColor() const;
 

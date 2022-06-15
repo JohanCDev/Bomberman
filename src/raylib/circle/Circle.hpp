@@ -38,7 +38,7 @@ namespace indie
             /**
              * @brief Get center
              * 
-             * @return ::Vector2 The Circle Center position
+             * @return Vector2 The Circle Center position
              */
             ::Vector2 getCenter() const;
 
@@ -66,7 +66,7 @@ namespace indie
             /**
              * @brief Get circle color
              * 
-             * @return ::Color The Circle color
+             * @return Color The Circle color
              */
             ::Color getColor() const;
 
@@ -131,6 +131,9 @@ namespace indie
              * 
              * @param center2 The Center of the circle
              * @param radius2 The Radius of the circle
+             * 
+             * @return true There is a collision
+             * @return false There isn't a collision
              */
             bool checkCollision(::Vector2 center2, float radius2);
 

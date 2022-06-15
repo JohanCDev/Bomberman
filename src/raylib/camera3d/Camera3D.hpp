@@ -48,7 +48,7 @@ namespace indie
             /**
              * @brief Get the Position object
              * 
-             * @return ::Vector3 Camera position
+             * @return Vector3 Camera position
              */
             ::Vector3 getPosition() const;
 
@@ -64,7 +64,7 @@ namespace indie
             /**
              * @brief Get the Target object
              * 
-             * @return ::Vector3 The Camera target
+             * @return Vector3 The Camera target
              */
             ::Vector3 getTarget() const;
 
@@ -80,7 +80,7 @@ namespace indie
             /**
              * @brief Get the Camera Up
              * 
-             * @return ::Vector3 The Camera Up
+             * @return Vector3 The Camera Up
              */
             ::Vector3 getUp() const;
 

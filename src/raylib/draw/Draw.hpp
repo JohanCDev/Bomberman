@@ -75,7 +75,7 @@ namespace indie
             /**
              * @brief Get color
              * 
-             * @return ::Color Draw color
+             * @return Color Draw color
              */
             ::Color getColor() const;
             /**

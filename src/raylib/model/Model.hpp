@@ -32,12 +32,16 @@ namespace indie {
                 * @brief Load model from files (meshes and materials)
                 * 
                 * @param fileName Filepath to the model file
+                * 
+                * @return Model Model object
                 */
                 ::Model load(const char *fileName);
                 /**
                 * @brief Load model from generated mesh (default material)
                 * 
                 * @param mesh Mesh to load
+                * 
+                * @return Model Model object
                 */
                 ::Model loadFromMesh(::Mesh mesh);
                 /**

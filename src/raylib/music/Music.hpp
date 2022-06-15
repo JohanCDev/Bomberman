@@ -36,7 +36,8 @@ namespace indie
              * @brief Load music stream from file
              * 
              * @param fileName Filepath to the music file
-             * @return ::Music The music stream
+             * 
+             * @return Music The music stream
              */
             static ::Music loadStream(const std::string &fileName);
             /**
@@ -45,7 +46,8 @@ namespace indie
              * @param fileType The type of file
              * @param data The data to load
              * @param dataSize The data size to load
-             * @return ::Music The music stream
+             * 
+             * @return Music The music stream
              */
             static ::Music loadStreamFromMemory(const std::string &fileType, unsigned char *data, int dataSize);
             /**
@@ -74,6 +76,7 @@ namespace indie
              * @brief Check if music is playing
              * 
              * @param music The music stream played
+             * 
              * @return true The music is actually playing
              * @return false The music isn't actually playing
              */
@@ -172,6 +175,7 @@ namespace indie
              * @brief Get music time length (in seconds)
              * 
              * @param music The music stream
+             * 
              * @return float The music time length
              */
             static float getTimeLength(::Music music);
@@ -185,6 +189,7 @@ namespace indie
              * @brief Get current music time played (in seconds)
              * 
              * @param music The music stream
+             * 
              * @return float The music time played
              */
             static float getTimePlayed(::Music music);
