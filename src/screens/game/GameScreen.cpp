@@ -523,6 +523,7 @@ bool indie::menu::GameScreen::loadSavedMap()
     file.open("SaveFile.txt");
     std::string line;
     if (file.is_open()) {
+        this->_players->clear();
         while (file) {
             std::getline(file, line);
             if (line.size() == 0)
