@@ -61,6 +61,8 @@ namespace indie
              * @brief Copy a map generator object
              *
              * @param component to copy
+             * 
+             * @return MapGenerator MapGenerator object
              */
             MapGenerator &operator=(const MapGenerator &component) = default;
 

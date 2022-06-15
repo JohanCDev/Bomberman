@@ -26,17 +26,11 @@ namespace indie
                 /**
                  * @brief Create a new draw 3d system.
                  */
-                Draw3DSystem()
-                {
-                }
-
+                Draw3DSystem() {}
                 /**
                  * @brief Destroy a draw 3d system.
                  */
-                ~Draw3DSystem()
-                {
-                }
-
+                ~Draw3DSystem() {}
                 /**
                  * @brief Draw sphere with given properties.
                  *
@@ -63,7 +57,7 @@ namespace indie
                 /**
                  * @brief Get the type of system.
                  *
-                 * @return enum value correspond to the type of system
+                 * @return indie::ecs::system::SystemType SystemType
                  */
                 indie::ecs::system::SystemType getSystemType() const override;
 
