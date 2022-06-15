@@ -19,7 +19,6 @@ int main(void)
     try {
         indie::Game Game(60);
         indie::raylib::Window::getInstance(1495, 982, "Indie Studio", true, 60);
-        ::InitAudioDevice();
 
         Game.init();
         Game.run();

@@ -33,7 +33,7 @@ namespace indie
                 /**
                 * @brief Init audio device
                 */
-                void initAudioDevice(void);
+                static void initAudioDevice(void);
 
                 /**
                 * @brief Load sound from file
