@@ -4,17 +4,18 @@
  * @brief The screen to change the volume of the music
  * @version 0.1
  * @date 2022-06-13
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include "SetMusicScreen.hpp"
 #include "../../raylib/Raylib.hpp"
 #include "../../tools/Tools.hpp"
 
-indie::menu::SetMusicScreen::SetMusicScreen() : _cursorPosition(MUSIC_0)
+indie::menu::SetMusicScreen::SetMusicScreen(std::map <int, indie::raylib::Sound> *musics) : _cursorPosition(MUSIC_100)
 {
+    _musics = musics;
 }
 
 void indie::menu::SetMusicScreen::init()
@@ -34,7 +35,7 @@ void indie::menu::SetMusicScreen::init()
 
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
     cursor->addComponent<ecs::component::Transform>(
-        tools::Tools::getPercentage(38.f, true), tools::Tools::getPercentage(43.f, false), 0.0f, 0.0f);
+        tools::Tools::getPercentage(38.f, true), tools::Tools::getPercentage(73.f, false), 0.0f, 0.0f);
     cursor->addComponent<ecs::component::Drawable2D>(
         "assets/menu/hand.png", tools::Tools::getPercentage(6.f, false), tools::Tools::getPercentage(6.f, true), WHITE);
     addEntity(std::move(cursor));
@@ -115,17 +116,18 @@ void indie::menu::SetMusicScreen::init()
         tools::Tools::getPercentage(10.f, false), tools::Tools::getPercentage(10.f, false), WHITE);
     addEntity(std::move(not_valid100));
 
-    std::unique_ptr<ecs::entity::Entity> valid50 = std::make_unique<ecs::entity::Entity>();
-    valid50->addComponent<ecs::component::Transform>(
-        tools::Tools::getPercentage(44.f, true), tools::Tools::getPercentage(41.f, false), 0.0f, 0.0f);
-    valid50->addComponent<ecs::component::Drawable2D>("assets/menu/valid.png", tools::Tools::getPercentage(10.f, false),
+    std::unique_ptr<ecs::entity::Entity> valid100 = std::make_unique<ecs::entity::Entity>();
+    valid100->addComponent<ecs::component::Transform>(
+        tools::Tools::getPercentage(44.f, true), tools::Tools::getPercentage(71.f, false), 0.0f, 0.0f);
+    valid100->addComponent<ecs::component::Drawable2D>("assets/menu/valid.png", tools::Tools::getPercentage(10.f, false),
         tools::Tools::getPercentage(10.f, false), WHITE);
-    addEntity(std::move(valid50));
+    addEntity(std::move(valid100));
 
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemOption =
         std::make_unique<indie::ecs::system::Draw2DSystem>();
     addSystem(std::move(draw2DSystemOption));
-    this->_cursorPosition = MUSIC_50;
+    this->_cursorPosition = MUSIC_100;
+
     this->_positionsCursor[MUSIC_0] = tools::Tools::getPercentage(13.f, false);
     this->_positionsCursor[MUSIC_25] = tools::Tools::getPercentage(28.f, false);
     this->_positionsCursor[MUSIC_50] = tools::Tools::getPercentage(43.f, false);
@@ -158,7 +160,7 @@ int indie::menu::SetMusicScreen::handleEvent(indie::Event &event)
         transformCompo->update(tools::Tools::getPercentage(38.f, true), checkCursorPosition(false), 0.0f, 0.0f);
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MUSIC_0) {
-        // indie::raylib::Sound::setVolume(0.0);
+        _musics->begin()->second.setVolume(0);
         if (_entities.size() == 15)
             _entities.erase(_entities.begin() + 14);
         std::unique_ptr<ecs::entity::Entity> valid0 = std::make_unique<ecs::entity::Entity>();
@@ -169,7 +171,7 @@ int indie::menu::SetMusicScreen::handleEvent(indie::Event &event)
         addEntity(std::move(valid0));
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MUSIC_25) {
-        // indie::raylib::Sound::setVolume(0.25);
+        _musics->begin()->second.setVolume(0.25);
         if (_entities.size() == 15)
             _entities.erase(_entities.begin() + 14);
         std::unique_ptr<ecs::entity::Entity> valid25 = std::make_unique<ecs::entity::Entity>();
@@ -180,7 +182,7 @@ int indie::menu::SetMusicScreen::handleEvent(indie::Event &event)
         addEntity(std::move(valid25));
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MUSIC_50) {
-        // indie::raylib::Sound::setVolume(0.50);
+        _musics->begin()->second.setVolume(0.50);
         if (_entities.size() == 15)
             _entities.erase(_entities.begin() + 14);
         std::unique_ptr<ecs::entity::Entity> valid50 = std::make_unique<ecs::entity::Entity>();
@@ -191,7 +193,7 @@ int indie::menu::SetMusicScreen::handleEvent(indie::Event &event)
         addEntity(std::move(valid50));
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MUSIC_75) {
-        // indie::raylib::Sound::setVolume(0.75);
+        _musics->begin()->second.setVolume(0.75);
         if (_entities.size() == 15)
             _entities.erase(_entities.begin() + 14);
         std::unique_ptr<ecs::entity::Entity> valid75 = std::make_unique<ecs::entity::Entity>();
@@ -202,7 +204,7 @@ int indie::menu::SetMusicScreen::handleEvent(indie::Event &event)
         addEntity(std::move(valid75));
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON) && _cursorPosition == MUSIC_100) {
-        // indie::raylib::Sound::setVolume(0.100);
+        _musics->begin()->second.setVolume(1);
         if (_entities.size() == 15)
             _entities.erase(_entities.begin() + 14);
         std::unique_ptr<ecs::entity::Entity> valid100 = std::make_unique<ecs::entity::Entity>();

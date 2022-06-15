@@ -456,6 +456,12 @@ void indie::menu::GameScreen::saveMapEntities()
     file.open("SaveFile.txt", std::fstream::in | std::fstream::out | std::fstream::app);
     bool mapEnd = false;
 
+    for (int i = 0; i < 4; i++) {
+        file << "P" << i << " " << i << " " << this->_players->at(i).getIsAlive() << " "
+             << this->_players->at(i).getIsPlaying() << " " << this->_players->at(i).getBombRadius() << " "
+             << this->_players->at(i).getBombStock() << " " << this->_players->at(i).getMaxBombStock() << " "
+             << this->_players->at(i).getSpeed() << std::endl;
+    }
     for (int i = 1; !mapEnd; i++) {
         if (_entities.at(i)->getEntityType() == indie::ecs::entity::entityType::WALL) {
             file << "# ";
@@ -558,7 +564,7 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
             "src/boite.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
         addEntity(std::move(entityA));
     }
-    if (args[0] == "1") {
+    if (args[0] == "1" && this->_players->at(0).getIsAlive() == true) {
         std::unique_ptr<indie::ecs::entity::Entity> entityP1 =
             std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::PLAYER_1);
         entityP1->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
@@ -570,7 +576,7 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
         addEntity(std::move(entityP1));
         _player1_blue = true;
     }
-    if (args[0] == "2") {
+    if (args[0] == "2" && this->_players->at(1).getIsAlive() == true) {
         std::unique_ptr<indie::ecs::entity::Entity> entityP2 =
             std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_2);
         entityP2->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
@@ -582,7 +588,7 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
         addEntity(std::move(entityP2));
         _player2_red = true;
     }
-    if (args[0] == "3") {
+    if (args[0] == "3" && this->_players->at(2).getIsAlive() == true) {
         std::unique_ptr<indie::ecs::entity::Entity> entityP3 =
             std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_3);
         entityP3->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
@@ -594,7 +600,7 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
         addEntity(std::move(entityP3));
         _player3_green = true;
     }
-    if (args[0] == "4") {
+    if (args[0] == "4" && this->_players->at(3).getIsAlive() == true) {
         std::unique_ptr<indie::ecs::entity::Entity> entityP4 =
             std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_4);
         entityP4->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),

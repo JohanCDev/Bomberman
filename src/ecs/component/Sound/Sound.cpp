@@ -11,9 +11,10 @@
 
 #include "Sound.hpp"
 
-indie::ecs::component::Sound::Sound(std::string soundPath, bool play) : _soundPath(soundPath)
+indie::ecs::component::Sound::Sound(std::string soundPath, bool play, float volume) : _soundPath(soundPath)
 {
     this->_play = play;
+    this->_volume = volume;
 }
 
 indie::ecs::component::Sound::~Sound()
@@ -40,6 +41,11 @@ bool indie::ecs::component::Sound::getPlay() const
     return (this->_play);
 }
 
+float indie::ecs::component::Sound::getVolume() const
+{
+    return (this->_volume);
+}
+
 void indie::ecs::component::Sound::setSoundPath(std::string soundPath)
 {
     this->_soundPath = soundPath;
@@ -54,4 +60,9 @@ void indie::ecs::component::Sound::setSoundPath(std::string soundPath)
 void indie::ecs::component::Sound::setPlay(bool play)
 {
     this->_play = play;
+}
+
+void indie::ecs::component::Sound::setVolume(float volume)
+{
+    this->_volume = volume;
 }

@@ -39,8 +39,8 @@ indie::Game::Game(size_t baseFps)
     _gameoptions = new indie::menu::GameOptionsScreen;
     _end = new indie::menu::EndScreen;
     _setFps = new indie::menu::SetFpsScreen;
-    _setSound = new indie::menu::SetSoundScreen;
-    _setMusic = new indie::menu::SetMusicScreen;
+    _setSound = new indie::menu::SetSoundScreen(&_sound_entities);
+    _setMusic = new indie::menu::SetMusicScreen(&_musics);
 }
 
 indie::Game::~Game()
@@ -121,9 +121,6 @@ bool indie::Game::processEvents()
     int swap = handleEvent();
     if (swap == 10)
         return false;
-    if (swap == 123) {
-        setSoundEvent(BOMB_S);
-    }
     handleScreensSwap(swap);
     return (ret);
 }
