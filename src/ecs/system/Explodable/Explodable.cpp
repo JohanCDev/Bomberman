@@ -70,18 +70,16 @@ void indie::ecs::system::Explodable::update(std::vector<std::unique_ptr<indie::e
             auto explodableCompo =
                 entity->getComponent<ecs::component::Explodable>(ecs::component::compoType::EXPLODABLE);
             if (explodableCompo->getDropped() == true) {
-                if (explodableCompo->getExploded() == true) {
-                    explodableCompo->setExploded(false);
-                    explodableCompo->setDropped(false);
+                if (explodableCompo->getExplode() == true) {
+                    explodableCompo->setExploded(true);
                     destroyBoxes(compoToRemove, entities, explodableCompo,
                         entity->getComponent<ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM));
-                    compoToRemove.push_back(count);
                 } else {
                     auto t_now = std::chrono::system_clock::now();
                     std::chrono::seconds elapsed =
                         std::chrono::duration_cast<std::chrono::seconds>(t_now - explodableCompo->getTStart());
                     if (explodableCompo->getSeconds() <= elapsed) {
-                        explodableCompo->setExploded(true);
+                        explodableCompo->setExplode(true);
                     }
                 }
             }

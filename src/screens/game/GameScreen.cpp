@@ -74,10 +74,20 @@ void indie::menu::GameScreen::draw()
         if (uiDisplay->getPlayer().getIsAlive())
             uiDisplay->draw();
     indie::raylib::Window::endDrawing();
+    size_t index = 0;
+    std::vector<size_t> entityToRemove;
     for (auto &entity : _entities) {
         if (entity->hasCompoType(indie::ecs::component::COLLIDE) == true) {
             entity->getComponent<indie::ecs::component::Collide>(indie::ecs::component::compoType::COLLIDE)
                 ->setCollide(false);
+        }
+        if (entity->hasCompoType(indie::ecs::component::EXPLODABLE)) {
+            bool explode = entity->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE)
+                               ->getExploded();
+            if (explode == true) {
+                this->_players->at(0).setBombStock(this->_players->at(0).getBombStock() + 1);
+                entityToRemove.push_back(index);
+            }
         }
         indie::ecs::entity::entityType type = entity->getEntityType();
         if (type == indie::ecs::entity::entityType::PLAYER_1 || type == indie::ecs::entity::entityType::PLAYER_2
@@ -107,6 +117,12 @@ void indie::menu::GameScreen::draw()
                 }
             }
         }
+        index++;
+    }
+    size_t count = 0;
+    for (auto &i : entityToRemove) {
+        this->_entities.erase(this->_entities.begin() + i - count);
+        count++;
     }
 }
 
