@@ -651,7 +651,6 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
             case '3': color = YELLOWPLAYERCOLOR; break;
             default: BLUEPLAYERCOLOR; break;
         }
-        std::cout << "\n\n\n\nColor " << args[0][1] << std::endl;
         _players->push_back(player::Player(color, std::stoi(args[1]), std::stoi(args[2]), std::stoi(args[3]),
             std::stoi(args[4]), std::stoi(args[5]), std::stoi(args[6]), std::stoi(args[7])));
     }
