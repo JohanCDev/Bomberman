@@ -157,7 +157,7 @@ namespace indie
                  * @return true The sound is currently playing
                  * @return false The sound isn't currently playing
                  */
-                static bool isPlaying();
+                bool isPlaying() const;
 
           private:
             /**

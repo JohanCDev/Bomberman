@@ -22,21 +22,18 @@ namespace indie
             /// @brief Sound component
             class Sound : public IComponent {
               public:
-<<<<<<< HEAD
                 /**
                  * @brief Construct a new Sound object
                  * 
-                 * @param soundPath Filepath to the sound file
-                 * @param play Play the sound or not
+                 * @param soundPath Path to the sound
+                 * @param play Sound is playing or not
+                 * @param volume Volume for the sound
                  */
-                Sound(std::string soundPath, bool play);
+                Sound(std::string soundPath, bool play, float volume = 1.0f);
                 /**
                  * @brief Destroy the Sound object
                  * 
                  */
-=======
-                Sound(std::string soundPath, bool play, float volume = 1.0f);
->>>>>>> master
                 ~Sound();
                 /**
                  * @brief Get type of the component.

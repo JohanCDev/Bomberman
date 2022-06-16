@@ -69,7 +69,7 @@ namespace indie
              * 
              * @param color The color for the bounding box
              */
-            static void draw(Color color);
+            void draw(Color color);
             /**
              * @brief Draw Bounding Box
              * 
