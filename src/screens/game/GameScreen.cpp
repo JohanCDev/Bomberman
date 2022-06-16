@@ -743,7 +743,7 @@ void indie::menu::GameScreen::endScreenDisplay()
     std::unique_ptr<ecs::entity::Entity> winner = std::make_unique<ecs::entity::Entity>();
     winner->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(35.f, false), 0.0f, 0.0f);
-    winner->addComponent<ecs::component::Drawable2D>(
-        _playerAssets[3], tools::Tools::getPercentage(30.f, false), tools::Tools::getPercentage(30.f, false), WHITE);
+    winner->addComponent<ecs::component::Drawable2D>(_playerAssets[getWinner()],
+        tools::Tools::getPercentage(30.f, false), tools::Tools::getPercentage(30.f, false), WHITE);
     addEntity(std::move(winner));
 }
