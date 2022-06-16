@@ -91,8 +91,6 @@ set(SRC_SCREEN
     ${SCREENSROOT}pre_menu/PreMenuScreen.hpp
     ${SCREENSROOT}game_options/GameOptionsScreen.hpp
     ${SCREENSROOT}game_options/GameOptionsScreen.cpp
-    ${SCREENSROOT}end/EndScreen.cpp
-    ${SCREENSROOT}end/EndScreen.hpp
     ${SCREENSROOT}set_fps/SetFpsScreen.cpp
     ${SCREENSROOT}set_fps/SetFpsScreen.hpp
     ${SCREENSROOT}set_music/SetMusicScreen.cpp

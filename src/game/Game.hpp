@@ -20,7 +20,6 @@
 #include "../ecs/system/Sound/Sound.hpp"
 #include "../player/Player.hpp"
 #include "../screens/IScreen.hpp"
-#include "../screens/end/EndScreen.hpp"
 #include "../screens/game/GameScreen.hpp"
 #include "../screens/menu/MenuScreen.hpp"
 #include "events.hpp"
@@ -36,9 +35,9 @@ namespace indie
     class Game {
       public:
         /// @brief enum containing all navigable screens
-        enum class Screens { Menu = 1, Game, PreMenu, GameOptions, End, SetMusic, SetSound, SetFps, Count };
+        enum class Screens { Menu = 1, Game, PreMenu, GameOptions, SetMusic, SetSound, SetFps, Count };
         /// @brief enum containing all type of sounds
-        enum Sounds { BOMB_S = 0, GAME_READY_S = 1, SELECT_S = 2};
+        enum Sounds { BOMB_S = 0, GAME_READY_S = 1, SELECT_S = 2 };
         /// @brief enum containing all musics
         enum Musics { MENU_SOUND };
         /// @brief Constructor
@@ -65,27 +64,27 @@ namespace indie
         void initScenes();
         /**
          * @brief Init all sounds
-         * 
+         *
          */
         void initSounds();
         /**
          * @brief Init all musics
-         * 
+         *
          */
         void initMusic();
         /**
          * @brief Destroy all
-         * 
+         *
          */
         void destroy();
         /**
          * @brief Destroy all entities
-         * 
+         *
          */
         void destroyEntities();
         /**
          * @brief Destroy systems
-         * 
+         *
          */
         void destroySystems();
         /// @brief Swap between screens
@@ -97,8 +96,8 @@ namespace indie
         /// @param newScreen The new screen
         void setActualScreen(Screens newScreen);
         /**
-         * @brief Set the Sound Event 
-         * 
+         * @brief Set the Sound Event
+         *
          * @param entititesIndex Index for entity
          */
         void setSoundEvent(int entititesIndex);
@@ -108,16 +107,17 @@ namespace indie
         void loadGame();
         /**
          * @brief Add sound entity
-         * 
+         *
          * @param entity Entity sound to add
          */
         void addSoundEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
         /**
          * @brief Add sound system
-         * 
+         *
          * @param system System sound to add
          */
         void addSoundSystem(std::unique_ptr<indie::ecs::system::ISystem> system);
+
       protected:
       private:
         /// @brief Actual screen
@@ -134,8 +134,6 @@ namespace indie
         indie::menu::PreMenuScreen *_premenu;
         /// @brief GameOptions screen
         indie::menu::GameOptionsScreen *_gameoptions;
-        /// @brief End screen
-        indie::menu::EndScreen *_end;
         /// @brief SetFps screen
         indie::menu::SetFpsScreen *_setFps;
         /// @brief SetSound screen
@@ -146,8 +144,7 @@ namespace indie
         indie::Event _event;
         std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _sound_entities;
         std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _sound_systems;
-        std::map <int, indie::raylib::Sound> _musics;
-
+        std::map<int, indie::raylib::Sound> _musics;
     };
 } // namespace indie
 

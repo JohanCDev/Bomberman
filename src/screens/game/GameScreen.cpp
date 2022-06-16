@@ -23,7 +23,8 @@ indie::menu::GameScreen::GameScreen(std::vector<player::Player> *players,
     std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *soundEntities,
     std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *soundSystems)
     : _camera({0.0, 14.0, 7.0}, {0.0, -1.5, 0.0}, {0.0, 1.0, 0.0}, 40.0, CAMERA_PERSPECTIVE), _player1_blue(false),
-      _player2_red(false), _player3_green(false), _player4_yellow(false)
+      _player2_red(false), _player3_green(false), _player4_yellow(false), _is_game_finished(false),
+      _end_screen_display(true)
 {
     _players = players;
     _soundEntities = soundEntities;
@@ -46,6 +47,10 @@ void indie::menu::GameScreen::init()
     entityX->addComponent<indie::ecs::component::Drawable3D>(
         "", static_cast<float>(10.5), static_cast<float>(0.05), static_cast<float>(10), LIGHTGRAY);
     entityX->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM)->setZ(-0.25);
+    _playerAssets[0] = std::string("./assets/blue.png");
+    _playerAssets[1] = std::string("./assets/red.png");
+    _playerAssets[2] = std::string("./assets/green.png");
+    _playerAssets[3] = std::string("./assets/yellow.png");
     this->addEntity(std::move(entityX));
     this->addSystem(std::move(draw2DSystem));
     this->addSystem(std::move(draw3DSystem));
@@ -62,7 +67,7 @@ void indie::menu::GameScreen::draw()
     indie::raylib::Window::clearBackground(SKYBLUE);
 
     for (auto &system : this->_systems) {
-        if (system->getSystemType() == indie::ecs::system::SystemType::DRAWABLE3DSYSTEM) {
+        if (system->getSystemType() == indie::ecs::system::SystemType::DRAWABLE3DSYSTEM && !_is_game_finished) {
             camera.beginMode();
             system->update(this->_entities);
             camera.endMode();
@@ -71,7 +76,7 @@ void indie::menu::GameScreen::draw()
         }
     }
     for (auto &uiDisplay : _infoPlayers)
-        if (uiDisplay->getPlayer().getIsAlive())
+        if (uiDisplay->getPlayer().getIsAlive() && !_is_game_finished)
             uiDisplay->draw();
     indie::raylib::Window::endDrawing();
     size_t index = 0;
@@ -286,16 +291,27 @@ void indie::menu::GameScreen::handleMultipleController(
 
 int indie::menu::GameScreen::handleEvent(indie::Event &event)
 {
-    if (this->_players->at(0).getIsPlaying() && this->_players->at(0).getIsAlive())
-        handleMultipleController(event, 0, indie::ecs::entity::entityType::PLAYER_1);
-    if (this->_players->at(1).getIsPlaying() && this->_players->at(1).getIsAlive())
-        handleMultipleController(event, 1, indie::ecs::entity::entityType::PLAYER_2);
-    if (this->_players->at(2).getIsPlaying() && this->_players->at(2).getIsAlive())
-        handleMultipleController(event, 2, indie::ecs::entity::entityType::PLAYER_3);
-    if (this->_players->at(3).getIsPlaying() && this->_players->at(3).getIsAlive())
-        handleMultipleController(event, 3, indie::ecs::entity::entityType::PLAYER_4);
-    if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON || event.key.r_shift)
-        return 4;
+    if (!_is_game_finished) {
+        if (this->_players->at(0).getIsPlaying() && this->_players->at(0).getIsAlive())
+            handleMultipleController(event, 0, indie::ecs::entity::entityType::PLAYER_1);
+        if (this->_players->at(1).getIsPlaying() && this->_players->at(1).getIsAlive())
+            handleMultipleController(event, 1, indie::ecs::entity::entityType::PLAYER_2);
+        if (this->_players->at(2).getIsPlaying() && this->_players->at(2).getIsAlive())
+            handleMultipleController(event, 2, indie::ecs::entity::entityType::PLAYER_3);
+        if (this->_players->at(3).getIsPlaying() && this->_players->at(3).getIsAlive())
+            handleMultipleController(event, 3, indie::ecs::entity::entityType::PLAYER_4);
+        if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON || event.key.r_shift)
+            return 4;
+        if (countAlivePlayers() == 1)
+            _is_game_finished = true;
+    } else {
+        if (_end_screen_display) {
+            endScreenDisplay();
+            _end_screen_display = false;
+        }
+        if (event.controller[0].code == indie::Event::ControllerCode::T_BUTTON || event.key.r_shift)
+            return 1;
+    }
     return 0;
 }
 
@@ -659,4 +675,75 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
         _players->push_back(player::Player(color, std::stoi(args[1]), std::stoi(args[2]), std::stoi(args[3]),
             std::stoi(args[4]), std::stoi(args[5]), std::stoi(args[6]), std::stoi(args[7])));
     }
+}
+
+int indie::menu::GameScreen::countAlivePlayers()
+{
+    int count = 0;
+    if (_player1_blue) {
+        if (this->_players->at(0).getIsAlive())
+            count++;
+    }
+    if (_player2_red) {
+        if (this->_players->at(1).getIsAlive())
+            count++;
+    }
+    if (_player3_green) {
+        if (this->_players->at(2).getIsAlive())
+            count++;
+    }
+    if (_player4_yellow) {
+        if (this->_players->at(3).getIsAlive())
+            count++;
+    }
+    return count;
+}
+
+int indie::menu::GameScreen::getWinner()
+{
+    if (_player1_blue) {
+        if (this->_players->at(0).getIsAlive())
+            return 0;
+    }
+    if (_player2_red) {
+        if (this->_players->at(1).getIsAlive())
+            return 1;
+    }
+    if (_player3_green) {
+        if (this->_players->at(2).getIsAlive())
+            return 2;
+    }
+    if (_player4_yellow) {
+        if (this->_players->at(3).getIsAlive())
+            return 3;
+    }
+    return 0;
+}
+
+void indie::menu::GameScreen::endScreenDisplay()
+{
+    std::unique_ptr<ecs::entity::Entity> frame = std::make_unique<ecs::entity::Entity>();
+    frame->addComponent<ecs::component::Transform>(
+        tools::Tools::getPercentage(20.f, true), tools::Tools::getPercentage(10.f, false), 0.0f, 0.0f);
+    frame->addComponent<ecs::component::Drawable2D>("assets/menu/frame.png", tools::Tools::getPercentage(75.f, false),
+        tools::Tools::getPercentage(60.f, true), WHITE);
+    addEntity(std::move(frame));
+    std::unique_ptr<ecs::entity::Entity> winner_is = std::make_unique<ecs::entity::Entity>();
+    winner_is->addComponent<ecs::component::Transform>(
+        tools::Tools::getPercentage(30.f, true), tools::Tools::getPercentage(20.f, false), 0.0f, 0.0f);
+    winner_is->addComponent<ecs::component::Drawable2D>(
+        "The Winner is", tools::Tools::getPercentage(10.f, false), YELLOW);
+    addEntity(std::move(winner_is));
+    std::unique_ptr<ecs::entity::Entity> return_to_menu = std::make_unique<ecs::entity::Entity>();
+    return_to_menu->addComponent<ecs::component::Transform>(
+        tools::Tools::getPercentage(28.f, true), tools::Tools::getPercentage(70.f, false), 0.0f, 0.0f);
+    return_to_menu->addComponent<ecs::component::Drawable2D>(
+        "Press Triangle to go back to the menu", tools::Tools::getPercentage(4.f, false), WHITE);
+    addEntity(std::move(return_to_menu));
+    std::unique_ptr<ecs::entity::Entity> winner = std::make_unique<ecs::entity::Entity>();
+    winner->addComponent<ecs::component::Transform>(
+        tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(35.f, false), 0.0f, 0.0f);
+    winner->addComponent<ecs::component::Drawable2D>(_playerAssets[getWinner()],
+        tools::Tools::getPercentage(30.f, false), tools::Tools::getPercentage(30.f, false), WHITE);
+    addEntity(std::move(winner));
 }
