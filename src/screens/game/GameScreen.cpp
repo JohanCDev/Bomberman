@@ -265,26 +265,10 @@ void indie::menu::GameScreen::handleMultipleController(
             entity->addComponent<indie::ecs::component::Transform>(static_cast<float>(transformCompo->getX()),
                 static_cast<float>(transformCompo->getY()), static_cast<float>(0.0), static_cast<float>(0.0));
             addEntity(std::move(entity));
-            // If a bomb is dropped, set the tictac sound.
-            if (_entities.back()->hasCompoType(indie::ecs::component::EXPLODABLE) == true) {
-                auto bomb = _entities.back()->getComponent<indie::ecs::component::Explodable>(
-                    indie::ecs::component::EXPLODABLE);
-                if (bomb->getDropped() == true) {
-                    _soundEntities->at(3)
-                        ->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)
-                        ->setPlay(true);
-                    for (auto &system : *this->_soundSystems) {
-                        system->update(*this->_soundEntities);
-                    }
-                    _soundEntities->at(3)
-                        ->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)
-                        ->setPlay(false);
-                }
-            }
             this->_players->at(index).setBombStock(this->_players->at(index).getBombStock() - 1);
         }
     }
-    // If a bomb is exploded, set the tictac sound.
+    // If a bomb is exploded, set the bomb sound.
     if (_entities.back()->hasCompoType(indie::ecs::component::EXPLODABLE) == true) {
         auto bomb =
             _entities.back()->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE);
@@ -348,7 +332,7 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::PLAYER_1);
                 entityP1->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                entityP1->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), BLUE);
+                entityP1->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.18), BLUE);
                 entityP1->addComponent<indie::ecs::component::Collide>();
                 entityP1->addComponent<indie::ecs::component::Destroyable>();
                 entityP1->addComponent<indie::ecs::component::Inventory>();
@@ -361,7 +345,7 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                         std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_2);
                     entityP2->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                         static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                    entityP2->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), RED);
+                    entityP2->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.18), RED);
                     entityP2->addComponent<indie::ecs::component::Collide>();
                     entityP2->addComponent<indie::ecs::component::Destroyable>();
                     entityP2->addComponent<indie::ecs::component::Inventory>();
@@ -375,7 +359,7 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                         std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_3);
                     entityP3->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                         static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                    entityP3->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), GREEN);
+                    entityP3->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.18), GREEN);
                     entityP3->addComponent<indie::ecs::component::Collide>();
                     entityP3->addComponent<indie::ecs::component::Destroyable>();
                     entityP3->addComponent<indie::ecs::component::Inventory>();
@@ -389,7 +373,7 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                         std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_4);
                     entityP4->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                         static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                    entityP4->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.2), YELLOW);
+                    entityP4->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.18), YELLOW);
                     entityP4->addComponent<indie::ecs::component::Collide>();
                     entityP4->addComponent<indie::ecs::component::Destroyable>();
                     entityP4->addComponent<indie::ecs::component::Inventory>();
