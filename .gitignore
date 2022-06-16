@@ -10,6 +10,7 @@
 
 # Shame on you!
 vgcore.*
-
+.DS_Store
 doc/output/
 doc/warnings.txt
+SaveFile.txt

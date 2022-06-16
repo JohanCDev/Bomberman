@@ -22,6 +22,7 @@ namespace indie
             /// @brief Sound component
             class Sound : public IComponent {
               public:
+<<<<<<< HEAD
                 /**
                  * @brief Construct a new Sound object
                  * 
@@ -33,6 +34,9 @@ namespace indie
                  * @brief Destroy the Sound object
                  * 
                  */
+=======
+                Sound(std::string soundPath, bool play, float volume = 1.0f);
+>>>>>>> master
                 ~Sound();
                 /**
                  * @brief Get type of the component.
@@ -59,11 +63,16 @@ namespace indie
                  * @return false The sound isn't actually playing
                  */
                 bool getPlay() const;
+<<<<<<< HEAD
                 /**
                  * @brief Set the Sound Path of the component
                  * 
                  * @param soundPath File path to the sound file
                  */
+=======
+                float getVolume() const;
+
+>>>>>>> master
                 void setSoundPath(std::string soundPath);
                 /**
                  * @brief Set the Sound stream of the component
@@ -77,6 +86,7 @@ namespace indie
                  * @param play Play the sound or not
                  */
                 void setPlay(bool play);
+                void setVolume(float volume);
 
               private:
                 /**
@@ -89,6 +99,7 @@ namespace indie
                  * 
                  */
                 bool _play;
+                float _volume;
             };
         } // namespace component
     }     // namespace ecs

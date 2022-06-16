@@ -90,6 +90,13 @@ namespace indie
                  */
                 void setWallPass(bool bonus);
 
+                /**
+                 * @brief Set the bonus status
+                 *
+                 * @param type of the bonus
+                 */
+                void setBonus(indie::ecs::component::bonusType type);
+
               private:
                 /**
                  * @brief True if bonus is good, False if not

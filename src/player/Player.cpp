@@ -15,20 +15,17 @@ namespace indie
 {
     namespace player
     {
-        Player::Player(Color color, short unsigned int controllerId, vec2u pos)
+        Player::Player(Color color, short unsigned int controllerId, bool isAlive, bool isPlaying,
+            unsigned short bombRadius, unsigned short bombStock, unsigned short maxBombStock, unsigned int speed)
         {
             this->_color = color;
             this->_controllerId = controllerId;
-            this->_pos = pos;
-            this->_isAlive = true;
-            this->_bombRadius = 1;
-            this->_bombStock = 4;
-            this->_maxBombStock = 4;
-            this->_crossWalls = false;
-            this->_nbBombRadiusBonus = 0;
-            this->_nbBombStockBonus = 0;
-            this->_nbSpeedBonus = 0;
-            this->_speed = 10;
+            this->_isAlive = isAlive;
+            this->_isPlaying = isPlaying;
+            this->_bombRadius = bombRadius;
+            this->_bombStock = bombStock;
+            this->_maxBombStock = maxBombStock;
+            this->_speed = speed;
         }
 
         ////////////////////////////////////////////
@@ -43,11 +40,6 @@ namespace indie
         bool Player::getIsPlaying() const
         {
             return (this->_isPlaying);
-        }
-
-        bool Player::getCrossWalls() const
-        {
-            return (this->_crossWalls);
         }
 
         short unsigned int Player::getBombRadius() const
@@ -75,26 +67,6 @@ namespace indie
             return (this->_controllerId);
         }
 
-        short unsigned int Player::getNbBombRadiusBonus() const
-        {
-            return (this->_nbBombRadiusBonus);
-        }
-
-        short unsigned int Player::getNbBombStockBonus() const
-        {
-            return (this->_nbBombStockBonus);
-        }
-
-        short unsigned int Player::getNbSpeedBonus() const
-        {
-            return (this->_nbSpeedBonus);
-        }
-
-        vec2u Player::getPos() const
-        {
-            return (this->_pos);
-        }
-
         Color Player::getColor() const
         {
             return (this->_color);
@@ -117,11 +89,6 @@ namespace indie
         void Player::setControllerId(short unsigned int controllerId)
         {
             this->_controllerId = controllerId;
-        }
-
-        void Player::setCrossWalls(bool crossWalls)
-        {
-            this->_crossWalls = crossWalls;
         }
 
         void Player::setBombRadius(short unsigned int value)
@@ -147,26 +114,6 @@ namespace indie
         void Player::changeSpeed(short int difference)
         {
             this->_speed += difference;
-        }
-
-        void Player::setNbBombRadiusBonus(short unsigned int value)
-        {
-            this->_nbBombRadiusBonus = value;
-        }
-
-        void Player::setNbBombStockBonus(short unsigned int value)
-        {
-            this->_nbBombStockBonus = value;
-        }
-
-        void Player::setNbSpeedBonus(short unsigned int value)
-        {
-            this->_nbSpeedBonus = value;
-        }
-
-        void Player::setPos(vec2u position)
-        {
-            this->_pos = position;
         }
 
         void Player::setColor(Color color)

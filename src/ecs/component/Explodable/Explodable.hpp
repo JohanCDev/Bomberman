@@ -12,6 +12,7 @@
 #pragma once
 
 #include <chrono>
+#include "../../entity/Entity.hpp"
 #include "../IComponent.hpp"
 
 namespace indie
@@ -71,9 +72,21 @@ namespace indie
                  */
                 void setExploded(bool exploded);
                 /**
-                 * @brief Get the explosion Range
+                 * @brief Set the state of the bomb explosion
                  * 
-                 * @return float Explosion range
+                 * @param explode True if bomb has exploded , False otherwise
+                 */
+                void setExplode(bool explode);
+                /**
+                 * @brief Set the Player to the component
+                 * 
+                 * @param player The player's number
+                 */
+                void setPlayer(int player);
+                /**
+                 * @brief Get the Range of explosion
+                 * 
+                 * @return float Range of explosion
                  */
                 float getRange() const;
                 /**
@@ -97,9 +110,22 @@ namespace indie
                  */
                 bool getExploded() const;
                 /**
-                 * @brief Start the chrono for explosion time
+                 * @brief Get the state of the bomb explosion bis
                  * 
-                 * @return std::chrono::time_point<std::chrono::system_clock>  The start time
+                 * @return true Bomb has exploded
+                 * @return false Bomb hasn't exploded
+                 */
+                bool getExplode() const;
+                /**
+                 * @brief Get the Player number
+                 * 
+                 * @return int Player's number
+                 */
+                int getPlayer() const;
+                /**
+                 * @brief Get the Time point start 
+                 * 
+                 * @return std::chrono::time_point<std::chrono::system_clock> Time point start
                  */
                 std::chrono::time_point<std::chrono::system_clock> getTStart() const;
                 /**
@@ -126,6 +152,11 @@ namespace indie
                  */
                 bool _dropped;
                 /**
+                 * @brief State for explode
+                 * 
+                 */
+                bool _explode;
+                /**
                  * @brief State for bomb explosion
                  * 
                  */
@@ -140,6 +171,11 @@ namespace indie
                  * 
                  */
                 std::chrono::seconds _seconds;
+                /**
+                 * @brief Player's number
+                 * 
+                 */
+                int _player;
             };
         } // namespace component
     }     // namespace ecs

@@ -8,6 +8,7 @@
 #include "Game.hpp"
 #include <algorithm>
 #include <chrono>
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include "../ecs/system/Collide/Collide.hpp"
@@ -26,19 +27,20 @@
 indie::Game::Game(size_t baseFps)
 {
     _fps = baseFps;
-    _players.push_back(player::Player(BLUEPLAYERCOLOR, 0, {0, 0}));
-    _players.push_back(player::Player(REDPLAYERCOLOR, 1, {0, 0}));
-    _players.push_back(player::Player(GREENPLAYERCOLOR, 2, {0, 0}));
-    _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3, {0, 0}));
+    _players.push_back(player::Player(BLUEPLAYERCOLOR, 0));
+    _players.push_back(player::Player(REDPLAYERCOLOR, 1));
+    _players.push_back(player::Player(GREENPLAYERCOLOR, 2));
+    _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3));
     _actualScreen = Screens::Menu;
+    initSounds();
     _menu = new indie::menu::MenuScreen;
-    _game = new indie::menu::GameScreen(&_players);
+    _game = new indie::menu::GameScreen(&_players, &_sound_entities, &_sound_systems);
     _premenu = new indie::menu::PreMenuScreen(&_players);
     _gameoptions = new indie::menu::GameOptionsScreen;
     _end = new indie::menu::EndScreen;
     _setFps = new indie::menu::SetFpsScreen;
-    _setSound = new indie::menu::SetSoundScreen;
-    _setMusic = new indie::menu::SetMusicScreen;
+    _setSound = new indie::menu::SetSoundScreen(&_sound_entities);
+    _setMusic = new indie::menu::SetMusicScreen(&_musics);
 }
 
 indie::Game::~Game()
@@ -53,7 +55,53 @@ indie::Game::~Game()
     delete _setMusic;
 }
 
-void indie::Game::init_scenes()
+void indie::Game::init()
+{
+    initScenes();
+    initMusic();
+    _musics[MENU_SOUND].play();
+}
+
+void indie::Game::initMusic()
+{
+    indie::raylib::Sound menuSound("assets/music/music.ogg");
+    menuSound.setVolume(1.0f);
+    _musics.insert({MENU_SOUND, menuSound});
+}
+
+void indie::Game::initSounds()
+{
+    std::unique_ptr<ecs::entity::Entity> bombSound = std::make_unique<ecs::entity::Entity>();
+    bombSound->addComponent<ecs::component::Sound>("assets/sound/bomb.ogg", false);
+    addSoundEntity(std::move(bombSound));
+
+    std::unique_ptr<ecs::entity::Entity> gameReadySound = std::make_unique<ecs::entity::Entity>();
+    gameReadySound->addComponent<ecs::component::Sound>("assets/sound/game_ready.ogg", false);
+    addSoundEntity(std::move(gameReadySound));
+
+    std::unique_ptr<ecs::entity::Entity> selectSound = std::make_unique<ecs::entity::Entity>();
+    selectSound->addComponent<ecs::component::Sound>("assets/sound/select.ogg", false);
+    addSoundEntity(std::move(selectSound));
+
+    std::unique_ptr<ecs::entity::Entity> ticTacSound = std::make_unique<ecs::entity::Entity>();
+    ticTacSound->addComponent<ecs::component::Sound>("assets/sound/tictac.ogg", false);
+    addSoundEntity(std::move(ticTacSound));
+
+    std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
+    addSoundSystem(std::move(soundSystem));
+}
+
+void indie::Game::addSoundEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
+{
+    this->_sound_entities.push_back(std::move(entity));
+}
+
+void indie::Game::addSoundSystem(std::unique_ptr<indie::ecs::system::ISystem> system)
+{
+    this->_sound_systems.push_back(std::move(system));
+}
+
+void indie::Game::initScenes()
 {
     _menu->init();
     _game->init();
@@ -132,53 +180,110 @@ int indie::Game::handleEvent()
     return true;
 }
 
-void indie::Game::init()
-{
-    init_scenes();
-}
-
 void indie::Game::run()
 {
     while (!indie::raylib::Window::windowShouldClose()) {
+        if (!_musics[MENU_SOUND].isPlaying()) {
+            _musics[MENU_SOUND].play();
+        }
         if (!processEvents())
             break;
         update();
         draw();
     }
+    destroy();
+}
+
+void indie::Game::destroy()
+{
+    destroyEntities();
+    destroySystems();
     indie::raylib::Window::destroyWindow();
+}
+
+void indie::Game::destroyEntities()
+{
+    std::vector<std::unique_ptr<indie::ecs::entity::Entity>>::iterator _it_sound_entities = _sound_entities.begin();
+
+    while (_it_sound_entities != _sound_entities.end()) {
+        _it_sound_entities->reset();
+        ++_it_sound_entities;
+    }
+}
+
+void indie::Game::destroySystems()
+
+{
+    std::vector<std::unique_ptr<indie::ecs::system::ISystem>>::iterator _it_sound_systems = _sound_systems.begin();
+
+    while (_it_sound_systems != _sound_systems.end()) {
+        _it_sound_systems->reset();
+        ++_it_sound_systems;
+    }
+}
+
+void indie::Game::setSoundEvent(int entitiesIndex)
+{
+    _sound_entities.at(entitiesIndex)
+        ->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)
+        ->setPlay(true);
+    for (auto &system : this->_sound_systems) {
+        system->update(this->_sound_entities);
+    }
+    _sound_entities.at(entitiesIndex)
+        ->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)
+        ->setPlay(false);
 }
 
 void indie::Game::handleScreensSwap(int ret)
 {
     if (ret == 1) {
+        setSoundEvent(SELECT_S);
         reinitGame();
         setActualScreen(Screens::Menu);
     }
-    if (ret == 2)
+    if (ret == 2) {
+        setSoundEvent(GAME_READY_S);
         setActualScreen(Screens::Game);
-    if (ret == 3)
+    }
+    if (ret == 3) {
+        setSoundEvent(SELECT_S);
         setActualScreen(Screens::PreMenu);
-    if (ret == 4)
+    }
+    if (ret == 4) {
         setActualScreen(Screens::GameOptions);
-    if (ret == 5)
+    }
+    if (ret == 5) {
+        setSoundEvent(SELECT_S);
         setActualScreen(Screens::End);
-    if (ret == 6)
+    }
+    if (ret == 6) {
+        setSoundEvent(SELECT_S);
         setActualScreen(Screens::SetMusic);
-    if (ret == 7)
+    }
+    if (ret == 7) {
+        setSoundEvent(SELECT_S);
         setActualScreen(Screens::SetSound);
-    if (ret == 8)
+    }
+    if (ret == 8) {
+        setSoundEvent(SELECT_S);
         setActualScreen(Screens::SetFps);
+    }
+    if (ret == 11)
+        saveGame();
+    if (ret == 12)
+        loadGame();
 }
 
 void indie::Game::reinitGame()
 {
     _players.clear();
-    _players.push_back(player::Player(BLUEPLAYERCOLOR, 0, {0, 0}));
-    _players.push_back(player::Player(REDPLAYERCOLOR, 1, {0, 0}));
-    _players.push_back(player::Player(GREENPLAYERCOLOR, 2, {0, 0}));
-    _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3, {0, 0}));
+    _players.push_back(player::Player(BLUEPLAYERCOLOR, 0));
+    _players.push_back(player::Player(REDPLAYERCOLOR, 1));
+    _players.push_back(player::Player(GREENPLAYERCOLOR, 2));
+    _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3));
     delete _game;
-    _game = new indie::menu::GameScreen(&_players);
+    _game = new indie::menu::GameScreen(&_players, &_sound_entities, &_sound_systems);
     _game->init();
     delete _premenu;
     _premenu = new indie::menu::PreMenuScreen(&_players);
@@ -188,4 +293,20 @@ void indie::Game::reinitGame()
 void indie::Game::setActualScreen(Screens newScreen)
 {
     _actualScreen = newScreen;
+}
+
+void indie::Game::saveGame()
+{
+    _game->saveMapEntities();
+    setActualScreen(Screens::GameOptions);
+}
+
+void indie::Game::loadGame()
+{
+    if (!_game->loadSavedMap()) {
+        std::cout << "No game to load" << std::endl;
+        return;
+    }
+    _game->initEntity();
+    setActualScreen(Screens::Game);
 }

@@ -4,9 +4,9 @@
  * @brief The screen for the options of the game
  * @version 0.1
  * @date 2022-06-13
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include "GameOptionsScreen.hpp"
@@ -125,20 +125,44 @@ int indie::menu::GameOptionsScreen::handleEvent(indie::Event &event)
         transformCompo->update(tools::Tools::getPercentage(33.f, true), checkCursorPosition(false), 0.0f, 0.0f);
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
-        && _cursorPosition == MENU)
+        && _cursorPosition == MENU) {
+        if (_entities.size() == 11)
+            _entities.erase(_entities.begin() + 10);
         return 1;
+    }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
-        && _cursorPosition == RESUME)
+        && _cursorPosition == RESUME) {
+        if (_entities.size() == 11)
+            _entities.erase(_entities.begin() + 10);
         return 2;
+    }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
-        && _cursorPosition == MUSIC)
+        && _cursorPosition == SAVE) {
+        std::unique_ptr<ecs::entity::Entity> save = std::make_unique<ecs::entity::Entity>();
+        save->addComponent<ecs::component::Transform>(
+            tools::Tools::getPercentage(60.f, true), tools::Tools::getPercentage(34.f, false), 0.0f, 0.0f);
+        save->addComponent<ecs::component::Drawable2D>("Game saved !", tools::Tools::getPercentage(5.f, false), WHITE);
+        addEntity(std::move(save));
+        return 11;
+    }
+    if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
+        && _cursorPosition == MUSIC) {
+        if (_entities.size() == 11)
+            _entities.erase(_entities.begin() + 10);
         return 6;
+    }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
-        && _cursorPosition == SOUND)
+        && _cursorPosition == SOUND) {
+        if (_entities.size() == 11)
+            _entities.erase(_entities.begin() + 10);
         return 7;
+    }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
-        && _cursorPosition == FPS)
+        && _cursorPosition == FPS) {
+        if (_entities.size() == 11)
+            _entities.erase(_entities.begin() + 10);
         return 8;
+    }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
         && _cursorPosition == EXIT)
         return 10;

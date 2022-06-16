@@ -53,19 +53,16 @@ namespace indie
                     auto otherEntityCollide, auto otherEntityDrawable,
                     indie::ecs::component::Transform *otherTransform);
                 /**
-                 * @brief Check collisions between cubes
+                 * @brief Check collisions between spheres
                  * 
-                 * @param collide The collide component
-                 * @param transform The transform component
-                 * @param drawable The drawable component
-                 * @param otherEntityTransform The other transform component
-                 * @param otherEntityCollide The other collide component
-                 * @param otherEntityDrawable The other drawable component
+                 * @param entity Sphere entity
+                 * @param otherEntity Other entity
+                 * @param compoToRemove Component to remove
+                 * @param count Counter
                  */
-                void checkSphereCollision(auto collide, auto transform, auto drawable,
-                    indie::ecs::component::Transform *otherEntityTransform,
-                    indie::ecs::component::Collide *otherEntityCollide,
-                    indie::ecs::component::Drawable3D *otherEntityDrawable);
+                void checkSphereCollision(std::unique_ptr<indie::ecs::entity::Entity> &entity,
+                    std::unique_ptr<indie::ecs::entity::Entity> &otherEntity, std::vector<int> &compoToRemove,
+                    int &count);
 
                 /**
                  * @brief Get the type of system.

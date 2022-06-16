@@ -37,6 +37,8 @@ namespace indie
       public:
         /// @brief enum containing all navigable screens
         enum class Screens { Menu = 1, Game, PreMenu, GameOptions, End, SetMusic, SetSound, SetFps, Count };
+        enum Sounds { BOMB_S = 0, GAME_READY_S = 1, SELECT_S = 2};
+        enum Musics { MENU_SOUND };
         /// @brief Constructor
         /// @param baseFps base fps (60 by default)
         Game(size_t baseFps = 60);
@@ -58,7 +60,12 @@ namespace indie
         /// @return int The scene number
         int handleEvent();
         /// @brief Init all scenes
-        void init_scenes();
+        void initScenes();
+        void initSounds();
+        void initMusic();
+        void destroy();
+        void destroyEntities();
+        void destroySystems();
         /// @brief Swap between screens
         /// @param ret Scene number
         void handleScreensSwap(int ret);
@@ -67,7 +74,14 @@ namespace indie
         /// @brief Set the actual screen
         /// @param newScreen The new screen
         void setActualScreen(Screens newScreen);
+        void setSoundEvent(int entititesIndex);
+        /// @brief Save the current game
+        void saveGame();
+        /// @brief Load the last saved game
+        void loadGame();
 
+        void addSoundEntity(std::unique_ptr<indie::ecs::entity::Entity> entity);
+        void addSoundSystem(std::unique_ptr<indie::ecs::system::ISystem> system);
       protected:
       private:
         /// @brief Actual screen
@@ -94,6 +108,10 @@ namespace indie
         indie::menu::SetMusicScreen *_setMusic;
         /// @brief Actual Event
         indie::Event _event;
+        std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _sound_entities;
+        std::vector<std::unique_ptr<indie::ecs::system::ISystem>> _sound_systems;
+        std::map <int, indie::raylib::Sound> _musics;
+
     };
 } // namespace indie
 

@@ -11,13 +11,42 @@
 
 #include "Sound.hpp"
 
-indie::raylib::Sound::Sound(const std::string &fileName)
+indie::raylib::Sound::Sound(const std::string &fileName) : _volume(1)
 {
     _sound = ::LoadSound(fileName.c_str());
 }
 
-void indie::raylib::Sound::play(::Sound sound)
+::Sound indie::raylib::Sound::getSound() const
 {
+    return _sound;
+}
+
+void indie::raylib::Sound::initAudioDevice()
+{
+    ::InitAudioDevice();
+}
+
+::Sound indie::raylib::Sound::load(const char *fileName)
+{
+    return ::LoadSound(fileName);
+}
+
+void indie::raylib::Sound::update(::Sound sound, const void *data, int samplesCount)
+{
+    ::UpdateSound(sound, data, samplesCount);
+}
+
+void indie::raylib::Sound::unload(::Sound sound)
+{
+    ::UnloadSound(sound);
+}
+
+void indie::raylib::Sound::unload()
+{
+    ::UnloadSound(_sound);
+}
+
+void indie::raylib::Sound::play(::Sound sound) {
     ::PlaySound(sound);
 }
 
@@ -56,14 +85,21 @@ void indie::raylib::Sound::resume()
     ::ResumeSound(_sound);
 }
 
-void indie::raylib::Sound::setVolume(::Sound sound, float volume)
+float indie::raylib::Sound::getVolume() const
 {
-    ::SetSoundVolume(sound, volume);
+    return _volume;
 }
+
+// void indie::raylib::Sound::setVolume(::Sound sound, float volume)
+// {
+//     ::SetSoundVolume(sound, volume);
+//     _volume = volume;
+// }
 
 void indie::raylib::Sound::setVolume(float volume)
 {
     ::SetSoundVolume(_sound, volume);
+    _volume = volume;
 }
 
 void indie::raylib::Sound::setPitch(float pitch)

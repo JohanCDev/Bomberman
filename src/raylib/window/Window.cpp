@@ -21,9 +21,12 @@ indie::raylib::Window::Window(int width, int height, const std::string title, bo
         ::SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
     else
         ::SetConfigFlags(FLAG_VSYNC_HINT);
+
     ::InitWindow(width, height, title.c_str());
+
     ::SetTargetFPS(baseFps);
     ::MaximizeWindow();
+    indie::raylib::Sound::initAudioDevice();
 }
 
 indie::raylib::Window *indie::raylib::Window::getInstance(
