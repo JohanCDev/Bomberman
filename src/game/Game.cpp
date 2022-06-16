@@ -37,7 +37,6 @@ indie::Game::Game(size_t baseFps)
     _game = new indie::menu::GameScreen(&_players, &_sound_entities, &_sound_systems);
     _premenu = new indie::menu::PreMenuScreen(&_players);
     _gameoptions = new indie::menu::GameOptionsScreen;
-    _end = new indie::menu::EndScreen;
     _setFps = new indie::menu::SetFpsScreen;
     _setSound = new indie::menu::SetSoundScreen(&_sound_entities);
     _setMusic = new indie::menu::SetMusicScreen(&_musics);
@@ -49,7 +48,6 @@ indie::Game::~Game()
     delete _game;
     delete _premenu;
     delete _gameoptions;
-    delete _end;
     delete _setFps;
     delete _setSound;
     delete _setMusic;
@@ -107,7 +105,6 @@ void indie::Game::initScenes()
     _game->init();
     _premenu->init();
     _gameoptions->init();
-    _end->init();
     _setFps->init();
     _setSound->init();
     _setMusic->init();
@@ -141,7 +138,6 @@ void indie::Game::update()
         case Screens::Game: _game->update(); break;
         case Screens::PreMenu: _premenu->update(); break;
         case Screens::GameOptions: _gameoptions->update(); break;
-        case Screens::End: _end->update(); break;
         case Screens::SetFps: _setFps->update(); break;
         case Screens::SetSound: _setSound->update(); break;
         case Screens::SetMusic: _setMusic->update(); break;
@@ -156,7 +152,6 @@ void indie::Game::draw()
         case Screens::Game: _game->draw(); break;
         case Screens::PreMenu: _premenu->draw(); break;
         case Screens::GameOptions: _gameoptions->draw(); break;
-        case Screens::End: _end->draw(); break;
         case Screens::SetFps: _setFps->draw(); break;
         case Screens::SetSound: _setSound->draw(); break;
         case Screens::SetMusic: _setMusic->draw(); break;
@@ -171,7 +166,6 @@ int indie::Game::handleEvent()
         case Screens::Game: return (_game->handleEvent(_event));
         case Screens::PreMenu: return (_premenu->handleEvent(_event));
         case Screens::GameOptions: return (_gameoptions->handleEvent(_event));
-        case Screens::End: return (_end->handleEvent(_event));
         case Screens::SetFps: return (_setFps->handleEvent(_event));
         case Screens::SetSound: return (_setSound->handleEvent(_event));
         case Screens::SetMusic: return (_setMusic->handleEvent(_event));
@@ -255,17 +249,13 @@ void indie::Game::handleScreensSwap(int ret)
     }
     if (ret == 5) {
         setSoundEvent(SELECT_S);
-        setActualScreen(Screens::End);
+        setActualScreen(Screens::SetMusic);
     }
     if (ret == 6) {
         setSoundEvent(SELECT_S);
-        setActualScreen(Screens::SetMusic);
-    }
-    if (ret == 7) {
-        setSoundEvent(SELECT_S);
         setActualScreen(Screens::SetSound);
     }
-    if (ret == 8) {
+    if (ret == 7) {
         setSoundEvent(SELECT_S);
         setActualScreen(Screens::SetFps);
     }

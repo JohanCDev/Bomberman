@@ -35,18 +35,20 @@ namespace indie
     {
         /**
          * @brief Class for the Game Screen
-         * 
+         *
          */
         class GameScreen : public IScreen {
           public:
             /**
              * @brief Construct a new Game Screen object
-             * 
+             *
              * @param players vector of players pointer
              * @param _soundEntities vector of entities for sound
              * @param soundSystems Vector of systems for sound
              */
-            GameScreen(std::vector<player::Player> *players, std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *_soundEntities, std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *soundSystems);
+            GameScreen(std::vector<player::Player> *players,
+                std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *_soundEntities,
+                std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *soundSystems);
             /**
              * @brief Destroy the Game Screen object
              *
@@ -129,7 +131,7 @@ namespace indie
 
             /**
              * @brief Compare two colors
-             * 
+             *
              * @param a Color 1
              * @param b Color 2
              *
@@ -151,11 +153,26 @@ namespace indie
             bool loadSavedMap();
             /**
              * @brief Init the right entity from a string
-             * 
+             *
              * @param args vector of strings for entities
              *
              */
             void initRightEntity(std::vector<std::string> args);
+            int countAlivePlayers();
+            /**
+             * @brief Count alive players
+             *
+             */
+            int getWinner();
+            /**
+             * @brief Get last player alive
+             *
+             */
+            void endScreenDisplay();
+            /**
+             * @brief Display of the winner after the end of the game
+             *
+             */
 
           private:
             /**
@@ -213,6 +230,12 @@ namespace indie
              *
              */
             bool _player4_yellow;
+            /**
+             * @brief Player4 is alive or not
+             *
+             */
+            bool _is_game_finished;
+            bool _end_screen_display;
         };
     } // namespace menu
 } // namespace indie

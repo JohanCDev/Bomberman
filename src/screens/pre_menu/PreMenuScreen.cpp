@@ -42,7 +42,7 @@ void indie::menu::PreMenuScreen::init()
     player1->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(7.f, true), tools::Tools::getPercentage(37.5f, false), 0.0f, 0.0f);
     player1->addComponent<ecs::component::Drawable2D>(
-        "assets/blue.png", tools::Tools::getPercentage(25.f, false), tools::Tools::getPercentage(20.f, true), WHITE);
+        "assets/blue.png", tools::Tools::getPercentage(25.f, false), tools::Tools::getPercentage(25.f, false), WHITE);
     addEntity(std::move(player1));
 
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemPreMenu =
@@ -163,8 +163,8 @@ void indie::menu::PreMenuScreen::handlePlayer2(indie::Event &event)
         std::unique_ptr<ecs::entity::Entity> player2 = std::make_unique<ecs::entity::Entity>();
         player2->addComponent<ecs::component::Transform>(
             tools::Tools::getPercentage(29.f, true), tools::Tools::getPercentage(37.5f, false), 0.0f, 0.0f);
-        player2->addComponent<ecs::component::Drawable2D>(
-            "assets/red.png", tools::Tools::getPercentage(25.f, false), tools::Tools::getPercentage(20.f, true), WHITE);
+        player2->addComponent<ecs::component::Drawable2D>("assets/red.png", tools::Tools::getPercentage(28.f, false),
+            tools::Tools::getPercentage(28.f, false), WHITE);
         addEntity(std::move(player2));
         _nb_players++;
         _player2_pos = _entities.size() - 1;
@@ -211,8 +211,8 @@ void indie::menu::PreMenuScreen::handlePlayer3(indie::Event &event)
         std::unique_ptr<ecs::entity::Entity> player3 = std::make_unique<ecs::entity::Entity>();
         player3->addComponent<ecs::component::Transform>(
             tools::Tools::getPercentage(52.f, true), tools::Tools::getPercentage(37.5f, false), 0.0f, 0.0f);
-        player3->addComponent<ecs::component::Drawable2D>("assets/green.png", tools::Tools::getPercentage(25.f, false),
-            tools::Tools::getPercentage(20.f, true), WHITE);
+        player3->addComponent<ecs::component::Drawable2D>("assets/green.png", tools::Tools::getPercentage(28.f, false),
+            tools::Tools::getPercentage(28.f, false), WHITE);
         addEntity(std::move(player3));
         _player3_pos = _entities.size() - 1;
         _nb_players++;
@@ -259,8 +259,8 @@ void indie::menu::PreMenuScreen::handlePlayer4(indie::Event &event)
         std::unique_ptr<ecs::entity::Entity> player4 = std::make_unique<ecs::entity::Entity>();
         player4->addComponent<ecs::component::Transform>(
             tools::Tools::getPercentage(74.f, true), tools::Tools::getPercentage(37.5f, false), 0.0f, 0.0f);
-        player4->addComponent<ecs::component::Drawable2D>("assets/yellow.png", tools::Tools::getPercentage(25.f, false),
-            tools::Tools::getPercentage(20.f, true), WHITE);
+        player4->addComponent<ecs::component::Drawable2D>("assets/yellow.png", tools::Tools::getPercentage(28.f, false),
+            tools::Tools::getPercentage(28.f, false), WHITE);
         addEntity(std::move(player4));
         _player4_pos = _entities.size() - 1;
         _nb_players++;
