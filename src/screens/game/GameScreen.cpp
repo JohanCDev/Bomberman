@@ -47,6 +47,10 @@ void indie::menu::GameScreen::init()
     entityX->addComponent<indie::ecs::component::Drawable3D>(
         "", static_cast<float>(10.5), static_cast<float>(0.05), static_cast<float>(10), LIGHTGRAY);
     entityX->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM)->setZ(-0.25);
+    _playerAssets[0] = std::string("./assets/blue.png");
+    _playerAssets[1] = std::string("./assets/red.png");
+    _playerAssets[2] = std::string("./assets/green.png");
+    _playerAssets[3] = std::string("./assets/yellow.png");
     this->addEntity(std::move(entityX));
     this->addSystem(std::move(draw2DSystem));
     this->addSystem(std::move(draw3DSystem));
@@ -732,40 +736,14 @@ void indie::menu::GameScreen::endScreenDisplay()
     addEntity(std::move(winner_is));
     std::unique_ptr<ecs::entity::Entity> return_to_menu = std::make_unique<ecs::entity::Entity>();
     return_to_menu->addComponent<ecs::component::Transform>(
-        tools::Tools::getPercentage(25.f, true), tools::Tools::getPercentage(70.f, false), 0.0f, 0.0f);
+        tools::Tools::getPercentage(28.f, true), tools::Tools::getPercentage(70.f, false), 0.0f, 0.0f);
     return_to_menu->addComponent<ecs::component::Drawable2D>(
-        "Press Triangle to go back to the menu", tools::Tools::getPercentage(5.f, false), WHITE);
+        "Press Triangle to go back to the menu", tools::Tools::getPercentage(4.f, false), WHITE);
     addEntity(std::move(return_to_menu));
-    if (getWinner() == 0) {
-        std::unique_ptr<ecs::entity::Entity> player1 = std::make_unique<ecs::entity::Entity>();
-        player1->addComponent<ecs::component::Transform>(
-            tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(35.f, false), 0.0f, 0.0f);
-        player1->addComponent<ecs::component::Drawable2D>("assets/blue.png", tools::Tools::getPercentage(30.f, false),
-            tools::Tools::getPercentage(30.f, false), WHITE);
-        addEntity(std::move(player1));
-    }
-    if (getWinner() == 1) {
-        std::unique_ptr<ecs::entity::Entity> player2 = std::make_unique<ecs::entity::Entity>();
-        player2->addComponent<ecs::component::Transform>(
-            tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(35.f, false), 0.0f, 0.0f);
-        player2->addComponent<ecs::component::Drawable2D>("assets/red.png", tools::Tools::getPercentage(28.f, false),
-            tools::Tools::getPercentage(28.f, false), WHITE);
-        addEntity(std::move(player2));
-    }
-    if (getWinner() == 2) {
-        std::unique_ptr<ecs::entity::Entity> player3 = std::make_unique<ecs::entity::Entity>();
-        player3->addComponent<ecs::component::Transform>(
-            tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(35.f, false), 0.0f, 0.0f);
-        player3->addComponent<ecs::component::Drawable2D>("assets/green.png", tools::Tools::getPercentage(28.f, false),
-            tools::Tools::getPercentage(28.f, false), WHITE);
-        addEntity(std::move(player3));
-    }
-    if (getWinner() == 3) {
-        std::unique_ptr<ecs::entity::Entity> player4 = std::make_unique<ecs::entity::Entity>();
-        player4->addComponent<ecs::component::Transform>(
-            tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(35.f, false), 0.0f, 0.0f);
-        player4->addComponent<ecs::component::Drawable2D>("assets/yellow.png", tools::Tools::getPercentage(28.f, false),
-            tools::Tools::getPercentage(28.f, false), WHITE);
-        addEntity(std::move(player4));
-    }
+    std::unique_ptr<ecs::entity::Entity> winner = std::make_unique<ecs::entity::Entity>();
+    winner->addComponent<ecs::component::Transform>(
+        tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(35.f, false), 0.0f, 0.0f);
+    winner->addComponent<ecs::component::Drawable2D>(
+        _playerAssets[3], tools::Tools::getPercentage(30.f, false), tools::Tools::getPercentage(30.f, false), WHITE);
+    addEntity(std::move(winner));
 }

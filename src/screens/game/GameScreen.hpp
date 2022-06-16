@@ -13,6 +13,7 @@
 #define GAMESCREEN_HPP_
 
 #include <fstream>
+#include <map>
 #include <memory>
 #include <sstream>
 #include <vector>
@@ -210,6 +211,7 @@ namespace indie
              *
              */
             indie::raylib::Camera3D _camera;
+            std::map<int, std::string> _playerAssets;
             /**
              * @brief Player1 is alive or not
              *
@@ -235,6 +237,10 @@ namespace indie
              *
              */
             bool _is_game_finished;
+            /**
+             * @brief Is the end screen displayed?
+             *
+             */
             bool _end_screen_display;
         };
     } // namespace menu
