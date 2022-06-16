@@ -288,7 +288,7 @@ void indie::menu::GameScreen::handleMultipleController(
     if (_entities.back()->hasCompoType(indie::ecs::component::EXPLODABLE) == true) {
         auto bomb =
             _entities.back()->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE);
-        if (bomb->getExploded() == true) {
+        if (bomb->getExplode() == true) {
             _soundEntities->at(0)->getComponent<ecs::component::Sound>(ecs::component::compoType::SOUND)->setPlay(true);
             for (auto &system : *this->_soundSystems) {
                 system->update(*this->_soundEntities);
