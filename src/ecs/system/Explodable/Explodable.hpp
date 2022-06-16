@@ -12,6 +12,7 @@
 #ifndef EXPLODABLE_HPP_
 #define EXPLODABLE_HPP_
 
+#include <map>
 #include "../ISystem.hpp"
 
 namespace indie
@@ -31,6 +32,11 @@ namespace indie
                     std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities,
                     indie::ecs::component::Explodable *explodableCompo,
                     indie::ecs::component::Transform *transformCompo);
+
+                float getValue(float position, float index, char operand);
+
+                std::map<size_t, indie::ecs::entity::Entity *> getEntityByPosition(
+                    std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities, float x, float y);
 
                 indie::ecs::system::SystemType getSystemType() const;
 
