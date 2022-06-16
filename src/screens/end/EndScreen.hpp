@@ -21,6 +21,10 @@ namespace indie
 {
     namespace menu
     {
+        /**
+         * @brief Class for the End Screen
+         * 
+         */
         class EndScreen : public IScreen {
           public:
             /**

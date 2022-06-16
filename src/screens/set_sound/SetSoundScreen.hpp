@@ -23,6 +23,10 @@ namespace indie
 {
     namespace menu
     {
+        /**
+         * @brief Class for the Set Sound Screen
+         * 
+         */
         class SetSoundScreen : public IScreen {
             /**
              * @brief Cursor enum for sound choice
@@ -40,6 +44,7 @@ namespace indie
             /**
              * @brief Set the Sound Screen object
              *
+             * @param sounds Vector of sounds entity for screen
              */
             SetSoundScreen(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *sounds);
             /**
@@ -63,6 +68,8 @@ namespace indie
             void draw() override;
             /**
              * @brief Set sounds
+             * 
+             * @param volume Sound volume
              *
              */
             void setSounds(float volume);

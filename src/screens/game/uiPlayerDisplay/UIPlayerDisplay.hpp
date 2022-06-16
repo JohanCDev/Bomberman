@@ -29,6 +29,10 @@ namespace indie
         {
             namespace uiPlayerDisplay
             {
+                /**
+                * @brief Class for the Player's UI
+                * 
+                */
                 class UIPlayerDisplay {
                   public:
                     /**

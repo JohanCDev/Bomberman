@@ -18,64 +18,126 @@ namespace indie
 {
     namespace raylib
     {
-        /// Sphere class encapsulation
+        /// @brief Sphere class encapsulation
         class Sphere {
           public:
-            Sphere(::Vector3 centerPos, float radius, ::Color color = BLACK);
-            ~Sphere() = default;
-
             /**
-             * @brief Get cube center position
+             * @brief Construct a new Sphere object
+             * 
+             * @param centerPos Sphere centerPos
+             * @param radius Sphere radius
+             * @param color Sphere color
+             */
+            Sphere(::Vector3 centerPos, float radius, ::Color color = BLACK);
+            /**
+             * @brief Destroy the Sphere object
+             * 
+             */
+            ~Sphere() = default;
+            /**
+             * @brief Get sphere center position
+             * 
+             * @return Vector3 Sphere center pos
              */
             ::Vector3 getCenterPosition() const;
-
             /**
-             * @brief Set cube center position
+             * @brief Set sphere center position
+             * 
+             * @param centerPosition Sphere centerPosition
              */
             void setCenterPosition(::Vector3 centerPosition);
-
             /**
-             * @brief Get cube radius
+             * @brief Get sphere radius
+             * 
+             * @return float Sphere radius
              */
             float getRadius() const;
-
             /**
-             * @brief Set cube radius
+             * @brief Set sphere radius
+             * 
+             * @param radius Sphere radius
              */
             void setRadius(float radius);
-
             /**
-             * @brief Get cube color
+             * @brief Get sphere color
+             * 
+             * @return Color Sphere color
              */
             ::Color getColor() const;
-
             /**
-             * @brief Set cube color
+             * @brief Set sphere color
+             * 
+             * @param color Sphere color
              */
             void setColor(::Color color);
-
             /**
              * @brief Draw sphere
              */
             void draw();
-            static void draw(::Vector3 centerPosition, float radius, ::Color color);
-
             /**
-             * @brief Draw sphere wire
+             * @brief Draw sphere
+             * 
+             * @param centerPosition Sphere centerPosition
+             * @param radius Sphere radius
+             * @param color Sphere color
+             */
+            static void draw(::Vector3 centerPosition, float radius, ::Color color);
+            /**
+             * @brief Draw sphere wires
+             * 
+             * @param rings Sphere rings
+             * @param slices Sphere slices
              */
             void drawWires(int rings, int slices);
+            /**
+             * @brief Draw sphere wires
+             * 
+             * @param centerPosition Sphere centerPosition
+             * @param radius Sphere radius
+             * @param rings Sphere rings
+             * @param slices Sphere slices
+             * @param color Sphere color
+             */
             static void drawWires(::Vector3 centerPosition, float radius, int rings, int slices, ::Color color);
-
             /**
              * @brief Check collision spheres
+             * 
+             * @param sphere2 Sphere position
+             * @param radius2 Sphere radius
+             * 
+             * @return true There is a collision
+             * @return false There isn't a collision
              */
             bool checkCollisionSpheres(const ::Vector3 &sphere2, float radius2);
+            /**
+             * @brief Check collision spheres
+             * 
+             * @param centerPosition Sphere centerPosition
+             * @param radius Sphere radius
+             * @param sphere2 Sphere 2 position
+             * @param radius2 Sphere 2 radius
+             * 
+             * @return true There is a collision
+             * @return false There isn't a collision
+             */
             static bool checkCollisionSpheres(
                 const ::Vector3 &centerPosition, float radius, const ::Vector3 &sphere2, float radius2);
 
           private:
+            /**
+             * @brief Sphere centerPosition vector
+             * 
+             */
             ::Vector3 _centerPosition;
+            /**
+             * @brief Sphere radius value
+             * 
+             */
             float _radius;
+            /**
+             * @brief Sphere color object
+             * 
+             */
             ::Color _color;
         };
     } // namespace raylib

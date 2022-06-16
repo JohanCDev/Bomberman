@@ -23,6 +23,10 @@ namespace indie
 {
     namespace menu
     {
+        /**
+         * @brief Class for the Set Music Screen
+         * 
+         */
         class SetMusicScreen : public IScreen {
           /**
            * @brief Cursor enum for music choice
@@ -39,6 +43,8 @@ namespace indie
           public:
             /**
              * @brief Set the Music Screen object
+             * 
+             * @param musics Map for music on the screen
              *
              */
             SetMusicScreen(std::map <int, indie::raylib::Sound> *musics);

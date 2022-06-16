@@ -22,19 +22,44 @@ namespace indie
     /// @brief IScreen class
     class IScreen {
       public:
-        /// @brief Destructor
+        /**
+         * @brief Destroy the IScreen object
+         * 
+         */
         virtual ~IScreen() = default;
-        /// @brief Initialize the screen
+        /**
+         * @brief Init the screen
+         * 
+         */
         virtual void init() = 0;
-        /// @brief Draw the screen
+        /**
+         * @brief Draw the screen
+         * 
+         */
         virtual void draw() = 0;
-        /// @brief Update the screen
+        /**
+         * @brief Update the screen
+         * 
+         */
         virtual void update() = 0;
-        /// @brief handle events
+        /**
+         * @brief Handle events
+         * 
+         * @param event Event to be handled
+         * @return int The scene number
+         */
         virtual int handleEvent(indie::Event &event) = 0;
-        /// @brief Add an entity to the screen
+        /**
+       * @brief Add entity to the screen
+         * 
+         * @param entity Entity to add to the screen
+         */
         virtual void addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity) = 0;
-        /// @brief Add a system to the screen
+        /**
+         * @brief Add system to the screen
+         * 
+         * @param system System to add to the screen
+         */
         virtual void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) = 0;
     };
 } // namespace indie

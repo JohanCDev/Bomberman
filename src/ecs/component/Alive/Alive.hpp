@@ -23,23 +23,47 @@ namespace indie
             /// @brief Alive component
             class Alive : public IComponent {
               public:
-                /// @brief Constructor
+                /**
+                 * @brief Construct a new Alive object
+                 * 
+                 */
                 Alive();
-                /// @brief Constructor
-                /// @param alive is alive or not
+                /**
+                 * @brief Construct a new Alive object
+                 * 
+                 * @param alive Is alive or not
+                 */
                 Alive(bool alive);
-                /// @brief Destructor
+                /**
+                 * @brief Destroy the Alive object
+                 * 
+                 */
                 ~Alive();
-                /// @brief set the alive value
-                /// @param alive is alive or not
+                /**
+                 * @brief Set alive state
+                 * 
+                 * @param alive True if is alive, False otherwise
+                 */
                 void setAlive(bool alive);
-                /// @brief get the alive value
+                /**
+                 * @brief Get the alive state
+                 * 
+                 * @return true Is alive
+                 * @return false Isn't alive
+                 */
                 bool getAlive() const;
-                /// @brief get the type of the component
+                /**
+                 * @brief Get the Type object
+                 * 
+                 * @return indie::ecs::component::compoType CompoType of the component.
+                 */
                 indie::ecs::component::compoType getType() const;
 
               private:
-                /// @brief is alive or not
+                /**
+                 * @brief Is alive or not
+                 * 
+                 */
                 bool _alive;
             };
         } // namespace component

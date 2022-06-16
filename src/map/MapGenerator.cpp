@@ -1,6 +1,6 @@
 /**
  * @file MapGenerator.cpp
- * @author Victor & Henri (victor.harri-chal@epitech.eu & henri.chauvet@epitech.eu)
+ * @author Victor (victor.harri-chal@epitech.eu)
  * @brief The generator for the map of the game
  * @version 0.1
  * @date 2022-06-13

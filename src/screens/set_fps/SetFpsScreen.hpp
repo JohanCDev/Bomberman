@@ -23,6 +23,10 @@ namespace indie
 {
     namespace menu
     {
+        /**
+         * @brief Class for the Set Fps Screen
+         * 
+         */
         class SetFpsScreen : public IScreen {
             /**
              * @brief Cursor enum for fps choice
