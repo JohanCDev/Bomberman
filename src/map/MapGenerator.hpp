@@ -22,16 +22,60 @@
 #include <string.h>
 #include <vector>
 
+/**
+ * @brief Macro to draw the wawll
+ * 
+ */
 #define WALL          '#'
+/**
+ * @brief Macro to draw nothing
+ * 
+ */
 #define EMPTY         ' '
+/**
+ * @brief Macro to draw a box
+ * 
+ */
 #define BOX           '.'
+/**
+ * @brief Macro to draw speed bonus
+ * 
+ */
 #define SPEED_BOX     'S'
+/**
+ * @brief Macro to draw bomb box bonus
+ * 
+ */
 #define BOMB_BOX      'B'
+/**
+ * @brief Macro to draw cross-wall bonus
+ * 
+ */
 #define WALL_PASS_BOX 'T'
+/**
+ * @brief Macro to draw bomb radius bonus
+ * 
+ */
 #define BOMB_RADIUS   'R'
+/**
+ * @brief Macro to draw player1
+ * 
+ */
 #define PLAYER1       '1'
+/**
+ * @brief Macro to draw player2
+ * 
+ */
 #define PLAYER2       '2'
+/**
+ * @brief Macro to draw player3
+ * 
+ */
 #define PLAYER3       '3'
+/**
+ * @brief Macro to draw player4
+ * 
+ */
 #define PLAYER4       '4'
 
 namespace indie

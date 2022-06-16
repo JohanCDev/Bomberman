@@ -21,6 +21,10 @@ namespace indie
     {
         namespace system
         {
+            /**
+             * @brief Enum for system types
+             * 
+             */
             enum SystemType {
                 DRAWABLE3DSYSTEM,
                 DRAWABLE2DSYSTEM,

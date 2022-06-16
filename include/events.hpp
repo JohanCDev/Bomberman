@@ -56,7 +56,7 @@ namespace indie
             bool left;
             /// Is the right key pressed?
             bool right;
-            // Is the enter key pressed?
+            /// Is the enter key pressed?
             bool enter;
             /// Code of the key that has been pressed.
             Key code;

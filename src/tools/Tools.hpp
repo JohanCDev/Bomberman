@@ -10,6 +10,10 @@
 
 namespace indie::tools
 {
+    /**
+     * @brief Class for some useful tools
+     * 
+     */
     class Tools {
       public:
         /**

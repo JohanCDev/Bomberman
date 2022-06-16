@@ -51,16 +51,21 @@ namespace indie
         /// @brief Update game elements
         void update(void);
         /// @brief Process events
+        /// @return true Event has been executed
+        /// @return false Event hasn't been executed
         bool processEvents(void);
         /// @brief Handle the events
+        /// @return int The scene number
         int handleEvent();
         /// @brief Init all scenes
         void init_scenes();
         /// @brief Swap between screens
+        /// @param ret Scene number
         void handleScreensSwap(int ret);
         /// @brief Reinitialize the game class elements
         void reinitGame();
         /// @brief Set the actual screen
+        /// @param newScreen The new screen
         void setActualScreen(Screens newScreen);
 
       protected:

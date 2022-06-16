@@ -41,7 +41,6 @@ namespace indie
              * @return BoundingBox The BoundingBox object
              */
             ::BoundingBox getBoundingBox() const;
-
             /**
              * @brief Set boundingBox
              * 
@@ -62,7 +61,7 @@ namespace indie
              */
             void setColor(::Color color);
             /**
-             * @brief Draw bounding box (wires)
+             * @brief Draw bounding box
              */
             void draw();
             /**
@@ -70,7 +69,7 @@ namespace indie
              * 
              * @param color The color for the bounding box
              */
-            void draw(Color color);
+            static void draw(Color color);
             /**
              * @brief Draw Bounding Box
              * 
