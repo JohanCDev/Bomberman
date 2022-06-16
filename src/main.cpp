@@ -22,6 +22,7 @@ int main(void)
 
         Game.init();
         Game.run();
+        Game.destroy();
     } catch (std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
