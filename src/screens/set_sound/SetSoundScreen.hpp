@@ -44,6 +44,7 @@ namespace indie
             /**
              * @brief Set the Sound Screen object
              *
+             * @param sounds Vector of sounds entity for screen
              */
             SetSoundScreen(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *sounds);
             /**
@@ -67,6 +68,8 @@ namespace indie
             void draw() override;
             /**
              * @brief Set sounds
+             * 
+             * @param volume Sound volume
              *
              */
             void setSounds(float volume);

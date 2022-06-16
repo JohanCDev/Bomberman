@@ -43,6 +43,8 @@ namespace indie
           public:
             /**
              * @brief Set the Music Screen object
+             * 
+             * @param musics Map for music on the screen
              *
              */
             SetMusicScreen(std::map <int, indie::raylib::Sound> *musics);

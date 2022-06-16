@@ -63,16 +63,17 @@ namespace indie
                  * @return false The sound isn't actually playing
                  */
                 bool getPlay() const;
-<<<<<<< HEAD
                 /**
-                 * @brief Set the Sound Path of the component
+                 * @brief Get the Volume 
                  * 
-                 * @param soundPath File path to the sound file
+                 * @return float The volume 
                  */
-=======
                 float getVolume() const;
-
->>>>>>> master
+                /**
+                 * @brief Set the Sound Path 
+                 * 
+                 * @param soundPath Path to the sound file
+                 */
                 void setSoundPath(std::string soundPath);
                 /**
                  * @brief Set the Sound stream of the component
@@ -86,6 +87,11 @@ namespace indie
                  * @param play Play the sound or not
                  */
                 void setPlay(bool play);
+                /**
+                 * @brief Set the Volume 
+                 * 
+                 * @param volume Volume value
+                 */
                 void setVolume(float volume);
 
               private:

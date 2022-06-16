@@ -50,7 +50,10 @@
     {                    \
         253, 249, 0, 255 \
     }
-
+/**
+ * @brief Macro for red
+ * 
+ */
 #define REDCOLOR         \
     CLITERAL(Color)      \
     {                    \

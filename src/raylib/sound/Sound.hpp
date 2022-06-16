@@ -21,8 +21,21 @@ namespace indie
         /// @brief Sound class encapsulation
         class Sound {
             public:
+                /**
+                 * @brief Construct a new Sound object
+                 * 
+                 */
                 Sound() = default;
+                /**
+                 * @brief Construct a new Sound object
+                 * 
+                 * @param fileName File path to the sound file
+                 */
                 Sound(const std::string& fileName);
+                /**
+                 * @brief Destroy the Sound object
+                 * 
+                 */
                 ~Sound() = default;
                 /**
                 * @brief Get Sound

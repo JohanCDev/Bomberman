@@ -41,8 +41,10 @@ namespace indie
           public:
             /**
              * @brief Construct a new Game Screen object
-             *
-             * @param players Vector of players in the game
+             * 
+             * @param players vector of players pointer
+             * @param _soundEntities vector of entities for sound
+             * @param soundSystems Vector of systems for sound
              */
             GameScreen(std::vector<player::Player> *players, std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *_soundEntities, std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *soundSystems);
             /**
@@ -127,7 +129,12 @@ namespace indie
 
             /**
              * @brief Compare two colors
+             * 
+             * @param a Color 1
+             * @param b Color 2
              *
+             * @return true Color are identicals
+             * @return false Color are not identicals
              */
             bool compareColor(Color a, Color b);
             /**
@@ -138,10 +145,14 @@ namespace indie
             /**
              * @brief Load the last saved file map
              *
+             * @return true If Map is loaded
+             * @return false If map isn't loaded
              */
             bool loadSavedMap();
             /**
              * @brief Init the right entity from a string
+             * 
+             * @param args vector of strings for entities
              *
              */
             void initRightEntity(std::vector<std::string> args);
@@ -157,7 +168,15 @@ namespace indie
              *
              */
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> _entities;
+            /**
+             * @brief Vector of sound entities pointer of the Game Screen
+             *
+             */
             std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *_soundEntities;
+            /**
+             * @brief Vector of sound systems pointer of the Game Screen
+             *
+             */
             std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *_soundSystems;
             /**
              * @brief Vector of infoPlayers of the Game Screen

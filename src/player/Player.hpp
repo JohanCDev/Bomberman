@@ -23,10 +23,18 @@ namespace indie
         /// @brief Player class
         class Player {
           public:
-            /// @brief Construct a new Player object
-            /// @param color color to give
-            /// @param controllerId Id of the controller linked to this player
-            /// @param pos position of the player
+            /**
+             * @brief Construct a new Player object
+             * 
+             * @param color Player color
+             * @param controllerId Player controller Id
+             * @param isAlive Player is alive or not
+             * @param isPlaying Player is playing or not
+             * @param bombRadius Player's bomb radius
+             * @param bombStock Player's bomb stock
+             * @param maxBombStock Player's max bomb stock
+             * @param speed Player's speed
+             */
             Player(Color color, short unsigned int controllerId, bool isAlive = true, bool isPlaying = false,
                 unsigned short bombRadius = 1, unsigned short bombStock = 2, unsigned short maxBombStock = 2,
                 unsigned int speed = 10);
