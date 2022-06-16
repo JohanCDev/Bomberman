@@ -23,60 +23,55 @@
 #include <vector>
 
 /**
- * @brief Macro to draw the wawll
+ * @brief Macro for wall
  * 
  */
-#define WALL          '#'
+#define WALL        '#'
 /**
- * @brief Macro to draw nothing
+ * @brief Macro for nothing
  * 
  */
-#define EMPTY         ' '
+#define EMPTY       ' '
 /**
- * @brief Macro to draw a box
+ * @brief Macro for boxes
  * 
  */
-#define BOX           '.'
+#define BOX         '.'
 /**
- * @brief Macro to draw speed bonus
+ * @brief Macro for speed bonus
  * 
  */
-#define SPEED_BOX     'S'
+#define SPEED_BOX   'S'
 /**
- * @brief Macro to draw bomb box bonus
+ * @brief Macro for bomb box bonus
  * 
  */
-#define BOMB_BOX      'B'
+#define BOMB_BOX    'B'
 /**
- * @brief Macro to draw cross-wall bonus
+ * @brief Macro for bomb radius bonus
  * 
  */
-#define WALL_PASS_BOX 'T'
+#define BOMB_RADIUS 'R'
 /**
- * @brief Macro to draw bomb radius bonus
+ * @brief Macro for player1
  * 
  */
-#define BOMB_RADIUS   'R'
+#define PLAYER1     '1'
 /**
- * @brief Macro to draw player1
+ * @brief Macro for player2
  * 
  */
-#define PLAYER1       '1'
+#define PLAYER2     '2'
 /**
- * @brief Macro to draw player2
+ * @brief Macro for player3
  * 
  */
-#define PLAYER2       '2'
+#define PLAYER3     '3'
 /**
- * @brief Macro to draw player3
+ * @brief Macro for player4
  * 
  */
-#define PLAYER3       '3'
-/**
- * @brief Macro to draw player4
- * 
- */
-#define PLAYER4       '4'
+#define PLAYER4     '4'
 
 namespace indie
 {
