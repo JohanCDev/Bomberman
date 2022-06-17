@@ -157,7 +157,7 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
     size_t count = 0;
     for (auto &index : compoToRemove) {
         entities.erase(entities.begin() + index - count);
-        count++;
+        //count++;
     }
     compoToRemove.clear();
     for (float i = 0, counter = 0.0; i < explodableCompo->getRange(); i += 0.5, counter += 0.5) {
