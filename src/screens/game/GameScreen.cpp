@@ -40,13 +40,15 @@ void indie::menu::GameScreen::init()
     std::unique_ptr<indie::ecs::system::ISystem> soundSystem = std::make_unique<indie::ecs::system::Sound>();
     std::unique_ptr<indie::ecs::system::ISystem> collideSystem = std::make_unique<indie::ecs::system::Collide>();
     std::unique_ptr<indie::ecs::system::Explodable> explodeSystem = std::make_unique<indie::ecs::system::Explodable>();
+    std::unique_ptr<indie::ecs::system::ObjectSystem> objectSystem =
+        std::make_unique<indie::ecs::system::ObjectSystem>();
     std::unique_ptr<indie::ecs::entity::Entity> entityX = std::make_unique<indie::ecs::entity::Entity>();
 
     entityX->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
-    entityX->addComponent<indie::ecs::component::Drawable3D>(
-        "", static_cast<float>(10.5), static_cast<float>(0.05), static_cast<float>(10), LIGHTGRAY);
-    entityX->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM)->setZ(-0.25);
+    entityX->addComponent<indie::ecs::component::Object>(
+        "assets/objects/Bomb/Bomb.png", "assets/objects/Bomb/bomb.obj");
+    entityX->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM)->setZ(1);
     _playerAssets[0] = std::string("./assets/blue.png");
     _playerAssets[1] = std::string("./assets/red.png");
     _playerAssets[2] = std::string("./assets/green.png");
@@ -58,6 +60,7 @@ void indie::menu::GameScreen::init()
     this->addSystem(std::move(soundSystem));
     this->addSystem(std::move(collideSystem));
     this->addSystem(std::move(explodeSystem));
+    this->addSystem(std::move(objectSystem));
 }
 
 void indie::menu::GameScreen::draw()
@@ -67,7 +70,9 @@ void indie::menu::GameScreen::draw()
     indie::raylib::Window::clearBackground(SKYBLUE);
 
     for (auto &system : this->_systems) {
-        if (system->getSystemType() == indie::ecs::system::SystemType::DRAWABLE3DSYSTEM && !_is_game_finished) {
+        if ((system->getSystemType() == indie::ecs::system::SystemType::DRAWABLE3DSYSTEM
+                || system->getSystemType() == indie::ecs::system::SystemType::OBJECTSYSTEM)
+            && !_is_game_finished) {
             camera.beginMode();
             system->update(this->_entities);
             camera.endMode();
@@ -302,8 +307,8 @@ int indie::menu::GameScreen::handleEvent(indie::Event &event)
             handleMultipleController(event, 3, indie::ecs::entity::entityType::PLAYER_4);
         if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON || event.key.r_shift)
             return 4;
-        if (countAlivePlayers() == 1)
-            _is_game_finished = true;
+        // if (countAlivePlayers() == 1)
+        //     _is_game_finished = true;
     } else {
         if (_end_screen_display) {
             endScreenDisplay();

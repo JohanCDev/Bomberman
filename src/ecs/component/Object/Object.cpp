@@ -19,7 +19,9 @@ indie::ecs::component::Object::Object(
     this->_width = 0.0;
     this->_color = WHITE;
     this->_texturePath = texturePath;
+    this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
     this->_modelPath = objectPath;
+    this->_model = indie::raylib::Model::load(this->_modelPath.c_str());
     this->_animationsPath = objectPath;
     this->_compoType = indie::ecs::component::compoType::ANIMATED;
     this->_drawableType = indie::ecs::component::drawableType::OBJECT;
@@ -33,7 +35,10 @@ indie::ecs::component::Object::Object(std::string const &texturePath, std::strin
     this->_width = 0.0;
     this->_color = WHITE;
     this->_texturePath = texturePath;
+    this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
     this->_modelPath = objectPath;
+    this->_model = LoadModel(objectPath.c_str());
+    indie::raylib::Model::setMaterialTexture(&this->_model.materials[0], MATERIAL_MAP_DIFFUSE, this->_texture);
     this->_animationsPath = "";
     this->_compoType = indie::ecs::component::compoType::MODEL;
     this->_drawableType = indie::ecs::component::drawableType::OBJECT;

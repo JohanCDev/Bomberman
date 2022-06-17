@@ -1,6 +1,6 @@
 # Blender v3.2.0 OBJ File: ''
 # www.blender.org
-mtllib bomb3.mtl
+mtllib bomb.mtl
 o bomb.001
 v 0.000000 -0.287012 -0.692910
 v 0.000000 -0.146317 -0.735589

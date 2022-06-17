@@ -25,6 +25,7 @@
 #include "../component/Explodable/Explodable.hpp"
 #include "../component/IComponent.hpp"
 #include "../component/Inventory/Inventory.hpp"
+#include "../component/Object/Object.hpp"
 #include "../component/Sound/Sound.hpp"
 #include "../component/Transform/Transform.hpp"
 
@@ -36,7 +37,7 @@ namespace indie
         {
             /**
              * @brief Entity Type for entity object creation
-             * 
+             *
              */
             enum entityType { PLAYER_1, PLAYER_2, PLAYER_3, PLAYER_4, WALL, BOXES, TEXT, BOMB, UNKNOWN };
             /// @brief Entity class
@@ -44,13 +45,13 @@ namespace indie
               public:
                 /**
                  * @brief Create new entity.
-                 * 
+                 *
                  * @param type Entity type
                  */
                 Entity(entityType type);
                 /**
                  * @brief Construct a new Entity object
-                 * 
+                 *
                  */
                 Entity();
                 /**
@@ -59,7 +60,7 @@ namespace indie
                 ~Entity();
                 /**
                  * @brief Add component to entity
-                 * 
+                 *
                  * @tparam T the component to add
                  * @tparam Args The necessary params to create the component
                  * @param args The necessary params to create the component
@@ -87,7 +88,7 @@ namespace indie
                 }
                 /**
                  * @brief Get the Drawable Vector
-                 * 
+                 *
                  * @return std::vector<indie::ecs::component::Drawable2D *> Vector of Drawable2D component
                  */
                 std::vector<indie::ecs::component::Drawable2D *> getDrawableVector() const
@@ -102,10 +103,10 @@ namespace indie
                 }
                 /**
                  * @brief Get the Component of the given type
-                 * 
+                 *
                  * @tparam T The type of component to get
                  * @param type The compoType value of the component to get
-                 * 
+                 *
                  * @return T* Pointer to the wanted component
                  */
                 template <typename T> T *getComponent(indie::ecs::component::compoType type)
@@ -118,8 +119,8 @@ namespace indie
                     return (nullptr);
                 }
                 /**
-                 * @brief Get the Entity Type 
-                 * 
+                 * @brief Get the Entity Type
+                 *
                  * @return indie::ecs::entity::entityType The entity type
                  */
                 indie::ecs::entity::entityType getEntityType() const;
@@ -127,12 +128,12 @@ namespace indie
               private:
                 /**
                  * @brief Vector of component
-                 * 
+                 *
                  */
                 std::vector<std::unique_ptr<indie::ecs::component::IComponent>> _componentVector;
                 /**
                  * @brief Entity type object
-                 * 
+                 *
                  */
                 entity::entityType _type;
             };

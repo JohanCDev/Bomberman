@@ -48,6 +48,8 @@ set(SRC_ECS
     ${ECSROOT}system/Sound/Sound.hpp
     ${ECSROOT}system/Explodable/Explodable.cpp
     ${ECSROOT}system/Explodable/Explodable.hpp
+    ${ECSROOT}system/Object/Object.cpp
+    ${ECSROOT}system/Object/Object.hpp
     ${ECSROOT}system/ISystem.hpp
 )
 

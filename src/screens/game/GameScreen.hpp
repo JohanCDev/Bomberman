@@ -26,6 +26,7 @@
 #include "../ecs/system/Draw3D/Draw3D.hpp"
 #include "../ecs/system/Explodable/Explodable.hpp"
 #include "../ecs/system/Movement/Movement.hpp"
+#include "../ecs/system/Object/Object.hpp"
 #include "../ecs/system/Sound/Sound.hpp"
 #include "events.hpp"
 #include "uiPlayerDisplay/UIPlayerDisplay.hpp"
