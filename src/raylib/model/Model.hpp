@@ -37,7 +37,7 @@ namespace indie
              *
              * @return Model Model object
              */
-            ::Model load(const char *fileName);
+            static ::Model load(const char *fileName);
             /**
              * @brief Load model from generated mesh (default material)
              *
@@ -45,13 +45,22 @@ namespace indie
              *
              * @return Model Model object
              */
-            ::Model loadFromMesh(::Mesh mesh);
+            static ::Model loadFromMesh(::Mesh mesh);
+
+            /**
+             * @brief Load animations file
+             *
+             * @param fileName file containing animations
+             * @param animsCount pointer to integer where will be stored the number of animations
+             * @return ::ModelAnimation Array Model animation loaded
+             */
+            static ::ModelAnimation *loadAnimation(const char *fileName, unsigned int *animsCount);
             /**
              * @brief Unload model (including meshes) from memory (RAM and/or VRAM)
              *
              * @param model Model to unload
              */
-            void unload(::Model model);
+            static void unload(::Model model);
             /**
              * @brief Unload model (including meshes) from memory (RAM and/or VRAM)
              *
@@ -59,7 +68,7 @@ namespace indie
              * @param anim Animation model
              * @param frame Frame to update
              */
-            void updateModelAnimation(::Model model, ::ModelAnimation anim, int frame);
+            static void updateModelAnimation(::Model model, ::ModelAnimation anim, int frame);
             /**
              * @brief Set the Material Texture object
              *
@@ -67,20 +76,20 @@ namespace indie
              * @param mapType map Type of the material
              * @param texture texture to apply
              */
-            void setMaterialTexture(::Material *material, int mapType, ::Texture2D texture);
+            static void setMaterialTexture(::Material *material, int mapType, ::Texture2D texture);
             /**
              * @brief Unload model (but not meshes) from memory (RAM and/or VRAM)
              *
              * @param model Model to unload
              */
-            void unloadKeepMeshes(::Model model);
+            static void unloadKeepMeshes(::Model model);
             /**
              * @brief unload a model animations
              *
              * @param animations Model animations to unload
              * @param count Number of animations to unload
              */
-            void unloadModelAnimations(::ModelAnimation *animations, unsigned int count);
+            static void unloadModelAnimations(::ModelAnimation *animations, unsigned int count);
             /**
              * @brief Draw a model (with texture if set)
              *
@@ -89,7 +98,7 @@ namespace indie
              * @param scale Drawing scale
              * @param tint Drawing color
              */
-            void draw(::Model model, ::Vector3 position, float scale, ::Color tint);
+            static void draw(::Model model, ::Vector3 position, float scale, ::Color tint);
             /**
              * @brief Draw a model with extended parameters
              *
@@ -100,8 +109,8 @@ namespace indie
              * @param scale Drawing scale
              * @param tint Drawing color
              */
-            void drawEx(::Model model, ::Vector3 position, ::Vector3 rotationAxis, float rotationAngle, ::Vector3 scale,
-                ::Color tint);
+            static void drawEx(::Model model, ::Vector3 position, ::Vector3 rotationAxis, float rotationAngle,
+                ::Vector3 scale, ::Color tint);
             /**
              * @brief Draw a model wires (with texture if set)
              *
@@ -110,7 +119,7 @@ namespace indie
              * @param scale Drawing scale
              * @param tint Drawing color
              */
-            void drawWires(::Model model, ::Vector3 position, float scale, ::Color tint);
+            static void drawWires(::Model model, ::Vector3 position, float scale, ::Color tint);
             /**
              * @brief Draw a model wires (with texture if set) with extended parameters
              *
@@ -121,7 +130,7 @@ namespace indie
              * @param scale Drawing scale
              * @param tint Drawing color
              */
-            void drawWiresEx(::Model model, ::Vector3 position, ::Vector3 rotationAxis, float rotationAngle,
+            static void drawWiresEx(::Model model, ::Vector3 position, ::Vector3 rotationAxis, float rotationAngle,
                 ::Vector3 scale, ::Color tint);
         };
     } // namespace raylib
