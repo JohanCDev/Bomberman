@@ -35,8 +35,8 @@ void indie::menu::GameOptionsScreen::init()
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
     cursor->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(33.f, true), tools::Tools::getPercentage(9.f, false), 0.0f, 0.0f);
-    cursor->addComponent<ecs::component::Drawable2D>(
-        "assets/menu/hand.png", tools::Tools::getPercentage(6.f, false), tools::Tools::getPercentage(6.f, true), WHITE);
+    cursor->addComponent<ecs::component::Drawable2D>("assets/menu/hand.png", tools::Tools::getPercentage(10.f, false),
+        tools::Tools::getPercentage(6.f, true), WHITE);
     addEntity(std::move(cursor));
 
     std::unique_ptr<ecs::entity::Entity> resume = std::make_unique<ecs::entity::Entity>();

@@ -25,7 +25,7 @@ namespace indie
     {
         /**
          * @brief Class for the Set Sound Screen
-         * 
+         *
          */
         class SetSoundScreen : public IScreen {
             /**
@@ -68,7 +68,7 @@ namespace indie
             void draw() override;
             /**
              * @brief Set sounds
-             * 
+             *
              * @param volume Sound volume
              *
              */
@@ -125,12 +125,17 @@ namespace indie
              * @brief Map of positions of the cursor
              *
              */
-            std::map<cursorPosition, float> _positionsCursor;
+            std::map<int, float> _positionsCursor;
             /**
              * @brief Index of the cursor position
              *
              */
             int _cursorPosition;
+            /**
+             * @brief Index of the last clicked cursor position
+             *
+             */
+            int _lastSeenCursorPos;
         };
     } // namespace menu
 } // namespace indie
