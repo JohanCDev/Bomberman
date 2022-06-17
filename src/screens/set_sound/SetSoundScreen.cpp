@@ -352,6 +352,11 @@ void indie::menu::SetSoundScreen::update()
     validTransCompo->setY(tools::Tools::getPercentage(11.f + ((_lastSeenCursorPos - 1) * 15), false));
     validDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
     validDrawableCompo->setWidth(tools::Tools::getPercentage(10.f, false));
+    this->_positionsCursor[SOUND_0] = tools::Tools::getPercentage(13.f, false);
+    this->_positionsCursor[SOUND_25] = tools::Tools::getPercentage(29.f, false);
+    this->_positionsCursor[SOUND_50] = tools::Tools::getPercentage(44.f, false);
+    this->_positionsCursor[SOUND_75] = tools::Tools::getPercentage(59.f, false);
+    this->_positionsCursor[SOUND_100] = tools::Tools::getPercentage(74.f, false);
 }
 
 void indie::menu::SetSoundScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)

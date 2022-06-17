@@ -83,6 +83,7 @@ void indie::menu::SetFpsScreen::init()
     std::unique_ptr<indie::ecs::system::ISystem> draw2DSystemOption =
         std::make_unique<indie::ecs::system::Draw2DSystem>();
     addSystem(std::move(draw2DSystemOption));
+    this->_cursorPosition = FPS_60;
 
     this->_positionsCursor[FPS_30] = tools::Tools::getPercentage(29.f, false);
     this->_positionsCursor[FPS_60] = tools::Tools::getPercentage(54.f, false);
@@ -214,6 +215,9 @@ void indie::menu::SetFpsScreen::update()
     validTransCompo->setY(tools::Tools::getPercentage(26.f + ((_lastSeenCursorPos - 1) * 25), false));
     validDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
     validDrawableCompo->setWidth(tools::Tools::getPercentage(10.f, false));
+
+    this->_positionsCursor[FPS_30] = tools::Tools::getPercentage(29.f, false);
+    this->_positionsCursor[FPS_60] = tools::Tools::getPercentage(54.f, false);
 }
 
 void indie::menu::SetFpsScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)
