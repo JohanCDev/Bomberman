@@ -33,10 +33,17 @@ void indie::menu::PreMenuScreen::init()
 
     std::unique_ptr<ecs::entity::Entity> launch_game = std::make_unique<ecs::entity::Entity>();
     launch_game->addComponent<ecs::component::Transform>(
-        tools::Tools::getPercentage(32.f, true), tools::Tools::getPercentage(90.f, false), 0.0f, 0.0f);
+        tools::Tools::getPercentage(32.f, true), tools::Tools::getPercentage(88.f, false), 0.0f, 0.0f);
     launch_game->addComponent<ecs::component::Drawable2D>(
         "Press Triangle to start the game", tools::Tools::getPercentage(4.f, false), BLACK);
     addEntity(std::move(launch_game));
+
+    std::unique_ptr<ecs::entity::Entity> joinText = std::make_unique<ecs::entity::Entity>();
+    joinText->addComponent<ecs::component::Transform>(
+        tools::Tools::getPercentage(30.f, true), tools::Tools::getPercentage(4.f, false), 0.0f, 0.0f);
+    joinText->addComponent<ecs::component::Drawable2D>(
+        "Press X to join the game and again to confirm", tools::Tools::getPercentage(3.f, false), BLACK);
+    addEntity(std::move(joinText));
 
     std::unique_ptr<ecs::entity::Entity> player1 = std::make_unique<ecs::entity::Entity>();
     player1->addComponent<ecs::component::Transform>(
