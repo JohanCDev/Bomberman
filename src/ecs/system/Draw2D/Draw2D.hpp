@@ -26,17 +26,11 @@ namespace indie
                 /**
                  * @brief Create new draw 2d system.
                  */
-                Draw2DSystem()
-                {
-                }
-
+                Draw2DSystem() {}
                 /**
                  * @brief Destroy draw 2d system.
                  */
-                ~Draw2DSystem()
-                {
-                }
-
+                ~Draw2DSystem() {}
                 /**
                  * @brief Draw text with given properties.
                  *
@@ -63,7 +57,7 @@ namespace indie
                 /**
                  * @brief Get the type of system.
                  *
-                 * @return enum value correspond to the type of system
+                 * @return indie::ecs::system::SystemType SystemType
                  */
                 indie::ecs::system::SystemType getSystemType() const override;
 

@@ -23,6 +23,10 @@ namespace indie
         {
             class Transform;
 
+            /**
+             * @brief Enum for component type
+             * 
+             */
             enum compoType {
                 TRANSFORM,
                 DRAWABLE2D,
@@ -36,9 +40,15 @@ namespace indie
                 DESTROYABLE,
                 UNKNOWNCOMPO
             };
-
+            /**
+             * @brief Enum for drawable type
+             * 
+             */
             enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, UNKNOWNDRAWABLE };
-
+            /**
+             * @brief Enum for bonus type
+             * 
+             */
             enum bonusType { BOMBUP, SPEEDUP, FIREUP, WALLPASS, UNKNOWNBONUS };
 
             /// @brief Component interface

@@ -24,7 +24,11 @@ namespace indie
       public:
         /**
          * @brief Get input events and update game
-         * @returns false if escape is pressed
+         * 
+         * @param event Event to be handled
+         * 
+         * @return true escape not pressed
+         * @return false escape is pressed
          */
         bool inputUpdate(indie::Event &event);
 

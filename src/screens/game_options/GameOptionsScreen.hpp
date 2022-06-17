@@ -22,6 +22,10 @@ namespace indie
 {
     namespace menu
     {
+        /**
+         * @brief Class for the Game Options Screen
+         * 
+         */
         class GameOptionsScreen : public IScreen {
           public:
             /**
@@ -78,7 +82,7 @@ namespace indie
             /**
              * @brief Add system for the Game Option Screen
              *
-             * @param entity the entity to remove from the Game Option Screen
+             * @param system the system to remove from the Game Option Screen
              */
             void addSystem(std::unique_ptr<indie::ecs::system::ISystem> system) override;
             /**

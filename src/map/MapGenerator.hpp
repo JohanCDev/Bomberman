@@ -1,6 +1,6 @@
 /**
  * @file MapGenerator.hpp
- * @author Victor & Henri (victor.harri-chal@epitech.eu & henri.chauvet@epitech.eu)
+ * @author Victor (victor.harri-chal@epitech.eu)
  * @brief The generator for the map of the game
  * @version 0.1
  * @date 2022-06-13
@@ -22,15 +22,55 @@
 #include <string.h>
 #include <vector>
 
+/**
+ * @brief Macro for wall
+ * 
+ */
 #define WALL        '#'
+/**
+ * @brief Macro for nothing
+ * 
+ */
 #define EMPTY       ' '
+/**
+ * @brief Macro for boxes
+ * 
+ */
 #define BOX         '.'
+/**
+ * @brief Macro for speed bonus
+ * 
+ */
 #define SPEED_BOX   'S'
+/**
+ * @brief Macro for bomb box bonus
+ * 
+ */
 #define BOMB_BOX    'B'
+/**
+ * @brief Macro for bomb radius bonus
+ * 
+ */
 #define BOMB_RADIUS 'R'
+/**
+ * @brief Macro for player1
+ * 
+ */
 #define PLAYER1     '1'
+/**
+ * @brief Macro for player2
+ * 
+ */
 #define PLAYER2     '2'
+/**
+ * @brief Macro for player3
+ * 
+ */
 #define PLAYER3     '3'
+/**
+ * @brief Macro for player4
+ * 
+ */
 #define PLAYER4     '4'
 
 namespace indie
@@ -60,6 +100,8 @@ namespace indie
              * @brief Copy a map generator object
              *
              * @param component to copy
+             * 
+             * @return MapGenerator MapGenerator object
              */
             MapGenerator &operator=(const MapGenerator &component) = default;
 

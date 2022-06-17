@@ -30,8 +30,11 @@ void indie::ecs::system::Sound::update(std::vector<std::unique_ptr<indie::ecs::e
         if (entity->hasCompoType(indie::ecs::component::compoType::SOUND)) {
             auto soundComponent = entity->getComponent<indie::ecs::component::Sound>(indie::ecs::component::SOUND);
             if (soundComponent->getPlay() == true) {
+                float volume = soundComponent->getVolume();
+
                 indie::raylib::Sound sound(soundComponent->getSoundPath());
-                sound.setVolume(1.0);
+                // sound.setVolume(sound.getVolume());
+                sound.setVolume(volume);
                 sound.play();
             }
         }

@@ -33,9 +33,9 @@ namespace indie
                 void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities);
 
                 /**
-                 * @brief Get the type of system.
-                 *
-                 * @return enum value correspond to the type of system
+                 * @brief Get the System Type object
+                 * 
+                 * @return indie::ecs::system::SystemType SystemType
                  */
                 indie::ecs::system::SystemType getSystemType() const;
 

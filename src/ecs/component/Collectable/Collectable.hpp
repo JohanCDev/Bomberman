@@ -30,6 +30,8 @@ namespace indie
 
                 /**
                  * @brief Create new collectable component with bonusType.
+                 * 
+                 * @param type Type of bonus
                  */
                 Collectable(indie::ecs::component::bonusType type);
 
@@ -41,14 +43,14 @@ namespace indie
                 /**
                  * @brief Get type of the bonus.
                  *
-                 * @return the bonusType value of the component.
+                 * @return indie::ecs::component::bonusType BonusType of the component.
                  */
                 indie::ecs::component::bonusType getBonusType() const;
 
                 /**
                  * @brief Get type of the component.
                  *
-                 * @return the compoType value of the component.
+                 * @return indie::ecs::component::compoType CompoType of the component.
                  */
                 indie::ecs::component::compoType getType() const;
 

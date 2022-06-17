@@ -39,7 +39,7 @@ namespace indie
                 /**
                  * @brief Update all position of given entities.
                  *
-                 * @param entites vector of entities.
+                 * @param entities vector of entities.
                  */
                 void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities) override;
 

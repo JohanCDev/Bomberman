@@ -20,14 +20,24 @@ namespace indie
 {
     namespace player
     {
-        /// Player class
+        /// @brief Player class
         class Player {
           public:
-            /// @brief Construct a new Player object
-            /// @param color color to give
-            /// @param controllerId Id of the controller linked to this player
-            /// @param pos position of the player
-            Player(Color color, short unsigned int controllerId, vec2u pos);
+            /**
+             * @brief Construct a new Player object
+             *
+             * @param color Player color
+             * @param controllerId Player controller Id
+             * @param isAlive Player is alive or not
+             * @param isPlaying Player is playing or not
+             * @param bombRadius Player's bomb radius
+             * @param bombStock Player's bomb stock
+             * @param maxBombStock Player's max bomb stock
+             * @param speed Player's speed
+             */
+            Player(Color color, short unsigned int controllerId, bool isAlive = true, bool isPlaying = false,
+                unsigned short bombRadius = 1, unsigned short bombStock = 2, unsigned short maxBombStock = 2,
+                unsigned int speed = 12);
 
             /// @brief Construct a new Player object
             /// @param player to copy
@@ -35,74 +45,114 @@ namespace indie
 
             /// @brief Construct a new Player object
             /// @param player with which it will be initialized
+            /// @return Player Player object
             Player &operator=(const Player &player) = default;
 
             /// @brief Destroy the Player object
             ~Player() = default;
-
-            /// Get if the player is alive or not.
+            /**
+             * @brief Get if the player is alive or not.
+             *
+             * @return true Player is alive
+             * @return false Player is not alive
+             */
             bool getIsAlive() const;
-            /// Get if the player is playing or not.
+            /**
+             * @brief Get if the player is playing or not.
+             *
+             * @return true Player is playing
+             * @return false Player is not playing
+             */
             bool getIsPlaying() const;
-            /// Get the controllerId linked to the player.
+            /**
+             * @brief Get the Controller Id
+             *
+             * @return short unsigned int Controller Id
+             */
             short unsigned int getControllerId() const;
-            /// Get the speed of the player.
+            /**
+             * @brief Get the speed of the player
+             *
+             * @return int Player's speed
+             */
             short unsigned int getSpeed() const;
-            /// Get the bomb radius of the player.
+            /**
+             * @brief Get the bomb radius of the player
+             *
+             * @return int Player's bomb radius
+             */
             short unsigned int getBombRadius() const;
-            /// Get the bomb stock of the player.
+            /**
+             * @brief Get the bomb stock of the player
+             *
+             * @return int Player's bomb stock
+             */
             short unsigned int getBombStock() const;
-            /// Get the max bomb stock of the player.
+            /**
+             * @brief Get the max bomb stock of the player
+             *
+             * @return int Player's max bomb stock
+             */
             short unsigned int getMaxBombStock() const;
-            /// Get the number of bomb stock bonus of the player.
-            short unsigned int getNbBombStockBonus() const;
-            /// Get the number of bomb radius bonus that the player have.
-            short unsigned int getNbBombRadiusBonus() const;
-            /// Get the number of speed bonus that the player have.
-            short unsigned int getNbSpeedBonus() const;
-            /// Get the color identifier of the player.
+            /**
+             * @brief Get the Color
+             *
+             * @return Color Color object
+             */
             Color getColor() const;
-            /// Get the position of the player.
-            vec2u getPos() const;
-
             /// Set if the player is alive or not.
             /// @param isAlive new value.
             void setIsAlive(bool isAlive);
-            /// Set if the player is playing or not.
-            /// @param isPlaying new value.
+            /**
+             * @brief Set player's playing state
+             *
+             * @param isPlaying Player's state
+             */
             void setIsPlaying(bool isPlaying);
             /// Set the controllerId linked to the player.
             /// @param value new value.
             void setControllerId(short unsigned int value);
-            /// Set the speed of the player.
-            /// @param value new value.
+            /**
+             * @brief Set player's speed
+             *
+             * @param value Speed value
+             */
             void setSpeed(short unsigned int value);
-            /// Set the speed of the player.
-            /// @param value new value.
+            /**
+             * @brief Change player's speed
+             *
+             * @param difference Speed value difference
+             */
             void changeSpeed(short int difference);
-            /// Set the bomb radius of the player.
-            /// @param value new value.
+            /**
+             * @brief Set player's bomb radius
+             *
+             * @param value Bomb radius value
+             */
             void setBombRadius(short unsigned int value);
-            /// Set the bomb stock of the player.
-            /// @param value new value.
+            /**
+             * @brief Set player's bomb stock
+             *
+             * @param value Bomb stock value
+             */
             void setBombStock(short unsigned int value);
-            /// Set the max bomb stock of the player.
-            /// @param value new value.
+            /**
+             * @brief Set player's max bomb stock
+             *
+             * @param value Max bomb stock value
+             */
             void setMaxBombStock(short unsigned int value);
-            /// Set the number of bomb stock bonus of the player.
-            /// @param value new value.
-            void setNbBombStockBonus(short unsigned int value);
-            /// Set the number of bomb radius bonus that the player have.
-            /// @param value new value.
-            void setNbBombRadiusBonus(short unsigned int value);
-            /// Set the number of speed bonus that the player have.
-            /// @param value new value.
-            void setNbSpeedBonus(short unsigned int value);
-            /// Set the color identifier of the player.
-            /// @param color new color identifier.
+            /**
+             * @brief Set the Color
+             *
+             * @param color New color
+             */
             void setColor(Color color);
-            /// Set the position of the player.
-            /// @param position new position.
+            /**
+             * @brief Set player's position
+             *
+             * @param position Player's position
+             */
             void setPos(vec2u position);
 
           private:
@@ -120,16 +170,8 @@ namespace indie
             short unsigned int _speed;
             /// Radius of a bomb launched by the player
             short unsigned int _bombRadius;
-            /// Number of bomb stock bonus collected
-            short unsigned int _nbBombStockBonus;
-            /// Number of bomb radius bonus collected
-            short unsigned int _nbBombRadiusBonus;
-            /// Number of speed bonus collected
-            short unsigned int _nbSpeedBonus;
             /// Color of the player
             Color _color;
-            /// Position of the player
-            vec2u _pos;
         };
     } // namespace player
 } // namespace indie

@@ -11,7 +11,7 @@
 
 #include "Sound.hpp"
 
-indie::raylib::Sound::Sound(const std::string &fileName)
+indie::raylib::Sound::Sound(const std::string &fileName) : _volume(1)
 {
     _sound = ::LoadSound(fileName.c_str());
 }
@@ -85,14 +85,21 @@ void indie::raylib::Sound::resume()
     ::ResumeSound(_sound);
 }
 
-void indie::raylib::Sound::setVolume(::Sound sound, float volume)
+float indie::raylib::Sound::getVolume() const
 {
-    ::SetSoundVolume(sound, volume);
+    return _volume;
 }
+
+// void indie::raylib::Sound::setVolume(::Sound sound, float volume)
+// {
+//     ::SetSoundVolume(sound, volume);
+//     _volume = volume;
+// }
 
 void indie::raylib::Sound::setVolume(float volume)
 {
     ::SetSoundVolume(_sound, volume);
+    _volume = volume;
 }
 
 void indie::raylib::Sound::setPitch(float pitch)

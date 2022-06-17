@@ -23,20 +23,43 @@ namespace indie
             /// @brief Collide system
             class Collide : public ISystem {
               public:
+                /**
+                 * @brief Construct a new Collide object
+                 * 
+                 */
                 Collide();
+                /**
+                 * @brief Destroy the Collide object
+                 * 
+                 */
                 ~Collide();
-
                 /**
                  * @brief Update all the entities with the system properties.
                  *
                  * @param entities vector of entites to update
                  */
                 void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities);
-
+                /**
+                 * @brief Check collisions between cubes
+                 * 
+                 * @param drawable The drawable component
+                 * @param collide The collide component
+                 * @param transform The transform component
+                 * @param otherEntityCollide The other collide component
+                 * @param otherEntityDrawable The other drawable component
+                 * @param otherTransform The other transform component
+                 */
                 void checkCubeCollision(auto drawable, auto collide, indie::ecs::component::Transform *transform,
                     auto otherEntityCollide, auto otherEntityDrawable,
                     indie::ecs::component::Transform *otherTransform);
-
+                /**
+                 * @brief Check collisions between spheres
+                 * 
+                 * @param entity Sphere entity
+                 * @param otherEntity Other entity
+                 * @param compoToRemove Component to remove
+                 * @param count Counter
+                 */
                 void checkSphereCollision(std::unique_ptr<indie::ecs::entity::Entity> &entity,
                     std::unique_ptr<indie::ecs::entity::Entity> &otherEntity, std::vector<int> &compoToRemove,
                     int &count);
@@ -44,7 +67,7 @@ namespace indie
                 /**
                  * @brief Get the type of system.
                  *
-                 * @return enum value correspond to the type of system
+                 * @return indie::ecs::system::SystemType SystemType
                  */
                 indie::ecs::system::SystemType getSystemType() const;
 

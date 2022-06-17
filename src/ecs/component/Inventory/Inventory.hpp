@@ -27,64 +27,66 @@ namespace indie
                  * @brief Create new inventory component.
                  */
                 Inventory();
-
                 /**
                  * @brief Destroy inventory component.
                  */
                 ~Inventory();
-
                 /**
                  * @brief Get type of the component.
                  *
-                 * @return the compoType value of the component.
+                 * @return indie::ecs::component::compoType CompoType of the component.
                  */
                 indie::ecs::component::compoType getType() const;
-
                 /**
                  * @brief Get Bomb up bonus status.
                  *
-                 * @return a boolean of the bonus status.
+                 * @return true BombUp bonus OK
+                 * @return false BombUp bonus KO
                  */
                 bool getBombUp() const;
-
                 /**
                  * @brief Get Fire up bonus status.
                  *
-                 * @return a boolean of the bonus status.
+                 * @return true FireUp bonus OK
+                 * @return false FireUp bonus KO
                  */
                 bool getFireUp() const;
-
                 /**
                  * @brief Get Speed up bonus status.
                  *
-                 * @return a boolean of the bonus status.
+                 * @return true SpeedUp bonus OK
+                 * @return false SpeedUp bonus KO
                  */
                 bool getSpeedUp() const;
-
                 /**
-                 * @brief Get Wall pass bonus status.
+                 * @brief Get WallPass bonus status.
                  *
-                 * @return a boolean of the bonus status.
+                 * @return true WallPass bonus OK
+                 * @return false WallPass bonus KO
                  */
                 bool getWallPass() const;
-
                 /**
                  * @brief Set bomb up bonus status.
+                 * 
+                 * @param bonus True if bonus is good, False if not
                  */
                 void setBombUp(bool bonus);
-
                 /**
-                 * @brief Set fire up bonus status.
+                 * @brief Set Fire up bonus status.
+                 * 
+                 * @param bonus True if bonus is good, False if not
                  */
                 void setFireUp(bool bonus);
-
                 /**
                  * @brief Set speed up bonus status.
+                 * 
+                 * @param bonus True if bonus is good, False if not
                  */
                 void setSpeedUp(bool bonus);
-
                 /**
-                 * @brief Set wall pass bonus status.
+                 * @brief Set WallPass bonus status.
+                 * 
+                 * @param bonus True if bonus is good, False if not
                  */
                 void setWallPass(bool bonus);
 
@@ -96,9 +98,25 @@ namespace indie
                 void setBonus(indie::ecs::component::bonusType type);
 
               private:
+                /**
+                 * @brief True if bonus is good, False if not
+                 * 
+                 */
                 bool _bombUp;
+                /**
+                 * @brief True if bonus is good, False if not
+                 * 
+                 */
                 bool _fireUp;
+                /**
+                 * @brief True if bonus is good, False if not
+                 * 
+                 */
                 bool _speedUp;
+                /**
+                 * @brief True if bonus is good, False if not
+                 * 
+                 */
                 bool _wallPass;
             };
         } // namespace component
