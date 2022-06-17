@@ -4,9 +4,9 @@
  * @brief The generator for the map of the game
  * @version 0.1
  * @date 2022-06-13
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include "MapGenerator.hpp"
@@ -60,11 +60,11 @@ void indie::map::MapGenerator::placeBonusBoxes()
                 j++;
             else if (_map[i][j] == BOX) {
                 int rd = generateRandomNumber(35);
-                if (rd == 1 || rd == 11 || rd == 21) {
+                if (rd == 1 || rd == 11 || rd == 21 || rd == 33) {
                     _map[i][j] = SPEED_BOX;
                 } else if (rd == 2 || rd == 22 || rd == 32) {
                     _map[i][j] = BOMB_BOX;
-                } else if (rd == 3 || rd == 23 || rd == 33) {
+                } else if (rd == 3 || rd == 23) {
                     _map[i][j] = BOMB_RADIUS;
                 }
             }
