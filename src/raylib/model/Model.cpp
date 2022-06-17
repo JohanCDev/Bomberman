@@ -22,19 +22,24 @@ void indie::raylib::Model::updateModelAnimation(::Model model, ::ModelAnimation 
     ::UpdateModelAnimation(model, anim, frame);
 }
 
-void indie::raylib::Model::unloadModel(::Model model)
+void indie::raylib::Model::setMaterialTexture(::Material *material, int mapType, ::Texture2D texture)
 {
-    ::UnloadModel(model);
+    ::SetMaterialTexture(material, mapType, texture);
 }
 
-void indie::raylib::Model::unloadTexture(::Texture2D texture)
+void indie::raylib::Model::unload(::Model model)
 {
-    ::UnloadTexture(texture);
+    ::UnloadModel(model);
 }
 
 void indie::raylib::Model::unloadKeepMeshes(::Model model)
 {
     ::UnloadModelKeepMeshes(model);
+}
+
+void indie::raylib::Model::unloadModelAnimations(::ModelAnimation *animations, unsigned int count)
+{
+    ::UnloadModelAnimations(animations, count);
 }
 
 void indie::raylib::Model::draw(::Model model, ::Vector3 position, float scale, ::Color tint)

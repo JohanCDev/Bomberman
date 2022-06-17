@@ -31,7 +31,7 @@ indie::Game::Game(size_t baseFps)
     _players.push_back(player::Player(REDPLAYERCOLOR, 1));
     _players.push_back(player::Player(GREENPLAYERCOLOR, 2));
     _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3));
-    _actualScreen = Screens::Menu;
+    _actualScreen = Screens::GameOptions;
     initSounds();
     _menu = new indie::menu::MenuScreen;
     _game = new indie::menu::GameScreen(&_players, &_sound_entities, &_sound_systems);
@@ -242,15 +242,15 @@ void indie::Game::handleScreensSwap(int ret)
     if (ret == 4) {
         setActualScreen(Screens::GameOptions);
     }
-    if (ret == 5) {
+    if (ret == 6) {
         setSoundEvent(SELECT_S);
         setActualScreen(Screens::SetMusic);
     }
-    if (ret == 6) {
+    if (ret == 7) {
         setSoundEvent(SELECT_S);
         setActualScreen(Screens::SetSound);
     }
-    if (ret == 7) {
+    if (ret == 8) {
         setSoundEvent(SELECT_S);
         setActualScreen(Screens::SetFps);
     }
