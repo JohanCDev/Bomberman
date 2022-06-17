@@ -54,6 +54,7 @@ namespace indie
                     indie::ecs::component::Transform *transformCompo);
 
                 float getValue(float position, float index, char operand);
+                float getNewValue(float bombPos);
 
                 std::map<size_t, indie::ecs::entity::Entity *> getEntityByPosition(
                     std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities, float x, float y);
