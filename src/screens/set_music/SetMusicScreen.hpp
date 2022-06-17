@@ -25,13 +25,13 @@ namespace indie
     {
         /**
          * @brief Class for the Set Music Screen
-         * 
+         *
          */
         class SetMusicScreen : public IScreen {
-          /**
-           * @brief Cursor enum for music choice
-           *
-           */
+            /**
+             * @brief Cursor enum for music choice
+             *
+             */
             enum cursorPosition {
                 MUSIC_0 = 0,
                 MUSIC_25 = 1,
@@ -43,11 +43,11 @@ namespace indie
           public:
             /**
              * @brief Set the Music Screen object
-             * 
+             *
              * @param musics Map for music on the screen
              *
              */
-            SetMusicScreen(std::map <int, indie::raylib::Sound> *musics);
+            SetMusicScreen(std::map<int, indie::raylib::Sound> *musics);
             /**
              * @brief Destroy the Set Music Screen object
              *
@@ -100,7 +100,7 @@ namespace indie
              * @brief Pointer of map of Sound from the Game
              *
              */
-            std::map <int, indie::raylib::Sound> *_musics;
+            std::map<int, indie::raylib::Sound> *_musics;
             /**
              * @brief Vector of entities for the Music Screen
              *
@@ -115,12 +115,17 @@ namespace indie
              * @brief Map of positions of the cursor
              *
              */
-            std::map<cursorPosition, float> _positionsCursor;
+            std::map<int, float> _positionsCursor;
             /**
              * @brief Index of the cursor position
              *
              */
             int _cursorPosition;
+            /**
+             * @brief Index of the last clicked cursor position
+             *
+             */
+            int _lastSeenCursorPos;
         };
     } // namespace menu
 } // namespace indie

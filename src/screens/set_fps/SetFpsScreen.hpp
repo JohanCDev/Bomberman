@@ -114,6 +114,10 @@ namespace indie
              *
              */
             int _cursorPosition;
+            /**
+             * @brief Index of the last clicked cursor position
+             *
+             */
             int _lastSeenCursorPos;
         };
     } // namespace menu

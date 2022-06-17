@@ -35,8 +35,8 @@ void indie::menu::SetFpsScreen::init()
     std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
     cursor->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(36.f, true), tools::Tools::getPercentage(29.f, false), 0.0f, 0.0f);
-    cursor->addComponent<ecs::component::Drawable2D>(
-        "assets/menu/hand.png", tools::Tools::getPercentage(6.f, false), tools::Tools::getPercentage(6.f, true), WHITE);
+    cursor->addComponent<ecs::component::Drawable2D>("assets/menu/hand.png", tools::Tools::getPercentage(10.f, false),
+        tools::Tools::getPercentage(6.f, true), WHITE);
     addEntity(std::move(cursor));
 
     std::unique_ptr<ecs::entity::Entity> quit = std::make_unique<ecs::entity::Entity>();
@@ -184,7 +184,7 @@ void indie::menu::SetFpsScreen::update()
     frameDrawableCompo->setWidth(tools::Tools::getPercentage(60.f, true));
     cursTransCompo->setX(tools::Tools::getPercentage(38.f, true));
     cursTransCompo->setY(this->_positionsCursor[this->_cursorPosition]);
-    cursDrawableCompo->setHeight(tools::Tools::getPercentage(6.f, false));
+    cursDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
     cursDrawableCompo->setWidth(tools::Tools::getPercentage(6.f, true));
     quitTransCompo->setX(tools::Tools::getPercentage(43.5f, true));
     quitTransCompo->setY(tools::Tools::getPercentage(80.f, false));
@@ -206,25 +206,14 @@ void indie::menu::SetFpsScreen::update()
     notvalid60DrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
     notvalid60DrawableCompo->setWidth(tools::Tools::getPercentage(10.f, false));
 
-    if (_lastSeenCursorPos == 1) {
-        ecs::component::Drawable2D *valid30DrawableCompo =
-            this->_entities[8]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
-        ecs::component::Transform *valid30TransCompo =
-            this->_entities[8]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
-        valid30TransCompo->setX(tools::Tools::getPercentage(44.f, true));
-        valid30TransCompo->setY(tools::Tools::getPercentage(26.f, false));
-        valid30DrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
-        valid30DrawableCompo->setWidth(tools::Tools::getPercentage(10.f, false));
-    } else if (_lastSeenCursorPos == 2) {
-        ecs::component::Drawable2D *valid60DrawableCompo =
-            this->_entities[8]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
-        ecs::component::Transform *valid60TransCompo =
-            this->_entities[8]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
-        valid60TransCompo->setX(tools::Tools::getPercentage(44.f, true));
-        valid60TransCompo->setY(tools::Tools::getPercentage(51.f, false));
-        valid60DrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
-        valid60DrawableCompo->setWidth(tools::Tools::getPercentage(10.f, false));
-    }
+    ecs::component::Drawable2D *validDrawableCompo =
+        this->_entities[8]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+    ecs::component::Transform *validTransCompo =
+        this->_entities[8]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+    validTransCompo->setX(tools::Tools::getPercentage(44.f, true));
+    validTransCompo->setY(tools::Tools::getPercentage(26.f + ((_lastSeenCursorPos - 1) * 25), false));
+    validDrawableCompo->setHeight(tools::Tools::getPercentage(10.f, false));
+    validDrawableCompo->setWidth(tools::Tools::getPercentage(10.f, false));
 }
 
 void indie::menu::SetFpsScreen::addEntity(std::unique_ptr<indie::ecs::entity::Entity> entity)

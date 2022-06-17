@@ -31,7 +31,7 @@ indie::Game::Game(size_t baseFps)
     _players.push_back(player::Player(REDPLAYERCOLOR, 1));
     _players.push_back(player::Player(GREENPLAYERCOLOR, 2));
     _players.push_back(player::Player(YELLOWPLAYERCOLOR, 3));
-    _actualScreen = Screens::GameOptions;
+    _actualScreen = Screens::Menu;
     initSounds();
     _menu = new indie::menu::MenuScreen;
     _game = new indie::menu::GameScreen(&_players, &_sound_entities, &_sound_systems);
