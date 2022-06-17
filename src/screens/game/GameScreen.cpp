@@ -258,7 +258,7 @@ void indie::menu::GameScreen::handleMultipleController(
             std::unique_ptr<indie::ecs::entity::Entity> entity =
                 std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOMB);
             entity->addComponent<indie::ecs::component::Explodable>(
-                static_cast<float>((this->_players->at(index).getBombRadius()) / 2.0f) + 0.25f, 2);
+                static_cast<float>((this->_players->at(index).getBombRadius()) / 2.0f), 2);
             entity->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE)
                 ->setPlayer(index);
             entity->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.25), RED);
