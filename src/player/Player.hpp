@@ -36,7 +36,7 @@ namespace indie
              * @param speed Player's speed
              */
             Player(Color color, short unsigned int controllerId, bool isAlive = true, bool isPlaying = false,
-                unsigned short bombRadius = 3, unsigned short bombStock = 2, unsigned short maxBombStock = 2,
+                unsigned short bombRadius = 1, unsigned short bombStock = 2, unsigned short maxBombStock = 2,
                 unsigned int speed = 12);
 
             /// @brief Construct a new Player object
