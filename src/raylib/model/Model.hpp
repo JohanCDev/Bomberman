@@ -51,13 +51,7 @@ namespace indie
              *
              * @param model Model to unload
              */
-            void unloadModel(::Model model);
-            /**
-             * @brief Unload texture from memory (RAM and/or VRAM)
-             *
-             * @param texture Texture to unload
-             */
-            void unloadTexture(::Texture2D texture);
+            void unload(::Model model);
             /**
              * @brief Unload model (including meshes) from memory (RAM and/or VRAM)
              *
@@ -67,11 +61,26 @@ namespace indie
              */
             void updateModelAnimation(::Model model, ::ModelAnimation anim, int frame);
             /**
+             * @brief Set the Material Texture object
+             *
+             * @param material Material to set
+             * @param mapType map Type of the material
+             * @param texture texture to apply
+             */
+            void setMaterialTexture(::Material *material, int mapType, ::Texture2D texture);
+            /**
              * @brief Unload model (but not meshes) from memory (RAM and/or VRAM)
              *
              * @param model Model to unload
              */
             void unloadKeepMeshes(::Model model);
+            /**
+             * @brief unload a model animations
+             *
+             * @param animations Model animations to unload
+             * @param count Number of animations to unload
+             */
+            void unloadModelAnimations(::ModelAnimation *animations, unsigned int count);
             /**
              * @brief Draw a model (with texture if set)
              *
