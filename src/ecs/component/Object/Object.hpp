@@ -30,8 +30,8 @@ namespace indie
                 /**
                  * @brief Create a new animated Object component.
                  */
-                Object(
-                    std::string const &texturePath, std::string const &objectPath, std::string const &animationsPath);
+                Object(std::string const &texturePath, std::string const &objectPath, std::string const &animationsPath,
+                    vec3f scaleVec, vec3f rotationVec, float orientation);
                 /**
                  * @brief Create a new non animated Object component.
                  */
@@ -138,6 +138,14 @@ namespace indie
                 vec3f getScale() const;
 
                 vec3f getRotationVec() const;
+
+                unsigned int getMaxCounter() const;
+
+                int getAnimationsCounter() const;
+
+                void setMaxCounter(unsigned int maxCounter);
+
+                void setAnimationsCounter(int animationsCounter);
 
               private:
                 /**
