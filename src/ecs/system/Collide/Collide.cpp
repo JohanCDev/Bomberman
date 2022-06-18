@@ -128,13 +128,7 @@ bool indie::ecs::system::Collide::checkCubeCollision(std::unique_ptr<indie::ecs:
         }
         box2.min = Vector3Add(box2.min, min2);
         box2.max = Vector3Add(box2.max, max2);
-        BoundingBox box3(min2, max2);
         if (indie::raylib::BoundingBox::checkCollisionBoxes(box2, box1.getBoundingBox()) == true) {
-            std::cout << "box 1 " << box1.getBoundingBox().min.x << " " << box1.getBoundingBox().min.y << " "
-                      << box1.getBoundingBox().min.z << "  " << box1.getBoundingBox().max.x << " "
-                      << box1.getBoundingBox().max.y << " " << box1.getBoundingBox().max.z << std::endl;
-            std::cout << "box 2 " << box2.min.x << " " << box2.min.y << " " << box2.min.z << "  " << box2.max.x << " "
-                      << box2.max.y << " " << box2.max.z << std::endl;
             collide->setCollide(true);
             otherEntityCollide->setCollide(true);
             if (otherTransform->getSpeedX() > 0.0)
