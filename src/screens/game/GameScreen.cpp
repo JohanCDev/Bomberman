@@ -216,44 +216,72 @@ void indie::menu::GameScreen::handleMultipleController(
     if (event.controller[index].leftJoystick == indie::Event::DOWN) {
         for (auto &entity : this->_entities) {
             if (entity->getEntityType() == type) {
+                auto objectCompo = entity->getComponent<indie::ecs::component::Object>(indie::ecs::component::ANIMATED);
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
                 transform->setSpeedY(speed / 500.0f);
                 transform->setSpeedX(0);
+                objectCompo->setOrientation(indie::ecs::component::Object::SOUTH);
+                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 1);
+                raylib::Model::updateModelAnimation(
+                    objectCompo->getModel(), objectCompo->getAnimations()[0], objectCompo->getAnimationsCounter());
+                if (objectCompo->getAnimationsCounter() >= objectCompo->getAnimations()[0].frameCount)
+                    objectCompo->setAnimationsCounter(0);
             }
         }
     }
     if (event.controller[index].leftJoystick == indie::Event::UP) {
         for (auto &entity : this->_entities) {
             if (entity->getEntityType() == type) {
+                auto objectCompo = entity->getComponent<indie::ecs::component::Object>(indie::ecs::component::ANIMATED);
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
                 transform->setSpeedX(0);
                 transform->setSpeedY((speed / 500.0f) * -1.0f);
+                objectCompo->setOrientation(indie::ecs::component::Object::NORTH);
+                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 1);
+                raylib::Model::updateModelAnimation(
+                    objectCompo->getModel(), objectCompo->getAnimations()[0], objectCompo->getAnimationsCounter());
+                if (objectCompo->getAnimationsCounter() >= objectCompo->getAnimations()[0].frameCount)
+                    objectCompo->setAnimationsCounter(0);
             }
         }
     }
     if (event.controller[index].leftJoystick == indie::Event::LEFT) {
         for (auto &entity : this->_entities) {
             if (entity->getEntityType() == type) {
+                auto objectCompo = entity->getComponent<indie::ecs::component::Object>(indie::ecs::component::ANIMATED);
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
                 transform->setSpeedX((speed / 500.0f) * -1.0f);
                 transform->setSpeedY(0);
+                objectCompo->setOrientation(indie::ecs::component::Object::WEST);
+                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 1);
+                raylib::Model::updateModelAnimation(
+                    objectCompo->getModel(), objectCompo->getAnimations()[0], objectCompo->getAnimationsCounter());
+                if (objectCompo->getAnimationsCounter() >= objectCompo->getAnimations()[0].frameCount)
+                    objectCompo->setAnimationsCounter(0);
             }
         }
     }
     if (event.controller[index].leftJoystick == indie::Event::RIGHT) {
         for (auto &entity : this->_entities) {
             if (entity->getEntityType() == type) {
+                auto objectCompo = entity->getComponent<indie::ecs::component::Object>(indie::ecs::component::ANIMATED);
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
                 transform->setSpeedX(speed / 500.0f);
                 transform->setSpeedY(0);
+                objectCompo->setOrientation(indie::ecs::component::Object::EAST);
+                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 1);
+                raylib::Model::updateModelAnimation(
+                    objectCompo->getModel(), objectCompo->getAnimations()[0], objectCompo->getAnimationsCounter());
+                if (objectCompo->getAnimationsCounter() >= objectCompo->getAnimations()[0].frameCount)
+                    objectCompo->setAnimationsCounter(0);
             }
         }
     }
