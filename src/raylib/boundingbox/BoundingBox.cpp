@@ -83,7 +83,6 @@ bool indie::raylib::BoundingBox::checkCollisionBoxSphere(::BoundingBox box, ::Ve
     return ::CheckCollisionBoxSphere(box, center, radius);
 }
 
-
 ::BoundingBox indie::raylib::BoundingBox::getModelBox(::Model model)
 {
     return ::GetModelBoundingBox(model);
