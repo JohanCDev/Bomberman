@@ -22,7 +22,7 @@
 indie::menu::GameScreen::GameScreen(std::vector<player::Player> *players,
     std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *soundEntities,
     std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *soundSystems)
-    : _camera({0.0, 14.0, 7.0}, {0.0, -1.5, 0.0}, {0.0, 1.0, 0.0}, 40.0, CAMERA_PERSPECTIVE), _player1_blue(false),
+    : _camera({0.0, 16.0, 7.0}, {0.0, -1.5, 0.0}, {0.0, 1.0, 0.0}, 40.0, CAMERA_PERSPECTIVE), _player1_blue(false),
       _player2_red(false), _player3_green(false), _player4_yellow(false), _is_game_finished(false),
       _end_screen_display(true)
 {
@@ -278,7 +278,7 @@ void indie::menu::GameScreen::handleMultipleController(
             entity->addComponent<indie::ecs::component::Object>(
                 "assets/objects/Bomb/Bomb.png", "assets/objects/Bomb/bomb.obj", vec);
             entity->addComponent<indie::ecs::component::Explodable>(
-                static_cast<float>((this->_players->at(index).getBombRadius()) / 2.0f) + 0.25f, 2);
+                static_cast<float>((this->_players->at(index).getBombRadius()) / 2.0f), 2);
             entity->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE)
                 ->setPlayer(index);
             entity->addComponent<indie::ecs::component::Transform>(static_cast<float>(transformCompo->getX()),

@@ -12,6 +12,7 @@
 #ifndef EXPLODABLE_HPP_
 #define EXPLODABLE_HPP_
 
+#include <map>
 #include "../ISystem.hpp"
 
 namespace indie
@@ -25,23 +26,23 @@ namespace indie
               public:
                 /**
                  * @brief Construct a new Explodable object
-                 * 
+                 *
                  */
                 Explodable();
                 /**
                  * @brief Destroy the Explodable object
-                 * 
+                 *
                  */
                 ~Explodable();
                 /**
                  * @brief Update explodable entities
-                 * 
+                 *
                  * @param entities Entity to update
                  */
                 void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities);
                 /**
                  * @brief Destroy the boxes on the map
-                 * 
+                 *
                  * @param compoToRemove Component to be removed
                  * @param entities Entity to be removed
                  * @param explodableCompo Explodable component
@@ -51,9 +52,16 @@ namespace indie
                     std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities,
                     indie::ecs::component::Explodable *explodableCompo,
                     indie::ecs::component::Transform *transformCompo);
+
+                float getValue(float position, float index, char operand);
+                float getNewValue(float bombPos);
+
+                std::map<size_t, indie::ecs::entity::Entity *> getEntityByPosition(
+                    std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities, float x, float y);
+
                 /**
                  * @brief Get the System Type object
-                 * 
+                 *
                  * @return indie::ecs::system::SystemType SystemType
                  */
                 indie::ecs::system::SystemType getSystemType() const;
