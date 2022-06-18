@@ -21,14 +21,17 @@ indie::ecs::component::Object::Object(std::string const &texturePath, std::strin
     this->_texturePath = texturePath;
     this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
     this->_modelPath = objectPath;
-    this->_model = indie::raylib::Model::load(this->_modelPath.c_str());
-    indie::raylib::Model::setMaterialTexture(&this->_model.materials[0], MATERIAL_MAP_DIFFUSE, this->_texture);
     this->_maxCounter = 0;
+    this->_animationCounter = 0;
+    this->_model = indie::raylib::Model::load(objectPath.c_str());
+    indie::raylib::Model::setMaterialTexture(&this->_model.materials[0], MATERIAL_MAP_DIFFUSE, this->_texture);
     this->_animationsPath = animationsPath;
-    this->_modelAnimation = indie::raylib::Model::loadAnimation(this->_animationsPath.c_str(), &this->_maxCounter);
+    this->_modelAnimation = indie::raylib::Model::loadAnimation(animationsPath.c_str(), &this->_maxCounter);
     this->_compoType = indie::ecs::component::compoType::ANIMATED;
     this->_drawableType = indie::ecs::component::drawableType::OBJECT;
-    this->_animationCounter = 0;
+    this->_scale = scaleVec;
+    this->_rotationVec = rotationVec;
+    this->_orientation = orientation;
 }
 
 indie::ecs::component::Object::Object(
