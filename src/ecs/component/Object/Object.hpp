@@ -35,7 +35,12 @@ namespace indie
                 /**
                  * @brief Create a new non animated Object component.
                  */
-                Object(std::string const &texturePath, std::string const &objectPath, vec3f scale);
+                Object(std::string const &texturePath, std::string const &objectPath);
+                /**
+                 * @brief Create a new non animated Object component.
+                 */
+                Object(std::string const &texturePath, std::string const &objectPath, vec3f scaleVec, vec3f rotationVec,
+                    float orientation);
                 /**
                  * @brief Destroy Object component.
                  */
@@ -132,6 +137,8 @@ namespace indie
 
                 vec3f getScale() const;
 
+                vec3f getRotationVec() const;
+
               private:
                 /**
                  * @brief Value for height
@@ -198,6 +205,7 @@ namespace indie
                  *
                  */
                 unsigned int _maxCounter;
+                vec3f _rotationVec;
                 vec3f _scale;
                 float _orientation;
             };

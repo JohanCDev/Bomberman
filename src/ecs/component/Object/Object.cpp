@@ -29,7 +29,7 @@ indie::ecs::component::Object::Object(
     this->_animationCounter = 0;
 }
 
-indie::ecs::component::Object::Object(std::string const &texturePath, std::string const &objectPath, vec3f scale)
+indie::ecs::component::Object::Object(std::string const &texturePath, std::string const &objectPath)
 {
     this->_height = 0.0;
     this->_width = 0.0;
@@ -44,7 +44,30 @@ indie::ecs::component::Object::Object(std::string const &texturePath, std::strin
     this->_drawableType = indie::ecs::component::drawableType::OBJECT;
     this->_maxCounter = 0;
     this->_animationCounter = 0;
-    this->_scale = scale;
+    this->_scale.x = 0.0f;
+    this->_scale.y = 0.0f;
+    this->_scale.z = 0.0f;
+}
+
+indie::ecs::component::Object::Object(
+    std::string const &texturePath, std::string const &objectPath, vec3f scaleVec, vec3f rotationVec, float orientation)
+{
+    this->_height = 0.0;
+    this->_width = 0.0;
+    this->_color = WHITE;
+    this->_texturePath = texturePath;
+    this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
+    this->_modelPath = objectPath;
+    this->_model = indie::raylib::Model::load(objectPath.c_str());
+    indie::raylib::Model::setMaterialTexture(&this->_model.materials[0], MATERIAL_MAP_DIFFUSE, this->_texture);
+    this->_animationsPath = "";
+    this->_compoType = indie::ecs::component::compoType::MODEL;
+    this->_drawableType = indie::ecs::component::drawableType::OBJECT;
+    this->_maxCounter = 0;
+    this->_animationCounter = 0;
+    this->_scale = scaleVec;
+    this->_rotationVec = rotationVec;
+    this->_orientation = orientation;
 }
 
 indie::ecs::component::Object::~Object()
@@ -155,4 +178,9 @@ float indie::ecs::component::Object::getOrientation() const
 indie::vec3f indie::ecs::component::Object::getScale() const
 {
     return (this->_scale);
+}
+
+indie::vec3f indie::ecs::component::Object::getRotationVec() const
+{
+    return (this->_rotationVec);
 }
