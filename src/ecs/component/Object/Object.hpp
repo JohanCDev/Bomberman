@@ -26,7 +26,7 @@ namespace indie
             /// @brief Object component
             class Object : public IComponent {
               public:
-                enum ORIENTATION { NORTH = 12, SOUTH = 192, EAST = 102, WEST = 348 };
+                enum ORIENTATION { NORTH = 270, SOUTH = 90, EAST = 180, WEST = 0 };
                 /**
                  * @brief Create a new animated Object component.
                  */
