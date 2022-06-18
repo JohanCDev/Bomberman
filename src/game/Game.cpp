@@ -125,7 +125,7 @@ void indie::Game::update()
             this->_players.at(2).getIsPlaying(), this->_players.at(3).getIsPlaying());
         indie::map::MapGenerator map;
         map.createWall();
-        //this->_game->initMap(map.getMap());
+        this->_game->initMap(map.getMap());
         this->_game->initEntity();
         _premenu->setIsGameReady(false);
     }

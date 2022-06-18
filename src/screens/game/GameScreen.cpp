@@ -46,14 +46,18 @@ void indie::menu::GameScreen::init()
 
     entityX->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
+    indie::vec3f vec;
+    vec.x = 0.2f;
+    vec.y = 0.2f;
+    vec.z = 0.2f;
     entityX->addComponent<indie::ecs::component::Object>(
-        "assets/objects/Bomb/Bomb.png", "assets/objects/Bomb/bomb.obj");
+        "assets/objects/Bomb/Bomb.png", "assets/objects/Bomb/bomb.obj", vec);
     entityX->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM)->setZ(1);
     _playerAssets[0] = std::string("./assets/blue.png");
     _playerAssets[1] = std::string("./assets/red.png");
     _playerAssets[2] = std::string("./assets/green.png");
     _playerAssets[3] = std::string("./assets/yellow.png");
-    this->addEntity(std::move(entityX));
+    //this->addEntity(std::move(entityX));
     this->addSystem(std::move(draw2DSystem));
     this->addSystem(std::move(draw3DSystem));
     this->addSystem(std::move(movementSystem));
@@ -267,11 +271,16 @@ void indie::menu::GameScreen::handleMultipleController(
         if (transformCompo != nullptr && this->_players->at(index).getBombStock() > 0) {
             std::unique_ptr<indie::ecs::entity::Entity> entity =
                 std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::BOMB);
+            indie::vec3f vec;
+            vec.x = 0.2f;
+            vec.y = 0.2f;
+            vec.z = 0.2f;
+            entity->addComponent<indie::ecs::component::Object>(
+                "assets/objects/Bomb/Bomb.png", "assets/objects/Bomb/bomb.obj", vec);
             entity->addComponent<indie::ecs::component::Explodable>(
                 static_cast<float>((this->_players->at(index).getBombRadius()) / 2.0f) + 0.25f, 2);
             entity->getComponent<indie::ecs::component::Explodable>(indie::ecs::component::EXPLODABLE)
                 ->setPlayer(index);
-            entity->addComponent<indie::ecs::component::Drawable3D>(static_cast<float>(0.25), RED);
             entity->addComponent<indie::ecs::component::Transform>(static_cast<float>(transformCompo->getX()),
                 static_cast<float>(transformCompo->getY()), static_cast<float>(0.0), static_cast<float>(0.0));
             addEntity(std::move(entity));

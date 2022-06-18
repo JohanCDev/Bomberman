@@ -9,8 +9,7 @@
  *
  */
 
-#ifndef OBJECT_HPP_
-#define OBJECT_HPP_
+#pragma once
 
 #include <memory.h>
 #include <string>
@@ -36,7 +35,7 @@ namespace indie
                 /**
                  * @brief Create a new non animated Object component.
                  */
-                Object(std::string const &texturePath, std::string const &objectPath);
+                Object(std::string const &texturePath, std::string const &objectPath, vec3f scale);
                 /**
                  * @brief Destroy Object component.
                  */
@@ -131,6 +130,8 @@ namespace indie
                 void setOrientation(ORIENTATION orientation);
                 float getOrientation() const;
 
+                vec3f getScale() const;
+
               private:
                 /**
                  * @brief Value for height
@@ -197,11 +198,9 @@ namespace indie
                  *
                  */
                 unsigned int _maxCounter;
-                vec3u _scale;
+                vec3f _scale;
                 float _orientation;
             };
         } // namespace component
     }     // namespace ecs
 } // namespace indie
-
-#endif /* !DRAWABLE3D_HPP_ */

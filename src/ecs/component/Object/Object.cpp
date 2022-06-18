@@ -29,7 +29,7 @@ indie::ecs::component::Object::Object(
     this->_animationCounter = 0;
 }
 
-indie::ecs::component::Object::Object(std::string const &texturePath, std::string const &objectPath)
+indie::ecs::component::Object::Object(std::string const &texturePath, std::string const &objectPath, vec3f scale)
 {
     this->_height = 0.0;
     this->_width = 0.0;
@@ -37,13 +37,14 @@ indie::ecs::component::Object::Object(std::string const &texturePath, std::strin
     this->_texturePath = texturePath;
     this->_texture = indie::raylib::Texture2D::load(texturePath.c_str());
     this->_modelPath = objectPath;
-    this->_model = LoadModel(objectPath.c_str());
+    this->_model = indie::raylib::Model::load(objectPath.c_str());
     indie::raylib::Model::setMaterialTexture(&this->_model.materials[0], MATERIAL_MAP_DIFFUSE, this->_texture);
     this->_animationsPath = "";
     this->_compoType = indie::ecs::component::compoType::MODEL;
     this->_drawableType = indie::ecs::component::drawableType::OBJECT;
     this->_maxCounter = 0;
     this->_animationCounter = 0;
+    this->_scale = scale;
 }
 
 indie::ecs::component::Object::~Object()
@@ -149,4 +150,9 @@ void indie::ecs::component::Object::setOrientation(indie::ecs::component::Object
 float indie::ecs::component::Object::getOrientation() const
 {
     return this->_orientation;
+}
+
+indie::vec3f indie::ecs::component::Object::getScale() const
+{
+    return (this->_scale);
 }

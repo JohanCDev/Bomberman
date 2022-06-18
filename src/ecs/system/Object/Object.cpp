@@ -14,6 +14,8 @@
 void indie::ecs::system::ObjectSystem::update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities)
 {
     Vector3 pos = {0.0, 0.0, 0.0};
+    Vector3 scale = {1.0, 1.0, 1.0};
+    vec3f vec;
 
     for (auto &entity : entities) {
         if (entity->hasCompoType(ecs::component::compoType::MODEL)) {
@@ -23,8 +25,11 @@ void indie::ecs::system::ObjectSystem::update(std::vector<std::unique_ptr<indie:
                 entity->getComponent<ecs::component::Transform>(indie::ecs::component::TRANSFORM);
             pos.x = transformCompo->getX();
             pos.z = transformCompo->getY();
-            indie::raylib::Model::drawEx(objectCompo->getModel(), pos, {0.0f, 1.0f, 0.0f},
-                static_cast<float>(indie::ecs::component::Object::NORTH), {1.0f, 1.0f, 1.0f}, WHITE);
+            vec = objectCompo->getScale();
+            scale.x = vec.x;
+            scale.y = vec.y;
+            scale.z = vec.z;
+            indie::raylib::Model::drawEx(objectCompo->getModel(), pos, {1.0f, 0.0f, 0.0f}, -30.0f, scale, WHITE);
         }
     }
 }
