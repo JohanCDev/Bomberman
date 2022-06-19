@@ -28,6 +28,8 @@ set(SRC_ECS
     ${ECSROOT}component/Explodable/Explodable.hpp
     ${ECSROOT}component/Collide/Collide.cpp
     ${ECSROOT}component/Collide/Collide.hpp
+    ${ECSROOT}component/Object/Object.cpp
+    ${ECSROOT}component/Object/Object.hpp
     ${ECSROOT}component/Sound/Sound.cpp
     ${ECSROOT}component/Sound/Sound.hpp
     ${ECSROOT}component/Destroyable/Destroyable.cpp
@@ -46,6 +48,8 @@ set(SRC_ECS
     ${ECSROOT}system/Sound/Sound.hpp
     ${ECSROOT}system/Explodable/Explodable.cpp
     ${ECSROOT}system/Explodable/Explodable.hpp
+    ${ECSROOT}system/Object/Object.cpp
+    ${ECSROOT}system/Object/Object.hpp
     ${ECSROOT}system/ISystem.hpp
 )
 
@@ -150,8 +154,9 @@ add_executable(${PROJECT_NAME} ${SRC})
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCDIRS})
 target_link_libraries(${PROJECT_NAME} PUBLIC ${INTERFACES_NAME})
+
 # Checks if OSX and links appropriate frameworks (Only required on MacOS)
-if (APPLE)
+if(APPLE)
     target_link_libraries(${PROJECT_NAME} PRIVATE "-framework IOKit")
     target_link_libraries(${PROJECT_NAME} PRIVATE "-framework Cocoa")
     target_link_libraries(${PROJECT_NAME} PRIVATE "-framework OpenGL")

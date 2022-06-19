@@ -31,7 +31,8 @@ namespace indie
                 MOVEMENTSYSTEM,
                 COLLIDESYSTEM,
                 SOUNDSYSTEM,
-                EXPLODABLESYSTEM
+                EXPLODABLESYSTEM,
+                OBJECTSYSTEM
             };
             /// @brief System
             class ISystem {

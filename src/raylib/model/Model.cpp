@@ -37,6 +37,11 @@ void indie::raylib::Model::unloadKeepMeshes(::Model model)
     ::UnloadModelKeepMeshes(model);
 }
 
+::ModelAnimation *indie::raylib::Model::loadAnimation(const char *fileName, unsigned int *animsCount)
+{
+    return ::LoadModelAnimations(fileName, animsCount);
+}
+
 void indie::raylib::Model::unloadModelAnimations(::ModelAnimation *animations, unsigned int count)
 {
     ::UnloadModelAnimations(animations, count);

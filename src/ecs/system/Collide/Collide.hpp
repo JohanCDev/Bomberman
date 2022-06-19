@@ -25,12 +25,12 @@ namespace indie
               public:
                 /**
                  * @brief Construct a new Collide object
-                 * 
+                 *
                  */
                 Collide();
                 /**
                  * @brief Destroy the Collide object
-                 * 
+                 *
                  */
                 ~Collide();
                 /**
@@ -41,7 +41,7 @@ namespace indie
                 void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities);
                 /**
                  * @brief Check collisions between cubes
-                 * 
+                 *
                  * @param drawable The drawable component
                  * @param collide The collide component
                  * @param transform The transform component
@@ -49,12 +49,12 @@ namespace indie
                  * @param otherEntityDrawable The other drawable component
                  * @param otherTransform The other transform component
                  */
-                void checkCubeCollision(auto drawable, auto collide, indie::ecs::component::Transform *transform,
-                    auto otherEntityCollide, auto otherEntityDrawable,
-                    indie::ecs::component::Transform *otherTransform);
+                bool checkCollision(std::unique_ptr<indie::ecs::entity::Entity> &entity,
+                    std::unique_ptr<indie::ecs::entity::Entity> &otherEntity, indie::ecs::component::Collide *collide,
+                    indie::ecs::component::Collide *otherEntityCollide, std::vector<int> &compoToRemove, int &count);
                 /**
                  * @brief Check collisions between spheres
-                 * 
+                 *
                  * @param entity Sphere entity
                  * @param otherEntity Other entity
                  * @param compoToRemove Component to remove

@@ -23,7 +23,7 @@ indie::ecs::system::Explodable::~Explodable()
 float indie::ecs::system::Explodable::getValue(float position, float index, char operand)
 {
     while (1) {
-        float test = std::fmod(static_cast<float>(position), 0.5f);
+        float test = std::fmod(static_cast<float>(position), 2.0f);
         if (test >= 0.01 || test <= -0.01) {
             if (operand == '+') {
                 position += 0.01f;
@@ -55,18 +55,6 @@ float indie::ecs::system::Explodable::getNewValue(float bombPos)
         if (std::abs(f2) <= 0.1) {
             position2 = position2 - f2;
         }
-        f2 = std::modf(position, &f);
-        if (std::abs(f2) >= 0.48 && std::abs(f2) <= 0.51) {
-            f2 *= 10.0;
-            f = std::modf(f2, &f2);
-            position = position - (f / 10.0);
-        }
-        f2 = std::modf(position2, &f);
-        if (std::abs(f2) >= 0.48 && std::abs(f2) <= 0.51) {
-            f2 *= 10.0;
-            f = std::modf(f2, &f2);
-            position2 = position2 - (f / 10.0);
-        }
         if ((std::abs(bombPos - position)) < (std::abs(bombPos - position2))) {
             newPosition = position;
         } else {
@@ -84,6 +72,11 @@ std::map<size_t, indie::ecs::entity::Entity *> indie::ecs::system::Explodable::g
     for (auto &entity : entities) {
         if (entity->hasCompoType(indie::ecs::component::TRANSFORM) == true
             && entity->hasCompoType(indie::ecs::component::COLLECTABLE) == false) {
+            if (entity->hasCompoType(indie::ecs::component::ALIVE)
+                && entity->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)->getAlive()
+                    == false) {
+                continue;
+            }
             auto transformCompo =
                 entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM);
             float xPosition = getNewValue(transformCompo->getX());
@@ -105,21 +98,20 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
     float xPosition = getNewValue(bombTransformCompo->getX());
     float yPosition = getNewValue(bombTransformCompo->getY());
 
-    for (float i = 0, counter = 0.0; i < explodableCompo->getRange(); i += 0.5, counter += 0.5) {
+    for (float i = 0, counter = 0.0; i < explodableCompo->getRange() + 2.0f; i += 2.0, counter += 2.0) {
         std::map<size_t, indie::ecs::entity::Entity *> entityMap;
-        if (i == 0) {
-            entityMap = getEntityByPosition(entities, xPosition - 0.5f, yPosition);
-        } else {
-            entityMap = getEntityByPosition(entities, (xPosition - counter - 0.5f), yPosition);
-        }
+        entityMap = getEntityByPosition(entities, (xPosition - i), yPosition);
         if (entityMap.empty() == false) {
             size_t index = entityMap.begin()->first;
             indie::ecs::entity::Entity *entity = entityMap.begin()->second;
+            if (entity->hasCompoType(indie::ecs::component::EXPLODABLE)) {
+                continue;
+            }
             auto transformCompo =
                 entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM);
             float entityXPosition = getNewValue(transformCompo->getX());
             float entityYPosition = getNewValue(transformCompo->getY());
-            if ((entityXPosition >= xPosition + (-i - 0.5) && entityXPosition <= xPosition)
+            if ((entityXPosition >= xPosition + (-i - 2.0) && entityXPosition <= xPosition)
                 && entityYPosition == yPosition) {
                 entity->getComponent<indie::ecs::component::Destroyable>(indie::ecs::component::DESTROYABLE);
                 if (entity->hasCompoType(indie::ecs::component::DESTROYABLE) == true) {
@@ -143,21 +135,20 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
         }
     }
     compoToRemove.clear();
-    for (float i = 0, counter = 0.0; i < explodableCompo->getRange(); i += 0.5, counter += 0.5) {
+    for (float i = 0, counter = 0.0; i < explodableCompo->getRange() + 2.0f; i += 2.0, counter += 2.0) {
         std::map<size_t, indie::ecs::entity::Entity *> entityMap;
-        if (i == 0) {
-            entityMap = getEntityByPosition(entities, xPosition + 0.5f, yPosition);
-        } else {
-            entityMap = getEntityByPosition(entities, (xPosition + counter + 0.5f), yPosition);
-        }
+        entityMap = getEntityByPosition(entities, (xPosition + i), yPosition);
         if (entityMap.empty() == false) {
             size_t index = entityMap.begin()->first;
             indie::ecs::entity::Entity *entity = entityMap.begin()->second;
+            if (entity->hasCompoType(indie::ecs::component::EXPLODABLE)) {
+                continue;
+            }
             auto transformCompo =
                 entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM);
             float entityXPosition = getNewValue(transformCompo->getX());
             float entityYPosition = getNewValue(transformCompo->getY());
-            if ((entityXPosition <= xPosition + (i + 0.5) && entityXPosition >= xPosition)
+            if ((entityXPosition <= xPosition + (i + 2.0) && entityXPosition >= xPosition)
                 && entityYPosition == yPosition) {
                 entity->getComponent<indie::ecs::component::Destroyable>(indie::ecs::component::DESTROYABLE);
                 if (entity->hasCompoType(indie::ecs::component::DESTROYABLE) == true) {
@@ -182,21 +173,20 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
         }
     }
     compoToRemove.clear();
-    for (float i = 0, counter = 0.0; i < explodableCompo->getRange(); i += 0.5, counter += 0.5) {
+    for (float i = 0, counter = 0.0; i < explodableCompo->getRange() + 2.0f; i += 2.0, counter += 2.0) {
         std::map<size_t, indie::ecs::entity::Entity *> entityMap;
-        if (i == 0) {
-            entityMap = getEntityByPosition(entities, xPosition, yPosition + 0.5f);
-        } else {
-            entityMap = getEntityByPosition(entities, xPosition, yPosition + counter + 0.5f);
-        }
+        entityMap = getEntityByPosition(entities, xPosition, yPosition + i);
         if (entityMap.empty() == false) {
             size_t index = entityMap.begin()->first;
             indie::ecs::entity::Entity *entity = entityMap.begin()->second;
+            if (entity->hasCompoType(indie::ecs::component::EXPLODABLE)) {
+                continue;
+            }
             auto transformCompo =
                 entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM);
             float entityXPosition = getNewValue(transformCompo->getX());
             float entityYPosition = getNewValue(transformCompo->getY());
-            if ((entityYPosition <= yPosition + (i + 0.5) && entityYPosition >= yPosition)
+            if ((entityYPosition <= yPosition + (i + 2.0) && entityYPosition >= yPosition)
                 && entityXPosition == xPosition) {
                 entity->getComponent<indie::ecs::component::Destroyable>(indie::ecs::component::DESTROYABLE);
                 if (entity->hasCompoType(indie::ecs::component::DESTROYABLE) == true) {
@@ -219,21 +209,20 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
         }
     }
     compoToRemove.clear();
-    for (float i = 0, counter = 0.0; i < explodableCompo->getRange(); i += 0.5, counter += 0.5) {
+    for (float i = 0, counter = 0.0; i < explodableCompo->getRange() + 2.0f; i += 2.0, counter += 2.0) {
         std::map<size_t, indie::ecs::entity::Entity *> entityMap;
-        if (i == 0) {
-            entityMap = getEntityByPosition(entities, xPosition, yPosition - 0.5f);
-        } else {
-            entityMap = getEntityByPosition(entities, xPosition, yPosition - counter - 0.5f);
-        }
+        entityMap = getEntityByPosition(entities, xPosition, yPosition - i);
         if (entityMap.empty() == false) {
             size_t index = entityMap.begin()->first;
             indie::ecs::entity::Entity *entity = entityMap.begin()->second;
+            if (entity->hasCompoType(indie::ecs::component::EXPLODABLE)) {
+                continue;
+            }
             auto transformCompo =
                 entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM);
             float entityXPosition = getNewValue(transformCompo->getX());
             float entityYPosition = getNewValue(transformCompo->getY());
-            if ((entityYPosition >= yPosition + (-i - 0.5) && entityYPosition <= yPosition)
+            if ((entityYPosition >= yPosition + (-i - 2.0) && entityYPosition <= yPosition)
                 && (entityXPosition >= xPosition)) {
                 if (entity->hasCompoType(indie::ecs::component::DESTROYABLE) == true) {
                     compoToRemove.push_back(index);

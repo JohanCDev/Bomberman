@@ -26,6 +26,7 @@
 #include "../ecs/system/Draw3D/Draw3D.hpp"
 #include "../ecs/system/Explodable/Explodable.hpp"
 #include "../ecs/system/Movement/Movement.hpp"
+#include "../ecs/system/Object/Object.hpp"
 #include "../ecs/system/Sound/Sound.hpp"
 #include "events.hpp"
 #include "uiPlayerDisplay/UIPlayerDisplay.hpp"
@@ -77,6 +78,7 @@ namespace indie
              * @return int The scene number
              */
             int handleEvent(indie::Event &event) override;
+
             /**
              * @brief Handle multiple input from multiple controllers / players
              *
@@ -159,21 +161,23 @@ namespace indie
              *
              */
             void initRightEntity(std::vector<std::string> args);
-            int countAlivePlayers();
             /**
-             * @brief Count alive players
+             * @brief Count the amount of alive players
              *
+             * @return Number of players alive
              */
-            int getWinner();
+            int countAlivePlayers();
             /**
              * @brief Get last player alive
              *
+             * @return The winner player index
              */
-            void endScreenDisplay();
+            int getWinner();
             /**
              * @brief Display of the winner after the end of the game
              *
              */
+            void endScreenDisplay();
 
           private:
             /**

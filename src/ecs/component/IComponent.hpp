@@ -25,7 +25,7 @@ namespace indie
 
             /**
              * @brief Enum for component type
-             * 
+             *
              */
             enum compoType {
                 TRANSFORM,
@@ -38,16 +38,18 @@ namespace indie
                 COLLIDE,
                 SOUND,
                 DESTROYABLE,
+                MODEL,
+                ANIMATED,
                 UNKNOWNCOMPO
             };
             /**
              * @brief Enum for drawable type
-             * 
+             *
              */
-            enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, UNKNOWNDRAWABLE };
+            enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, OBJECT, UNKNOWNDRAWABLE };
             /**
              * @brief Enum for bonus type
-             * 
+             *
              */
             enum bonusType { BOMBUP, SPEEDUP, FIREUP, WALLPASS, UNKNOWNBONUS };
 

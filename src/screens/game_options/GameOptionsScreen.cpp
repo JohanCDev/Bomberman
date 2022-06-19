@@ -19,69 +19,70 @@ indie::menu::GameOptionsScreen::GameOptionsScreen() : _cursorPosition(RESUME)
 
 void indie::menu::GameOptionsScreen::init()
 {
-    std::unique_ptr<ecs::entity::Entity> background = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> background =
+        std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     background->addComponent<ecs::component::Transform>(0.0f, 0.0f, 0.0f, 0.0f);
     background->addComponent<ecs::component::Drawable2D>("assets/menu/bg.png",
         tools::Tools::getPercentage(100.f, false), tools::Tools::getPercentage(100.f, true), WHITE);
     addEntity(std::move(background));
 
-    std::unique_ptr<ecs::entity::Entity> frame = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> frame = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     frame->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(20.f, true), tools::Tools::getPercentage(2.5f, false), 0.0f, 0.0f);
     frame->addComponent<ecs::component::Drawable2D>("assets/menu/frame.png", tools::Tools::getPercentage(95.f, false),
         tools::Tools::getPercentage(60.f, true), WHITE);
     addEntity(std::move(frame));
 
-    std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> cursor = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     cursor->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(33.f, true), tools::Tools::getPercentage(9.f, false), 0.0f, 0.0f);
     cursor->addComponent<ecs::component::Drawable2D>("assets/menu/hand.png", tools::Tools::getPercentage(10.f, false),
         tools::Tools::getPercentage(6.f, true), WHITE);
     addEntity(std::move(cursor));
 
-    std::unique_ptr<ecs::entity::Entity> resume = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> resume = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     resume->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(6.f, false), 0.0f, 0.0f);
     resume->addComponent<ecs::component::Drawable2D>("assets/menu/resume.png", tools::Tools::getPercentage(10.f, false),
         tools::Tools::getPercentage(18.f, true), WHITE);
     addEntity(std::move(resume));
 
-    std::unique_ptr<ecs::entity::Entity> menu = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> menu = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     menu->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(18.5f, false), 0.0f, 0.0f);
     menu->addComponent<ecs::component::Drawable2D>("assets/menu/menu.png", tools::Tools::getPercentage(10.f, false),
         tools::Tools::getPercentage(18.f, true), WHITE);
     addEntity(std::move(menu));
 
-    std::unique_ptr<ecs::entity::Entity> save = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> save = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     save->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(31.f, false), 0.0f, 0.0f);
     save->addComponent<ecs::component::Drawable2D>("assets/menu/save.png", tools::Tools::getPercentage(10.f, false),
         tools::Tools::getPercentage(18.f, true), WHITE);
     addEntity(std::move(save));
 
-    std::unique_ptr<ecs::entity::Entity> music = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> music = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     music->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(43.5f, false), 0.0f, 0.0f);
     music->addComponent<ecs::component::Drawable2D>("assets/menu/music.png", tools::Tools::getPercentage(10.f, false),
         tools::Tools::getPercentage(18.f, true), WHITE);
     addEntity(std::move(music));
 
-    std::unique_ptr<ecs::entity::Entity> sound = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> sound = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     sound->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(56.f, false), 0.0f, 0.0f);
     sound->addComponent<ecs::component::Drawable2D>("assets/menu/sound.png", tools::Tools::getPercentage(10.f, false),
         tools::Tools::getPercentage(18.f, true), WHITE);
     addEntity(std::move(sound));
 
-    std::unique_ptr<ecs::entity::Entity> fps = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> fps = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     fps->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(68.5f, false), 0.0f, 0.0f);
     fps->addComponent<ecs::component::Drawable2D>("assets/menu/fps.png", tools::Tools::getPercentage(10.f, false),
         tools::Tools::getPercentage(18.f, true), WHITE);
     addEntity(std::move(fps));
 
-    std::unique_ptr<ecs::entity::Entity> quit = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> quit = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     quit->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(81.f, false), 0.0f, 0.0f);
     quit->addComponent<ecs::component::Drawable2D>("assets/menu/quit.png", tools::Tools::getPercentage(10.f, false),
@@ -138,7 +139,7 @@ int indie::menu::GameOptionsScreen::handleEvent(indie::Event &event)
     }
     if ((event.controller[0].code == indie::Event::ControllerCode::X_BUTTON || event.key.enter)
         && _cursorPosition == SAVE) {
-        std::unique_ptr<ecs::entity::Entity> save = std::make_unique<ecs::entity::Entity>();
+        std::unique_ptr<ecs::entity::Entity> save = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
         save->addComponent<ecs::component::Transform>(
             tools::Tools::getPercentage(60.f, true), tools::Tools::getPercentage(34.f, false), 0.0f, 0.0f);
         save->addComponent<ecs::component::Drawable2D>("Game saved !", tools::Tools::getPercentage(5.f, false), WHITE);
