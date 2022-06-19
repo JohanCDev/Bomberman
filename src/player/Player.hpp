@@ -37,7 +37,7 @@ namespace indie
              */
             Player(Color color, short unsigned int controllerId, bool isAlive = true, bool isPlaying = false,
                 unsigned short bombRadius = 1, unsigned short bombStock = 2, unsigned short maxBombStock = 2,
-                unsigned int speed = 12);
+                unsigned int speed = 10);
 
             /// @brief Construct a new Player object
             /// @param player to copy

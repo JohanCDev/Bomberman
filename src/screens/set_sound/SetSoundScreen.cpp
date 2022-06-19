@@ -14,7 +14,7 @@
 #include "../../tools/Tools.hpp"
 
 indie::menu::SetSoundScreen::SetSoundScreen(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *sounds)
-    : _cursorPosition(SOUND_100), _lastSeenCursorPos(5)
+    : _cursorPosition(SOUND_50), _lastSeenCursorPos(5)
 {
     _sounds = sounds;
 }
