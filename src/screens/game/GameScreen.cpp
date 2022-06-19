@@ -221,7 +221,7 @@ void indie::menu::GameScreen::handleMultipleController(
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
-                transform->setSpeedY(speed / 25.0f);
+                transform->setSpeedY(speed / 50.0f);
                 transform->setSpeedX(0);
                 objectCompo->setOrientation(indie::ecs::component::Object::SOUTH);
                 objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 5);
@@ -240,7 +240,7 @@ void indie::menu::GameScreen::handleMultipleController(
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
                 transform->setSpeedX(0);
-                transform->setSpeedY((speed / 25.0f) * -1.0f);
+                transform->setSpeedY((speed / 50.0f) * -1.0f);
                 objectCompo->setOrientation(indie::ecs::component::Object::NORTH);
                 objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 5);
                 raylib::Model::updateModelAnimation(
@@ -257,7 +257,7 @@ void indie::menu::GameScreen::handleMultipleController(
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
-                transform->setSpeedX((speed / 25.0f) * -1.0f);
+                transform->setSpeedX((speed / 50.0f) * -1.0f);
                 transform->setSpeedY(0);
                 objectCompo->setOrientation(indie::ecs::component::Object::WEST);
                 objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 5);
@@ -276,7 +276,7 @@ void indie::menu::GameScreen::handleMultipleController(
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
                 if (transform != nullptr) {
-                    transform->setSpeedX(speed / 25.0f);
+                    transform->setSpeedX(speed / 50.0f);
                     transform->setSpeedY(0);
                 }
                 objectCompo->setOrientation(indie::ecs::component::Object::EAST);
@@ -548,7 +548,7 @@ void indie::menu::GameScreen::saveMapEntities()
             ecs::component::Transform *transformCompo =
                 _entities.at(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             file << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
-            if (transformCompo->getX() == 5 && transformCompo->getY() == -5)
+            if (transformCompo->getX() == 20 && transformCompo->getY() == -20)
                 mapEnd = true;
         }
         if (_entities.at(i)->getEntityType() == indie::ecs::entity::entityType::BOXES) {
@@ -584,13 +584,13 @@ void indie::menu::GameScreen::saveMapEntities()
         if (_entities.at(i)->getEntityType() == indie::ecs::entity::entityType::UNKNOWN) {
             ecs::component::Transform *transformCompo =
                 _entities.at(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-            ecs::component::Drawable3D *drawable3dCompo =
-                _entities.at(i)->getComponent<ecs::component::Drawable3D>(ecs::component::compoType::DRAWABLE3D);
-            if (compareColor(drawable3dCompo->getColor(), RED))
+            ecs::component::Collectable *collectableCompo =
+                _entities.at(i)->getComponent<ecs::component::Collectable>(ecs::component::compoType::COLLECTABLE);
+            if (collectableCompo->getBonusType() == indie::ecs::component::BOMBUP)
                 file << "B " << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
-            if (compareColor(drawable3dCompo->getColor(), YELLOW))
+            if (collectableCompo->getBonusType() == indie::ecs::component::SPEEDUP)
                 file << "S " << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
-            if (compareColor(drawable3dCompo->getColor(), MAGENTA))
+            if (collectableCompo->getBonusType() == indie::ecs::component::FIREUP)
                 file << "R " << transformCompo->getX() << " " << transformCompo->getY() << std::endl;
         }
     }
@@ -623,7 +623,7 @@ bool indie::menu::GameScreen::loadSavedMap()
 
 void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
 {
-    indie::vec3f scalePlayerVec({0.3f, 0.3f, 0.3f});
+    indie::vec3f scalePlayerVec({1.0f, 1.0f, 1.0f});
     indie::vec3f rotationPlayerVec({0.f, 1.f, 0.f});
 
     if (args[0] == "#") {
@@ -632,7 +632,7 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
         entityX->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
             static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
         entityX->addComponent<indie::ecs::component::Drawable3D>(
-            "src/wall.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
+            "src/wall.png", static_cast<float>(2.0), static_cast<float>(2.0), static_cast<float>(2.0), WHITE);
         entityX->addComponent<indie::ecs::component::Collide>();
         addEntity(std::move(entityX));
     }
@@ -644,18 +644,21 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
         entityA->addComponent<indie::ecs::component::Collide>();
         entityA->addComponent<indie::ecs::component::Destroyable>();
         entityA->addComponent<indie::ecs::component::Drawable3D>(
-            "src/boite.png", static_cast<float>(0.5), static_cast<float>(0.5), static_cast<float>(0.5), WHITE);
+            "src/boite.png", static_cast<float>(2.0), static_cast<float>(2.0), static_cast<float>(2.0), WHITE);
         addEntity(std::move(entityA));
     }
     if (args[0] == "1" && this->_players->at(0).getIsAlive() == true) {
         std::unique_ptr<indie::ecs::entity::Entity> entityP1 =
             std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::entityType::PLAYER_1);
+
         entityP1->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
             static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
         entityP1->addComponent<indie::ecs::component::Object>("./assets/player/textures/blue.png",
             "./assets/player/player.iqm", "./assets/player/player.iqm", scalePlayerVec, rotationPlayerVec,
             static_cast<float>(ecs::component::Object::SOUTH));
         entityP1->addComponent<indie::ecs::component::Destroyable>();
+        entityP1->addComponent<indie::ecs::component::Inventory>();
+        entityP1->addComponent<indie::ecs::component::Collide>();
         entityP1->addComponent<indie::ecs::component::Alive>(true);
         addEntity(std::move(entityP1));
         _player1_blue = true;
@@ -665,10 +668,12 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
             std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_2);
         entityP2->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
             static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
-        entityP2->addComponent<indie::ecs::component::Object>("./assets/player/textures/blue.png",
+        entityP2->addComponent<indie::ecs::component::Object>("./assets/player/textures/red.png",
             "./assets/player/player.iqm", "./assets/player/player.iqm", scalePlayerVec, rotationPlayerVec,
             static_cast<float>(ecs::component::Object::SOUTH));
         entityP2->addComponent<indie::ecs::component::Destroyable>();
+        entityP2->addComponent<indie::ecs::component::Inventory>();
+        entityP2->addComponent<indie::ecs::component::Collide>();
         entityP2->addComponent<indie::ecs::component::Alive>(true);
         addEntity(std::move(entityP2));
         _player2_red = true;
@@ -678,10 +683,12 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
             std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_3);
         entityP3->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
             static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
-        entityP3->addComponent<indie::ecs::component::Object>("./assets/player/textures/blue.png",
+        entityP3->addComponent<indie::ecs::component::Object>("./assets/player/textures/green.png",
             "./assets/player/player.iqm", "./assets/player/player.iqm", scalePlayerVec, rotationPlayerVec,
             static_cast<float>(ecs::component::Object::NORTH));
         entityP3->addComponent<indie::ecs::component::Destroyable>();
+        entityP3->addComponent<indie::ecs::component::Inventory>();
+        entityP3->addComponent<indie::ecs::component::Collide>();
         entityP3->addComponent<indie::ecs::component::Alive>(true);
         addEntity(std::move(entityP3));
         _player3_green = true;
@@ -691,10 +698,12 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
             std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::PLAYER_4);
         entityP4->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
             static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
-        entityP4->addComponent<indie::ecs::component::Object>("./assets/player/textures/blue.png",
+        entityP4->addComponent<indie::ecs::component::Object>("./assets/player/textures/yellow.png",
             "./assets/player/player.iqm", "./assets/player/player.iqm", scalePlayerVec, rotationPlayerVec,
             static_cast<float>(ecs::component::Object::NORTH));
         entityP4->addComponent<indie::ecs::component::Destroyable>();
+        entityP4->addComponent<indie::ecs::component::Inventory>();
+        entityP4->addComponent<indie::ecs::component::Collide>();
         entityP4->addComponent<indie::ecs::component::Alive>(true);
         addEntity(std::move(entityP4));
         _player4_yellow = true;
@@ -704,9 +713,13 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
             std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
         entityB->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
             static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
-        entityB->addComponent<indie::ecs::component::Drawable3D>(
-            "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), RED);
-        entityB->addComponent<indie::ecs::component::Collectable>();
+        vec3f scale({1.0f, 1.0f, 1.0f});
+        vec3f rotation({0.0f, 1.0f, 0.0f});
+
+        entityB->addComponent<indie::ecs::component::Object>(
+            "assets/objects/Charger/charger.png", "assets/objects/Charger/charger.obj", scale, rotation, 90.0f);
+        entityB->addComponent<indie::ecs::component::Collectable>(indie::ecs::component::BOMBUP);
+        entityB->addComponent<indie::ecs::component::Collide>();
         addEntity(std::move(entityB));
     }
     if (args[0] == "S") {
@@ -714,9 +727,13 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
             std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
         entityS->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
             static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
-        entityS->addComponent<indie::ecs::component::Drawable3D>(
-            "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), YELLOW);
-        entityS->addComponent<indie::ecs::component::Collectable>();
+        vec3f scale({1.0f, 1.0f, 1.0f});
+        vec3f rotation({0.0f, 1.0f, 0.0f});
+
+        entityS->addComponent<indie::ecs::component::Object>(
+            "assets/objects/Boot/boot.png", "assets/objects/Boot/boot.obj", scale, rotation, 90.0f);
+        entityS->addComponent<indie::ecs::component::Collectable>(indie::ecs::component::SPEEDUP);
+        entityS->addComponent<indie::ecs::component::Collide>();
         addEntity(std::move(entityS));
     }
     if (args[0] == "R") {
@@ -724,9 +741,13 @@ void indie::menu::GameScreen::initRightEntity(std::vector<std::string> args)
             std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
         entityR->addComponent<indie::ecs::component::Transform>(static_cast<float>(std::stof(args[1])),
             static_cast<float>(std::stof(args[2])), static_cast<float>(0.0), static_cast<float>(0.0));
-        entityR->addComponent<indie::ecs::component::Drawable3D>(
-            "", static_cast<float>(0.25), static_cast<float>(0.25), static_cast<float>(0.25), MAGENTA);
-        entityR->addComponent<indie::ecs::component::Collectable>();
+        vec3f scale({1.0f, 1.0f, 1.0f});
+        vec3f rotation({0.0f, 0.0f, 1.0f});
+
+        entityR->addComponent<indie::ecs::component::Object>(
+            "assets/objects/Tnt/tnt.png", "assets/objects/Tnt/tnt.obj", scale, rotation, 90.0f);
+        entityR->addComponent<indie::ecs::component::Collectable>(indie::ecs::component::bonusType::FIREUP);
+        entityR->addComponent<indie::ecs::component::Collide>();
         addEntity(std::move(entityR));
     }
     if (args[0][0] == 'P') {
