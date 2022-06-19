@@ -280,7 +280,7 @@ void indie::menu::GameScreen::handleMultipleController(
                     transform->setSpeedY(0);
                 }
                 objectCompo->setOrientation(indie::ecs::component::Object::EAST);
-                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter());
+                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 5);
                 raylib::Model::updateModelAnimation(
                     objectCompo->getModel(), objectCompo->getAnimations()[0], objectCompo->getAnimationsCounter());
                 if (objectCompo->getAnimationsCounter() >= objectCompo->getAnimations()[0].frameCount)
@@ -453,8 +453,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
                 entityB->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                vec3f scale(1.0f, 1.0f, 1.0f);
-                vec3f rotation(0.0f, 1.0f, 0.0f);
+                vec3f scale({1.0f, 1.0f, 1.0f});
+                vec3f rotation({0.0f, 1.0f, 0.0f});
 
                 entityB->addComponent<indie::ecs::component::Object>(
                     "assets/objects/Charger/charger.png", "assets/objects/Charger/charger.obj", scale, rotation, 90.0f);
@@ -476,8 +476,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
                 entityS->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                vec3f scale(1.0f, 1.0f, 1.0f);
-                vec3f rotation(0.0f, 1.0f, 0.0f);
+                vec3f scale({1.0f, 1.0f, 1.0f});
+                vec3f rotation({0.0f, 1.0f, 0.0f});
 
                 entityS->addComponent<indie::ecs::component::Object>(
                     "assets/objects/Boot/boot.png", "assets/objects/Boot/boot.obj", scale, rotation, 90.0f);
@@ -499,8 +499,8 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                     std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
                 entityR->addComponent<indie::ecs::component::Transform>(static_cast<float>(posX),
                     static_cast<float>(posY), static_cast<float>(0.0), static_cast<float>(0.0));
-                vec3f scale(1.0f, 1.0f, 1.0f);
-                vec3f rotation(0.0f, 0.0f, 1.0f);
+                vec3f scale({1.0f, 1.0f, 1.0f});
+                vec3f rotation({0.0f, 0.0f, 1.0f});
 
                 entityR->addComponent<indie::ecs::component::Object>(
                     "assets/objects/Tnt/tnt.png", "assets/objects/Tnt/tnt.obj", scale, rotation, 90.0f);
