@@ -40,7 +40,8 @@ namespace indie
 
                 void UIPlayerDisplay::createSingleTextEntity(std::string &str, vec2f position)
                 {
-                    std::unique_ptr<indie::ecs::entity::Entity> entity = std::make_unique<indie::ecs::entity::Entity>();
+                    std::unique_ptr<indie::ecs::entity::Entity> entity =
+                        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::TEXT);
 
                     entity->addComponent<ecs::component::Drawable2D>(
                         str, tools::Tools::getPercentage(2.f, false), BLACK);
@@ -51,7 +52,8 @@ namespace indie
 
                 void UIPlayerDisplay::createImage()
                 {
-                    std::unique_ptr<indie::ecs::entity::Entity> sprite = std::make_unique<indie::ecs::entity::Entity>();
+                    std::unique_ptr<indie::ecs::entity::Entity> sprite =
+                        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
 
                     sprite->addComponent<ecs::component::Drawable2D>(this->getPlayerSpriteFilepath(),
                         tools::Tools::getPercentage(8.f, false), tools::Tools::getPercentage(8.f, false), WHITE);
@@ -97,7 +99,7 @@ namespace indie
                 void UIPlayerDisplay::create()
                 {
                     std::unique_ptr<indie::ecs::entity::Entity> container =
-                        std::make_unique<indie::ecs::entity::Entity>();
+                        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
                     std::string playerStr("Player " + std::to_string(this->_player->getControllerId() + 1));
                     std::string speedStr("Speed: " + std::to_string(this->_player->getSpeed()));
                     std::string bombsStr("Bomb stock: " + std::to_string(this->_player->getBombStock()) + " / "

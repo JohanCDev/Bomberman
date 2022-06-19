@@ -42,7 +42,8 @@ void indie::menu::GameScreen::init()
     std::unique_ptr<indie::ecs::system::Explodable> explodeSystem = std::make_unique<indie::ecs::system::Explodable>();
     std::unique_ptr<indie::ecs::system::ObjectSystem> objectSystem =
         std::make_unique<indie::ecs::system::ObjectSystem>();
-    std::unique_ptr<indie::ecs::entity::Entity> entityX = std::make_unique<indie::ecs::entity::Entity>();
+    std::unique_ptr<indie::ecs::entity::Entity> entityX =
+        std::make_unique<indie::ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
 
     entityX->addComponent<indie::ecs::component::Transform>(
         static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
@@ -274,10 +275,12 @@ void indie::menu::GameScreen::handleMultipleController(
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
-                transform->setSpeedX(speed / 25.0f);
-                transform->setSpeedY(0);
+                if (transform != nullptr) {
+                    transform->setSpeedX(speed / 25.0f);
+                    transform->setSpeedY(0);
+                }
                 objectCompo->setOrientation(indie::ecs::component::Object::EAST);
-                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 5);
+                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter());
                 raylib::Model::updateModelAnimation(
                     objectCompo->getModel(), objectCompo->getAnimations()[0], objectCompo->getAnimationsCounter());
                 if (objectCompo->getAnimationsCounter() >= objectCompo->getAnimations()[0].frameCount)
@@ -777,25 +780,26 @@ int indie::menu::GameScreen::getWinner()
 
 void indie::menu::GameScreen::endScreenDisplay()
 {
-    std::unique_ptr<ecs::entity::Entity> frame = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> frame = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     frame->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(20.f, true), tools::Tools::getPercentage(10.f, false), 0.0f, 0.0f);
     frame->addComponent<ecs::component::Drawable2D>("assets/menu/frame.png", tools::Tools::getPercentage(75.f, false),
         tools::Tools::getPercentage(60.f, true), WHITE);
     addEntity(std::move(frame));
-    std::unique_ptr<ecs::entity::Entity> winner_is = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> winner_is = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     winner_is->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(30.f, true), tools::Tools::getPercentage(20.f, false), 0.0f, 0.0f);
     winner_is->addComponent<ecs::component::Drawable2D>(
         "The Winner is", tools::Tools::getPercentage(10.f, false), YELLOW);
     addEntity(std::move(winner_is));
-    std::unique_ptr<ecs::entity::Entity> return_to_menu = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> return_to_menu =
+        std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     return_to_menu->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(28.f, true), tools::Tools::getPercentage(70.f, false), 0.0f, 0.0f);
     return_to_menu->addComponent<ecs::component::Drawable2D>(
         "Press Triangle to go back to the menu", tools::Tools::getPercentage(4.f, false), WHITE);
     addEntity(std::move(return_to_menu));
-    std::unique_ptr<ecs::entity::Entity> winner = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> winner = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     winner->addComponent<ecs::component::Transform>(
         tools::Tools::getPercentage(40.f, true), tools::Tools::getPercentage(35.f, false), 0.0f, 0.0f);
     winner->addComponent<ecs::component::Drawable2D>(_playerAssets[getWinner()],

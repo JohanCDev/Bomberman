@@ -69,15 +69,17 @@ void indie::Game::initMusic()
 
 void indie::Game::initSounds()
 {
-    std::unique_ptr<ecs::entity::Entity> bombSound = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> bombSound = std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     bombSound->addComponent<ecs::component::Sound>("assets/sound/bomb.ogg", false);
     addSoundEntity(std::move(bombSound));
 
-    std::unique_ptr<ecs::entity::Entity> gameReadySound = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> gameReadySound =
+        std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     gameReadySound->addComponent<ecs::component::Sound>("assets/sound/game_ready.ogg", false);
     addSoundEntity(std::move(gameReadySound));
 
-    std::unique_ptr<ecs::entity::Entity> selectSound = std::make_unique<ecs::entity::Entity>();
+    std::unique_ptr<ecs::entity::Entity> selectSound =
+        std::make_unique<ecs::entity::Entity>(indie::ecs::entity::UNKNOWN);
     selectSound->addComponent<ecs::component::Sound>("assets/sound/select.ogg", false);
     addSoundEntity(std::move(selectSound));
 
