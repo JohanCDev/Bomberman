@@ -342,8 +342,8 @@ int indie::menu::GameScreen::handleEvent(indie::Event &event)
             handleMultipleController(event, 3, indie::ecs::entity::entityType::PLAYER_4);
         if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON || event.key.r_shift)
             return 4;
-        //if (countAlivePlayers() == 1)
-        //    _is_game_finished = true;
+        // if (countAlivePlayers() == 1)
+        //     _is_game_finished = true;
     } else {
         if (_end_screen_display) {
             endScreenDisplay();
@@ -468,7 +468,7 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 entityB2->addComponent<indie::ecs::component::Collide>();
                 entityB2->addComponent<indie::ecs::component::Destroyable>();
                 entityB2->addComponent<indie::ecs::component::Drawable3D>(
-                    "src/boite.png", static_cast<float>(2.0), static_cast<float>(2.0), static_cast<float>(2.0), MAGENTA);
+                    "src/boite.png", static_cast<float>(2.0), static_cast<float>(2.0), static_cast<float>(2.0), WHITE);
                 addEntity(std::move(entityB2));
             }
             if (map[i][j] == 'S') {
@@ -491,7 +491,7 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 entityS2->addComponent<indie::ecs::component::Collide>();
                 entityS2->addComponent<indie::ecs::component::Destroyable>();
                 entityS2->addComponent<indie::ecs::component::Drawable3D>(
-                    "src/boite.png", static_cast<float>(2.0), static_cast<float>(2.0), static_cast<float>(2.0), MAGENTA);
+                    "src/boite.png", static_cast<float>(2.0), static_cast<float>(2.0), static_cast<float>(2.0), WHITE);
                 addEntity(std::move(entityS2));
             }
             if (map[i][j] == 'R') {
@@ -514,7 +514,7 @@ void indie::menu::GameScreen::initMap(std::vector<std::vector<char>> map)
                 entityR2->addComponent<indie::ecs::component::Collide>();
                 entityR2->addComponent<indie::ecs::component::Destroyable>();
                 entityR2->addComponent<indie::ecs::component::Drawable3D>(
-                    "src/boite.png", static_cast<float>(2.0), static_cast<float>(2.0), static_cast<float>(2.0), MAGENTA);
+                    "src/boite.png", static_cast<float>(2.0), static_cast<float>(2.0), static_cast<float>(2.0), WHITE);
                 addEntity(std::move(entityR2));
             }
             posX += 2.0;
