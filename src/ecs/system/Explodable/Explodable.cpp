@@ -131,7 +131,9 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
                 ->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)
                 ->setAlive(false);
         } else {
-            entities.erase(entities.begin() + index - count);
+            if (entities.at(index - count)->hasCompoType(indie::ecs::component::DESTROYABLE) == true) {
+                entities.erase(entities.begin() + index - count);
+            }
         }
     }
     compoToRemove.clear();
@@ -168,8 +170,10 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
                 ->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)
                 ->setAlive(false);
         } else {
-            entities.erase(entities.begin() + index - count);
-            count++;
+            if (entities.at(index - count)->hasCompoType(indie::ecs::component::DESTROYABLE) == true) {
+                entities.erase(entities.begin() + index - count);
+                count++;
+            }
         }
     }
     compoToRemove.clear();
@@ -205,7 +209,9 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
                 ->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)
                 ->setAlive(false);
         } else {
-            entities.erase(entities.begin() + index);
+            if (entities.at(index - count)->hasCompoType(indie::ecs::component::DESTROYABLE) == true) {
+                entities.erase(entities.begin() + index);
+            }
         }
     }
     compoToRemove.clear();
@@ -241,8 +247,10 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
                 ->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)
                 ->setAlive(false);
         } else {
-            entities.erase(entities.begin() + index - count);
-            count++;
+            if (entities.at(index - count)->hasCompoType(indie::ecs::component::DESTROYABLE) == true) {
+                entities.erase(entities.begin() + index - count);
+                count++;
+            }
         }
     }
     compoToRemove.clear();

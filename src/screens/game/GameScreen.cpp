@@ -342,8 +342,8 @@ int indie::menu::GameScreen::handleEvent(indie::Event &event)
             handleMultipleController(event, 3, indie::ecs::entity::entityType::PLAYER_4);
         if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON || event.key.r_shift)
             return 4;
-        if (countAlivePlayers() == 1)
-            _is_game_finished = true;
+        // if (countAlivePlayers() == 1)
+        //     _is_game_finished = true;
     } else {
         if (_end_screen_display) {
             endScreenDisplay();
