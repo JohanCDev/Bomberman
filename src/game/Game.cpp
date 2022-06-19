@@ -63,7 +63,7 @@ void indie::Game::init()
 void indie::Game::initMusic()
 {
     indie::raylib::Sound menuSound("assets/music/music.ogg");
-    menuSound.setVolume(1.0f);
+    menuSound.setVolume(0.5f);
     _musics.insert({MENU_SOUND, menuSound});
 }
 
