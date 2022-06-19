@@ -93,8 +93,7 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
     float xPosition = getNewValue(bombTransformCompo->getX());
     float yPosition = getNewValue(bombTransformCompo->getY());
 
-    for (float i = 0, counter = 0.0; i < explodableCompo->getRange() + explodableCompo->getRange();
-         i += 2.0, counter += 2.0) {
+    for (float i = 0, counter = 0.0; i < explodableCompo->getRange() + 2.0f; i += 2.0, counter += 2.0) {
         std::map<size_t, indie::ecs::entity::Entity *> entityMap;
         entityMap = getEntityByPosition(entities, (xPosition - i), yPosition);
         if (entityMap.empty() == false) {
@@ -131,8 +130,7 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
         }
     }
     compoToRemove.clear();
-    for (float i = 0, counter = 0.0; i < explodableCompo->getRange() + explodableCompo->getRange();
-         i += 2.0, counter += 2.0) {
+    for (float i = 0, counter = 0.0; i < explodableCompo->getRange() + 2.0f; i += 2.0, counter += 2.0) {
         std::map<size_t, indie::ecs::entity::Entity *> entityMap;
         entityMap = getEntityByPosition(entities, (xPosition + i), yPosition);
         if (entityMap.empty() == false) {
@@ -170,8 +168,7 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
         }
     }
     compoToRemove.clear();
-    for (float i = 0, counter = 0.0; i < explodableCompo->getRange() + explodableCompo->getRange();
-         i += 2.0, counter += 2.0) {
+    for (float i = 0, counter = 0.0; i < explodableCompo->getRange() + 2.0f; i += 2.0, counter += 2.0) {
         std::map<size_t, indie::ecs::entity::Entity *> entityMap;
         entityMap = getEntityByPosition(entities, xPosition, yPosition + i);
         if (entityMap.empty() == false) {
@@ -207,8 +204,7 @@ void indie::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
         }
     }
     compoToRemove.clear();
-    for (float i = 0, counter = 0.0; i < explodableCompo->getRange() + explodableCompo->getRange();
-         i += 2.0, counter += 2.0) {
+    for (float i = 0, counter = 0.0; i < explodableCompo->getRange() + 2.0f; i += 2.0, counter += 2.0) {
         std::map<size_t, indie::ecs::entity::Entity *> entityMap;
         entityMap = getEntityByPosition(entities, xPosition, yPosition - i);
         if (entityMap.empty() == false) {
