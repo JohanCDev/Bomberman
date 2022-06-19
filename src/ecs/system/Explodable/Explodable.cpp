@@ -72,6 +72,11 @@ std::map<size_t, indie::ecs::entity::Entity *> indie::ecs::system::Explodable::g
     for (auto &entity : entities) {
         if (entity->hasCompoType(indie::ecs::component::TRANSFORM) == true
             && entity->hasCompoType(indie::ecs::component::COLLECTABLE) == false) {
+            if (entity->hasCompoType(indie::ecs::component::ALIVE)
+                && entity->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)->getAlive()
+                    == false) {
+                continue;
+            }
             auto transformCompo =
                 entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM);
             float xPosition = getNewValue(transformCompo->getX());
