@@ -118,14 +118,16 @@ void indie::menu::PreMenuScreen::update()
     player1DrawableCompo->setWidth(tools::Tools::getPercentage(25.f, false));
 
     if (_is_player1_ready) {
-        ecs::component::Drawable2D *player1readyDrawableCompo =
-            this->_entities[_player1_ready_pos]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
-        ecs::component::Transform *player1readyTransCompo =
-            this->_entities[_player1_ready_pos]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
-        player1readyTransCompo->setX(tools::Tools::getPercentage(10.f, true));
-        player1readyTransCompo->setY(tools::Tools::getPercentage(35.5f, false));
-        player1readyDrawableCompo->setHeight(tools::Tools::getPercentage(15.f, true));
-        player1readyDrawableCompo->setWidth(tools::Tools::getPercentage(17.f, false));
+        // TODO Fix this, it's not working SF
+
+        // ecs::component::Drawable2D *player1readyDrawableCompo =
+        //     this->_entities[_player1_ready_pos]->getComponent<ecs::component::Drawable2D>(ecs::component::DRAWABLE2D);
+        // ecs::component::Transform *player1readyTransCompo =
+        //     this->_entities[_player1_ready_pos]->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM);
+        // player1readyTransCompo->setX(tools::Tools::getPercentage(10.f, true));
+        // player1readyTransCompo->setY(tools::Tools::getPercentage(35.5f, false));
+        // player1readyDrawableCompo->setHeight(tools::Tools::getPercentage(15.f, true));
+        // player1readyDrawableCompo->setWidth(tools::Tools::getPercentage(17.f, false));
     }
     if (_is_player2_playing) {
         ecs::component::Drawable2D *player2DrawableCompo =

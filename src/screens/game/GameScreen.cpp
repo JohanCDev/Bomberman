@@ -22,7 +22,7 @@
 indie::menu::GameScreen::GameScreen(std::vector<player::Player> *players,
     std::vector<std::unique_ptr<indie::ecs::entity::Entity>> *soundEntities,
     std::vector<std::unique_ptr<indie::ecs::system::ISystem>> *soundSystems)
-    : _camera({0.0, 60.0, 7.0}, {0.0, -1.5, 0.0}, {0.0, 1.0, 0.0}, 40.0, CAMERA_PERSPECTIVE), _player1_blue(false),
+    : _camera({0.0, 60.0, 18.0}, {0.0, -1.5, 0.0}, {0.0, 1.0, 0.0}, 40.0, CAMERA_PERSPECTIVE), _player1_blue(false),
       _player2_red(false), _player3_green(false), _player4_yellow(false), _is_game_finished(false),
       _end_screen_display(true)
 {
@@ -49,7 +49,7 @@ void indie::menu::GameScreen::init()
         static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0), static_cast<float>(0.0));
     entityX->addComponent<indie::ecs::component::Drawable3D>(
         "", static_cast<float>(40.5), static_cast<float>(0.05), static_cast<float>(40), LIGHTGRAY);
-    entityX->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM)->setZ(-0.25);
+    entityX->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM)->setZ(-1.0);
     _playerAssets[0] = std::string("./assets/blue.png");
     _playerAssets[1] = std::string("./assets/red.png");
     _playerAssets[2] = std::string("./assets/green.png");
@@ -221,7 +221,7 @@ void indie::menu::GameScreen::handleMultipleController(
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
-                transform->setSpeedY(speed / 75.0f);
+                transform->setSpeedY(speed / 25.0f);
                 transform->setSpeedX(0);
                 objectCompo->setOrientation(indie::ecs::component::Object::SOUTH);
                 objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 5);
@@ -240,7 +240,7 @@ void indie::menu::GameScreen::handleMultipleController(
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
                 transform->setSpeedX(0);
-                transform->setSpeedY((speed / 75.0f) * -1.0f);
+                transform->setSpeedY((speed / 25.0f) * -1.0f);
                 objectCompo->setOrientation(indie::ecs::component::Object::NORTH);
                 objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 5);
                 raylib::Model::updateModelAnimation(
@@ -257,7 +257,7 @@ void indie::menu::GameScreen::handleMultipleController(
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
-                transform->setSpeedX((speed / 75.0f) * -1.0f);
+                transform->setSpeedX((speed / 25.0f) * -1.0f);
                 transform->setSpeedY(0);
                 objectCompo->setOrientation(indie::ecs::component::Object::WEST);
                 objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 5);
@@ -276,7 +276,7 @@ void indie::menu::GameScreen::handleMultipleController(
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
                 if (transform != nullptr) {
-                    transform->setSpeedX(speed / 75.0f);
+                    transform->setSpeedX(speed / 25.0f);
                     transform->setSpeedY(0);
                 }
                 objectCompo->setOrientation(indie::ecs::component::Object::EAST);
@@ -342,8 +342,8 @@ int indie::menu::GameScreen::handleEvent(indie::Event &event)
             handleMultipleController(event, 3, indie::ecs::entity::entityType::PLAYER_4);
         if (event.controller[0].code == indie::Event::ControllerCode::OPTION_BUTTON || event.key.r_shift)
             return 4;
-        // if (countAlivePlayers() == 1)
-        //     _is_game_finished = true;
+        if (countAlivePlayers() == 1)
+            _is_game_finished = true;
     } else {
         if (_end_screen_display) {
             endScreenDisplay();
