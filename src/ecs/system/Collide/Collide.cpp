@@ -87,26 +87,10 @@ bool indie::ecs::system::Collide::checkCollision(std::unique_ptr<indie::ecs::ent
             entity->getComponent<indie::ecs::component::Object>(indie::ecs::component::MODEL)->getModel());
         BoundingBox box2 = indie::raylib::BoundingBox::getModelBox(
             otherEntity->getComponent<indie::ecs::component::Object>(indie::ecs::component::ANIMATED)->getModel());
-        box1.min = Vector3Add(box1.min, {transform->getX(), transform->getY(), 0.0f});
-        box1.max = Vector3Add(box1.max, {transform->getX(), transform->getY(), 0.0f});
-        if (otherEntity->getComponent<indie::ecs::component::Object>(indie::ecs::component::ANIMATED)->getOrientation()
-            == static_cast<float>(indie::ecs::component::Object::SOUTH)) {
-            box2.min = Vector3Add(box2.min, {otherTransform->getX(), otherTransform->getY(), 0.0f});
-            box2.max = Vector3Add(box2.max, {otherTransform->getX(), otherTransform->getY() - 1.0f, 0.0f});
-        } else if (otherEntity->getComponent<indie::ecs::component::Object>(indie::ecs::component::ANIMATED)
-                       ->getOrientation()
-            == static_cast<float>(indie::ecs::component::Object::WEST)) {
-            box2.min = Vector3Add(box2.min, {otherTransform->getX() - 1.0f, otherTransform->getY(), 0.0f});
-            box2.max = Vector3Add(box2.max, {otherTransform->getX(), otherTransform->getY(), 0.0f});
-        } else if (otherEntity->getComponent<indie::ecs::component::Object>(indie::ecs::component::ANIMATED)
-                       ->getOrientation()
-            == static_cast<float>(indie::ecs::component::Object::EAST)) {
-            box2.min = Vector3Add(box2.min, {otherTransform->getX() + 1.0f, otherTransform->getY(), 0.0f});
-            box2.max = Vector3Add(box2.max, {otherTransform->getX(), otherTransform->getY(), 0.0f});
-        } else {
-            box2.min = Vector3Add(box2.min, {otherTransform->getX(), otherTransform->getY(), 0.0f});
-            box2.max = Vector3Add(box2.max, {otherTransform->getX(), otherTransform->getY(), 0.0f});
-        }
+        box1.min = {transform->getX() - 0.2f, transform->getY() - 0.2f, 0.0f};
+        box1.max = {transform->getX() + 0.2f, transform->getY() + 0.2f, 0.0f};
+        box2.min = {otherTransform->getX() - 0.2f, otherTransform->getY() - 0.2f, 0.0f};
+        box2.max = {otherTransform->getX() + 0.2f, otherTransform->getY() + 0.2f, 0.0f};
         if (indie::raylib::BoundingBox::checkCollisionBoxes(box1, box2) == true) {
             if (entity->hasCompoType(indie::ecs::component::COLLECTABLE) == true) {
                 otherEntity->getComponent<indie::ecs::component::Inventory>(indie::ecs::component::INVENTORY)
