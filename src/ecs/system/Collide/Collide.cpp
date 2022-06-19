@@ -74,36 +74,49 @@ Vector3 Vector3Add(Vector3 v1, Vector3 v2)
     return result;
 }
 
-bool indie::ecs::system::Collide::checkCubeCollision(std::unique_ptr<indie::ecs::entity::Entity> &entity,
+bool indie::ecs::system::Collide::checkCollision(std::unique_ptr<indie::ecs::entity::Entity> &entity,
     std::unique_ptr<indie::ecs::entity::Entity> &otherEntity, indie::ecs::component::Collide *collide,
-    indie::ecs::component::Collide *otherEntityCollide)
+    indie::ecs::component::Collide *otherEntityCollide, std::vector<int> &compoToRemove, int &count)
 {
-    // auto collide = entity->getComponent<indie::ecs::component::Collide>(indie::ecs::component::COLLIDE);
     auto transform = entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM);
-    // auto otherEntityCollide =
-    // otherEntity->getComponent<indie::ecs::component::Collide>(indie::ecs::component::COLLIDE);
     auto otherTransform = otherEntity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::TRANSFORM);
 
-    /*if (entity->hasCompoType(indie::ecs::component::ANIMATED)
-        && otherEntity->hasCompoType(indie::ecs::component::ANIMATED)) {
-        if (indie::raylib::BoundingBox::checkCollisionBoxes(
-                indie::raylib::BoundingBox::getModelBox(
-                    entity->getComponent<indie::ecs::component::Object>(indie::ecs::component::MODEL)->getModel()),
-                indie::raylib::BoundingBox::getModelBox(
-                    otherEntity->getComponent<indie::ecs::component::Object>(indie::ecs::component::MODEL)->getModel()))
-            == true) {
-            collide->setCollide(true);
-            otherEntityCollide->setCollide(true);
-            if (otherTransform->getSpeedX() > 0.0)
-                otherTransform->setX(otherTransform->getX() - 0.02);
-            if (otherTransform->getSpeedX() < 0.0)
-                otherTransform->setX(otherTransform->getX() + 0.02);
-            if (otherTransform->getSpeedY() > 0.0)
-                otherTransform->setY(otherTransform->getY() - 0.02);
-            if (otherTransform->getSpeedY() < 0.0)
-                otherTransform->setY(otherTransform->getY() + 0.02);
+    if (otherEntity->hasCompoType(indie::ecs::component::ANIMATED)
+        && entity->hasCompoType(indie::ecs::component::MODEL)) {
+        BoundingBox box1 = indie::raylib::BoundingBox::getModelBox(
+            entity->getComponent<indie::ecs::component::Object>(indie::ecs::component::MODEL)->getModel());
+        BoundingBox box2 = indie::raylib::BoundingBox::getModelBox(
+            otherEntity->getComponent<indie::ecs::component::Object>(indie::ecs::component::ANIMATED)->getModel());
+        box1.min = Vector3Add(box1.min, {transform->getX(), transform->getY(), 0.0f});
+        box1.max = Vector3Add(box1.max, {transform->getX(), transform->getY(), 0.0f});
+        if (otherEntity->getComponent<indie::ecs::component::Object>(indie::ecs::component::ANIMATED)->getOrientation()
+            == static_cast<float>(indie::ecs::component::Object::SOUTH)) {
+            box2.min = Vector3Add(box2.min, {otherTransform->getX(), otherTransform->getY(), 0.0f});
+            box2.max = Vector3Add(box2.max, {otherTransform->getX(), otherTransform->getY() - 1.0f, 0.0f});
+        } else if (otherEntity->getComponent<indie::ecs::component::Object>(indie::ecs::component::ANIMATED)
+                       ->getOrientation()
+            == static_cast<float>(indie::ecs::component::Object::WEST)) {
+            box2.min = Vector3Add(box2.min, {otherTransform->getX() - 1.0f, otherTransform->getY(), 0.0f});
+            box2.max = Vector3Add(box2.max, {otherTransform->getX(), otherTransform->getY(), 0.0f});
+        } else if (otherEntity->getComponent<indie::ecs::component::Object>(indie::ecs::component::ANIMATED)
+                       ->getOrientation()
+            == static_cast<float>(indie::ecs::component::Object::EAST)) {
+            box2.min = Vector3Add(box2.min, {otherTransform->getX() + 1.0f, otherTransform->getY(), 0.0f});
+            box2.max = Vector3Add(box2.max, {otherTransform->getX(), otherTransform->getY(), 0.0f});
+        } else {
+            box2.min = Vector3Add(box2.min, {otherTransform->getX(), otherTransform->getY(), 0.0f});
+            box2.max = Vector3Add(box2.max, {otherTransform->getX(), otherTransform->getY(), 0.0f});
         }
-    }*/
+        if (indie::raylib::BoundingBox::checkCollisionBoxes(box1, box2) == true) {
+            if (entity->hasCompoType(indie::ecs::component::COLLECTABLE) == true) {
+                otherEntity->getComponent<indie::ecs::component::Inventory>(indie::ecs::component::INVENTORY)
+                    ->setBonus(
+                        entity->getComponent<indie::ecs::component::Collectable>(indie::ecs::component::COLLECTABLE)
+                            ->getBonusType());
+                compoToRemove.push_back(count);
+            }
+        }
+    }
     if (otherEntity->hasCompoType(indie::ecs::component::ANIMATED)
         && entity->hasCompoType(indie::ecs::component::DRAWABLE3D)) {
         auto drawable = entity->getComponent<indie::ecs::component::Drawable3D>(indie::ecs::component::DRAWABLE3D);
@@ -142,60 +155,6 @@ bool indie::ecs::system::Collide::checkCubeCollision(std::unique_ptr<indie::ecs:
             return (true);
         }
     }
-    /*if (entity->hasCompoType(indie::ecs::component::MODEL)
-        && otherEntity->hasCompoType(indie::ecs::component::DRAWABLE3D)) {
-        auto drawable = otherEntity->getComponent<indie::ecs::component::Drawable3D>(indie::ecs::component::DRAWABLE3D);
-        Vector3 min = {transform->getX() - drawable->getWidth() / static_cast<float>(2.0),
-            transform->getY() - drawable->getHeight() / static_cast<float>(2.0),
-            -(drawable->getLength() / static_cast<float>(2.0))};
-        Vector3 max = {transform->getX() + drawable->getWidth() / static_cast<float>(2.0),
-            transform->getY() + drawable->getHeight() / static_cast<float>(2.0),
-            drawable->getLength() / static_cast<float>(2.0)};
-        indie::raylib::BoundingBox box1(min, max);
-        if (indie::raylib::BoundingBox::checkCollisionBoxes(
-                indie::raylib::BoundingBox::getModelBox(
-                    entity->getComponent<indie::ecs::component::Object>(indie::ecs::component::MODEL)->getModel()),
-                box1.getBoundingBox())
-            == true) {
-            collide->setCollide(true);
-            otherEntityCollide->setCollide(true);
-            if (otherTransform->getSpeedX() > 0.0)
-                otherTransform->setX(otherTransform->getX() - 0.02);
-            if (otherTransform->getSpeedX() < 0.0)
-                otherTransform->setX(otherTransform->getX() + 0.02);
-            if (otherTransform->getSpeedY() > 0.0)
-                otherTransform->setY(otherTransform->getY() - 0.02);
-            if (otherTransform->getSpeedY() < 0.0)
-                otherTransform->setY(otherTransform->getY() + 0.02);
-        }
-    }*/
-    /*Vector3 min = {transform->getX() - drawable->getWidth() / static_cast<float>(2.0),
-        transform->getY() - drawable->getHeight() / static_cast<float>(2.0),
-        -(drawable->getLength() / static_cast<float>(2.0))};
-    Vector3 max = {transform->getX() + drawable->getWidth() / static_cast<float>(2.0),
-        transform->getY() + drawable->getHeight() / static_cast<float>(2.0),
-        drawable->getLength() / static_cast<float>(2.0)};
-    indie::raylib::BoundingBox box1(min, max);
-    Vector3 min2 = {otherTransform->getX() - otherEntityDrawable->getWidth() / static_cast<float>(2.0),
-        otherTransform->getY() - otherEntityDrawable->getHeight() / static_cast<float>(2.0),
-        -(otherEntityDrawable->getLength() / static_cast<float>(2.0))};
-    Vector3 max2 = {otherTransform->getX() + otherEntityDrawable->getWidth() / static_cast<float>(2.0),
-        otherTransform->getY() + otherEntityDrawable->getHeight() / static_cast<float>(2.0),
-        otherEntityDrawable->getLength() / static_cast<float>(2.0)};
-    indie::raylib::BoundingBox box2(min2, max2);
-    */
-    /*if (indie::raylib::BoundingBox::checkCollisionBoxes(box1.getBoundingBox(), box2.getBoundingBox()) == true) {
-        collide->setCollide(true);
-        otherEntityCollide->setCollide(true);
-        if (otherTransform->getSpeedX() > 0.0)
-            otherTransform->setX(otherTransform->getX() - 0.02);
-        if (otherTransform->getSpeedX() < 0.0)
-            otherTransform->setX(otherTransform->getX() + 0.02);
-        if (otherTransform->getSpeedY() > 0.0)
-            otherTransform->setY(otherTransform->getY() - 0.02);
-        if (otherTransform->getSpeedY() < 0.0)
-            otherTransform->setY(otherTransform->getY() + 0.02);
-    }*/
     return (false);
 }
 
@@ -208,30 +167,13 @@ void indie::ecs::system::Collide::update(std::vector<std::unique_ptr<indie::ecs:
         if (entity->hasCompoType(ecs::component::compoType::COLLIDE) == true) {
             indie::ecs::component::Collide *collide =
                 entity->getComponent<ecs::component::Collide>(ecs::component::compoType::COLLIDE);
-            // auto drawableCompo =
-            //     entity->getComponent<ecs::component::Drawable3D>(ecs::component::compoType::DRAWABLE3D);
             auto transformCompo = entity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             for (auto &otherEntity : entities) {
                 if (otherEntity != entity && otherEntity->hasCompoType(indie::ecs::component::compoType::COLLIDE)) {
-                    // auto otherEntityCollide =
-                    //     otherEntity->getComponent<ecs::component::Collide>(ecs::component::compoType::COLLIDE);
-                    // auto otherEntityDrawable =
-                    //     otherEntity->getComponent<ecs::component::Drawable3D>(ecs::component::compoType::DRAWABLE3D);
-                    //  if (otherEntityDrawable->getDrawType() == indie::ecs::component::drawableType::CUBE
-                    //    && drawableCompo->getDrawType() == indie::ecs::component::drawableType::CUBE) {
-                    if (checkCubeCollision(entity, otherEntity,
-                            entity->getComponent<indie::ecs::component::Collide>(indie::ecs::component::COLLIDE),
-                            otherEntity->getComponent<indie::ecs::component::Collide>(indie::ecs::component::COLLIDE))
-                        == true) {}
-                    //}
-                    /*if (otherEntityDrawable->getDrawType() == indie::ecs::component::drawableType::SPHERE
-                        && drawableCompo->getDrawType() == indie::ecs::component::drawableType::CUBE) {
-                        checkSphereCollision(entity, otherEntity, compoToRemove, count);
-                    }
-                    if (drawableCompo->getDrawType() == indie::ecs::component::drawableType::SPHERE
-                        && otherEntityDrawable->getDrawType() == indie::ecs::component::drawableType::CUBE) {
-                        checkSphereCollision(entity, otherEntity, compoToRemove, count);
-                    }*/
+                    checkCollision(entity, otherEntity,
+                        entity->getComponent<indie::ecs::component::Collide>(indie::ecs::component::COLLIDE),
+                        otherEntity->getComponent<indie::ecs::component::Collide>(indie::ecs::component::COLLIDE),
+                        compoToRemove, count);
                 }
             }
         }

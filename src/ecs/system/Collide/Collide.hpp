@@ -49,9 +49,9 @@ namespace indie
                  * @param otherEntityDrawable The other drawable component
                  * @param otherTransform The other transform component
                  */
-                bool checkCubeCollision(std::unique_ptr<indie::ecs::entity::Entity> &entity,
+                bool checkCollision(std::unique_ptr<indie::ecs::entity::Entity> &entity,
                     std::unique_ptr<indie::ecs::entity::Entity> &otherEntity, indie::ecs::component::Collide *collide,
-                    indie::ecs::component::Collide *otherEntityCollide);
+                    indie::ecs::component::Collide *otherEntityCollide, std::vector<int> &compoToRemove, int &count);
                 /**
                  * @brief Check collisions between spheres
                  *
