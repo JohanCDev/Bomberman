@@ -109,7 +109,7 @@ void indie::menu::GameScreen::draw()
                     this->_players->at(type).setBombRadius(this->_players->at(type).getBombRadius() + 1);
                     inventory->setFireUp(false);
                 } else if (inventory->getSpeedUp() == true) {
-                    this->_players->at(type).setSpeed(this->_players->at(type).getSpeed() + 2);
+                    this->_players->at(type).setSpeed(this->_players->at(type).getSpeed() + 3);
                     inventory->setSpeedUp(false);
                 } else if (inventory->getBombUp() == true) {
                     this->_players->at(type).setBombStock(this->_players->at(type).getBombStock() + 1);
