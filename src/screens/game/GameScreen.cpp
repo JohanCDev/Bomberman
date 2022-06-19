@@ -220,10 +220,10 @@ void indie::menu::GameScreen::handleMultipleController(
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
-                transform->setSpeedY(speed / 75.0f);
+                transform->setSpeedY(speed / 25.0f);
                 transform->setSpeedX(0);
                 objectCompo->setOrientation(indie::ecs::component::Object::SOUTH);
-                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 2);
+                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 5);
                 raylib::Model::updateModelAnimation(
                     objectCompo->getModel(), objectCompo->getAnimations()[0], objectCompo->getAnimationsCounter());
                 if (objectCompo->getAnimationsCounter() >= objectCompo->getAnimations()[0].frameCount)
@@ -239,9 +239,9 @@ void indie::menu::GameScreen::handleMultipleController(
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
                 transform->setSpeedX(0);
-                transform->setSpeedY((speed / 75.0f) * -1.0f);
+                transform->setSpeedY((speed / 25.0f) * -1.0f);
                 objectCompo->setOrientation(indie::ecs::component::Object::NORTH);
-                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 2);
+                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 5);
                 raylib::Model::updateModelAnimation(
                     objectCompo->getModel(), objectCompo->getAnimations()[0], objectCompo->getAnimationsCounter());
                 if (objectCompo->getAnimationsCounter() >= objectCompo->getAnimations()[0].frameCount)
@@ -256,10 +256,10 @@ void indie::menu::GameScreen::handleMultipleController(
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
-                transform->setSpeedX((speed / 75.0f) * -1.0f);
+                transform->setSpeedX((speed / 25.0f) * -1.0f);
                 transform->setSpeedY(0);
                 objectCompo->setOrientation(indie::ecs::component::Object::WEST);
-                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 2);
+                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 5);
                 raylib::Model::updateModelAnimation(
                     objectCompo->getModel(), objectCompo->getAnimations()[0], objectCompo->getAnimationsCounter());
                 if (objectCompo->getAnimationsCounter() >= objectCompo->getAnimations()[0].frameCount)
@@ -274,10 +274,10 @@ void indie::menu::GameScreen::handleMultipleController(
                 auto transform =
                     entity->getComponent<indie::ecs::component::Transform>(indie::ecs::component::compoType::TRANSFORM);
                 float speed = static_cast<float>(this->_players->at(index).getSpeed());
-                transform->setSpeedX(speed / 75.0f);
+                transform->setSpeedX(speed / 25.0f);
                 transform->setSpeedY(0);
                 objectCompo->setOrientation(indie::ecs::component::Object::EAST);
-                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 2);
+                objectCompo->setAnimationsCounter(objectCompo->getAnimationsCounter() + 5);
                 raylib::Model::updateModelAnimation(
                     objectCompo->getModel(), objectCompo->getAnimations()[0], objectCompo->getAnimationsCounter());
                 if (objectCompo->getAnimationsCounter() >= objectCompo->getAnimations()[0].frameCount)
