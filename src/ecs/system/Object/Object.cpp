@@ -25,6 +25,11 @@ void indie::ecs::system::ObjectSystem::update(std::vector<std::unique_ptr<indie:
             ecs::component::compoType type = entity->hasCompoType(ecs::component::compoType::MODEL)
                 ? ecs::component::compoType::MODEL
                 : ecs::component::compoType::ANIMATED;
+            if (entity->hasCompoType(indie::ecs::component::ALIVE)
+                && entity->getComponent<indie::ecs::component::Alive>(indie::ecs::component::ALIVE)->getAlive()
+                    == false) {
+                continue;
+            }
             indie::ecs::component::Object *objectCompo = entity->getComponent<ecs::component::Object>(type);
             indie::ecs::component::Transform *transformCompo =
                 entity->getComponent<ecs::component::Transform>(indie::ecs::component::TRANSFORM);
